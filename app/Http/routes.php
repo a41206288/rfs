@@ -14,3 +14,4 @@
 
 
 Route::get('/','PagesController@index');
+Route::get('manage','PagesController@show');
