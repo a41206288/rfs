@@ -11,7 +11,10 @@ class PagesController extends Controller {
 	{
 		return view('user_pages.home');
 	}
-	
+	public function show()
+	{
+		return view('manage_pages.call_manage');
+	}
 
 
 }
