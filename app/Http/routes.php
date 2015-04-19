@@ -15,3 +15,4 @@
 
 Route::get('/','PagesController@index');
 Route::get('manage','PagesController@show');
+Route::get('login','PagesController@login');

@@ -4,11 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "a8652ef2964f22c0de0c5ce3dc60b0c2",
-=======
     "hash": "2ef8960d4081f450795231f9abca3c13",
->>>>>>> origin/master
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3361,7 +3357,7 @@
                 "symfony/filesystem": "~2.1"
             },
             "suggest": {
-                "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
+                "phpspec/nyan-formatters": "~1.0 ??Adds Nyan formatters"
             },
             "bin": [
                 "bin/phpspec"

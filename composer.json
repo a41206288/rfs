@@ -12,11 +12,7 @@
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",
-<<<<<<< HEAD
-        "kodeine/laravel-acl" : "dev-master"
-=======
 		"kodeine/laravel-acl" : "dev-master"
->>>>>>> origin/master
 	},
 	"autoload": {
 		"classmap": [
