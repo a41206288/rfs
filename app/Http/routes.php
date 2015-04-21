@@ -12,18 +12,8 @@
 */
 use Illuminate\Support\Facades\App;
 
-Route::get('login', 'LoginController@show');
-Route::post('login', 'LoginController@login');
-Route::get('logout', 'LoginController@logout');
-Route::get('/','HomeController@index');
-////Route::get('manage','PagesController@show');
-//Route::get('login', [
-//    'as' => 'login',
-//    'uses' => 'PagesController@login'
-//]);
-//Route::group(['prefix' => 'user',
-//    'middleware' => ['auth', 'acl'],
-//    'is' => 'administrator'],
-//    function () {
-//        Route::resource('manage', 'PagesController@show');
-//    });
+Route::get('', 'PagesController@index');
+
+Route::get('login', 'LoginController@index');
+//Route::post('login', 'LoginController@login');
+//Route::get('logout', 'LoginController@logout');

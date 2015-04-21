@@ -1,26 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Blog Login</title>
-    <style type="text/css">
-        .fail {width:200px; margin: 20px auto; color: red;}
-        form {font-size:16px; color:#999; font-weight: bold;}
-        form {width:160px; margin:20px auto; padding: 10px; border:1px dotted #ccc;}
-        form input[type="text"], form input[type="password"] {margin: 2px 0 20px; color:#999;}
-        form input[type="submit"] {width: 100%; height: 30px; color:#666; font-size:16px;}
-    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RFS</title>
+
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-@if ($errors->has('fail'))
-    <div class="fail">{{ $errors->first('fail') }}</div>
-@endif
-{{ Form::open(['url'=>'login', 'method'=>'post']) }}
-{{ Form::label('email', 'Email') }}
-{{ Form::text('email') }}
-{{ Form::label('password', 'Password') }}
-{{ Form::password('password') }}
-{{ Form::submit('Login') }}
-{{ Form::close() }}
+
+<div class="container col-md-3 col-md-offset-4">
+    <br><br><br><br><br><br>
+    {!! Form::open(array('url' => 'login')) !!}
+
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading"><b>帳號登入</b></h2>
+        {!! Form::email('email', null, ['id' => 'email', 'placeholder' => '請輸入信箱', 'class' => 'form-control', 'required']) !!}
+        <br>
+        {!! Form::password('password', ['id' => 'password', 'placeholder' => '請輸入密碼', 'class' => 'form-control', 'required']) !!}
+        <br>
+        <div class="form-group">
+            {!! Form::checkbox('remember', 'remember', null, ['id' => 'remember']) !!}
+            {!! Form::label('remember', '記住我') !!}
+        </div>
+        <br>
+        <div class="text-right">
+        {!! Form::submit('登入', ['class' => 'btn btn-primary ']) !!}
+        </div>
+    </form>
+    {!! Form::close() !!}
+</div> <!-- /container -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
 </body>
 </html>

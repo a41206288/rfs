@@ -15,9 +15,6 @@ class PagesController extends Controller {
 	{
 		return view('manage_pages.call_manage');
 	}
-    public function login()
-    {
-        return view('login');
-    }
+
 
 }
