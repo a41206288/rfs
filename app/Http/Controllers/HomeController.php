@@ -1,36 +1,12 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-class HomeController extends Controller {
+class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
-
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view('home');
-	}
+    public function index()
+    {
+        return View::make('home')
+            ->with('title', '首頁')
+            ->with('hello', '大家好～～');
+    }
 
 }
