@@ -12,8 +12,8 @@
 */
 use Illuminate\Support\Facades\App;
 
-Route::get('', 'PagesController@index');
-
+Route::get('/', 'PagesController@index');
+Route::get('manage', 'PagesController@show');
 Route::get('login', 'LoginController@index');
-//Route::post('login', 'LoginController@login');
+Route::post('login', 'LoginController@login');
 //Route::get('logout', 'LoginController@logout');

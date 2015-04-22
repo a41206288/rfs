@@ -1,0 +1,4 @@
+安裝伺服器
+
+開啟伺服器
+php srtisan serve

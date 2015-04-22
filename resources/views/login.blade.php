@@ -22,9 +22,9 @@
 
 <div class="container col-md-3 col-md-offset-4">
     <br><br><br><br><br><br>
-    {!! Form::open(array('url' => 'login')) !!}
+    {!! Form::open(array('url' => 'login', 'method' => 'post')) !!}
 
-    <form class="form-signin" role="form">
+
         <h2 class="form-signin-heading"><b>帳號登入</b></h2>
         {!! Form::email('email', null, ['id' => 'email', 'placeholder' => '請輸入信箱', 'class' => 'form-control', 'required']) !!}
         <br>
@@ -36,9 +36,9 @@
         </div>
         <br>
         <div class="text-right">
-        {!! Form::submit('登入', ['class' => 'btn btn-primary ']) !!}
+        {!! Form::submit('login', ['class' => 'btn btn-primary ']) !!}
         </div>
-    </form>
+
     {!! Form::close() !!}
 </div> <!-- /container -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
