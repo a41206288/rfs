@@ -22,6 +22,9 @@
 
 <div class="container col-md-3 col-md-offset-4">
     <br><br><br><br><br><br>
+    @if ($errors->has('fail'))
+        <div class="fail" style="color:red;">{{ $errors->first('fail') }}</div>
+    @endif
     {!! Form::open(array('url' => 'login', 'method' => 'post')) !!}
 
 
@@ -34,6 +37,7 @@
             {!! Form::checkbox('remember', 'remember', null, ['id' => 'remember']) !!}
             {!! Form::label('remember', '記住我') !!}
         </div>
+
         <br>
         <div class="text-right">
         {!! Form::submit('login', ['class' => 'btn btn-primary ']) !!}

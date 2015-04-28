@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Models\Eloquent\Permission;
 use app\User;
+use app\Post;
 use Kodeine\Acl\Traits\HasRole;
 use Illuminate\Database\Seeder;
 /**
@@ -16,6 +17,7 @@ class user_seeder extends Seeder{
     use HasRole;
     public function run(){
         DB:: table('users')->delete();
+        DB:: table('posts')->delete();
 
         $user = new App\User;
         $user->name = "王小明";
@@ -40,5 +42,10 @@ class user_seeder extends Seeder{
         $roleModerator = Permission::where('name', '=', 'Moderator')->first();
         $user->assignRole($roleModerator);
         $user->save();
+
+        $post = new App\Post;
+        $post->title = 'Laravel 學習筆記';
+        $post->content = 'Laravel 是一個 PHP Web 開發框架。';
+        $post->save();
     }
 }
