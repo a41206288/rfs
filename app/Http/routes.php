@@ -32,7 +32,7 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator'],
     function () {
-        Route::get('post',array('as' => 'administratorPanel', 'uses' => 'HomeController@index'));
+        Route::get('manage_pages/call_manage',array('as' => 'administratorPanel', 'uses' => 'PagesController@show'));
        // Route::get('post','HomeController@index');
     });
 

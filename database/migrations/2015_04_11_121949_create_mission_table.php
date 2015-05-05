@@ -16,6 +16,8 @@ class CreateMissionTable extends Migration {
         {
             $table->increments('mission_list_id');
             $table->text('mission_name');
+            $table->timestamps();
+            $table->timestamp('complete_time')->nullable();
         });
 
 		Schema::create('mission', function(Blueprint $table)
@@ -23,7 +25,7 @@ class CreateMissionTable extends Migration {
 			$table->increments('mission_id');
             $table->text('mission_type');
             $table->text('mission_content');
-			$table->timestamp('create_time');
+			$table->timestamps();
             $table->timestamp('complete_time')->nullable();
             $table->text('fname');
             $table->text('lname');
