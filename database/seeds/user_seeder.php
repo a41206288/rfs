@@ -52,8 +52,20 @@ class user_seeder extends Seeder{
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 1;
-        $mission_list->mission_name = '路面修復';
+        $mission_list->mission_name = '西屯區';
         $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 2;
+        $mission_list->mission_name = '北屯區';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 3;
+        $mission_list->mission_name = '台中市政府周圍';
+        $mission_list->save();
+
+
         $mission = new App\Mission;
         $mission->mission_id = 1;
         $mission->mission_type = '道路斷裂';
@@ -70,10 +82,7 @@ class user_seeder extends Seeder{
         $mission->mission_list_id = 1;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 2;
-        $mission_list->mission_name = '水管管線修復';
-        $mission_list->save();
+
         $mission = new App\Mission;
         $mission->mission_id = 2;
         $mission->mission_type = '管線斷裂';
@@ -86,14 +95,10 @@ class user_seeder extends Seeder{
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '北屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市北屯區大雅路3號';
+        $mission->location = '台中市北屯區松竹路一段39號';
         $mission->mission_list_id = 2;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 3;
-        $mission_list->mission_name = '滅火並救出受傷民眾';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 3;
         $mission->mission_type = '建築物爆炸';
@@ -102,30 +107,30 @@ class user_seeder extends Seeder{
         $mission->lname = '雅珍';
         $mission->phone = '0934567812';
         $mission->email = 'zxc@yahoo.com.tw';
-        $mission->location = '台中市西屯區福星路431號';
-        $mission->mission_list_id = 3;
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '北屯';
+        $mission->township_or_district = '區';
+        $mission->location = '台中市北屯區柳陽東街16號';
+        $mission->mission_list_id = 2;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 4;
-        $mission_list->mission_name = '救出受困民眾';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 4;
         $mission->mission_type = '建築物倒塌';
-        $mission->mission_content = '住家房屋倒塌,有3人受困其中';
+        $mission->mission_content = '市政府倒塌,至少有3人受困其中';
         $mission->fname = '江';
         $mission->lname = '鳩';
         $mission->phone = '0945678123';
         $mission->email = 'rty@yahoo.com.tw';
-        $mission->location = '台中市西屯區福星路420號';
-        $mission->mission_list_id = 4;
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
+        $mission->location = '台中市西屯區中港路三段99號';
+        $mission->mission_list_id = 3;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 5;
-        $mission_list->mission_name = '滅火並處理斷裂電線';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 5;
         $mission->mission_type = '道路倒塌';
@@ -134,14 +139,14 @@ class user_seeder extends Seeder{
         $mission->lname = '鑫';
         $mission->phone = '0967812345';
         $mission->email = 'fgh@yahoo.com.tw';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
         $mission->location = '台中市西屯區西安街201號';
-        $mission->mission_list_id = 5;
+        $mission->mission_list_id = 1;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 6;
-        $mission_list->mission_name = '處理積水';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 6;
         $mission->mission_type = '道路淹水';
@@ -150,14 +155,14 @@ class user_seeder extends Seeder{
         $mission->lname = '家偉';
         $mission->phone = '0978123456';
         $mission->email = 'vbn@yahoo.com.tw';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
         $mission->location = '台中市西屯區逢甲路10號';
-        $mission->mission_list_id = 6;
+        $mission->mission_list_id = 1;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 7;
-        $mission_list->mission_name = '確認是否有人受困倒塌房屋中';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 7;
         $mission->mission_type = '建築物倒塌';
@@ -166,14 +171,14 @@ class user_seeder extends Seeder{
         $mission->lname = '祐錫';
         $mission->phone = '0981234567';
         $mission->email = 'uio@yahoo.com.tw';
-        $mission->location = '台中市西屯區福星路433號';
-        $mission->mission_list_id = 7;
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '北屯';
+        $mission->township_or_district = '區';
+        $mission->location = '台中市北屯區青島路四段9號';
+        $mission->mission_list_id = 2;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 8;
-        $mission_list->mission_name = '滅火並確定是否有人受困';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 8;
         $mission->mission_type = '建築物起火';
@@ -182,14 +187,14 @@ class user_seeder extends Seeder{
         $mission->lname = '伊富';
         $mission->phone = '0987654321';
         $mission->email = 'jkl@yahoo.com.tw';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
         $mission->location = '台中市西屯區文華路100號';
-        $mission->mission_list_id = 8;
+        $mission->mission_list_id = 1;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 9;
-        $mission_list->mission_name = '確認道路狀況是否造成危險';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 9;
         $mission->mission_type = '道路斷裂';
@@ -198,14 +203,14 @@ class user_seeder extends Seeder{
         $mission->lname = '恩五';
         $mission->phone = '0976543218';
         $mission->email = 'qaz@yahoo.com.tw';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
         $mission->location = '台中市西屯區中港路二段111號';
-        $mission->mission_list_id = 9;
+        $mission->mission_list_id = 3;
         $mission->save();
 
-        $mission_list = new App\Mission_list;
-        $mission_list->mission_list_id = 10;
-        $mission_list->mission_name = '封鎖橋梁周圍';
-        $mission_list->save();
         $mission = new App\Mission;
         $mission->mission_id = 10;
         $mission->mission_type = '橋梁斷裂';
@@ -214,8 +219,12 @@ class user_seeder extends Seeder{
         $mission->lname = '亞軒';
         $mission->phone = '0965432187';
         $mission->email = 'wsx@yahoo.com.tw';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
         $mission->location = '台中市西屯區朝陽橋';
-        $mission->mission_list_id = 10;
+        $mission->mission_list_id = 1;
         $mission->save();
 
     }
