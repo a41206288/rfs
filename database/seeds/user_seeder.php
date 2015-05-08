@@ -18,8 +18,8 @@ class user_seeder extends Seeder{
     public function run(){
         DB:: table('users')->delete();
         DB:: table('posts')->delete();
-        DB:: table('mission')->delete();
-        DB:: table('mission_list')->delete();
+        DB:: table('missions')->delete();
+        DB:: table('mission_lists')->delete();
 
         $user = new App\User;
         $user->name = "王小明";
@@ -62,6 +62,10 @@ class user_seeder extends Seeder{
         $mission->lname = '小君';
         $mission->phone = '0912345678';
         $mission->email = 'qwe@yahoo.com.tw';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '西屯';
+        $mission->township_or_district = '區';
         $mission->location = '台中市西屯區文華路90號';
         $mission->mission_list_id = 1;
         $mission->save();
@@ -78,7 +82,11 @@ class user_seeder extends Seeder{
         $mission->lname = '耀文';
         $mission->phone = '0923456781';
         $mission->email = 'asd@yahoo.com.tw';
-        $mission->location = '台中市西屯區逢甲路10號';
+        $mission->country_or_city_input = '台中';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '北屯';
+        $mission->township_or_district = '區';
+        $mission->location = '台中市北屯區大雅路3號';
         $mission->mission_list_id = 2;
         $mission->save();
 

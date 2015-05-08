@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller {
 
@@ -13,8 +14,8 @@ class PagesController extends Controller {
 	}
 	public function show()
 	{
-        $posts = DB::table('missions')->get();
-		return view('manage_pages.call_manage')->with('posts', $posts);
+        $missions = DB::table('missions')->get();
+		return view('manage_pages.call_manage')->with('missions', $missions);
 	}
 
 

@@ -27,11 +27,15 @@ class CreateMissionTable extends Migration {
             $table->text('mission_content');
 			$table->timestamps();
             $table->timestamp('complete_time')->nullable();
-            $table->text('fname');
+            $table->text('fname')->nullable();
             $table->text('lname');
-            $table->text('phone');
+            $table->text('phone')->nullable();
             $table->text('mission_comment')->nullable();
-            $table->text('email');
+            $table->text('email')->nullable();
+            $table->text('country_or_city_input');
+            $table->enum('country_or_city', ['縣', '市']);
+            $table->text('township_or_district_input');
+            $table->enum('township_or_district', ['鄉', '鎮','區']);
             $table->text('location');
             $table->unsignedInteger('mission_list_id');
             $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
@@ -45,9 +49,9 @@ class CreateMissionTable extends Migration {
 	 * @return void
 	 */
 	public function down()
-	{
-		Schema::drop('mission');
-        Schema::drop('mission_list');
-	}
+    {
+        Schema::drop('missions');
+        Schema::drop('mission_lists');
+    }
 
 }
