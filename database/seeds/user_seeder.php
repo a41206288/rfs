@@ -70,15 +70,15 @@ class user_seeder extends Seeder{
         $mission->mission_id = 1;
         $mission->mission_type = '道路斷裂';
         $mission->mission_content = '該地點路面已下陷約15公分';
-        $mission->fname = '林';
-        $mission->lname = '小君';
+        $mission->fname = '小君';
+        $mission->lname = '林';
         $mission->phone = '0912345678';
         $mission->email = 'qwe@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區文華路90號';
+        $mission->location = '逢甲校門口附近';
         $mission->mission_list_id = 1;
         $mission->save();
 
@@ -87,15 +87,13 @@ class user_seeder extends Seeder{
         $mission->mission_id = 2;
         $mission->mission_type = '管線斷裂';
         $mission->mission_content = '水管破裂造成路上積水';
-        $mission->fname = '程';
-        $mission->lname = '耀文';
+        $mission->lname = '程';
         $mission->phone = '0923456781';
-        $mission->email = 'asd@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '北屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市北屯區松竹路一段39號';
+        $mission->location = '松竹市場公車站前';
         $mission->mission_list_id = 2;
         $mission->save();
 
@@ -103,15 +101,14 @@ class user_seeder extends Seeder{
         $mission->mission_id = 3;
         $mission->mission_type = '建築物爆炸';
         $mission->mission_content = '店家爆炸旁邊幾家住戶也遭到波及';
-        $mission->fname = '耿';
-        $mission->lname = '雅珍';
+        $mission->fname = '雅珍';
+        $mission->lname = '耿';
         $mission->phone = '0934567812';
-        $mission->email = 'zxc@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '北屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市北屯區柳陽東街16號';
+        $mission->location = '柳陽東街16號';
         $mission->mission_list_id = 2;
         $mission->save();
 
@@ -119,15 +116,13 @@ class user_seeder extends Seeder{
         $mission->mission_id = 4;
         $mission->mission_type = '建築物倒塌';
         $mission->mission_content = '市政府倒塌,至少有3人受困其中';
-        $mission->fname = '江';
-        $mission->lname = '鳩';
-        $mission->phone = '0945678123';
-        $mission->email = 'rty@yahoo.com.tw';
+        $mission->fname = '鳩';
+        $mission->lname = '江';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區中港路三段99號';
+        $mission->location = '市政府';
         $mission->mission_list_id = 3;
         $mission->save();
 
@@ -135,15 +130,14 @@ class user_seeder extends Seeder{
         $mission->mission_id = 5;
         $mission->mission_type = '道路倒塌';
         $mission->mission_content = '電線杆倒塌,變電箱起火燃燒';
-        $mission->fname = '李';
-        $mission->lname = '鑫';
+        $mission->fname = '鑫';
+        $mission->lname = '李';
         $mission->phone = '0967812345';
-        $mission->email = 'fgh@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區西安街201號';
+        $mission->location = '公園旁';
         $mission->mission_list_id = 1;
         $mission->save();
 
@@ -151,15 +145,13 @@ class user_seeder extends Seeder{
         $mission->mission_id = 6;
         $mission->mission_type = '道路淹水';
         $mission->mission_content = '地下湧出大量水,造成路上嚴重積水';
-        $mission->fname = '李';
-        $mission->lname = '家偉';
+        $mission->lname = '李';
         $mission->phone = '0978123456';
-        $mission->email = 'vbn@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區逢甲路10號';
+        $mission->location = '逢甲路10號';
         $mission->mission_list_id = 1;
         $mission->save();
 
@@ -167,15 +159,13 @@ class user_seeder extends Seeder{
         $mission->mission_id = 7;
         $mission->mission_type = '建築物倒塌';
         $mission->mission_content = '住家房子倒塌,無法確認是否有人受困';
-        $mission->fname = '黃';
-        $mission->lname = '祐錫';
-        $mission->phone = '0981234567';
+        $mission->lname = '黃';
         $mission->email = 'uio@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '北屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市北屯區青島路四段9號';
+        $mission->location = '青島路四段9號';
         $mission->mission_list_id = 2;
         $mission->save();
 
@@ -183,15 +173,14 @@ class user_seeder extends Seeder{
         $mission->mission_id = 8;
         $mission->mission_type = '建築物起火';
         $mission->mission_content = '資電館2樓以上起火並冒出濃煙';
-        $mission->fname = '葉';
-        $mission->lname = '伊富';
+        $mission->fname = '伊富';
+        $mission->lname = '葉';
         $mission->phone = '0987654321';
-        $mission->email = 'jkl@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區文華路100號';
+        $mission->location = '文華路100號';
         $mission->mission_list_id = 1;
         $mission->save();
 
@@ -199,15 +188,13 @@ class user_seeder extends Seeder{
         $mission->mission_id = 9;
         $mission->mission_type = '道路斷裂';
         $mission->mission_content = '路面有多處裂痕';
-        $mission->fname = '陳';
-        $mission->lname = '恩五';
-        $mission->phone = '0976543218';
-        $mission->email = 'qaz@yahoo.com.tw';
+        $mission->fname = '恩五';
+        $mission->lname = '陳';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區中港路二段111號';
+        $mission->location = '距一天橋10公尺左右';
         $mission->mission_list_id = 3;
         $mission->save();
 
@@ -215,15 +202,13 @@ class user_seeder extends Seeder{
         $mission->mission_id = 10;
         $mission->mission_type = '橋梁斷裂';
         $mission->mission_content = '橋梁已斷裂無法通行';
-        $mission->fname = '吳';
-        $mission->lname = '亞軒';
+        $mission->lname = '吳';
         $mission->phone = '0965432187';
-        $mission->email = 'wsx@yahoo.com.tw';
         $mission->country_or_city_input = '台中';
         $mission->country_or_city = '市';
         $mission->township_or_district_input = '西屯';
         $mission->township_or_district = '區';
-        $mission->location = '台中市西屯區朝陽橋';
+        $mission->location = '朝陽橋';
         $mission->mission_list_id = 1;
         $mission->save();
 
