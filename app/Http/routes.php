@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\App;
 
 Route::get('/', 'PagesController@index');
 Route::get('manage', 'PagesController@show');
+
 //Route::get('login', 'LoginController@index');
 //Route::post('login', 'LoginController@login');
-//Route::resource('post', 'HomeController');
+Route::resource('post', 'HomeController');
 
 //Route::group(function () {
 //
@@ -32,7 +33,7 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator'],
     function () {
-        Route::get('post',array('as' => 'administratorPanel', 'uses' => 'HomeController@index'));
+        Route::get('manage_pages/call_manage',array('as' => 'administratorPanel', 'uses' => 'PagesController@show'));
        // Route::get('post','HomeController@index');
     });
 
