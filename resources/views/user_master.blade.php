@@ -38,19 +38,19 @@
             <br><br><br>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="nav_change">
-                    <li>{!! link_to('#', '首頁') !!}</li>
-                    <li>{!! link_to('#', '防災宣導') !!}</li>
-                    <li>{!! link_to('#', '防災地圖') !!}</li>
-                    <li>{!! link_to('#', '我要通報') !!}</li>
-                    <li>{!! link_to('#', '我要捐贈') !!}</li>
-                    <li>{!! link_to('#', '我要應徵人員') !!}</li>
-                    <li>{!! link_to('#', '我要尋人') !!}</li>
+                    <li class="@yield('home_active')">{!! link_to('/', '首頁') !!}</li>
+                    <li class="@yield('guidance_active')">{!! link_to('guidance', '防災宣導') !!}</li>
+                    <li class="@yield('guidance_map_active')">{!! link_to('#', '防災地圖') !!}</li>
+                    <li class="@yield('call_input_active')">{!! link_to('call_input', '我要通報') !!}</li>
+                    <li class="@yield('donate_input_active')">{!! link_to('donate_input', '我要捐贈') !!}</li>
+                    <li class="@yield('active')">{!! link_to('#', '我要應徵人員') !!}</li>
+                    <li class="@yield('missing_poster_input_active')">{!! link_to('missing_poster_input', '我要尋人') !!}</li>
                    
 
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>{!! link_to('#', '我要登入') !!}</li>
+                    <li>{!! link_to('login', '我要登入') !!}</li>
 
                     <li class="navbar-form"> 
                         <form action="search/" role="search">

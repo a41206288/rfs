@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CallController extends Controller {
 
@@ -14,7 +15,8 @@ class CallController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $missions = DB::table('missions')->get();
+        return view('manage_pages.call_manage')->with('missions', $missions);
 	}
 
 	/**
@@ -24,7 +26,7 @@ class CallController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('user_pages.call_input');
 	}
 
 	/**

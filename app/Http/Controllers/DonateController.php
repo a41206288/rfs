@@ -24,7 +24,7 @@ class DonateController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('user_pages.donate_input');
 	}
 
 	/**

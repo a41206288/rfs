@@ -14,7 +14,7 @@ class GuidanceController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        return view('user_pages.guidance');
 	}
 
 	/**

@@ -11,10 +11,23 @@
 |
 */
 use Illuminate\Support\Facades\App;
+//民眾用頁面route
+Route::get('/', 'HomeController@index');
+Route::get('call/input', 'CallController@create');
+Route::get('donate/input', 'DonateController@create');
+Route::get('guidance', 'GuidanceController@index');
+//Route::get('guidance_map', 'GuidanceController@');
+//Route::get('application_input', 'ApplicationController@');
+Route::get('missing_poster/input', 'MissingPosterController@create');
 
-Route::get('/', 'PagesController@index');
-Route::get('manage', 'PagesController@show');
+//登入用route
+Route::get('login', 'LoginController@show');
+Route::post('login', 'LoginController@login');
+Route::get('logout', 'LoginController@logout');
+//這行上面的請勿移動
 
+Route::get('mission/manage', 'MissionController@index');
+//需要設定權限的route
 //Route::get('login', 'LoginController@index');
 //Route::post('login', 'LoginController@login');
 Route::resource('post', 'HomeController');
@@ -33,7 +46,7 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator'],
     function () {
-        Route::get('manage_pages/call_manage',array('as' => 'administratorPanel', 'uses' => 'PagesController@show'));
+        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
        // Route::get('post','HomeController@index');
     });
 
@@ -49,7 +62,5 @@ Route::group([
 
 
 
-Route::get('login', 'LoginController@show');
-Route::post('login', 'LoginController@login');
-Route::get('logout', 'LoginController@logout');
+
 //Route::get('logout', 'LoginController@logout');

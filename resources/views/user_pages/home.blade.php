@@ -2,6 +2,9 @@
 @section('title')
     首頁
 @endsection
+@section('home_active')
+    active
+@endsection
 @section('content')
 	
 	this is hompage

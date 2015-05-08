@@ -24,7 +24,7 @@ class MissingPosterController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('user_pages.missing_poster_input');
 	}
 
 	/**
