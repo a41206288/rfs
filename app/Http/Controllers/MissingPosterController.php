@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller {
+class MissingPosterController extends Controller {
 
 	/**
 	 * Display a listing of the resource.

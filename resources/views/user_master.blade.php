@@ -31,20 +31,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=""><font size="10" color="#000">讀取救災系統名字</font></a>
-                <p class="navbar-text visible-lg ">副標題</p>
+                <a class="navbar-brand" href=""><font size="10" color="#000"><b>RFS</b></font></a>
+                <p class="navbar-text visible-lg ">救災資訊網</p>
 
             </div>
             <br><br><br>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="nav_change">
-                 這連結又GG
+                    <li>{!! link_to('#', '首頁') !!}</li>
+                    <li>{!! link_to('#', '防災宣導') !!}</li>
+                    <li>{!! link_to('#', '防災地圖') !!}</li>
+                    <li>{!! link_to('#', '我要通報') !!}</li>
+                    <li>{!! link_to('#', '我要捐贈') !!}</li>
+                    <li>{!! link_to('#', '我要應徵人員') !!}</li>
+                    <li>{!! link_to('#', '我要尋人') !!}</li>
                    
 
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="LogIn.php">管理人員登入</a></li>
+                    <li>{!! link_to('#', '我要登入') !!}</li>
+
                     <li class="navbar-form"> 
                         <form action="search/" role="search">
                             <div class="form-group">
