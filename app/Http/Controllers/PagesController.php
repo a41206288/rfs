@@ -13,7 +13,8 @@ class PagesController extends Controller {
 	}
 	public function show()
 	{
-		return view('manage_pages.call_manage');
+        $posts = DB::table('missions')->get();
+		return view('manage_pages.call_manage')->with('posts', $posts);
 	}
 
 

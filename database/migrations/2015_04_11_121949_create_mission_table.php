@@ -12,7 +12,7 @@ class CreateMissionTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('mission_list', function(Blueprint $table)
+        Schema::create('mission_lists', function(Blueprint $table)
         {
             $table->increments('mission_list_id');
             $table->text('mission_name');
@@ -20,7 +20,7 @@ class CreateMissionTable extends Migration {
             $table->timestamp('complete_time')->nullable();
         });
 
-		Schema::create('mission', function(Blueprint $table)
+		Schema::create('missions', function(Blueprint $table)
 		{
 			$table->increments('mission_id');
             $table->text('mission_type');
@@ -34,7 +34,7 @@ class CreateMissionTable extends Migration {
             $table->text('email');
             $table->text('location');
             $table->unsignedInteger('mission_list_id');
-            $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_list');
+            $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
 		});
 
 	}
