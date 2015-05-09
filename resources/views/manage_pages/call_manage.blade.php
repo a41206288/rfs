@@ -22,7 +22,7 @@
                             {{--@foreach ($missions as $mission)--}}
                                 {{--{!! Form::select($mission->country_or_city_input,$mission->country_or_city_input) !!}--}}
 
-                                {!! Form::select('country',$country_or_cities!!}
+                                {!! Form::select('country',$country_or_cities)!!}
                                 {!! Form::select('size', array('L' => '文華路', 'S' => '西屯路','請選擇'=>'請選擇'), '請選擇') !!}
                         @endif
                     </th>
