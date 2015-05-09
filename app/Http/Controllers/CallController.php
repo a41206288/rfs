@@ -16,7 +16,9 @@ class CallController extends Controller {
 	public function index()
 	{
         $missions = DB::table('missions')->get();
-        return view('manage_pages.call_manage')->with('missions', $missions);
+        $country_or_cities = DB::table('missions')->distinct()->lists('country_or_city_input');
+       // $country_or_cities = DB::table('missions')->select('country_or_city_input', 'country_or_city')->distinct()->get();
+        return view('manage_pages.call_manage')->with('missions', $missions)->with('country_or_cities', $country_or_cities);
 	}
 
 	/**

@@ -11,16 +11,24 @@
                     <th width="10%">通報編號</th>
                     <th width="40%">通報內容</th>
                     <th width="40%">通報地址
-                        @if (isset($missions))
+                        {{--@foreach ($country_or_cities as $country_or_city)--}}
 
-                            @foreach ($missions as $mission)
-                                {!! Form::select('size', array('L' => '$mission->country_or_city_input'. '$mission->country_or_city_input->country_or_city','請選擇'=>'請選擇'), '請選擇') !!}
-                                {!! Form::select('size', array('L' => '西屯區', '請選擇'=>'請選擇'), '請選擇') !!}
+                    {{--<td>{!! $country_or_city!!}</td>--}}
+
+
+                    {{--@endforeach--}}
+                        @if (isset($country_or_cities))
+
+                            {{--@foreach ($missions as $mission)--}}
+                                {{--{!! Form::select($mission->country_or_city_input,$mission->country_or_city_input) !!}--}}
+
+                                {!! Form::select('country',$country_or_cities!!}
                                 {!! Form::select('size', array('L' => '文華路', 'S' => '西屯路','請選擇'=>'請選擇'), '請選擇') !!}
+                        @endif
                     </th>
-                    @endforeach
+                    {{--@endforeach--}}
 
-                    @endif
+
 
                     <th width="10%">{!! Form::submit('save', ['class' => 'btn btn-default ']) !!}<br></th>
                 </tr>
