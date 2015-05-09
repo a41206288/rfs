@@ -65,6 +65,21 @@ class user_seeder extends Seeder{
         $mission_list->mission_name = '台中市政府周圍';
         $mission_list->save();
 
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 4;
+        $mission_list->mission_name = '新莊區';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 5;
+        $mission_list->mission_name = '高雄市';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 6;
+        $mission_list->mission_name = '台北市';
+        $mission_list->save();
+
 
         $mission = new App\Mission;
         $mission->mission_id = 1;
@@ -210,6 +225,107 @@ class user_seeder extends Seeder{
         $mission->township_or_district = '區';
         $mission->location = '朝陽橋';
         $mission->mission_list_id = 1;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 11;
+        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '3層樓高之建築物倒塌,一旁的道路有一線道因建築物倒塌而無法通行';
+        $mission->fname = '威德';
+        $mission->lname = '簡';
+        $mission->phone = '0987548754';
+        $mission->country_or_city_input = '新北';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '新莊';
+        $mission->township_or_district = '區';
+        $mission->location = '中正路621號';
+        $mission->mission_list_id = 4;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 12;
+        $mission->mission_type = '管線斷裂';
+        $mission->mission_content = '從地面裂縫中滲出水';
+        $mission->lname = '王';
+        $mission->phone = '0912345678';
+        $mission->country_or_city_input = '台北';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '中正';
+        $mission->township_or_district = '區';
+        $mission->location = '杭州南路一段55號';
+        $mission->mission_list_id = 6;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 13;
+        $mission->mission_type = '建築物起火';
+        $mission->mission_content = '建築物內冒出濃煙, 確定內部無受困者';
+        $mission->lname = '何';
+        $mission->phone = '0912345678';
+        $mission->country_or_city_input = '台北';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '中正';
+        $mission->township_or_district = '區';
+        $mission->location = '台新銀行';
+        $mission->mission_list_id = 6;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 14;
+        $mission->mission_type = '道路起火';
+        $mission->mission_content = '電線杆倒塌起火';
+        $mission->fname = '一文';
+        $mission->lname = '柯';
+        $mission->phone = '0902020101';
+        $mission->country_or_city_input = '高雄';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '苓雅';
+        $mission->township_or_district = '區';
+        $mission->location = '仁德街';
+        $mission->mission_list_id = 5;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 15;
+        $mission->mission_type = '道路斷裂';
+        $mission->mission_content = '道路多處地方斷裂且變形';
+        $mission->lname = '紀';
+        $mission->email = 'yui@yahoo.com.tw';
+        $mission->country_or_city_input = '高雄';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '前金';
+        $mission->township_or_district = '區';
+        $mission->location = '85大樓周圍';
+        $mission->mission_list_id = 5;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 16;
+        $mission->mission_type = '管線斷裂';
+        $mission->mission_content = '地面有兩處不斷冒出水';
+        $mission->lname = '蔡';
+        $mission->phone = '0923232323';
+        $mission->country_or_city_input = '新北';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '新莊';
+        $mission->township_or_district = '區';
+        $mission->location = '中正路669號';
+        $mission->mission_list_id = 4;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 17;
+        $mission->mission_type = '建築物爆炸';
+        $mission->mission_content = '一民宅爆炸, 火勢蔓延至周遭房屋';
+        $mission->fname = '耀承';
+        $mission->lname = '陳';
+        $mission->email = 'tps@yahoo.com.tw';
+        $mission->country_or_city_input = '新北';
+        $mission->country_or_city = '市';
+        $mission->township_or_district_input = '新莊';
+        $mission->township_or_district = '區';
+        $mission->location = '距捷運站5公尺處';
+        $mission->mission_list_id = 4;
         $mission->save();
 
     }
