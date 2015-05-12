@@ -465,7 +465,13 @@
       <option name="project" value="LOCAL" />
       <updated>1431404405679</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="下拉式database single row complete">
+      <created>1431404434765</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1431404434765</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
