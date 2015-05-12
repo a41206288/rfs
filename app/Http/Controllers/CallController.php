@@ -15,10 +15,24 @@ class CallController extends Controller {
 	 */
 	public function index()
 	{
-        $missions = DB::table('missions')->get();
-        $country_or_cities = DB::table('missions')->distinct()->lists('country_or_city_input');
+        //讀取mission所有資料
+        $missions = DB::table('missions')->orderBy('country_or_city_input')->orderBy('township_or_district_input')->orderBy('location')->get();
+
+        //讀取縣市
+        $country_or_city_inputs = DB::table('missions')->orderBy('country_or_city_input')->distinct()->lists('country_or_city_input');
+        $country_or_city_inputs = array_add($country_or_city_inputs, '請選擇', '請選擇');
+        //讀取鄉鎮區
+        $township_or_district_inputs = DB::table('missions')->orderBy('township_or_district_input')->distinct()->lists('township_or_district_input');
+        $township_or_district_inputs = array_add($township_or_district_inputs, '請選擇', '請選擇');
        // $country_or_cities = DB::table('missions')->select('country_or_city_input', 'country_or_city')->distinct()->get();
-        return view('manage_pages.call_manage')->with('missions', $missions)->with('country_or_cities', $country_or_cities);
+
+        //讀取任務列表
+        $mission_names = DB::table('mission_lists')->orderBy('mission_name')->lists('mission_name');
+        $mission_names = array_add($mission_names, '請選擇', '請選擇');
+        return view('manage_pages.call_manage')->with('missions', $missions)
+            ->with('country_or_city_inputs', $country_or_city_inputs)
+            ->with('township_or_district_inputs', $township_or_district_inputs)
+            ->with('mission_names', $mission_names);
 	}
 
 	/**

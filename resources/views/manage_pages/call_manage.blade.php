@@ -17,13 +17,14 @@
 
 
                     {{--@endforeach--}}
-                        @if (isset($country_or_cities))
+                        @if (isset($country_or_city_inputs) && isset($township_or_district_inputs))
 
                             {{--@foreach ($missions as $mission)--}}
                                 {{--{!! Form::select($mission->country_or_city_input,$mission->country_or_city_input) !!}--}}
 
-                                {!! Form::select('country',$country_or_cities)!!}
-                                {!! Form::select('size', array('L' => '文華路', 'S' => '西屯路','請選擇'=>'請選擇'), '請選擇') !!}
+                                {!! Form::select('country',$country_or_city_inputs,'請選擇')!!}
+                                {!! Form::select('township',$township_or_district_inputs,'請選擇')!!}
+
                         @endif
                     </th>
                     {{--@endforeach--}}
@@ -41,8 +42,12 @@
                         <tr>
                             <td>{!! $mission->mission_id!!}</td>
                             <td>{!! $mission->mission_content!!}</td>
-                            <td>{!! $mission->location!!}</td>
-                            <td>{!! Form::select('size', array('L' => 'Large', 'S' => 'Small','請選擇'=>'請選擇'), '請選擇') !!}</td>
+                            <td>{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>
+
+                            @if (isset($mission_names) )
+                                <td>{!! Form::select('mission_list',$mission_names, '請選擇') !!}</td>
+                            @endif
+
                         </tr>
                         <tr>
 
