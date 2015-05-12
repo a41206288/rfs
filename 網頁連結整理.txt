@@ -1,19 +1,19 @@
-±M®×
+ï»¿å°ˆæ¡ˆ
 
-	±MÃDgit https://github.com/a41206288/rfs.git 
+	å°ˆé¡Œgit https://github.com/a41206288/rfs.git 
 
-Àô¹Ò¦w¸Ë
+ç’°å¢ƒå®‰è£
 	Html/From http://laravelcollective.com/docs/5.0/html#installation
 
-°Ñ¦Ò¸ê®Æ
+åƒè€ƒè³‡æ–™
 
 laravel 
-	¤¤¤å±Ğ¾Çyoutube 
-	­^¤å±Ğ¾Ç
+	ä¸­æ–‡æ•™å­¸youtube 
+	è‹±æ–‡æ•™å­¸
 
 github
-	30¤Ñ¼ô½mgit https://github.com/doggy8088/Learn-Git-in-30-days
+	30å¤©ç†Ÿç·´git https://github.com/doggy8088/Learn-Git-in-30-days
 
 
-½d¨Òºô¯¸
-	¶Â«ÈªÀ https://github.com/HackerSir/HackerWebSite/tree/master/resources/views/member 
+ç¯„ä¾‹ç¶²ç«™
+	é»‘å®¢ç¤¾ https://github.com/HackerSir/HackerWebSite/tree/master/resources/views/member 

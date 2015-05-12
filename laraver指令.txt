@@ -1,4 +1,14 @@
-�w�˦��A��
+﻿安裝伺服器
 
-�}�Ҧ��A��
-php srtisan serve
+開啟伺服器
+php artisan serve
+
+資料庫
+
+建立seed
+composer dump (更新檔案目錄)
+php artisan db:seed (跑seeder)
+
+自動建controller
+php artisan make controller --plain
+php artisan make controller (全部)
