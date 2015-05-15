@@ -4,6 +4,8 @@
 php artisan serve
 
 資料庫
+php artisan migrate (建置)
+php artisan migrate:rollback (還原成上一版本)
 
 建立seed
 composer dump (更新檔案目錄)
