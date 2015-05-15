@@ -8,8 +8,10 @@
 參考資料
 
 laravel 
-	中文教學youtube 
+	中文教學youtube
+	https://www.youtube.com/watch?v=Lj6sK3pfyO8
 	英文教學
+	https://laracasts.com/series/laravel-5-from-scratch
 
 github
 	30天熟練git https://github.com/doggy8088/Learn-Git-in-30-days
