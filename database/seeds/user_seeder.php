@@ -52,31 +52,36 @@ class user_seeder extends Seeder{
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 1;
-        $mission_list->mission_name = '西屯區';
+        $mission_list->mission_name = '未分配任務';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 2;
-        $mission_list->mission_name = '北屯區';
+        $mission_list->mission_name = '西屯區';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 3;
-        $mission_list->mission_name = '台中市政府周圍';
+        $mission_list->mission_name = '北屯區';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 4;
-        $mission_list->mission_name = '新莊區';
+        $mission_list->mission_name = '台中市政府周圍';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 5;
-        $mission_list->mission_name = '高雄市';
+        $mission_list->mission_name = '新莊區';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 6;
+        $mission_list->mission_name = '高雄市';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 7;
         $mission_list->mission_name = '台北市';
         $mission_list->save();
 
@@ -109,7 +114,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '北屯區';
         //$mission->township_or_district = '';
         $mission->location = '松竹市場公車站前';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 1;
         $mission->save();
 
         $mission = new App\Mission;
@@ -124,7 +129,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '北屯區';
         //$mission->township_or_district = '';
         $mission->location = '柳陽東街16號';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
@@ -138,7 +143,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
        // $mission->township_or_district = '區';
         $mission->location = '市政府';
-        $mission->mission_list_id = 3;
+        $mission->mission_list_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -153,7 +158,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         //$mission->township_or_district = '區';
         $mission->location = '公園旁';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->save();
 
         $mission = new App\Mission;
@@ -167,7 +172,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
        // $mission->township_or_district = '區';
         $mission->location = '逢甲路10號';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->save();
 
         $mission = new App\Mission;
@@ -181,7 +186,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '北屯區';
         //$mission->township_or_district = '區';
         $mission->location = '青島路四段9號';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
@@ -196,7 +201,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         //$mission->township_or_district = '區';
         $mission->location = '文華路100號';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->save();
 
         $mission = new App\Mission;
@@ -210,7 +215,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         //$mission->township_or_district = '區';
         $mission->location = '距一天橋10公尺左右';
-        $mission->mission_list_id = 3;
+        $mission->mission_list_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -224,7 +229,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
        // $mission->township_or_district = '區';
         $mission->location = '朝陽橋';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->save();
 
         $mission = new App\Mission;
@@ -239,7 +244,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
        // $mission->township_or_district = '區';
         $mission->location = '中正路621號';
-        $mission->mission_list_id = 4;
+        $mission->mission_list_id = 5;
         $mission->save();
 
         $mission = new App\Mission;
@@ -253,7 +258,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '中正區';
         //$mission->township_or_district = '區';
         $mission->location = '杭州南路一段55號';
-        $mission->mission_list_id = 6;
+        $mission->mission_list_id = 7;
         $mission->save();
 
         $mission = new App\Mission;
@@ -267,7 +272,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '中正區';
        // $mission->township_or_district = '區';
         $mission->location = '台新銀行';
-        $mission->mission_list_id = 6;
+        $mission->mission_list_id = 7;
         $mission->save();
 
         $mission = new App\Mission;
@@ -282,7 +287,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '苓雅區';
        // $mission->township_or_district = '區';
         $mission->location = '仁德街';
-        $mission->mission_list_id = 5;
+        $mission->mission_list_id = 6;
         $mission->save();
 
         $mission = new App\Mission;
@@ -296,7 +301,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '前金區';
         //$mission->township_or_district = '區';
         $mission->location = '85大樓周圍';
-        $mission->mission_list_id = 5;
+        $mission->mission_list_id = 6;
         $mission->save();
 
         $mission = new App\Mission;
@@ -310,7 +315,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
         //$mission->township_or_district = '區';
         $mission->location = '中正路669號';
-        $mission->mission_list_id = 4;
+        $mission->mission_list_id = 5;
         $mission->save();
 
         $mission = new App\Mission;
@@ -325,7 +330,7 @@ class user_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
        // $mission->township_or_district = '區';
         $mission->location = '距捷運站5公尺處';
-        $mission->mission_list_id = 4;
+        $mission->mission_list_id = 5;
         $mission->save();
 
     }

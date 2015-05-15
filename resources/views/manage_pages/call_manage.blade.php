@@ -38,15 +38,17 @@
             <tbody>
             @if (isset($missions))
 
-                    @foreach ($missions as $mission)
+                    @foreach ($missions as $mission )
                         <tr>
+                            @if (isset($mission) && $mission->mission_list_id==1 )
                             <td>{!! $mission->mission_id!!}</td>
                             <td>{!! $mission->mission_content!!}</td>
                             <td>{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>
-
-                            @if (isset($mission_names) )
                                 <td>{!! Form::select('mission_list',$mission_names, '請選擇') !!}</td>
                             @endif
+                            {{--@if (isset($mission_names) && !isset($mission->mission_list_id) )--}}
+                                {{----}}
+                            {{--@endif--}}
 
                         </tr>
                         <tr>
