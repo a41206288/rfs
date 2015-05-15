@@ -3,7 +3,7 @@
     任務管理
 @endsection
 
-@section('content_c8')
+@section('content_c9')
 
     <h4>任務管理</h4>
     <br><br>
@@ -65,7 +65,7 @@
     </table>
 
 @endsection
-@section('content_c4')
+@section('content_c3')
     <div>
         <h5><b>任務編號 任務名稱</b></h5>
         <p><b>負責人 :</b> 陳曉明 <b>連絡電話 :</b>0912345678 {!! link_to('#', '傳訊息') !!}</p>
