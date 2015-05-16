@@ -28,6 +28,7 @@ Route::get('logout', 'LoginController@logout');
 
 //call manage 動態印出通報用
 Route::post('call/manage', 'CallController@update');
+Route::post('call/manage/save', 'CallController@store');
 
 Route::get('mission/manage', 'MissionController@index');
 //需要設定權限的route

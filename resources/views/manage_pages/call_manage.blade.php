@@ -6,7 +6,7 @@
 
     <div class="table-responsive">
 
-        {!! Form::open(array('url' => 'call/manage', 'method' => 'post')) !!}
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,10 +23,10 @@
 
                             {{--@foreach ($missions as $mission)--}}
                                 {{--{!! Form::select($mission->country_or_city_input,$mission->country_or_city_input) !!}--}}
-                            {{--{!! Form::open(array('url' => 'call_manage', 'name' => "frm_select_client")) !!}--}}
+                            {!! Form::open(array('url' => 'call/manage', 'method' => 'post')) !!}
                             {!! Form::select('country',$country_or_city_inputs,'請選擇',['onchange' => 'this.form.submit()'] )!!}
                             {!! Form::select('township',$township_or_district_inputs,'請選擇',['onchange' => 'this.form.submit()'])!!}
-                            {{--{!! Form::close() !!}--}}
+                            {!! Form::close() !!}
 
                             {{--{!! Form::select('country',$country_or_city_inputs,'請選擇')!!}--}}
                             {{--{!! Form::select('township',$township_or_district_inputs,'請選擇')!!}--}}
@@ -38,6 +38,7 @@
                     <th width="10%">通報人</th>
                     <th width="10%">通報人電話</th>
                     <th width="10%">通報人信箱</th>
+                    {!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}
                     <th width="10%">{!! Form::submit('save', ['class' => 'btn btn-default ']) !!}<br></th>
                 </tr>
 
@@ -55,7 +56,7 @@
                                 <td width="10%">{!! $mission->lname.$mission->fname!!}</td>
                                 <td width="10%">{!! $mission->phone!!}</td>
                                 <td width="10%">{!! $mission->email!!}</td>
-                                <td width="10%">{!! Form::select('mission_list',$mission_names, '請選擇') !!}</td>
+                                <td width="10%">{!! Form::select($mission->mission_id,$mission_names, '請選擇') !!}</td>
                             @endif
                             {{--@if (isset($mission_names) && !isset($mission->mission_list_id) )--}}
                                 {{----}}
