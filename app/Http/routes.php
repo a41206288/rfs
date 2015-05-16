@@ -47,15 +47,19 @@ Route::group([
     'is' => 'administrator'],
     function () {
         Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
+        //Route::get('user_pages/home',array('as' => 'centerCommanderPanel', 'uses' => 'PagesController@index'));
+
+
        // Route::get('post','HomeController@index');
     });
 
 Route::group([
     //'namespace' => 'moderatorPanel',
     'middleware' => ['auth', 'acl'],
-    'is' => 'moderator'],
+    'is' => 'centerCommander'],
     function () {
-        Route::get('user_pages/home',array('as' => 'moderatorPanel', 'uses' => 'PagesController@index'));
+        //Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
+        Route::get('user_pages/home',array('as' => 'centerCommanderPanel', 'uses' => 'PagesController@index'));
         //Route::get('user_pages.home', 'PagesController@index');
     });
 

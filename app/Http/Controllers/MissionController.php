@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MissionController extends Controller {
 
@@ -14,7 +15,10 @@ class MissionController extends Controller {
 	 */
 	public function index()
 	{
-        return view('manage_pages.mission_manage');
+
+        $mission_lists = DB::table('mission_lists')->get();
+        $country_or_cities = DB::table('missions')->lists('country_or_city_input');
+        return view('manage_pages.mission_manage')->with('mission_lists', $mission_lists)->with('country_or_cities', $country_or_cities);
 	}
 
 	/**

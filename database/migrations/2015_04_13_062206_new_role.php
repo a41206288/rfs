@@ -27,10 +27,45 @@ class NewRole extends Migration
         ]);
 
         $role = new Role();
-        $roleModerator = $role->create([
-            'name' => 'Moderator',
-            'slug' => 'moderator',
-            'description' => 'manage moderator privileges'
+        $roleCenterCommander = $role->create([
+            'name' => 'CenterCommander',
+            'slug' => 'centerCommander',
+            'description' => '中央指揮官'
+        ]);
+
+        $role = new Role();
+        $roleLocalCommander = $role->create([
+            'name' => 'LocalCommander',
+            'slug' => 'localCommander',
+            'description' => '地方指揮官'
+        ]);
+
+        $role = new Role();
+        $roleReliever = $role->create([
+            'name' => 'Reliever',
+            'slug' => 'reliever',
+            'description' => '脫困組'
+        ]);
+
+        $role = new Role();
+        $roleEMT = $role->create([
+            'name' => 'emt',
+            'slug' => 'emt',
+            'description' => '醫療組'
+        ]);
+
+        $role = new Role();
+        $roleResource = $role->create([
+            'name' => 'Resource',
+            'slug' => 'resource',
+            'description' => '資源監控組'
+        ]);
+
+        $role = new Role();
+        $roleMasses = $role->create([
+            'name' => 'Masses',
+            'slug' => 'masses',
+            'description' => '一般民眾'
         ]);
 
          //Create Permissions
@@ -49,22 +84,92 @@ class NewRole extends Migration
         ]);
 
         $permission = new Permission();
-        $permModerator = $permission->create([
-            'name'        => 'Moderator',
+        $permCenterCommander = $permission->create([
+            'name'        => 'CenterCommander',
             'slug'        => [          // pass an array of permissions.
-                'create'     => false,
+                'create'     =>  true,
                 'view'       => true,
-                'update'     => false,
-                'delete'     => false,
-                'view.phone' => false
+                'update'     =>  true,
+                'delete'     =>  true,
+                'view.phone' =>  true
             ],
-            'description' => 'manage Moderator  permissions'
+            'description' => 'manage CenterCommander  permissions'
+        ]);
+
+        $permission = new Permission();
+        $permLocalCommander = $permission->create([
+            'name'        => 'LocalCommander',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage LocalCommander  permissions'
+        ]);
+
+        $permission = new Permission();
+        $permReliever = $permission->create([
+            'name'        => 'Reliever',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Reliever  permissions'
+        ]);
+
+        $permission = new Permission();
+        $permEMT = $permission->create([
+            'name'        => 'emt',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage EMT  permissions'
+        ]);
+
+        $permission = new Permission();
+        $permResource = $permission->create([
+            'name'        => 'Resource',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Resource  permissions'
+        ]);
+
+        $permission = new Permission();
+        $permMasses = $permission->create([
+            'name'        => 'Masses',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Masses  permissions'
         ]);
 
         //Assign Permission(s) to Role
 
         $roleAdmin->assignPermission($permAdmin);
-        $roleModerator->assignPermission($permModerator);
+        $roleCenterCommander->assignPermission($permCenterCommander);
+        $roleLocalCommander->assignPermission($permLocalCommander);
+        $roleReliever->assignPermission($permReliever);
+        $roleEMT->assignPermission($permEMT);
+        $roleResource->assignPermission($permResource);
+        $roleMasses->assignPermission($permMasses);
 
         //Assign Role(s) To User
 
@@ -95,7 +200,12 @@ class NewRole extends Migration
 
         // delete Role
         Role::where('name', '=', 'Administrator')->delete();
-        Role::where('name', '=', 'Moderator')->delete();
+        Role::where('name', '=', 'CenterCommander')->delete();
+        Role::where('name', '=', 'LocalCommander')->delete();
+        Role::where('name', '=', 'Reliever')->delete();
+        Role::where('name', '=', 'EMT')->delete();
+        Role::where('name', '=', 'Resource')->delete();
+        Role::where('name', '=', 'Masses')->delete();
 
 
     }
