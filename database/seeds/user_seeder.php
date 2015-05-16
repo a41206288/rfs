@@ -31,7 +31,7 @@ class user_seeder extends Seeder{
         $roleAdmin = Permission::where('name', '=', 'Administrator')->first();
         $user->assignRole($roleAdmin);
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "陳小華";
@@ -70,7 +70,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 1;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "林麗雯";
@@ -83,7 +83,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 1;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "韓東霖";
@@ -96,7 +96,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "王麗芳";
@@ -110,7 +110,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 5;
         $user->mission_list_id = 2;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "吳番薯";
@@ -124,7 +124,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 3;
         $user->mission_list_id = 3;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "葉欣偉";
@@ -138,7 +138,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 4;
         $user->mission_list_id = 4;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "楊光冽";
@@ -152,7 +152,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 11;
         $user->mission_list_id = 5;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "簡道鉗";
@@ -166,7 +166,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 14;
         $user->mission_list_id = 6;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "林語";
@@ -180,7 +180,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 12;
         $user->mission_list_id = 7;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "耿夜";
@@ -193,7 +193,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 1;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "彭士萱";
@@ -207,7 +207,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 6;
         $user->mission_list_id = 2;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "黃奇偉";
@@ -221,7 +221,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 7;
         $user->mission_list_id = 3;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "丁凝";
@@ -235,7 +235,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 9;
         $user->mission_list_id = 4;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "曾家琪";
@@ -249,7 +249,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 17;
         $user->mission_list_id = 5;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "顧溪中";
@@ -263,7 +263,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 15;
         $user->mission_list_id = 6;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "鍾渝";
@@ -277,7 +277,7 @@ class user_seeder extends Seeder{
         $user->mission_id = 13;
         $user->mission_list_id = 7;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "金南響";
@@ -290,7 +290,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 3;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "呂伙棲";
@@ -303,7 +303,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 4;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "江晉玖";
@@ -316,7 +316,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 5;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "高吉夙";
@@ -329,7 +329,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 6;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "柯苛科";
@@ -342,7 +342,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 7;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "白卓逸";
@@ -355,7 +355,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 7;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "郭曉建";
@@ -368,7 +368,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "詹絳";
@@ -381,7 +381,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 3;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "趙漾刻";
@@ -394,7 +394,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 4;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "朱禮姚";
@@ -407,7 +407,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 5;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "唐臥土";
@@ -420,7 +420,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 6;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "尤燕";
@@ -433,7 +433,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 1;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "謝卸";
@@ -446,7 +446,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "莊簿郝";
@@ -459,7 +459,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 3;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "鄭織恩";
@@ -472,7 +472,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 4;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "許瑗慈";
@@ -485,7 +485,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 5;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "張俞";
@@ -498,7 +498,7 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 6;
         $user->save();
-        //print_r($user->getRoles());
+
 
         $user = new App\User;
         $user->name = "劉夏萊";
@@ -511,7 +511,132 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 7;
         $user->save();
-        //print_r($user->getRoles());
+
+        $user = new App\User;
+        $user->name = "王月";
+        $user->email = "038@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '王月')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_id = 5;
+        $user->mission_list_id = 2;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "鍾堅植";
+        $user->email = "039@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '鍾堅植')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_id = 13;
+        $user->mission_list_id = 7;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "顧赭鴟";
+        $user->email = "040@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '顧赭鴟')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_id = 15;
+        $user->mission_list_id = 6;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "簡依舞";
+        $user->email = "041@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '簡依舞')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_id = 14;
+        $user->mission_list_id = 6;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "曾晉瑋";
+        $user->email = "042@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '曾晉瑋')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_id = 17;
+        $user->mission_list_id = 5;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "詹欣束";
+        $user->email = "043@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '詹欣束')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 3;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "趙則恩";
+        $user->email = "044@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '趙則恩')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 4;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "郭編范";
+        $user->email = "045@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '郭編范')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "范聖佩";
+        $user->email = "046@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '范聖佩')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 7;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "江文欣";
+        $user->email = "047@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user  = User::where('name', '=', '江文欣')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 7;
+        $user->save();
+
 
 
 
