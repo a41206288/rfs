@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-offset-1 col-md-10 middle" >
+        <div class="col-md-offset-2 col-md-8 middle" >
             <h3><b>通報</b></h3><hr>
             <div style="background:#efefef; padding:20px">
                 <h4><b>報案人資料 </b></h4><br>
@@ -15,30 +15,31 @@
                 <form class="form-horizontal" role="form" action="" method="POST" name="formJoin" id="formJoin"  onSubmit="return checkForm();">
                     <div class="form-group form-group-sm">
                         <label class="col-sm-1 control-label" for="formGroupInputSmall" >姓氏</label>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <input class="form-control" type="text"  name="lname" id="lname" placeholder="">
+                            <span class="help-block"><font color="#ff0b11">*必填</font></span>
                         </div>
                         <label class="col-sm-1 control-label" for="formGroupInputSmall">名字</label>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <input class="form-control" type="text" name="fname" id="fname" placeholder="">
                         </div>
-                        <span class="help-block"><font color="#ff0b11">*</font> 請填寫真實聯絡方式，以方便我們聯絡您</span>
                     </div>
 
                     <div class="form-group form-group-sm">
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall">電話</label>
-                        <div class="col-sm-2">
-                            <input class="form-control " type="text" name="home_phone" id="home_phone" placeholder="">
-
-                        </div>
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall" >手機</label>
-                        <div class="col-sm-3">
+                        <label class="col-sm-1 control-label" for="formGroupInputSmall" >聯絡電話</label>
+                        <div class="col-sm-4">
                             <input class="form-control" type="text" name="phone" id="phone" placeholder="">
                         </div>
                         <label class="col-sm-1 control-label" for="formGroupInputSmall">E-mail</label>
                         <div class="col-sm-4">
                             <input class="form-control" type="email" name="email" id="email" placeholder="">
                         </div>
+                        <br/>
+                        <div class="control-label col-sm-5">
+                            <span class="help-block"><font color="#ff0b11">*</font> 至少填寫1項聯絡方式，以方便我們聯絡您</span>
+                        </div>
+
+
                     </div >
 
 
@@ -47,11 +48,22 @@
                     <div class="form-group form-group-sm">
                         <label class="col-sm-1 control-label" for="formGroupInputSmall">事件種類</label>
                         <div class="col-sm-3">
-
+                            <select class="form-control" name="" id="">
+                                <option value="">建築物</option>
+                                <option value="">道路</option>
+                                <option value="">橋梁</option>
+                                <option value="">管線</option>
+                                <option value="">河流</option>
+                            </select>
                         </div>
                         <div class="col-sm-3">
-
-
+                            <select class="form-control" name="" id="">
+                                <option value="">倒塌</option>
+                                <option value="">斷裂</option>
+                                <option value="">淹水</option>
+                                <option value="">爆炸</option>
+                                <option value="">起火</option>
+                            </select>
                         </div>
                         <div class="col-sm-5">
                             <input class="form-control " type="text" name="" id="" placeholder="其他">
