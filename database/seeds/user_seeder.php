@@ -39,6 +39,168 @@ class user_seeder extends Seeder{
         $user->password =Hash::make ('1234');
         $user->save();
 
+        $user = new App\User;
+        $user->name = "葉雯情";
+        $user->email = "004@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "林麗雯";
+        $user->email = "005@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "韓東霖";
+        $user->email = "006@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "王麗芳";
+        $user->email = "007@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "吳番薯";
+        $user->email = "008@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "葉欣偉";
+        $user->email = "009@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "楊光冽";
+        $user->email = "010@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "簡道鉗";
+        $user->email = "011@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "林語";
+        $user->email = "012@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "耿夜";
+        $user->email = "013@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "彭士萱";
+        $user->email = "014@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "黃奇偉";
+        $user->email = "015@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "丁凝";
+        $user->email = "016@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "曾家琪";
+        $user->email = "017@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "顧溪中";
+        $user->email = "018@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "鍾渝";
+        $user->email = "019@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "金南響";
+        $user->email = "020@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "呂伙棲";
+        $user->email = "021@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "江晉玖";
+        $user->email = "022@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "高吉夙";
+        $user->email = "023@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "柯苛科";
+        $user->email = "024@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "白卓逸";
+        $user->email = "025@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "郭曉建";
+        $user->email = "026@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "詹絳";
+        $user->email = "027@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "趙漾刻";
+        $user->email = "028@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "朱禮姚";
+        $user->email = "029@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "唐臥土";
+        $user->email = "030@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
         $user  = User::where('name', '=', '王小明')->first();
         $roleAdmin = Permission::where('name', '=', 'Administrator')->first();
         $user->assignRole($roleAdmin);
@@ -59,6 +221,168 @@ class user_seeder extends Seeder{
         $roleReliever = Permission::where('name', '=', 'Masses')->first();
         $user->assignRole( $roleReliever );
         $user->save();
+
+        $user  = User::where('name', '=', '葉雯情')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '林麗雯')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '韓東霖')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '王麗芳')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '吳番薯')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '葉欣偉')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '楊光冽')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '簡道鉗')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '林語')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '耿夜')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '彭士萱')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '黃奇偉')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '丁凝')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '曾家琪')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '顧溪中')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '鍾渝')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '金南響')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '呂伙棲')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '江晉玖')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '高吉夙')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '柯苛科')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '白卓逸')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '郭曉建')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '詹絳')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '趙漾刻')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '朱禮姚')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
+
+        $user  = User::where('name', '=', '唐臥土')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->save();
+        //print_r($user->getRoles());
 
         $post = new App\Post;
         $post->title = 'Laravel 學習筆記';
