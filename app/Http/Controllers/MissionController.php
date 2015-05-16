@@ -2,8 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 
 class MissionController extends Controller {
@@ -17,8 +19,26 @@ class MissionController extends Controller {
 	{
 
         $mission_lists = DB::table('mission_lists')->get();
-        $country_or_cities = DB::table('missions')->lists('country_or_city_input');
-        return view('manage_pages.mission_manage')->with('mission_lists', $mission_lists)->with('country_or_cities', $country_or_cities);
+
+
+
+                $emtUsers = DB::table('users')
+                    ->join('role_user','users.id','=','role_user.user_id')
+                    ->select(DB::raw('count(*) as total'))
+                    ->where('role_user.role_id','=',5)
+                    ->groupBy('users.mission_list_id')
+                    ->get();
+
+                $relieverUsers = DB::table('users')
+                    ->join('role_user','users.id','=','role_user.user_id')
+                    ->select(DB::raw('count(*) as total'))
+                    ->where('role_user.role_id','=',4)
+                    ->groupBy('users.mission_list_id')
+                    ->get();
+
+
+        dd($relieverUsers);
+        return view('manage_pages.mission_manage')->with('mission_lists', $mission_lists)->with('users', $users);
 	}
 
 	/**

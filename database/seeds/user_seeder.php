@@ -42,7 +42,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '陳小華')->first();
 //        $roleAdmin = Permission::where('name', '=', 'Administrator')->first();
 //        $user->assignRole($roleAdmin);
-        $roleCenterCommander = Permission::where('name', '=', 'CenterCommander')->first();
+        $roleCenterCommander = Permission::where('name', '=', 'Center')->first();
         $user->assignRole($roleCenterCommander);
         $user->save();
 
@@ -107,7 +107,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '王麗芳')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 5;
+        $user->mission_id = 5;
         $user->mission_list_id = 2;
         $user->save();
         //print_r($user->getRoles());
@@ -121,7 +121,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '吳番薯')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 3;
+        $user->mission_id = 3;
         $user->mission_list_id = 3;
         $user->save();
         //print_r($user->getRoles());
@@ -135,7 +135,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '葉欣偉')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 4;
+        $user->mission_id = 4;
         $user->mission_list_id = 4;
         $user->save();
         //print_r($user->getRoles());
@@ -149,7 +149,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '楊光冽')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 11;
+        $user->mission_id = 11;
         $user->mission_list_id = 5;
         $user->save();
         //print_r($user->getRoles());
@@ -163,7 +163,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '簡道鉗')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 14;
+        $user->mission_id = 14;
         $user->mission_list_id = 6;
         $user->save();
         //print_r($user->getRoles());
@@ -177,7 +177,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '林語')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 12;
+        $user->mission_id = 12;
         $user->mission_list_id = 7;
         $user->save();
         //print_r($user->getRoles());
@@ -204,7 +204,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '彭士萱')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 6;
+        $user->mission_id = 6;
         $user->mission_list_id = 2;
         $user->save();
         //print_r($user->getRoles());
@@ -218,7 +218,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '黃奇偉')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 7;
+        $user->mission_id = 7;
         $user->mission_list_id = 3;
         $user->save();
         //print_r($user->getRoles());
@@ -232,7 +232,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '丁凝')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 9;
+        $user->mission_id = 9;
         $user->mission_list_id = 4;
         $user->save();
         //print_r($user->getRoles());
@@ -246,7 +246,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '曾家琪')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 17;
+        $user->mission_id = 17;
         $user->mission_list_id = 5;
         $user->save();
         //print_r($user->getRoles());
@@ -260,7 +260,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '顧溪中')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 15;
+        $user->mission_id = 15;
         $user->mission_list_id = 6;
         $user->save();
         //print_r($user->getRoles());
@@ -274,7 +274,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '鍾渝')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list = 13;
+        $user->mission_id = 13;
         $user->mission_list_id = 7;
         $user->save();
         //print_r($user->getRoles());
@@ -429,7 +429,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '尤燕')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 1;
         $user->save();
@@ -442,7 +442,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '謝卸')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
         $user->save();
@@ -455,7 +455,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '莊簿郝')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 3;
         $user->save();
@@ -468,7 +468,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '鄭織恩')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 4;
         $user->save();
@@ -481,7 +481,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '許瑗慈')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 5;
         $user->save();
@@ -494,7 +494,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '張俞')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 6;
         $user->save();
@@ -507,7 +507,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '劉夏萊')->first();
-        $roleAdmin = Permission::where('name', '=', 'LocalCommander')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 7;
         $user->save();

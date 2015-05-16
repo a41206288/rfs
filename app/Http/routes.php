@@ -56,10 +56,10 @@ Route::group([
 Route::group([
     //'namespace' => 'moderatorPanel',
     'middleware' => ['auth', 'acl'],
-    'is' => 'centerCommander'],
+    'is' => 'center'],
     function () {
         //Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
-        Route::get('user_pages/home',array('as' => 'centerCommanderPanel', 'uses' => 'PagesController@index'));
+        Route::get('user_pages/home',array('as' => 'centerPanel', 'uses' => 'PagesController@index'));
         //Route::get('user_pages.home', 'PagesController@index');
     });
 

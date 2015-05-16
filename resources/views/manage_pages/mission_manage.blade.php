@@ -23,10 +23,14 @@
         @if (isset($mission_lists) )
             @foreach ($mission_lists as $mission_list )
                 @if ($mission_list->mission_name != "未分配任務")
+
                     <tr>
                         <td >{!!$mission_list->mission_name!!}</td>
+
+
                         <td>脫困組人數</td>
                         <td>醫療組人數</td>
+
                         <td>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -37,6 +41,7 @@
                         <td>最新回報</td>
                         <td>{!! link_to('#', '詳細') !!}</td>
                     </tr>
+
                 @endif
             @endforeach
         @endif

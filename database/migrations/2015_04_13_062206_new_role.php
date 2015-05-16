@@ -27,16 +27,16 @@ class NewRole extends Migration
         ]);
 
         $role = new Role();
-        $roleCenterCommander = $role->create([
-            'name' => 'CenterCommander',
-            'slug' => 'centerCommander',
+        $roleCenter = $role->create([
+            'name' => 'Center',
+            'slug' => 'center',
             'description' => '中央指揮官'
         ]);
 
         $role = new Role();
-        $roleLocalCommander = $role->create([
-            'name' => 'LocalCommander',
-            'slug' => 'localCommander',
+        $roleLocal = $role->create([
+            'name' => 'Local',
+            'slug' => 'local',
             'description' => '地方指揮官'
         ]);
 
@@ -84,8 +84,8 @@ class NewRole extends Migration
         ]);
 
         $permission = new Permission();
-        $permCenterCommander = $permission->create([
-            'name'        => 'CenterCommander',
+        $permCenter = $permission->create([
+            'name'        => 'Center',
             'slug'        => [          // pass an array of permissions.
                 'create'     =>  true,
                 'view'       => true,
@@ -97,8 +97,8 @@ class NewRole extends Migration
         ]);
 
         $permission = new Permission();
-        $permLocalCommander = $permission->create([
-            'name'        => 'LocalCommander',
+        $permLocal = $permission->create([
+            'name'        => 'Local',
             'slug'        => [          // pass an array of permissions.
                 'create'     => true,
                 'view'       => true,
@@ -164,8 +164,8 @@ class NewRole extends Migration
         //Assign Permission(s) to Role
 
         $roleAdmin->assignPermission($permAdmin);
-        $roleCenterCommander->assignPermission($permCenterCommander);
-        $roleLocalCommander->assignPermission($permLocalCommander);
+        $roleCenter->assignPermission($permCenter);
+        $roleLocal->assignPermission($permLocal);
         $roleReliever->assignPermission($permReliever);
         $roleEMT->assignPermission($permEMT);
         $roleResource->assignPermission($permResource);

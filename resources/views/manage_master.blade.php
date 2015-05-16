@@ -52,7 +52,7 @@
 
               {{--<!-- Logout -->           --}}
               {{--<li><a href="?logout=true">登出系統</a></li>--}}
-              <li  class="navbar-text">{{ Auth::user()->name}}</li>
+              <li  class="navbar-text">{!! Auth::user()->name!!}</li>
               <li >{!! Html::link('logout', '登出') !!}</li>
               {{--{{ Auth::user()->name}} 已登入，{!! Html::link('logout', '登出') !!}--}}
           </ul>
