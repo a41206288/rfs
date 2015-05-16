@@ -39,10 +39,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-              @yield('navbar_link')
+
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
+
               {{--{!! Form::open(array('route' => 'route.logout')) !!}--}}
 
                   {{--{!! Form::submit('logout', ['class' => 'btn btn-primary ']) !!}--}}
