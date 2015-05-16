@@ -38,11 +38,15 @@ class LoginController extends Controller {
 
             if ($attempt) {
                 $user = Auth::user();
-                if($user->is('moderator')){
+                if($user->is('administrator')){
                    // return $this->moderatorPanel();
-                    return redirect()->route('moderatorPanel');
-                }elseif($user->is('administrator')){
-                    return redirect()->route('administratorPanel');
+                   redirect()->route('administratorPanel');
+                       }else if($user->is('masses')){
+                    // return $this->moderatorPanel();
+                    redirect()->route('centerCommanderPanel');
+//                       }
+//                if($user->is('administrator')){
+//                    return redirect()->route('administratorPanel');
                    // return $this->administratorPanel();
 //                $user  = User::where('email', '=',  $input['email']);
 //                if($user->is('Administrator')){

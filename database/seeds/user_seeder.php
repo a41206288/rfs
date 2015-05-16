@@ -33,16 +33,31 @@ class user_seeder extends Seeder{
         $user->password =Hash::make ('1234');
         $user->save();
 
+        $user = new App\User;
+        $user->name = "陳芊蓉";
+        $user->email = "789@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->save();
+
         $user  = User::where('name', '=', '王小明')->first();
         $roleAdmin = Permission::where('name', '=', 'Administrator')->first();
         $user->assignRole($roleAdmin);
         $user->save();
-        print_r($user->getRoles());
+        //print_r($user->getRoles());
 
 
         $user  = User::where('name', '=', '陳小華')->first();
-        $roleModerator = Permission::where('name', '=', 'Moderator')->first();
-        $user->assignRole($roleModerator);
+//        $roleAdmin = Permission::where('name', '=', 'Administrator')->first();
+//        $user->assignRole($roleAdmin);
+        $roleCenterCommander = Permission::where('name', '=', 'CenterCommander')->first();
+        $user->assignRole($roleCenterCommander);
+        $user->save();
+
+        $user  = User::where('name', '=', '陳芊蓉')->first();
+//        $roleAdmin = Permission::where('name', '=', 'Administrator')->first();
+//        $user->assignRole($roleAdmin);
+        $roleReliever = Permission::where('name', '=', 'Masses')->first();
+        $user->assignRole( $roleReliever );
         $user->save();
 
         $post = new App\Post;
