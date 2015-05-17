@@ -24,21 +24,34 @@ class MissionController extends Controller {
 
                 $emtUsers = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
-                    ->select(DB::raw('count(*) as total'))
+                    ->select('mission_list_id',DB::raw('count(*) as total'))
                     ->where('role_user.role_id','=',5)
                     ->groupBy('users.mission_list_id')
                     ->get();
 
+                $emtUsersArray =[];
+                foreach($emtUsers as $emtUser){
+                    $emtUsersArray[$emtUser->mission_list_id] = $emtUser->total;
+                }
+
+
                 $relieverUsers = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
-                    ->select(DB::raw('count(*) as total'))
+                    ->select('mission_list_id',DB::raw('count(*) as total'))
                     ->where('role_user.role_id','=',4)
                     ->groupBy('users.mission_list_id')
                     ->get();
 
+                $relieverUsersArray =[];
+                foreach($relieverUsers as $relieverUser){
+                    $relieverUsersArray[$relieverUser->mission_list_id] = $relieverUser->total;
+                }
 
-        dd($relieverUsers);
-        return view('manage_pages.mission_manage')->with('mission_lists', $mission_lists)->with('users', $users);
+        //dd($emtUsersArray);
+        return view('manage_pages.mission_manage')
+            ->with('mission_lists', $mission_lists)
+            ->with('emtUsersArray', $emtUsersArray)
+            ->with('relieverUsersArray', $relieverUsersArray);
 	}
 
 	/**

@@ -1074,5 +1074,8 @@ class user_seeder extends Seeder{
         $mission->mission_list_id = 1;
         $mission->save();
 
+        $report = new App\Report;
+        $report->mission_list_id = 2;
+        $report->report_content = "";
     }
 }

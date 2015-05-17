@@ -27,9 +27,13 @@
                     <tr>
                         <td >{!!$mission_list->mission_name!!}</td>
 
+                        @if (isset($relieverUsersArray) )
+                            <td>{!!$relieverUsersArray[$mission_list->mission_list_id]!!}</td>
+                        @endif
 
-                        <td>脫困組人數</td>
-                        <td>醫療組人數</td>
+                        @if (isset($emtUsersArray) )
+                            <td>{!!$emtUsersArray[$mission_list->mission_list_id]!!}</td>
+                        @endif
 
                         <td>
                             <div class="progress">
