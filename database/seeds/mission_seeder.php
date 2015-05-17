@@ -196,6 +196,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
         $mission->location = '中正路621號';
         $mission->mission_list_id = 5;
+        $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -399,7 +400,59 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '北屯區';
         $mission->location = '東山路一段185號';
         $mission->mission_list_id = 1;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 28;
+        $mission->mission_type = '建築物爆炸';
+        $mission->mission_content = '餐廳瓦斯爆炸';
+        $mission->fname = '育豪';
+        $mission->lname = '彭';
+        $mission->phone = '0927272727';
+        $mission->country_or_city_input = '台中市';
+        $mission->township_or_district_input = '西屯區';
+        $mission->location = '文心路二段57號';
+        $mission->mission_list_id = 4;
         $mission->complete_time = date('Y-m-d H:i:s');
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 29;
+        $mission->mission_type = '管線斷裂';
+        $mission->mission_content = '建築物內多處管線斷裂漏水';
+        $mission->lname = '王';
+        $mission->phone = '0928282828';
+        $mission->email = 'dbsegaq@yahoo.com.tw';
+        $mission->country_or_city_input = '台北市';
+        $mission->township_or_district_input = '中正區';
+        $mission->location = '光華商場';
+        $mission->mission_list_id = 7;
+        $mission->complete_time = date('Y-m-d H:i:s');
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 30;
+        $mission->mission_type = '道路起火';
+        $mission->mission_content = '商家招牌砸中路過車輛, 車輛有起火之可能';
+        $mission->lname = '金';
+        $mission->phone = '0930303030';
+        $mission->country_or_city_input = '台北市';
+        $mission->township_or_district_input = '中正區';
+        $mission->location = '開南商工公車站前';
+        $mission->mission_list_id = 7;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 31;
+        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '建築物主要出入口接坍塌, 尚無法確認有多少人受困';
+        $mission->lname = '謝';
+        $mission->fname = '妮眛';
+        $mission->phone = '0931313131';
+        $mission->country_or_city_input = '台北市';
+        $mission->township_or_district_input = '中正區';
+        $mission->location = '徐州路2號';
+        $mission->mission_list_id = 7;
         $mission->save();
 
 
