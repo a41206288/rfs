@@ -454,7 +454,7 @@ class mission_seeder extends Seeder{
         $mission->location = '徐州路2號';
         $mission->mission_list_id = 7;
         $mission->save();
-
+//
 
 
 
