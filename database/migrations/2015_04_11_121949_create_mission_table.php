@@ -21,26 +21,26 @@ class CreateMissionTable extends Migration {
         });
 
 		Schema::create('missions', function(Blueprint $table)
-    {
-        $table->increments('mission_id');
-        $table->text('mission_type');
-        $table->text('mission_content');
-        $table->timestamps();
-        $table->timestamp('complete_time')->nullable();
-        $table->text('fname')->nullable();
-        $table->text('lname');
-        $table->text('phone')->nullable();
-        $table->text('mission_comment')->nullable();
-        $table->text('email')->nullable();
-        $table->text('country_or_city_input');
-        //$table->enum('country_or_city', ['縣', '市']);
-        $table->text('township_or_district_input');
-        //$table->enum('township_or_district', ['鄉', '鎮','區']);
-        $table->text('location');
-        $table->boolean('notice');
-        $table->unsignedInteger('mission_list_id');
-        $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
-    });
+        {
+            $table->increments('mission_id');
+            $table->text('mission_type');
+            $table->text('mission_content');
+            $table->timestamps();
+            $table->timestamp('complete_time')->nullable();
+            $table->text('fname')->nullable();
+            $table->text('lname');
+            $table->text('phone')->nullable();
+            $table->text('mission_comment')->nullable();
+            $table->text('email')->nullable();
+            $table->text('country_or_city_input');
+            //$table->enum('country_or_city', ['縣', '市']);
+            $table->text('township_or_district_input');
+            //$table->enum('township_or_district', ['鄉', '鎮','區']);
+            $table->text('location');
+            $table->boolean('notice');
+            $table->unsignedInteger('mission_list_id');
+            $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
+        });
 
         Schema::create('reports', function(Blueprint $table)
         {
@@ -62,6 +62,7 @@ class CreateMissionTable extends Migration {
     {
         Schema::drop('missions');
         Schema::drop('mission_lists');
+        Schema::drop('reports');
     }
 
 }

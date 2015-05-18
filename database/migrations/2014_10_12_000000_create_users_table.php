@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60);
             $table->unsignedInteger('mission_id');
             $table->unsignedInteger('mission_list_id');
+            $table->string('phone');
 			$table->rememberToken();
 			$table->timestamps();
 		});
