@@ -1,5 +1,15 @@
 ﻿安裝伺服器
 
+1.安裝git ->載入專案
+2.安裝XAMPP
+3.安裝composer
+4.命令提示字元 cmd->到專案資料夾 -> composer install
+5.命令提示字元 cmd->composer global require "laravel/installer=~1.1"
+6.php artisan fresh
+
+
+
+
 開啟伺服器
 php artisan serve
 

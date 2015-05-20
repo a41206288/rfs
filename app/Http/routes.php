@@ -26,10 +26,23 @@ Route::post('login', 'LoginController@login');
 Route::get('logout', 'LoginController@logout');
 //這行上面的請勿移動
 
+
+//-------------------------------------------分隔線-------------------------------------------------------
+
+//下面請根據權限放至各Panel下  (此為暫放)
+
 //call manage 動態印出通報用
 Route::post('call/manage', 'CallController@update');
 Route::post('call/manage/save', 'CallController@store');
 
+//call manage 創建新任務
+Route::post('call/manage/createMission', 'MissionController@update');
+Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
+
+//mission manage()
+Route::post('mission/manage', 'MissionController@update');
+
+//-------------------------------------------分隔線-------------------------------------------------------
 Route::get('mission/manage', 'MissionController@index');
 //需要設定權限的route
 //Route::get('login', 'LoginController@index');

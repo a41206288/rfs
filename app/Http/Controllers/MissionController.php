@@ -117,5 +117,22 @@ class MissionController extends Controller {
 	{
 		//
 	}
+    public function auto_complete(Request $request){
 
+
+        $mission_leader_name = $request->input('leader');
+        dd($mission_leader_name);
+        $results = array();
+
+        $queries = DB::table('users')
+            ->where('name', 'LIKE', '%'.$mission_leader_name.'%')
+            ->orWhere('id', 'LIKE', '%'.$mission_leader_name.'%')
+            ->take(5)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [ 'id' => $query->id, 'value' => $query->name ];
+        }
+        return Response::json($results);
+    }
 }

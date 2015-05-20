@@ -128,8 +128,8 @@ class CallController extends Controller {
         if($country=='請選擇')
         {
 
-            $missions = DB::table('missions')->orderBy('country_or_city_input')->orderBy('township_or_district_input')->where('mission_list_id', 1)->orderBy('location')->where('mission_list_id', 1)->get();
-
+            $missions = DB::table('missions')->orderBy('country_or_city_input')->orderBy('township_or_district_input')->orderBy('location')->where('mission_list_id', 1)->get();
+//            dd( $missions);
         }
         //讀取縣市
         $country_or_city_inputs = DB::table('missions')->orderBy('country_or_city_input')->where('mission_list_id', 1)->distinct()->lists('country_or_city_input','country_or_city_input');
@@ -150,6 +150,11 @@ class CallController extends Controller {
 //            }
 
         }
+        else
+        {
+            $township_or_district_inputs=[];
+            $township_or_district_inputs = array_add($township_or_district_inputs, '請選擇', '請選擇');
+        }
 //        $new_township_or_district_inputs = array_add($new_township_or_district_inputs, '請選擇', '請選擇');
         $township_or_district_inputs = array_add( $township_or_district_inputs, '請選擇', '請選擇');
         //讀取任務列表
@@ -160,6 +165,7 @@ class CallController extends Controller {
             ->with('township_or_district_inputs',  $township_or_district_inputs)
             ->with('mission_names', $mission_names);
 	}
+
 
 	/**
 	 * Remove the specified resource from storage.
