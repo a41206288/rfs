@@ -17,7 +17,7 @@ class mission_seeder extends Seeder{
     public function run(){
         DB:: table('missions')->delete();
         DB:: table('mission_lists')->delete();
-        DB:: table('reports')->delete();
+        //DB:: table('reports')->delete();
 
 
         $mission_list = new App\Mission_list;
