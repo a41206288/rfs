@@ -33,10 +33,13 @@ class CallController extends Controller {
         //讀取任務列表
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
+        $users_name = DB::table('users')->orderBy('id')->lists('name');
+
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)
             ->with('township_or_district_inputs', $new_township_or_district_inputs)
-            ->with('mission_names', $mission_names);
+            ->with('mission_names', $mission_names)
+            ->with('users_name', $users_name);
 	}
 
 	/**
@@ -160,10 +163,13 @@ class CallController extends Controller {
         //讀取任務列表
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
+
+        $users_name = DB::table('users')->select('name')->get();
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)
             ->with('township_or_district_inputs',  $township_or_district_inputs)
-            ->with('mission_names', $mission_names);
+            ->with('mission_names', $mission_names)
+            ->with('users_name',$users_name);
 	}
 
 

@@ -4,7 +4,6 @@
 @endsection
 @section('content_c9')
 
-
     <div class="table-responsive">
 
 
@@ -13,6 +12,7 @@
                 <tr class="text-right">
 
                     <td colspan="8">
+                        <input type="text" id="auto1"/>  <!-- 測試用 -->
                         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
                             創建任務
                         </button>
@@ -34,13 +34,17 @@
                                     <dd> {!! Form::text('mission_list_name') !!}</dd>
                                     <br>
                                     <dt>負責人</dt>
-                                    <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name']) !!}</dd>
+                                    <dd>
+                                        {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name'])  !!}
+                                        {{--{!! Form::select('leader', $users_name) !!}--}}
+                                    </dd>
+
                                 </dl>
 
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
                                 {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm']) !!}
                             </div>
                             {!! Form::close() !!}
@@ -125,17 +129,21 @@
 @endsection
 
 @section('javascript')
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        $(function()
-        {
-            $( "#leader" ).autocomplete({
-                source: "call/manage/auto_complete",
-                minLength: 3,
-                select: function(event, ui) {
-                    $('#leader').val(ui.item.value);
-                }
-            });
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+    <script language="JavaScript">
+
+        var readData   = <?php echo json_encode($users_name); ?>;
+
+        $(document).ready(function(){
+            $("#leader").autocomplete({source: readData});
+        });
+        /*測試用*/
+        $(document).ready(function(){
+            $("#auto1").autocomplete({source: readData});
         });
     </script>
 
