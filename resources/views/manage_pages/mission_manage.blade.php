@@ -95,10 +95,9 @@
                     <tr>
             <td>{!!$mission_content->mission_id!!}</td>
             <td>{!!$mission_content->mission_content!!}</td>
-            <td></td>
-                        {{--@if(isset($relieverMissionUsersArray))--}}
-            {{--<td>{!!$relieverMissionUsersArray[$mission_content->mission_id]!!}</td>--}}
-                        {{--@endif--}}
+           @if(isset($relieverMissionUsersArray))
+            <td>{!!$relieverMissionUsersArray[$mission_content->mission_id]!!} 人</td>
+           @endif
             <td>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">

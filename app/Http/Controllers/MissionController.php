@@ -86,14 +86,22 @@ class MissionController extends Controller {
                     ->where('mission_list_id','=',7 )
                     ->groupBy('mission_id')
                     ->get();
-
+//dd($relieverMissionUsers);
                 $relieverMissionUsersArray =[];
-                $unfind = false;
-                foreach($relieverMissionUsers as $relieverMissionUser){
-
-                    $relieverMissionUsersArray[$relieverMissionUser->mission_id] = $relieverMissionUser->total;
+                foreach($mission_contents as $mission_content){
+                    $unfind = false;
+                    foreach($relieverMissionUsers as $relieverMissionUser){
+                        if($mission_content->mission_id == $relieverMissionUser->mission_id) {
+                            $unfind = true;
+                            $relieverMissionUsersArray[$mission_content->mission_id] = $relieverMissionUser->total;
+                        }
+                    }
+                    if( $unfind == false ) {
+                        $relieverMissionUsersArray[$mission_content->mission_id] = 0;
+                    }
                 }
-        //dd($relieverMissionUsersArray);
+
+       // dd($relieverMissionUsersArray);
 
                 $reports = DB::table('reports')->lists('report_content','mission_list_id');
 
