@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Kodeine\Acl\Traits\HasRole;
+
+use App\Mission_list;
 
 class MissionController extends Controller {
 
@@ -165,9 +168,16 @@ class MissionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
-		//
+        
+        $mission_list_name =$request->input('mission_list_name');
+        $leader = $request->input('leader');
+//        dd($mission_list_name);
+        $mission_list = new Mission_list;
+        $mission_list->mission_name = $mission_list_name;
+        $mission_list->save();
+        return redirect()->route('administratorPanel');
 	}
 
 	/**

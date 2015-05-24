@@ -23,25 +23,28 @@
                 <div class="modal fade" id="createMissionBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post')) !!}
+                            {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal')) !!}
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel">創建新任務</h4>
+                                <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
                             </div>
                             <div class="modal-body">
-                                <dl class="dl-horizontal">
-                                    <dt>任務名稱</dt>
-                                    <dd> {!! Form::text('mission_list_name') !!}</dd>
-                                    <br>
-                                    <dt>負責人</dt>
-                                    <dd>
-                                        {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name'])  !!}
-                                        {{--{!! Form::select('leader', $users_name) !!}--}}
-                                    </dd>
-
-                                </dl>
-
-
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">任務名稱</label>
+                                    <div class="col-sm-10">
+                                        {!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">負責人</label>
+                                    <div class="col-sm-10">
+                                        {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>

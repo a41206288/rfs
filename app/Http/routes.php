@@ -36,12 +36,15 @@ Route::post('call/manage', 'CallController@update');
 Route::post('call/manage/save', 'CallController@store');
 
 //call manage 創建新任務
-Route::post('call/manage/createMission', 'MissionController@update');
+Route::post('call/manage/createMission', 'MissionController@create');
 Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
 
 //mission manage()
+//中央指揮官
 Route::post('mission/manage', 'MissionController@update');
-
+//地方指揮官
+Route::get('mission/manage/local', 'MissionLocalController@index');
+Route::post('mission/manage/local', 'MissionLocalController@update');
 //-------------------------------------------分隔線-------------------------------------------------------
 Route::get('mission/manage', 'MissionController@index');
 //需要設定權限的route
