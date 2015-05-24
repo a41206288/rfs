@@ -3,20 +3,20 @@
     任務管理
 @endsection
 
-@section('content_c8')
+@section('content_c7')
 
     <h4>任務管理</h4>
     <br><br>
     <table class="table  table-bordered table-hover">
         <thead>
             <tr>
-                <th width="6%">任務編號</th>
+                <th width="8%">任務<br>編號</th>
                 <th width="14%">任務名稱</th>
-                <th width="12%">脫困組人數</th>
-                <th width="12%">醫療組人數</th>
+                <th width="12%">脫困組<br>人數</th>
+                <th width="12%">醫療組<br>人數</th>
                 <th width="12%">進度條</th>
                 <th width="35%">最新回報</th>
-                <th width="8%">詳細</th>
+                <th width="7%">詳細</th>
             </tr>
         </thead>
         <tbody>
@@ -62,7 +62,7 @@
 </table>
 
 @endsection
-@section('content_c4')
+@section('content_c5')
 
 @if (isset($mission_lists))
 <div>
@@ -82,9 +82,9 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th width="2%">通報編號</th>
-            <th width="50%">通報內容</th>
-            <th width="2%">脫困組人數</th>
+            <th width="20%">通報<br>編號</th>
+            <th width="40%">通報內容</th>
+            <th width="20%">脫困組<br>人數</th>
             <th width="20%">進度條</th>
         </tr>
         </thead>

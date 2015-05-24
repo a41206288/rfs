@@ -231,6 +231,17 @@
                         </button>
                         <footer>2015-05-17 10:50:21</footer>
                     </blockquote>
+                    <blockquote class="blockquote-warning">
+                        <p><b>救災執行人員發出了人員增援需求</b></p>
+                        <h6>通報編號 : 1   </h6>
+                        <h6>要求增援人數:</h6>
+                        <h6>要求增援地址:</h6>
+                        <h6>負責人:                 負責人電話:</h6>
+                        <button class="btn btn-default btn-sm" data-toggle="tab" data-target="#supplies">
+                            調派人手
+                        </button>
+                        <footer>2015-05-17 10:50:21</footer>
+                    </blockquote>
                 </div>
                 <div class="tab-pane" id="supplies">
                     {!! Form::open(array('url' => '', 'method' => 'post')) !!}
