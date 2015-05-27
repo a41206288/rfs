@@ -33,13 +33,22 @@ class CallController extends Controller {
         //讀取任務列表
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
-        $users_name = DB::table('users')->orderBy('id')->lists('name');
+
+        /*取得未分配任務之人員      START*/
+        $results = array();
+        $queries = DB::table('users')->select('id', 'name', 'email', 'phone')->where('mission_list_id', '=', 1)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [$query->phone, $query->email, $query->id, $query->name];
+        }//dd($results[0]);
+        /*取得未分配任務之人員      END*/
 
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)
             ->with('township_or_district_inputs', $new_township_or_district_inputs)
             ->with('mission_names', $mission_names)
-            ->with('users_name', $users_name);
+            ->with('users_data', $results);
 	}
 
 	/**
@@ -164,12 +173,21 @@ class CallController extends Controller {
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
 
-        $users_name = DB::table('users')->select('name')->get();
+        /*取得未分配任務之人員      START*/
+        $results = array();
+        $queries = DB::table('users')->select('id', 'name', 'email', 'phone')->where('mission_list_id', '=', 1)->get();
+
+        foreach ($queries as $query)
+        {
+            $results[] = [$query->phone, $query->email, $query->id, $query->name];
+        }//dd($results[0]);
+        /*取得未分配任務之人員      END*/
+
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)
             ->with('township_or_district_inputs',  $township_or_district_inputs)
             ->with('mission_names', $mission_names)
-            ->with('users_name',$users_name);
+            ->with('users_data', $results);
 	}
 
 

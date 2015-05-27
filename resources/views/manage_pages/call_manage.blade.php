@@ -12,7 +12,6 @@
                 <tr class="text-right">
 
                     <td colspan="8">
-                        <input type="text" id="auto1"/>  <!-- 測試用 -->
                         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
                             創建任務
                         </button>
@@ -132,21 +131,20 @@
 @endsection
 
 @section('javascript')
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+    <link href="/css/jquery-ui.css" rel="stylesheet">
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 
     <script language="JavaScript">
 
-        var readData   = <?php echo json_encode($users_name); ?>;
+        var readData   = <?php echo json_encode($users_data); ?>;
+        for(var i = 0; i<readData.length; i++)
+        {
+            readData[i] = readData[i].join(" - "); //陣列所有項目合成字串 ,每項間用" - "隔開
+        }
 
         $(document).ready(function(){
-            $("#leader").autocomplete({source: readData});
-        });
-        /*測試用*/
-        $(document).ready(function(){
-            $("#auto1").autocomplete({source: readData});
+            $("#leader").autocomplete({source: readData, appendTo:"#createMissionBlock"});
         });
     </script>
 
