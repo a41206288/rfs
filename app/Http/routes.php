@@ -43,8 +43,8 @@ Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//aut
 //中央指揮官
 Route::post('mission/manage', 'MissionController@update');
 //地方指揮官
-Route::get('mission/manage/local', 'MissionLocalController@index');
-Route::post('mission/manage/local', 'MissionLocalController@update');
+//Route::get('mission/manage/local', 'MissionLocalController@index');
+//Route::post('mission/manage/local', 'MissionLocalController@update');
 //-------------------------------------------分隔線-------------------------------------------------------
 Route::get('mission/manage', 'MissionController@index');
 //需要設定權限的route
@@ -67,20 +67,29 @@ Route::group([
     'is' => 'administrator'],
     function () {
         Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
-        //Route::get('user_pages/home',array('as' => 'centerCommanderPanel', 'uses' => 'PagesController@index'));
+
+
 
 
        // Route::get('post','HomeController@index');
     });
 
+//Route::group([
+//    //'namespace' => 'moderatorPanel',
+//    'middleware' => ['auth', 'acl'],
+//    'is' => 'center'],
+//    function () {
+//        //Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
+//        Route::get('user_pages/home',array('as' => 'centerPanel', 'uses' => 'PagesController@index'));
+//        //Route::get('user_pages.home', 'PagesController@index');
+//    });
+
 Route::group([
-    //'namespace' => 'moderatorPanel',
     'middleware' => ['auth', 'acl'],
-    'is' => 'center'],
+    'is' => 'local'],
     function () {
-        //Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
-        Route::get('user_pages/home',array('as' => 'centerPanel', 'uses' => 'PagesController@index'));
-        //Route::get('user_pages.home', 'PagesController@index');
+        Route::get('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@index') );
+        Route::post('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@update'));
     });
 
 

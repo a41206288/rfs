@@ -41,9 +41,8 @@ class LoginController extends Controller {
                 if($user->is('administrator')){
                    // return $this->moderatorPanel();
                    return redirect()->route('administratorPanel');
-//                       }else if($user->is('masses')){
-//                    // return $this->moderatorPanel();
-//                    redirect()->route('centerCommanderPanel');
+                       }else if($user->is('local')){
+                    return redirect()->route('localPanel');
 //                       }
 //                if($user->is('administrator')){
 //                    return redirect()->route('administratorPanel');

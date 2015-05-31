@@ -58,12 +58,13 @@
                             <td rowspan="2" width="40%">
                                 <div style="height:120px;width:100%;overflow:auto;">
                                     <ul class="list-group">
-                                        <li class="list-group-item"><b>2015-05-17 10:50:21</b><br>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui.</li>
-                                        <li class="list-group-item"><b>2015-05-17 10:50:21</b><br>Ad leggings keytar, brunch id art party dolor labore. </li>
-                                        <li class="list-group-item"><b>2015-05-17 10:50:21</b><br>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui.</li>
-                                        <li class="list-group-item"><b>2015-05-17 10:50:21</b><br>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui.</li>
-                                        <li class="list-group-item"><b>2015-05-17 10:50:21</b><br>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui.</li>
+                                        @foreach ($reports as $report )
+                                            @if (isset($report) )
+                                        <li class="list-group-item"><b>{!! $report->created_at!!}</b><br>{!! $report->report_content!!}</li>
+                                            @endif
+                                        @endforeach
                                     </ul>
+
 
                                 </div>
                             </td>

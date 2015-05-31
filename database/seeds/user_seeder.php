@@ -39,8 +39,8 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '陳小華')->first();
-        $roleCenterCommander = Permission::where('name', '=', 'Center')->first();
-        $user->assignRole($roleCenterCommander);
+        $roleCenter = Permission::where('name', '=', 'Center')->first();
+        $user->assignRole($roleCenter);
         $user->save();
 
         $user = new App\User; //測試用密碼是1234

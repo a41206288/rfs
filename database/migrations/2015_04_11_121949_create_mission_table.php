@@ -51,6 +51,15 @@ class CreateMissionTable extends Migration {
             //$table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
         });
 
+        Schema::create('local_reports', function(Blueprint $table)
+        {
+            $table->increments('local_report_id');
+            $table->text('local_report_content');
+            $table->timestamps();
+            $table->unsignedInteger('mission_id');
+            //$table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
+        });
+
 	}
 
 	/**
@@ -63,6 +72,7 @@ class CreateMissionTable extends Migration {
         Schema::drop('missions');
         Schema::drop('mission_lists');
         Schema::drop('reports');
+        Schema::drop('local_reports');
     }
 
 }

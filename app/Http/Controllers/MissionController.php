@@ -25,9 +25,10 @@ class MissionController extends Controller {
 
                 //暫時取出任務編號為7的通報所有內容
                 $mission_contents = DB::table('missions')
+                //    ->groupBy('mission_list_id')
                 ->where('mission_list_id','=','7')
                 ->get();
-
+//dd($mission_contents);
                  //取出各任務的負責人資料
                 $mission_list_charges = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
@@ -42,7 +43,7 @@ class MissionController extends Controller {
                     $mission_list_charge_Array[$mission_list_charge->mission_list_id."email"] = $mission_list_charge->email;
                     $mission_list_charge_Array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
                 }
-
+//dd($mission_list_charge_Array);
                 //計算醫療人員人數
                 $emtUsers = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
