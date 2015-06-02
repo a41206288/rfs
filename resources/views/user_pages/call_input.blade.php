@@ -6,111 +6,116 @@
     active
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8 middle" >
-            <h3><b>通報</b></h3><hr>
-            <div style="background:#efefef; padding:20px">
-                <h4><b>報案人資料 </b></h4><br>
+    <style>
+        table, td, th {
+            border: 0px solid black;
+        }
 
-                <form class="form-horizontal" role="form" action="" method="POST" name="formJoin" id="formJoin"  onSubmit="return checkForm();">
-                    <div class="form-group form-group-sm">
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall" >姓氏</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="text"  name="lname" id="lname" placeholder="">
-                            <span class="help-block"><font color="#ff0b11">*必填</font></span>
-                        </div>
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall">名字</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" type="text" name="fname" id="fname" placeholder="">
-                        </div>
-                    </div>
+        td {
+            padding: 5px;
+        }
+    </style>
+    <h4><b>我要通報</b></h4><hr>
+    {!! Form::open(array('url' => 'call/input', 'method' => 'post','class' => 'form-horizontal')) !!}
 
-                    <div class="form-group form-group-sm">
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall" >聯絡電話</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" type="text" name="phone" id="phone" placeholder="">
-                        </div>
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall">E-mail</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" type="email" name="email" id="email" placeholder="">
-                        </div>
-                        <br/>
-                        <div class="control-label col-sm-5">
-                            <span class="help-block"><font color="#ff0b11">*</font> 至少填寫1項聯絡方式，以方便我們聯絡您</span>
-                        </div>
+    <div class="col-xs-6 col-sm-4 col-md-4" >
 
+        <table>
+            <tr><td colspan="2"><b>通報內容</b></td></tr>
+            <tr>
+                <td width="24%"><font color="#ff0b11">*</font>事件種類</td>
 
-                    </div >
+                <td width="38%"><select class="form-control " name="" id="">
+                        <option value="">請選擇</option>
+                        <option value="">建築物</option>
+                        <option value="">道路</option>
+                        <option value="">橋梁</option>
+                        <option value="">管線</option>
+                        <option value="">河流</option>
+                    </select></td>
+                <td width="38%"><select class="form-control" name="" id="">
+                        <option value="">請選擇</option>
+                        <option value="">倒塌</option>
+                        <option value="">斷裂</option>
+                        <option value="">淹水</option>
+                        <option value="">爆炸</option>
+                        <option value="">起火</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td></td><td colspan="2">其他</td>
+            </tr>
+            <tr>
+                <td></td><td colspan="2">{!! Form::text('other','',['class' => 'form-control']) !!}</td>
+            </tr>
+            <tr>
+                <td>事件備註</td><td colspan="2">{!! Form::textarea('remark','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
+            </tr>
 
-
-                    <hr>
-                    <h4><b>通報內容 </b></h4><br>
-                    <div class="form-group form-group-sm">
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall">事件種類</label>
-                        <div class="col-sm-3">
-                            <select class="form-control" name="" id="">
-                                <option value="">建築物</option>
-                                <option value="">道路</option>
-                                <option value="">橋梁</option>
-                                <option value="">管線</option>
-                                <option value="">河流</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="form-control" name="" id="">
-                                <option value="">倒塌</option>
-                                <option value="">斷裂</option>
-                                <option value="">淹水</option>
-                                <option value="">爆炸</option>
-                                <option value="">起火</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-5">
-                            <input class="form-control " type="text" name="" id="" placeholder="其他">
-                        </div>
-                    </div >
-                    <div class="form-group form-group-sm">
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall">事件備註</label>
-                        <div class="col-sm-11">
-                            <textarea class="form-control" rows="3" name="mission_comment" id="mission_comment"></textarea>
-                            <span class="help-block">如需填寫備註，請以50字以內簡述</span>
-                        </div>
-                    </div >
-                    <div class="form-group form-group-sm">
-                        <label class="col-sm-1 control-label" for="formGroupInputSmall" >地點</label>
-                        <div class="col-sm-5">
-
-                        </div>
-                        <div class="col-sm-5">
-                            <label class="control-label" for="formGroupInputSmall">類似事件</label>
-                            <span class="help-block">如已有相同事故通報，請勿再次進行通報，以免造成救災混亂</span>
-
-                            <table width="100%" id="similar_mission">
-                                <thead>
-                                <tr>
-                                    <th width="10%">地點</th>
-                                    <th width="90%">事件</th>
-                                </tr>
-                                </thead>
-                                <!-- <tr>
-                                    <td>地點</td>
-                                    <td>事件</td>
-                                </tr>
-                                <tr>
-                                    <td>地點</td>
-                                    <td>事件</td>
-                                </tr> -->
-                            </table>
-                        </div>
-                    </div>
-                    <div class="form-group form-group-sm text-center">
-                        <input class="btn btn-default" name="action" type="hidden" id="action" value="join">
-                        <input class="btn btn-default" type="submit" name="Submit2" value="送出申請">
-                        <input class="btn btn-default" type="reset" name="Submit3" value="重設資料">
-                    </div >
-                </form>
-            </div>
-        </div>
+        </table>
     </div>
+    <div class="col-xs-6 col-sm-4 col-md-4" >
 
+        <table>
+            <tr><td colspan="2"><font color="#ff0b11">*</font><b>地點</b></td></tr>
+            <tr>
+                <td width="50%"><select class="form-control " name="" id="">
+                        <option value="">建築物</option>
+                        <option value="">道路</option>
+                        <option value="">橋梁</option>
+                        <option value="">管線</option>
+                        <option value="">河流</option>
+                    </select></td>
+                <td width="50%"><select class="form-control" name="" id="">
+                        <option value="">倒塌</option>
+                        <option value="">斷裂</option>
+                        <option value="">淹水</option>
+                        <option value="">爆炸</option>
+                        <option value="">起火</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td colspan="2">{!! Form::text('adressDetail','',['class' => 'form-control']) !!}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">or</td>
+            </tr>
+            <tr>
+                <td colspan="2">{!! Form::textarea('remark','',['class' => 'form-control','style'=>'resize:none']) !!}</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-4" >
+        <table>
+            <tr><td colspan="2"><b>報案人資料</b></td></tr>
+            <tr>
+                <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
+            </tr>
+            <tr>
+                <td>姓名</td><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
+            </tr>
+            <tr>
+                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control']) !!}</td>
+            </tr>
+            <tr>
+                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email']) !!}</td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
+            </tr>
+            <tr>
+                <td colspan="2"><font color="#ff0b11">*</font> 請務必填寫</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="text-center">
+        <br>
+
+        <br><br>
+        {!! Form::submit('通報給救災中心', ['class' => 'btn btn-primary btn-sm']) !!}
+    </div >
+    {!! Form::close() !!}
 @endsection

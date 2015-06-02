@@ -58,7 +58,7 @@ class CallController extends Controller {
 	 */
 	public function create()
 	{
-        return view('user_pages.call_input');
+
 	}
 
 	/**
@@ -94,9 +94,9 @@ class CallController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
+        return view('user_pages.call_input');
 	}
 
 	/**

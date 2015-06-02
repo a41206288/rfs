@@ -13,7 +13,8 @@
 use Illuminate\Support\Facades\App;
 //民眾用頁面route
 Route::get('/', 'HomeController@index');
-Route::get('call/input', 'CallController@create');
+Route::get('call/input', 'CallController@show');
+Route::post('call/input', 'CallController@create');
 Route::get('donate/input', 'DonateController@create');
 Route::get('guidance', 'GuidanceController@index');
 //Route::get('guidance_map', 'GuidanceController@');
