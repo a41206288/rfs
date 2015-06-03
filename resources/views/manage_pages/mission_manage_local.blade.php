@@ -48,21 +48,24 @@
             @if (isset($missions))
 
                 @foreach ($missions as $mission )
-                    @if (isset($mission) )
+                    @if ( Auth::user()->mission_list_id != 1)
+
                     <tr class="active">
 
                             <td rowspan="2" width="10%">{!! $mission->mission_id!!}</td>
                             <td width="15%">{!! $mission->mission_content!!}</td>
                             <td width="25%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>
-                            <td width="10%"></td>
+                            <td width="10%">{!!$relieverMissionUsersArray[$mission->mission_id]!!} 人</td>
                             <td rowspan="2" width="40%">
                                 <div style="height:120px;width:100%;overflow:auto;">
                                     <ul class="list-group">
-                                        @foreach ($reports as $report )
-                                            @if (isset($report) )
-                                        <li class="list-group-item"><b>{!! $report->created_at!!}</b><br>{!! $report->report_content!!}</li>
+                                        {{--@foreach ($local_reports_array as $local_report_array )--}}
+                                            @if (isset($local_reports_array) )
+                                                @foreach ($local_reports_array[$mission->mission_id] as $local_report_array_id )
+                                        <li class="list-group-item"><b>{!!$local_report_array_id['time']!!}</b><br>{!! $local_report_array_id['content']!!}</li>
+                                                @endforeach
                                             @endif
-                                        @endforeach
+                                        {{--@endforeach--}}
                                     </ul>
 
 
