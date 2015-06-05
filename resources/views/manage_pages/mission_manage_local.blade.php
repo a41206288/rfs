@@ -247,26 +247,19 @@
                         <footer>2015-05-17 10:50:21</footer>
                     </blockquote>
                 </div>
-
                 <div class="tab-pane" id="supplies">
                     {!! Form::open(array('url' => '', 'method' => 'post')) !!}
                     {!! Form::submit('儲存人員分配', ['class' => 'btn btn-default btn-sm ']) !!}
                     <hr>
-
                     <table class="table table-nonbordered">
                         <tr>
                             <td width="15%"><b>通報編號 </b></td>
                             <td width="20%">
-
                                 <select>
-                                    @foreach ($missions as $mission )
-                                        @if ( Auth::user()->mission_list_id != 1)
                                     這裡要填入任務裡所有通報編號
-                                    <option>{!! $mission->mission_id!!}</option>
-                                        @endif
-                                    @endforeach
+                                    <option>1</option>
+                                    <option>2</option>
                                 </select>
-
                             </td>
                             <td width="15%"><b>通報內容 </b></td>
                             <td width="50%">這裡放內容</td>
@@ -292,12 +285,35 @@
                                 <td>00981234567</td>
                                 <td>1234 yahoo.com.tw</td>
                             </tr>
-
+                            <tr  id="call_7" draggable="true" ondragstart="Drag(event)">
+                                <td>小明</td>
+                                <td>00981234567</td>
+                                <td>1234 yahoo.com.tw</td>
+                            </tr>
+                            <tr  id="call_7" draggable="true" ondragstart="Drag(event)">
+                                <td>小明</td>
+                                <td>00981234567</td>
+                                <td>1234 yahoo.com.tw</td>
+                            </tr>
+                            <tr  id="call_9" draggable="true" ondragstart="Drag(event)">
+                                <td>小明</td>
+                                <td>00981234567</td>
+                                <td>1234 yahoo.com.tw</td>
+                            </tr>
+                            <tr  id="call_10" draggable="true" ondragstart="Drag(event)">
+                                <td>小明</td>
+                                <td>00981234567</td>
+                                <td>1234 yahoo.com.tw</td>
+                            </tr>
+                            <tr  id="call_11" draggable="true" ondragstart="Drag(event)">
+                                <td>小明</td>
+                                <td>00981234567</td>
+                                <td>1234 yahoo.com.tw</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                     <hr>
-
                     <table class="table table-nonbordered">
                         <tr>
                             <td width="15%"><b>通報編號 </b></td>
@@ -362,7 +378,6 @@
                     </div>
                     {!! Form::close() !!}
                 </div>
-
                 <div class="tab-pane" id="product">
                     <div style="height:500px;width:100%;overflow:auto;">
                     <table class="table-bordered table">

@@ -105,7 +105,7 @@ class MissionController extends Controller {
                     }
                 }
 
-       // dd($relieverMissionUsersArray);
+       //dd($relieverMissionUsersArray);
 
                 $reports = DB::table('reports')->lists('report_content','mission_list_id');
 

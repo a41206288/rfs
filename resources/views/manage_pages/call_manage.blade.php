@@ -13,7 +13,7 @@
 
                     <td colspan="8">
                         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
-                            創建任務
+                            創建新任務
                         </button>
 
                     </td>
@@ -29,25 +29,42 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">任務名稱</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 control-label">任務名稱</label>
+                                    <div class="col-sm-9">
                                         {!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}
                                     </div>
                                 </div>
                                 <br>
                                 <br>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">負責人</label>
-                                    <div class="col-sm-10">
-                                        {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control']) !!}
+                                    <label class="col-sm-3 control-label">負責人</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}
                                     </div>
                                 </div>
                                 <br>
                                 <br>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">脫困組人數</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">醫療組人數</label>
+                                    <div class="col-sm-9">
+                                        {!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm']) !!}
+                                {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div><!-- /.modal-content -->
@@ -59,8 +76,8 @@
 
                 <tr>
                     <th width="10%">編號</th>
-                    <th width="20%">通報內容</th>
-                    <th width="20%">通報地址<br>
+                    <th width="15%">通報內容</th>
+                    <th width="25%">通報地址<br>
                         {{--@foreach ($country_or_cities as $country_or_city)--}}
 
                     {{--<td>{!! $country_or_city!!}</td>--}}
@@ -88,7 +105,7 @@
                     <th width="10%">通報人信箱 </th>
                     <th width="10%" class="text-right">
                         {!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}
-                        {!! Form::submit('分配通報', ['class' => 'btn btn-default btn-sm']) !!}
+                        {!! Form::submit('將通報分配至現有的任務', ['class' => 'btn btn-default btn-sm']) !!}
                     </th>
                 </tr>
 
@@ -128,6 +145,20 @@
 @endsection
 
 @section('content_c3')
+    <h5><b>現有救災任務</b></h5>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>編號</th>
+                <th>任務名稱</th>
+                <th>通報數</th>
+                <th>脫困組</th>
+                <th>醫療組</th>
+            </tr>
+        </thead>
+
+    </table>
 @endsection
 
 @section('javascript')
