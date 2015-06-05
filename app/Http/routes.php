@@ -32,22 +32,11 @@ Route::get('logout', 'LoginController@logout');
 
 //下面請根據權限放至各Panel下  (此為暫放)
 
-//call manage 動態印出通報用
-Route::post('call/manage', 'CallController@update');
-Route::post('call/manage/save', 'CallController@store');
 
-//call manage 創建新任務
-Route::post('call/manage/createMission', 'MissionController@create');
-Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
-
-//mission manage()
-//中央指揮官
-Route::post('mission/manage', 'MissionController@update');
-//地方指揮官
 //Route::get('mission/manage/local', 'MissionLocalController@index');
 //Route::post('mission/manage/local', 'MissionLocalController@update');
 //-------------------------------------------分隔線-------------------------------------------------------
-Route::get('mission/manage', 'MissionController@index');
+
 //需要設定權限的route
 //Route::get('login', 'LoginController@index');
 //Route::post('login', 'LoginController@login');
@@ -68,8 +57,18 @@ Route::group([
     'is' => 'administrator'],
     function () {
         Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
+        //call manage 動態印出通報用
+        Route::post('call/manage', 'CallController@update');
+        Route::post('call/manage/save', 'CallController@store');
 
+        //call manage 創建新任務
+        Route::post('call/manage/createMission', 'MissionController@create');
+        Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
 
+        //mission manage()
+        //中央指揮官
+        Route::post('mission/manage', 'MissionController@update');
+        Route::get('mission/manage', 'MissionController@index');
 
 
        // Route::get('post','HomeController@index');

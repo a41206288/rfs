@@ -39,7 +39,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-
+              @yield('link')
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
