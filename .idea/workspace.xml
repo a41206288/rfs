@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="創建執行部門reports table">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MissionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
+    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_master.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -30,21 +29,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-65.14286" vertical-offset="0" max-vertical-offset="2926">
-              <caret line="96" column="60" selection-start-line="96" selection-start-column="60" selection-end-line="96" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.5990991" vertical-offset="152" max-vertical-offset="6232">
+              <caret line="22" column="162" selection-start-line="22" selection-start-column="162" selection-end-line="22" selection-end-column="162" />
+              <folding>
+                <element signature="e#1490#1530#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage_master.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.428571" vertical-offset="247" max-vertical-offset="2014">
+              <caret line="21" column="23" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="call_manage.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="call_manage.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37687367" vertical-offset="1325" max-vertical-offset="3572">
-              <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+            <state vertical-scroll-proportion="-10.785714" vertical-offset="3099" max-vertical-offset="3572">
+              <caret line="179" column="13" selection-start-line="168" selection-start-column="4" selection-end-line="179" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -89,8 +100,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/CallController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/app/Report.php" />
-        <option value="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/user_seeder.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LoginController.php" />
@@ -102,6 +111,8 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MissionController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
       </list>
     </option>
   </component>
@@ -625,13 +636,20 @@
       <option name="project" value="LOCAL" />
       <updated>1433071426724</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="call right 增加印出資料格式">
+      <created>1433493749490</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1433493749490</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -641,14 +659,13 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24231333" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15433072" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15433072" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14330709" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14330709" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -682,7 +699,8 @@
     <MESSAGE value="讀取任務詳細資料 通報的救災人數" />
     <MESSAGE value="中央指揮官頁面完成" />
     <MESSAGE value="創建執行部門reports table" />
-    <option name="LAST_COMMIT_MESSAGE" value="創建執行部門reports table" />
+    <MESSAGE value="call right 增加印出資料格式" />
+    <option name="LAST_COMMIT_MESSAGE" value="call right 增加印出資料格式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -885,14 +903,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0" vertical-offset="989" max-vertical-offset="2704">
-          <caret line="44" column="10" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/security-core/Symfony/Component/Security/Core/User/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.057395145" vertical-offset="338" max-vertical-offset="2964">
@@ -954,13 +964,13 @@
         <state vertical-scroll-proportion="-4.193548" vertical-offset="1170" max-vertical-offset="12376">
           <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
           <folding>
-            <element signature="e#2441#2487#0#HTML" expanded="true" />
-            <element signature="e#3377#3397#0#HTML" expanded="true" />
-            <element signature="e#3575#3594#0#HTML" expanded="true" />
-            <element signature="e#11925#11971#0#HTML" expanded="true" />
-            <element signature="e#15218#15264#0#HTML" expanded="true" />
-            <element signature="e#17696#17742#0#HTML" expanded="true" />
-            <element signature="e#20224#20270#0#HTML" expanded="true" />
+            <element signature="e#2441#2487#0#HTML" expanded="false" />
+            <element signature="e#3377#3397#0#HTML" expanded="false" />
+            <element signature="e#3575#3594#0#HTML" expanded="false" />
+            <element signature="e#11925#11971#0#HTML" expanded="false" />
+            <element signature="e#15218#15264#0#HTML" expanded="false" />
+            <element signature="e#17696#17742#0#HTML" expanded="false" />
+            <element signature="e#20224#20270#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -970,7 +980,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3363" max-vertical-offset="4845">
           <caret line="177" column="37" selection-start-line="177" selection-start-column="37" selection-end-line="177" selection-end-column="37" />
           <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
+            <element signature="e#40#62#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1063,19 +1073,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-65.14286" vertical-offset="0" max-vertical-offset="2926">
-          <caret line="96" column="60" selection-start-line="96" selection-start-column="60" selection-end-line="96" selection-end-column="60" />
+        <state vertical-scroll-proportion="-5.428571" vertical-offset="247" max-vertical-offset="2014">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37687367" vertical-offset="1325" max-vertical-offset="3572">
-          <caret line="79" column="33" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+        <state vertical-scroll-proportion="-10.785714" vertical-offset="3099" max-vertical-offset="3572">
+          <caret line="179" column="13" selection-start-line="168" selection-start-column="4" selection-end-line="179" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5990991" vertical-offset="152" max-vertical-offset="6232">
+          <caret line="22" column="162" selection-start-line="22" selection-start-column="162" selection-end-line="22" selection-end-column="162" />
+          <folding>
+            <element signature="e#1490#1530#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

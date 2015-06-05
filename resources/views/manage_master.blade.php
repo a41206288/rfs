@@ -62,7 +62,9 @@
     </div>
     <br><br><br><br>
     <div>
-        @yield('content')
+        <div class="col-xs-16 col-sm-12 col-md-12" >
+            @yield('content')
+        </div>
         <div class="col-xs-14 col-sm-6 col-md-9" >
             @yield('content_c9')
         </div>
