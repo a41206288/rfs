@@ -32,38 +32,16 @@
                                 <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">任務名稱</label>
-                                    <div class="col-sm-9">
-                                        {!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">負責人</label>
-                                    <div class="col-sm-9">
-                                        {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">脫困組人數</label>
-                                    <div class="col-sm-9">
-                                        {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">醫療組人數</label>
-                                    <div class="col-sm-9">
-                                        {!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
+                                <dl class="dl-horizontal">
+                                    <dt>任務名稱</dt>
+                                    <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                                    <dt>負責人</dt>
+                                    <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
+                                    <dt>脫困組人數</dt>
+                                    <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
+                                    <dt>醫療組人數</dt>
+                                    <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
+                                </dl>
 
                             </div>
                             <div class="modal-footer">

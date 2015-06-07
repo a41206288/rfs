@@ -31,7 +31,7 @@ Route::get('logout', 'LoginController@logout');
 //-------------------------------------------分隔線-------------------------------------------------------
 
 //下面請根據權限放至各Panel下  (此為暫放)
-
+Route::get('analysis/manage', 'AnalysisController@index');//auto_complete
 
 //Route::get('mission/manage/local', 'MissionLocalController@index');
 //Route::post('mission/manage/local', 'MissionLocalController@update');
@@ -63,7 +63,7 @@ Route::group([
 
         //call manage 創建新任務
         Route::post('call/manage/createMission', 'MissionController@create');
-        Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
+        //Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
 
         //mission manage()
         //中央指揮官

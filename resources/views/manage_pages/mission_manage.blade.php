@@ -360,5 +360,6 @@
         $('.header').click(function(){
             $(this).toggleClass('expand').next().nextUntil('tr.header').slideToggle(100);
         });
+        $('.header').trigger('click'); //trigger :觸發指定事件
     </script>
 @endsection
