@@ -26,9 +26,43 @@ class MissionController extends Controller {
                 //暫時取出任務編號為7的通報所有內容
                 $mission_contents = DB::table('missions')
                 //    ->groupBy('mission_list_id')
-                ->where('mission_list_id','=','7')
+                //->where('mission_list_id','=','7')
                 ->get();
 //dd($mission_contents);
+
+        $mission_first_content = DB::table('missions')
+            ->groupBy('mission_list_id')
+            ->get();
+
+//        $mission_first_content_array =[];
+//        foreach($mission_first_content as $mission_content){
+//            $mission_first_content_array[$mission_content->mission_list_id."id"] = $mission_content->mission_id;
+//            $mission_first_content_array[$mission_content->mission_list_id."content"] = $mission_content->mission_content;
+//        }
+        //dd($mission_first_content_array);
+        $mission_contents_array =[];
+
+        //$i = 1;
+        foreach($mission_contents as $mission_content){
+//            dd(array_first($mission_contents_array, function($k, $v) {return $k == 1;}, 1));
+//            $first = array_first($mission_contents_array, function($k, $v) {return $k == 1;},0);
+//            dd($first);
+                if(!isset($mission_contents_array[$mission_content->mission_list_id]))
+                {
+                    $i=1;
+                }
+            else
+            {
+                $i=count($mission_contents_array[$mission_content->mission_list_id])+1;
+            }
+
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['id'] = $mission_content->mission_id;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['content'] = $mission_content->mission_content;
+            //$i++;
+
+        }
+        //$mission_contents_array = array_dot($mission_contents_array);
+        //dd($mission_contents_array);
                  //取出各任務的負責人資料
                 $mission_list_charges = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
@@ -36,7 +70,12 @@ class MissionController extends Controller {
                     ->where('role_user.role_id','=',3)
                     ->get();
 
-
+//        foreach($mission_list_charges as $mission_list_charge){
+//            $mission_contents_array[$mission_list_charge->mission_list_id."name"] = $mission_list_charge->name;
+//            $mission_contents_array[$mission_list_charge->mission_list_id."email"] = $mission_list_charge->email;
+//            $mission_contents_array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
+//        }
+//dd($mission_contents_array);
                 $mission_list_charge_Array =[];
                 foreach($mission_list_charges as $mission_list_charge){
                     $mission_list_charge_Array[$mission_list_charge->mission_list_id."name"] = $mission_list_charge->name;
@@ -105,15 +144,30 @@ class MissionController extends Controller {
                     }
                 }
 
-       //dd($relieverMissionUsersArray);
+//       dd($relieverMissionUsersArray);
 
-                $reports = DB::table('reports')->lists('report_content','mission_list_id');
+               // $reports = DB::table('reports')->lists('report_content','mission_list_id');
 
-                //暫時取出任務編號為7的歷史回報
-                $mission_list_reports = DB::table('reports')
-                ->where('mission_list_id','=','7')
-                ->orderBy('updated_at')
-                ->get();
+
+        $reports = DB::table('reports')->get();
+
+
+        $reports_array =[];
+        foreach($reports as $report){
+
+            if(!isset($reports_array[$report->mission_list_id]))
+            {
+                $i=1;
+            }
+            else
+            {
+                $i=count($reports_array[$report->mission_list_id])+1;
+            }
+
+            $reports_array[$report->mission_list_id][$i]['content'] = $report->report_content;
+            $reports_array[$report->mission_list_id][$i]['time'] = $report->created_at;
+        }
+         //dd($reports_array);
 
 
                 //計算總通報個數
@@ -154,13 +208,15 @@ class MissionController extends Controller {
             ->with('mission_lists', $mission_lists)
             ->with('emtUsersArray', $emtUsersArray)
             ->with('relieverUsersArray', $relieverUsersArray)
-            ->with('reports', $reports)
-            ->with('mission_list_reports', $mission_list_reports)
+            ->with('reports_array', $reports_array)
+            //->with('mission_list_reports', $mission_list_reports)
             ->with('achievement_array', $achievement_array)
             ->with('mission_list_charge_Array', $mission_list_charge_Array)
             ->with('mission_contents', $mission_contents)
             ->with('emtMissionUsers', $emtMissionUsers)
-            ->with('relieverMissionUsersArray', $relieverMissionUsersArray);
+            ->with('relieverMissionUsersArray', $relieverMissionUsersArray)
+            ->with('mission_contents_array', $mission_contents_array);
+           // ->with('mission_first_content_array', $mission_first_content_array);
 
 	}
 

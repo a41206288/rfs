@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('user_seeder');
         $this->call('post_seeder');
         $this->call('mission_seeder');
-		// $this->call('UserTableSeeder');
+		$this->call('support_seeder');
 	}
 
 }
