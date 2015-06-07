@@ -22,20 +22,58 @@
 @section('content')
 
 <h4>任務管理</h4><br>
-<table class="table table-bordered">
-    <tr><th width="5%">任務編號</th><th width="10%">名稱</th><th colspan="2" width="15%">負責人</th><th  colspan="2" width="30%">通報</th><th  colspan="3" width="30%">最新回報</th></tr>
-    <tr class="header expand"><td rowspan="2">2</td><td rowspan="2">西屯區</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td><td rowspan="2" width="10%">陳芊蓉</td><th>編號</th><th>內容 <span class="sign"></span></th><th>時間</th><th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
-    <tr><td>12</td><td>從地面裂縫中滲出水</td><td>2014/04/32 14:20:30</td><td>火勢無法控制, 需要更多脫困及醫療人員支援</td><td><button type="button" class="btn btn-success">a</button><button type="button" class="btn btn-danger">a</button></td></tr>
 
-    <tr><td colspan="2"></td><td>電話</td><td>0987654321</td><td>13</td><td>從地面裂縫中滲出水</td><td>2014/04/32 14:20:30</td><td>火勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-    <tr><td colspan="2"></td><td>Email</td><td>123ayahoo.com.tw</td><td>14</td><td>從地面裂縫中滲出水</td><td>2014/04/32 14:20:30</td><td>火勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-    <tr><td colspan="4"></td><td>15</td><td>從地面裂縫中滲出水</td><td>2014/04/32 14:20:30</td><td>火勢無法控制, 需要更多脫困及醫療人員支援</td><td style="border-bottom: 0px solid #dddddd"></td></tr>
-    <tr><td colspan="4"></td><td>16</td><td>從地面裂縫中滲出水</td><td>2014/04/32 14:20:30</td><td>火勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
 
-    <tr  class="header expand"><td rowspan="2">3</td><td rowspan="2">西屯區</td><td rowspan="2">姓名</td><td rowspan="2">陳芊蓉</td><th>編號</th><th>內容</th><th>時間</th><th>內容</th><td rowspan="2">增援</td></tr>
-    <tr><td>12</td><td>從地面裂縫中滲出水</td><td>2014/04/32 14:20:30</td><td>火勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <table class="table table-bordered">
+                <tr><th width="5%">任務編號</th><th width="10%">名稱</th><th colspan="2" width="15%">負責人</th><th  colspan="2" width="30%">通報</th><th  colspan="3" width="30%">最新回報</th></tr>
+                @if (isset($mission_lists) )
+                @foreach ($mission_lists as $mission_list )
+                    @if ($mission_list->mission_name != "未分配任務")
+                <tr class="header expand"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td><td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td><td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td><th>編號</th><th>內容 <span class="sign"></span></th><th>時間</th><th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
+                 @if(count($reports_array[$mission_list->mission_list_id]) < 3 && count($mission_contents_array[$mission_list->mission_list_id]) <3)
+                                {!!$n = 4;!!}
+                @elseif(count($reports_array[$mission_list->mission_list_id]) > count($mission_contents_array[$mission_list->mission_list_id]))
+                           {!!$n = count($reports_array[$mission_list->mission_list_id])+1;!!}
+                @elseif(count($reports_array[$mission_list->mission_list_id]) < count($mission_contents_array[$mission_list->mission_list_id]))
+                                {!!$n = count($mission_contents_array[$mission_list->mission_list_id])+1;!!}
+                @endif
 
-</table>
+                @for($i=1;$i<$n;$i++)
+                    {{--{!!dd($n);!!}--}}
+                                <tr>
+                                @if($i==1)
+                                    @elseif($i==2)
+                                <td colspan="2"></td><td>電話</td><td>{!!$mission_list_charge_Array[$mission_list->mission_list_id."phone"]!!}</td>
+                                @elseif($i==3)
+                                    <td colspan="2"></td><td>Email</td><td> {!!$mission_list_charge_Array[$mission_list->mission_list_id."email"]!!}</td>
+                                    @else
+                                        <td colspan="4"></td>
+                                @endif
+                                    {!!$n!!}
+                                @if($i <  count($mission_contents_array) && isset($mission_contents_array[$mission_list->mission_list_id][$i]))
+                                    <td>{!!$mission_contents_array[$mission_list->mission_list_id][$i]['id']!!}</td>
+                                    <td>{!!$mission_contents_array[$mission_list->mission_list_id][$i]['content']!!}</td>
+                                @else
+                                    <td colspan="2"></td>
+                                @endif
+                                @if($i < count($reports_array) && isset($reports_array[$mission_list->mission_list_id][$i]))
+                                    <td>{!!$reports_array[$mission_list->mission_list_id][$i]['time']!!}</td>
+                                   <td>{!!$reports_array[$mission_list->mission_list_id][$i]['content']!!}</td>
+                                    @else
+                                        <td colspan="2"></td>
+                                @endif
+                    <td></td>
+                    </tr>
+                 @endfor
+                            |
+
+
+                    @endif
+                @endforeach
+            </table>
+
+@endif
+
 {{--<table class="table  table-bordered">--}}
 {{--<tr>--}}
 {{--<th width="5%">任務<br>編號</th>--}}

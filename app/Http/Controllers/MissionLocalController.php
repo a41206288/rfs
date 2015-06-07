@@ -58,7 +58,7 @@ class MissionLocalController extends Controller {
             $local_reports_array[$local_report->mission_id][$local_report->local_report_id]['content'] = $local_report->local_report_content;
             $local_reports_array[$local_report->mission_id][$local_report->local_report_id]['time'] = $local_report->created_at;
         }
-       // dd($local_reports_array);
+        dd($local_reports_array);
 
         //取出各任務的脫困組人員個數
         $relieverMissionUsers = DB::table('users')
