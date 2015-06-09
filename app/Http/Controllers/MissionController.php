@@ -167,7 +167,7 @@ class MissionController extends Controller {
             $reports_array[$report->mission_list_id][$i]['content'] = $report->report_content;
             $reports_array[$report->mission_list_id][$i]['time'] = $report->created_at;
         }
-         //dd($reports_array);
+//         dd($reports_array);
 
 
                 //計算總通報個數

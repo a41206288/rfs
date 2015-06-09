@@ -50,17 +50,17 @@
                                         <td colspan="4"></td>
                                 @endif
                                     {!!$n!!}
-                                @if($i <  count($mission_contents_array) && isset($mission_contents_array[$mission_list->mission_list_id][$i]))
+                                @if($i <  count($mission_contents_array[$mission_list->mission_list_id])+1 && isset($mission_contents_array[$mission_list->mission_list_id][$i]))
                                     <td>{!!$mission_contents_array[$mission_list->mission_list_id][$i]['id']!!}</td>
                                     <td>{!!$mission_contents_array[$mission_list->mission_list_id][$i]['content']!!}</td>
                                 @else
                                     <td colspan="2"></td>
                                 @endif
-                                @if($i < count($reports_array) && isset($reports_array[$mission_list->mission_list_id][$i]))
+                                @if($i < count($reports_array[$mission_list->mission_list_id])+1 && isset($reports_array[$mission_list->mission_list_id][$i]))
                                     <td>{!!$reports_array[$mission_list->mission_list_id][$i]['time']!!}</td>
                                    <td>{!!$reports_array[$mission_list->mission_list_id][$i]['content']!!}</td>
                                     @else
-                                        <td colspan="2"></td>
+                                        <td colspan="2">asdf</td>
                                 @endif
                     <td></td>
                     </tr>
