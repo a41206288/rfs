@@ -31,7 +31,7 @@ Route::get('logout', 'LoginController@logout');
 //-------------------------------------------分隔線-------------------------------------------------------
 
 //下面請根據權限放至各Panel下  (此為暫放)
-Route::get('analysis/manage', 'AnalysisController@index');//auto_complete
+Route::get('analysis/manage', 'AnalysisController@index');
 
 //Route::get('mission/manage/local', 'MissionLocalController@index');
 //Route::post('mission/manage/local', 'MissionLocalController@update');
@@ -90,6 +90,7 @@ Route::group([
     function () {
         Route::get('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@index') );
         Route::post('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@update'));
+        Route::get('analysis/manage/local', 'AnalysisController@show');
     });
 
 

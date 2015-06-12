@@ -45,7 +45,7 @@ class AnalysisController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        return view('manage_pages.analysis_manage_local');
 	}
 
 	/**
