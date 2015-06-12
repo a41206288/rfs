@@ -138,6 +138,33 @@
                 <th>脫困組</th>
                 <th>醫療組</th>
             </tr>
+
+            @if (isset($mission_lists) )
+            @foreach ($mission_lists as $mission_list )
+            @if ($mission_list->mission_name != "未分配任務")
+
+            <tr>
+            <td >{!!$mission_list->mission_list_id!!}</td>
+            <td >{!!$mission_list->mission_name!!}</td>
+
+            @if (isset($mission_counts_array) )
+                <td>{!!$mission_counts_array[$mission_list->mission_list_id]!!} 則</td>
+            @endif
+
+            @if (isset($relieverUsersArray) )
+            <td>{!!$relieverUsersArray[$mission_list->mission_list_id]!!} 人</td>
+            @endif
+
+            @if (isset($emtUsersArray) )
+            <td>{!!$emtUsersArray[$mission_list->mission_list_id]!!} 人</td>
+            @endif
+
+
+            </tr>
+
+            @endif
+            @endforeach
+            @endif
         </thead>
 
     </table>

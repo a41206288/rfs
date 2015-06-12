@@ -108,7 +108,7 @@ class MissionController extends Controller {
 
 
 
-                //計算救災人員人數
+                //計算各任務脫困人員總人數
                 $relieverUsers = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
                     ->select('mission_list_id',DB::raw('count(*) as total'))
@@ -120,6 +120,7 @@ class MissionController extends Controller {
                 foreach($relieverUsers as $relieverUser){
                     $relieverUsersArray[$relieverUser->mission_list_id] = $relieverUser->total;
                 }
+       // dd($relieverUsersArray);
 
                 //暫時取出任務編號為7的脫困組人員個數
                 $relieverMissionUsers = DB::table('users')
@@ -144,7 +145,7 @@ class MissionController extends Controller {
                     }
                 }
 
-//       dd($relieverMissionUsersArray);
+      // dd($relieverMissionUsersArray);
 
                // $reports = DB::table('reports')->lists('report_content','mission_list_id');
 
