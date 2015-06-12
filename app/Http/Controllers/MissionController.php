@@ -169,6 +169,26 @@ class MissionController extends Controller {
         }
 //         dd($reports_array);
 
+        $mission_support_people = DB::table('mission_support_people')->get();
+        //dd($mission_support_people);
+
+        $mission_support_people_Array =[];
+        foreach($mission_support_people as $mission_support_person){
+            $mission_support_people_Array[$mission_support_person->mission_list_id."amount"] = $mission_support_person->amount;
+            $mission_support_people_Array[$mission_support_person->mission_list_id."created_at"] = $mission_support_person->created_at;
+        }
+//dd($mission_support_people_Array );
+
+        $mission_support_products = DB::table('mission_support_products')->get();
+        //dd($mission_support_people);
+
+        $mission_support_product_Array =[];
+        foreach($mission_support_products as $mission_support_product){
+            $mission_support_product_Array[$mission_support_product->mission_list_id."id"] = $mission_support_product->mission_list_id;
+            $mission_support_product_Array[$mission_support_product->mission_list_id."amount"] = $mission_support_product->amount;
+            $mission_support_product_Array[$mission_support_product->mission_list_id."created_at"] = $mission_support_product->created_at;
+        }
+        //dd($mission_support_product_Array);
 
                 //計算總通報個數
                 $missions_total = DB::table('missions')
@@ -215,7 +235,9 @@ class MissionController extends Controller {
             ->with('mission_contents', $mission_contents)
             ->with('emtMissionUsers', $emtMissionUsers)
             ->with('relieverMissionUsersArray', $relieverMissionUsersArray)
-            ->with('mission_contents_array', $mission_contents_array);
+            ->with('mission_contents_array', $mission_contents_array)
+            ->with('mission_support_people_Array', $mission_support_people_Array)
+            ->with('mission_support_product_Array', $mission_support_product_Array);
            // ->with('mission_first_content_array', $mission_first_content_array);
 
 	}

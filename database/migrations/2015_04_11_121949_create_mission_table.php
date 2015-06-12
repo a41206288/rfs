@@ -12,6 +12,9 @@ class CreateMissionTable extends Migration {
 	 */
 	public function up()
 	{
+
+
+
         Schema::create('mission_lists', function(Blueprint $table)
         {
             $table->increments('mission_list_id');
@@ -20,7 +23,25 @@ class CreateMissionTable extends Migration {
             $table->timestamp('complete_time')->nullable();
         });
 
-		Schema::create('missions', function(Blueprint $table)
+        Schema::create('mission_support_people', function(Blueprint $table)
+        {
+            $table->increments('mission_support_person_id');
+            $table->unsignedInteger('mission_list_id');
+            $table->integer('amount');
+            $table->timestamps();
+        });
+
+        Schema::create('mission_support_products', function(Blueprint $table)
+        {
+            $table->increments('mission_support_product_id');
+            $table->unsignedInteger('mission_list_id');
+            $table->unsignedInteger('product_total_amount_id');
+            $table->integer('amount');
+            $table->timestamps();
+        });
+
+
+        Schema::create('missions', function(Blueprint $table)
         {
             $table->increments('mission_id');
             $table->text('mission_type');
@@ -73,6 +94,8 @@ class CreateMissionTable extends Migration {
         Schema::drop('mission_lists');
         Schema::drop('reports');
         Schema::drop('local_reports');
+        Schema::drop('mission_support_people');
+        Schema::drop('mission_support_products');
     }
 
 }

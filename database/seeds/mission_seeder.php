@@ -17,6 +17,8 @@ class mission_seeder extends Seeder{
     public function run(){
         DB:: table('missions')->delete();
         DB:: table('mission_lists')->delete();
+        DB:: table('mission_support_people')->delete();
+        DB:: table('mission_support_products')->delete();
         //DB:: table('local_reports')->delete();
        // DB:: table('reports')->delete();
 
@@ -56,6 +58,62 @@ class mission_seeder extends Seeder{
         $mission_list->mission_name = '台北市';
         $mission_list->save();
 
+        //人員需求
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_list_id = 2;
+        $mission_support_person->amount = 10;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_list_id = 3;
+        $mission_support_person->amount = 0;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_list_id = 4;
+        $mission_support_person->amount = 5;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_list_id = 5;
+        $mission_support_person->amount = 20;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_list_id = 6;
+        $mission_support_person->amount = 0;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_list_id = 7;
+        $mission_support_person->amount = 0;
+        $mission_support_person->save();
+
+        //物資支援
+        $mission_support_person = new App\Mission_support_product;
+        $mission_support_person->mission_list_id = 2;
+        $mission_support_person->product_total_amount_id = 2;
+        $mission_support_person->amount = 10;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_product;
+        $mission_support_person->mission_list_id = 3;
+        $mission_support_person->product_total_amount_id = 3;
+        $mission_support_person->amount = 30;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_product;
+        $mission_support_person->mission_list_id = 4;
+        $mission_support_person->product_total_amount_id = 0;
+        $mission_support_person->amount = 10;
+        $mission_support_person->save();
+
+
+        $mission_support_person = new App\Mission_support_product;
+        $mission_support_person->mission_list_id = 6;
+        $mission_support_person->product_total_amount_id = 2;
+        $mission_support_person->amount = 10;
+        $mission_support_person->save();
 
 
 

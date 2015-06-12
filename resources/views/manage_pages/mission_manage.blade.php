@@ -31,7 +31,7 @@
                     @if ($mission_list->mission_name != "未分配任務")
                 <tr class="header expand"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td><td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td><td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td><th>編號</th><th>內容 <span class="sign"></span></th><th>時間</th><th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
                  @if(count($reports_array[$mission_list->mission_list_id]) < 3 && count($mission_contents_array[$mission_list->mission_list_id]) <3)
-                                {!!$n = 4;!!}
+                                {!!$n=  4;!!}
                 @elseif(count($reports_array[$mission_list->mission_list_id]) > count($mission_contents_array[$mission_list->mission_list_id]))
                            {!!$n = count($reports_array[$mission_list->mission_list_id])+1;!!}
                 @elseif(count($reports_array[$mission_list->mission_list_id]) < count($mission_contents_array[$mission_list->mission_list_id]))
@@ -49,7 +49,7 @@
                                     @else
                                         <td colspan="4"></td>
                                 @endif
-                                    {!!$n!!}
+                                    {{--{!!$n!!}--}}
                                 @if($i <  count($mission_contents_array[$mission_list->mission_list_id])+1 && isset($mission_contents_array[$mission_list->mission_list_id][$i]))
                                     <td>{!!$mission_contents_array[$mission_list->mission_list_id][$i]['id']!!}</td>
                                     <td>{!!$mission_contents_array[$mission_list->mission_list_id][$i]['content']!!}</td>
@@ -60,12 +60,26 @@
                                     <td>{!!$reports_array[$mission_list->mission_list_id][$i]['time']!!}</td>
                                    <td>{!!$reports_array[$mission_list->mission_list_id][$i]['content']!!}</td>
                                     @else
-                                        <td colspan="2">asdf</td>
+                                        <td colspan="2"></td>
                                 @endif
-                    <td></td>
+                                    <td>
+
+                                @if($i==1 && $mission_support_people_Array[$mission_list->mission_list_id."amount"] !=0 )
+                                                                  印人員按鈕
+
+                                @else
+
+                                @endif
+                                    @if($i==1 && isset($mission_support_product_Array[$mission_list->mission_list_id."id"] ) )
+                                                    印物資按鈕
+
+                                    @else
+
+                                    @endif
+                                    </td>
                     </tr>
                  @endfor
-                            |
+
 
 
                     @endif

@@ -64,7 +64,7 @@ class LoginController extends Controller {
         }
 
         //fails
-        return Redirect::to('user_page.home')
+        return Redirect::to('login')
             ->withErrors($validator)
             ->withInput(Input::except('password'));
     }
