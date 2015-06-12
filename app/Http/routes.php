@@ -18,7 +18,7 @@ Route::post('call/input', 'CallController@create');
 Route::get('donate/input', 'DonateController@create');
 Route::get('guidance', 'GuidanceController@index');
 //Route::get('guidance_map', 'GuidanceController@');
-//Route::get('application_input', 'ApplicationController@');
+Route::get('application/input', 'ApplicationController@index');
 Route::get('missing_poster/input', 'MissingPosterController@create');
 
 //登入用route

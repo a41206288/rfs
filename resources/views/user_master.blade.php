@@ -43,7 +43,7 @@
                     <li class="@yield('guidance_map_active')">{!! link_to('#', '防災地圖') !!}</li>
                     <li class="@yield('call_input_active')">{!! link_to('call/input', '我要通報') !!}</li>
                     <li class="@yield('donate_input_active')">{!! link_to('donate/input', '我要捐贈') !!}</li>
-                    <li class="@yield('active')">{!! link_to('#', '我要應徵人員') !!}</li>
+                    <li class="@yield('application_active')">{!! link_to('application/input', '我要應徵人員') !!}</li>
                     <li class="@yield('missing_poster_input_active')">{!! link_to('missing_poster/input', '我要尋人') !!}</li>
                    
 

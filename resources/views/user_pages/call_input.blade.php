@@ -2,7 +2,7 @@
 @section('title')
     通報
 @endsection
-@section('call_input_active')
+@section('application_active')
     active
 @endsection
 @section('content')
@@ -15,9 +15,39 @@
             padding: 5px;
         }
     </style>
-    <h4><b>我要通報</b></h4><hr>
+    <h4><b>我要應徵</b></h4><hr>
     {!! Form::open(array('url' => 'call/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
+    <div class="col-xs-6 col-sm-4 col-md-4" >
+        <table>
+            <tr><td colspan="2"><b>個人資料</b></td></tr>
+            <tr>
+                <td width="20%"><font color="#ff0b11">*</font>姓名</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
+            </tr>
+            <tr>
+                <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
+            </tr>
+            <tr>
+                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone']) !!}</td>
+            </tr>
+            <tr>
+                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email']) !!}</td>
+            </tr>
 
+            <tr>
+                <td colspan="2"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
+            </tr>
+            <tr>
+                <td colspan="2"><font color="#ff0b11">*</font> 請務必填寫</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="text-center">
+        <br>
+
+        <br><br>
+        {!! Form::submit('通報給救災中心', ['class' => 'btn btn-primary btn-sm']) !!}
+    </div >
     <div class="col-xs-6 col-sm-4 col-md-4" >
 
         <table>
@@ -78,37 +108,7 @@
 
         </table>
     </div>
-    <div class="col-xs-6 col-sm-4 col-md-4" >
-        <table>
-            <tr><td colspan="2"><b>報案人資料</b></td></tr>
-            <tr>
-                <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
-            </tr>
-            <tr>
-                <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
-            </tr>
-            <tr>
-                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone']) !!}</td>
-            </tr>
-            <tr>
-                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email']) !!}</td>
-            </tr>
 
-            <tr>
-                <td colspan="2"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
-            </tr>
-            <tr>
-                <td colspan="2"><font color="#ff0b11">*</font> 請務必填寫</td>
-            </tr>
-
-        </table>
-    </div>
-    <div class="text-center">
-        <br>
-
-        <br><br>
-        {!! Form::submit('通報給救災中心', ['class' => 'btn btn-primary btn-sm']) !!}
-    </div >
     {!! Form::close() !!}
 @endsection
 

@@ -19,26 +19,46 @@
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="createTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog"  style="width:  800px">
                             <div class="modal-content">
                                 {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal')) !!}
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
                                 </div>
-                                <div class="modal-body">
-                                    <dl class="dl-horizontal">
-                                        <dt>任務名稱</dt>
-                                        <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                        <dt>負責人</dt>
-                                        <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
-                                        <dt>脫困組人數</dt>
-                                        <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
-                                        <dt>醫療組人數</dt>
-                                        <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
-                                    </dl>
+                                <div class="modal-body ">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <dl class="dl-horizontal">
+                                                <dt>任務名稱</dt>
+                                                <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                                                <dt>負責人</dt>
+                                                <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
+                                                <dt>脫困組人數</dt>
+                                                <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
+                                                <dt>醫療組人數</dt>
+                                                <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <dl class="dl-horizontal ">
+                                                <dt>任務名稱</dt>
+                                                <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                                                <dt>負責人</dt>
+                                                <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
+                                                <dt>脫困組人數</dt>
+                                                <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
+                                                <dt>醫療組人數</dt>
+                                                <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+
+
+
 
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
                                     {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm btn-primary']) !!}

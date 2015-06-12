@@ -14,7 +14,7 @@ class ApplicationController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        return view('user_pages.application_input');
 	}
 
 	/**
