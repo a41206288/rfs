@@ -64,6 +64,7 @@
 
 
         </table>
+        <hr/>
         {{-- 暫時加上submit看要不要換地方 --}}
         {!! Form::submit('送出', ['class' => 'btn btn-primary btn-sm']) !!}
 
@@ -176,6 +177,11 @@
             }
             if( $('#email').val() != "" && !isEmail( $('#email').val() ) )
             {
+                return false;
+            }
+            if($('#donate_table tr').length<2)
+            {
+                alert("請選擇要捐贈的物資");
                 return false;
             }
             return true;

@@ -3,6 +3,12 @@
     現場分析管理
 @endsection
 @section('content')
+    <style>
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+
     <h3>任務管理</h3>
     <table class="table table-bordered">
         <thead>
@@ -24,33 +30,101 @@
                             {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal')) !!}
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
+                                <h4 class="modal-title" id="myModalLabel"><b>分派人員</b></h4>
                             </div>
                             <div class="modal-body ">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <dl class="dl-horizontal">
-                                            <dt>任務名稱</dt>
-                                            <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>負責人</dt>
-                                            <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
-                                            <dt>脫困組人數</dt>
-                                            <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>醫療組人數</dt>
-                                            <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
-                                        </dl>
+                                    <div class="col-md-5" id="busy">
+                                        {{--<dl class="dl-horizontal">--}}
+                                            {{--<dt>任務名稱</dt>--}}
+                                            {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                            {{--<dt>負責人</dt>--}}
+                                            {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
+                                            {{--<dt>脫困組人數</dt>--}}
+                                            {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                            {{--<dt>醫療組人數</dt>--}}
+                                            {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
+                                        {{--</dl>--}}
+                                        <b>執行任務人員</b>
+                                        <div class="input-group">
+                                            <span class="form-control" id="basic-addon2">任務中人員1</span>
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">-</button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="form-control" id="basic-addon2">任務中人員2</span>
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">-</button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="form-control" id="basic-addon2">任務中人員3</span>
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">-</button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="form-control" id="basic-addon2">任務中人員4</span>
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">-</button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="form-control" id="basic-addon2">任務中人員5</span>
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">-</button>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <dl class="dl-horizontal ">
-                                            <dt>任務名稱</dt>
-                                            <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>負責人</dt>
-                                            <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
-                                            <dt>脫困組人數</dt>
-                                            <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>醫療組人數</dt>
-                                            <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
-                                        </dl>
+                                    <div class="col-md-offset-1 col-md-5" id="idle">
+                                        {{--<dl class="dl-horizontal ">--}}
+                                            {{--<dt>任務名稱</dt>--}}
+                                            {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                            {{--<dt>負責人</dt>--}}
+                                            {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
+                                            {{--<dt>脫困組人數</dt>--}}
+                                            {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                            {{--<dt>醫療組人數</dt>--}}
+                                            {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
+                                        {{--</dl>--}}
+                                        <b>未分配人員</b>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                            <span class="form-control">未分配人員1</span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                            <span class="form-control">未分配人員2</span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                            <span class="form-control">未分配人員3</span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                            <span class="form-control" id="basic-addon2">未分配人員4</span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                            <span class="form-control" id="basic-addon2">未分配人員5</span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-btn" >
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                            <span class="form-control" id="basic-addon2">未分配人員6</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -61,7 +135,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                {!! Form::submit('送出分配', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                             </div>
                             {!! Form::close() !!}
                         </div><!-- /.modal-content -->
@@ -90,5 +164,79 @@
         }
         var element_count = 0;
 
+    </script>
+
+
+    <script>
+        $('#idle div span').on('click', 'button', function(e){
+
+            alert("...");
+            add_person($(this).closest('div').find('span').eq(1).text(),false);
+            $(this).closest('div').remove();
+
+
+        });
+        $('#busy div span').on('click', 'button', function(e){
+            alert("...");
+            add_person($(this).closest('div').find('span').eq(0).text(),true);
+            $(this).closest('div').remove();
+
+        });
+
+        function add_person(name,isBusyTable)
+        {
+            if(isBusyTable){
+                var obj=document.getElementById("idle");
+
+                var div = document.createElement("div");
+                div.setAttribute("class", "input-group");
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "input-group-btn");
+
+
+                var span_btn = document.createElement("button");
+                span_btn.setAttribute("class", "btn btn-default");
+                span_btn.setAttribute("type", "button");
+                span_btn.innerHTML="+";
+
+                span.appendChild(span_btn);
+                div.appendChild(span);
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "form-control");
+                span.innerHTML=name;
+
+                div.appendChild(span);
+
+                obj.appendChild(div);
+            }
+            else{
+                var obj=document.getElementById("busy");
+                var div = document.createElement("div");
+                div.setAttribute("class", "input-group");
+
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "form-control");
+                span.innerHTML=name;
+
+                div.appendChild(span);
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "input-group-btn");
+
+                var span_btn = document.createElement("button");
+                span_btn.setAttribute("class", "btn btn-default");
+                span_btn.setAttribute("type", "button");
+                span_btn.innerHTML="-";
+
+                span.appendChild(span_btn);
+                div.appendChild(span);
+
+                obj.appendChild(div);
+            }
+
+        }
     </script>
 @endsection
