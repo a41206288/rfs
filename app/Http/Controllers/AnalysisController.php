@@ -43,7 +43,7 @@ class AnalysisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
         return view('manage_pages.analysis_manage_local');
 	}

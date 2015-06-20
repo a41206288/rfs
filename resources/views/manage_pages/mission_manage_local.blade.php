@@ -2,75 +2,101 @@
 @section('title')
     任務管理
 @endsection
+@section('css')
+    tr.header,tr.header_no_next
+    {
+    cursor:pointer;
+    }
+    .header .sign:after{
+    content:"▼";
+    display:inline-block;
+    }
+    .header.expand .sign:after{
+    content:"▲";
+    }
+    .header_no_next .sign:after{
+    content:"▼";
+    display:inline-block;
+    }
+    .header_no_next.expand .sign:after{
+    content:"▲";
+    }
+@endsection
 @section('content')
-    <h3>任務管理</h3>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>地點</th><th>嚴重程度</th><th>預估傷亡人數</th><th>現場狀況</th><th>評估時間</th><th>指派人員</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>資電館</td><td>輕度</td><td>20</td><td>暫時將此區域水管管線供水, 街道積水尚未清理</td><td>2015-06-05 08:29:14</td>
-            <td>
-                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createTeam">
-                    分派人員
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="createTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog"  style="width:  800px">
-                        <div class="modal-content">
-                            {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal')) !!}
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
-                            </div>
-                            <div class="modal-body ">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <dl class="dl-horizontal">
-                                            <dt>任務名稱</dt>
-                                            <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>負責人</dt>
-                                            <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
-                                            <dt>脫困組人數</dt>
-                                            <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>醫療組人數</dt>
-                                            <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
-                                        </dl>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <dl class="dl-horizontal ">
-                                            <dt>任務名稱</dt>
-                                            <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>負責人</dt>
-                                            <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
-                                            <dt>脫困組人數</dt>
-                                            <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>醫療組人數</dt>
-                                            <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
-                                        </dl>
-                                    </div>
-                                </div>
 
+    <div class="col-xs-9 col-sm-6 col-md-7" >
+        <h4><b>任務管理</b></h4>
+        <table class=" table table-bordered">
+            {{--<tr><td>組別</td><td>人數</td><td>最新回報</td></tr>--}}
+            <tr class="header expand"><td>醫療組</td><td>醫療組人數</td><td>最新回報  <span class="sign"></span> </td><td>增援</td></tr>
+            <tr><td colspan="1"></td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td><button class="btn-circle btn-danger">人員</button></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+        </table>
+        <br>
+        <table class=" table table-bordered">
+            <tr class="header expand"><td>後勤組</td><td>待命區人數</td><td>最新回報  <span class="sign"></span> </td><td>增援</td></tr>
+            <tr><td colspan="1"></td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td><button class="btn-circle btn-danger">人員</button></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+        </table>
+        <br>
+        <table class=" table table-bordered">
+            <tr><td>脫困組地點</td><td>人數</td><td>最新回報</td><td>增援</td></tr>
+            <tr  class="header_no_next expand"><td>資電館</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td><button class="btn-circle btn-danger">人員</button></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr  class="header_no_next expand"><td>忠勤樓</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td>按鈕</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr  class="header_no_next expand"><td>圖書館</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td>按鈕</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr  class="header_no_next expand"><td>科航館</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td>按鈕</td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
 
+        </table>
 
+    </div>
+    <div class="col-xs-7 col-sm-6 col-md-5">
+        <h4><b>中央通知</b></h4>
+        還不知道要放什麼~~
+        {{--<div class="tab-content">--}}
+        {{--<div class="tab-pane active" id="news">--}}
+        {{--<blockquote class="blockquote-danger">--}}
+        {{--<p><b>中央指揮官指派給您新的任務</b></p>--}}
+        {{--<h6>通報編號 : 1   通報時間:  2015-05-17 10:50:21</h6>--}}
+        {{--<h6>通報內容:</h6>--}}
+        {{--<h6>通報地址:</h6>--}}
+        {{--<h6>通報人:                 通報人電話:</h6>--}}
+        {{--<h6>通報人信箱:</h6>--}}
+        {{--<footer>2015-05-17 10:50:21</footer>--}}
+    </div>
+@endsection
+@section('javascript')
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
-                            </div>
+    <script language="JavaScript">
+        $('.header').click(function(){
+            $(this).toggleClass('expand').next().nextUntil('tr.header').slideToggle(100);
+        });
+        $('.header').trigger('click'); //trigger :觸發指定事件
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
-                            </div>
-                            {!! Form::close() !!}
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        $('.header_no_next').click(function(){
+            $(this).toggleClass('expand').nextUntil('tr.header_no_next').slideToggle(100);
+        });
+        $('.header_no_next').trigger('click'); //trigger :觸發指定事件
+    </script>
 @endsection
 {{--@section('content_c7')--}}
 
