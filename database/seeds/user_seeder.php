@@ -410,15 +410,15 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '郭曉建')->first();
-        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
         $user->save();
 
-        $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 2;
-        $Works_on->id = 26;
-        $Works_on->save();
+//        $Works_on = new App\Works_on;
+//        $Works_on->mission_new_locations_id = 2;
+//        $Works_on->id = 26;
+//        $Works_on->save();
 
         $user = new App\User;
         $user->name = "詹絳";
@@ -574,6 +574,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 38;
         $user->name = "王月";
         $user->email = "038@yahoo.com.tw";
         $user->password =Hash::make ('as6ca65s4c');
@@ -586,6 +587,11 @@ class user_seeder extends Seeder{
         $user->mission_id = 5;
         $user->mission_list_id = 2;
         $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 1;
+        $Works_on->id = 38;
+        $Works_on->save();
 
         $user = new App\User;
         $user->name = "鍾堅植";
