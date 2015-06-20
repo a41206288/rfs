@@ -43,17 +43,8 @@ class LoginController extends Controller {
                    return redirect()->route('administratorPanel');
                        }else if($user->is('local')){
                     return redirect()->route('localPanel');
-//                       }
-//                if($user->is('administrator')){
-//                    return redirect()->route('administratorPanel');
-                   // return $this->administratorPanel();
-//                $user  = User::where('email', '=',  $input['email']);
-//                if($user->is('Administrator')){
-//                    return redirect()->route('administrator');
-//                    //return Redirect::intended('post');
-//                }elseif($user->is('Moderator')){
-//                    return redirect()->route('moderator');
-//                    //return Redirect::intended('post');
+                      }else if($user->is('analysis')){
+                    return redirect()->route('analysisPanel');
                 }
 
 

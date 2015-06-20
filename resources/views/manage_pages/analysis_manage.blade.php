@@ -3,28 +3,37 @@
     現場分析
 @endsection
 @section('content')
-    {{--<h3><b>現場分析</b></h3>--}}
+    @if (isset($mission_list_names) )
+        <h5><b>任務編號 : {!!Auth::user()->mission_list_id;!!} 任務名稱 : {!!$mission_list_names[0]->mission_name;!!}</b></h5>
+    @endif
     <div class="col-xs-7 col-sm-6 col-md-5">
 
         <h5><b>通報地點</b></h5>
+
         <br><br>
         <table class="table table-bordered">
             <thead>
                 <tr><th>分析狀態</th><th>編號</th><th>內容</th><th>地址</th></tr>
             </thead>
+
             <tbody>
+            @foreach ($missions as $mission)
+
+                @if (isset($mission) )
                 <tr>
-                    <td>分析完成</td><td>12</td><td>從地面裂縫中滲出水</td><td>台中市西屯區文華路100號</td>
+                    @if ( is_null($mission->complete_time) )
+                        <td>分析未完成</td>
+                    @else
+                        <td>分析完成 <br>{!!$mission->complete_time!!}</td>
+
+                    @endif
+                    <td>{!!$mission->mission_id!!}</td><td>{!!$mission->mission_content!!}</td><td>{!!$mission->location!!}</td>
                 </tr>
-                <tr>
-                    <td>分析完成</td><td>12</td><td>從地面裂縫中滲出水</td><td>台中市西屯區文華路100號</td>
-                </tr>
-                <tr>
-                    <td>分析完成</td><td>12</td><td>從地面裂縫中滲出水</td><td>台中市西屯區文華路100號</td>
-                </tr>
-                <tr>
-                    <td>分析完成</td><td>12</td><td>從地面裂縫中滲出水</td><td>台中市西屯區文華路100號</td>
-                </tr>
+            @endif
+
+            @endforeach
+
+
             </tbody>
         </table>
     </div>
@@ -47,9 +56,9 @@
                             <dt>嚴重程度</dt>
                             <dd> {!! Form::text('severe_level', '', ['id' =>  'severe_level','class' => 'form-control', 'required']) !!}<br>
                             <dt>預估傷亡人數</dt>
-                            <dd> {!! Form::text('victim_num', '', ['id' =>  'victim_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
+                            <dd> {!! Form::text('victim_number', '', ['id' =>  'victim_number', 'class' => 'form-control', 'required']) !!}</dd> <br>
                             <dt>現場狀況</dt>
-                            <dd> {!! Form::textarea('condition','',['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd>
+                            <dd> {!! Form::textarea('situation','',['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd>
                         </dl>
                     </div>
                     <div class="modal-footer">
@@ -65,7 +74,21 @@
                 <tr><th>地點</th><th>嚴重程度</th><th>預估傷亡人數</th><th>現場狀況</th><th>評估時間</th><th>修改</th></tr>
             </thead>
             <tbody>
-                <tr><td>資電館</td><td>輕度</td><td>23</td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td>2014/08/23 10:05:07</td><td><button class="btn btn-link btn-sm">修改</button></td></tr>
+            @foreach ($mission_new_locations as $mission_new_location)
+
+                @if (isset($mission_new_location) )
+                    <tr>
+                        <td>{!!$mission_new_location->location!!}</td>
+                        <td>{!!$mission_new_location->severe_level!!}</td>
+                        <td>{!!$mission_new_location->victim_number!!}</td>
+                        <td>{!!$mission_new_location->situation!!}</td>
+                        <td>{!!$mission_new_location->analysis_time!!}</td>
+                        <td><button class="btn btn-link btn-sm">修改</button></td>
+                    </tr>
+                @endif
+
+            @endforeach
+
             </tbody>
         </table>
 

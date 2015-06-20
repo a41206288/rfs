@@ -93,6 +93,14 @@ Route::group([
         Route::get('analysis/manage/local', 'AnalysisController@show');
     });
 
+Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'analysis'],
+    function () {
+        Route::get('analysis/manage', array('as' => 'analysisPanel', 'uses' => 'AnalysisController@index'));
+    });
+
+
 
 
 

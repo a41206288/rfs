@@ -17,8 +17,10 @@ class user_seeder extends Seeder{
     use HasRole;
     public function run(){
         DB:: table('users')->delete();
+        DB:: table('works_ons')->delete();
 
         $user = new App\User; //測試用密碼是1234
+        $user->id = 1;
         $user->name = "王小明";
         $user->email = "123@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -32,6 +34,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User; //測試用密碼是1234
+        $user->id = 2;
         $user->name = "陳小華";
         $user->email = "456@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -44,6 +47,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User; //測試用密碼是1234
+        $user->id = 3;
         $user->name = "陳芊蓉";
         $user->email = "789@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -51,12 +55,14 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user  = User::where('name', '=', '陳芊蓉')->first();
-        $roleReliever = Permission::where('name', '=', 'Masses')->first();
-        $user->assignRole( $roleReliever );
+        $roleAnalysis = Permission::where('name', '=', 'Analysis')->first();
+        $user->assignRole( $roleAnalysis );
+        $user->mission_list_id = 2;
         $user->save();
 
 
         $user = new App\User; //測試用密碼是1234
+        $user->id = 4;
         $user->name = "林麗雯";
         $user->email = "004@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -71,6 +77,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User; //測試用密碼是1234
+        $user->id = 5;
         $user->name = "韓東霖";
         $user->email = "005@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -85,6 +92,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 6;
         $user->name = "葉雯情";
         $user->email = "006@yahoo.com.tw";
         $user->password =Hash::make ('6565erg');
@@ -97,8 +105,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 2;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 1;
+        $Works_on->id = 6;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 7;
         $user->name = "王麗芳";
         $user->email = "007@yahoo.com.tw";
         $user->password =Hash::make ('e6r5g4654rg');
@@ -112,6 +126,11 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 2;
         $user->save();
 
+
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 1;
+        $Works_on->id = 7;
+        $Works_on->save();
 
         $user = new App\User;
         $user->name = "吳番薯";
@@ -203,6 +222,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 14;
         $user->name = "彭士萱";
         $user->email = "014@yahoo.com.tw";
         $user->password =Hash::make ('v31s5e4f');
@@ -215,6 +235,11 @@ class user_seeder extends Seeder{
         $user->mission_id = 6;
         $user->mission_list_id = 2;
         $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 2;
+        $Works_on->id = 14;
+        $Works_on->save();
 
 
         $user = new App\User;
@@ -377,6 +402,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 26;
         $user->name = "郭曉建";
         $user->email = "026@yahoo.com.tw";
         $user->password =Hash::make ('s3dv21');
@@ -389,6 +415,10 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 2;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 2;
+        $Works_on->id = 26;
+        $Works_on->save();
 
         $user = new App\User;
         $user->name = "詹絳";

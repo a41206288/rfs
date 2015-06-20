@@ -19,6 +19,7 @@ class mission_seeder extends Seeder{
         DB:: table('mission_lists')->delete();
         DB:: table('mission_support_people')->delete();
         DB:: table('mission_support_products')->delete();
+        DB:: table('mission_new_locations')->delete();
         //DB:: table('local_reports')->delete();
        // DB:: table('reports')->delete();
 
@@ -514,6 +515,22 @@ class mission_seeder extends Seeder{
         $mission->mission_list_id = 7;
         $mission->save();
 //
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_list_id = 2;
+        $mission->victim_number = 50;
+        $mission->situation = '建築物主要出入口皆坍塌, 尚無法確認有多少人受困';
+        $mission->location = '資電館';
+        $mission->analysis_time = date('Y-m-d H:i:s');
+        $mission->save();
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_list_id = 2;
+        $mission->victim_number = 30;
+        $mission->situation = '火勢無法控制, 需要更多脫困及醫療人員支援';
+        $mission->location = '商學大樓';
+        $mission->analysis_time = date('Y-m-d H:i:s');
+        $mission->save();
 
 
 

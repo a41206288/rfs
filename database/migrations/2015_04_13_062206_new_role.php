@@ -41,6 +41,13 @@ class NewRole extends Migration
         ]);
 
         $role = new Role();
+        $roleAnalysis = $role->create([
+            'name' => 'Analysis',
+            'slug' => 'analysis',
+            'description' => '現場分析組'
+        ]);
+
+        $role = new Role();
         $roleReliever = $role->create([
             'name' => 'Reliever',
             'slug' => 'reliever',
@@ -110,6 +117,19 @@ class NewRole extends Migration
         ]);
 
         $permission = new Permission();
+        $permAnalysis = $permission->create([
+            'name'        => 'Analysis',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'analysis  permissions'
+        ]);
+
+        $permission = new Permission();
         $permReliever = $permission->create([
             'name'        => 'Reliever',
             'slug'        => [          // pass an array of permissions.
@@ -170,7 +190,7 @@ class NewRole extends Migration
         $roleEMT->assignPermission($permEMT);
         $roleResource->assignPermission($permResource);
         $roleMasses->assignPermission($permMasses);
-
+        $roleAnalysis->assignPermission($permAnalysis);
         //Assign Role(s) To User
 
 //        $user  = User::where('name', '=', '王小明');
@@ -206,6 +226,7 @@ class NewRole extends Migration
         Role::where('name', '=', 'EMT')->delete();
         Role::where('name', '=', 'Resource')->delete();
         Role::where('name', '=', 'Masses')->delete();
+        Role::where('name', '=', 'Analysis')->delete();
 
 
     }

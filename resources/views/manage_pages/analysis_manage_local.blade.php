@@ -18,7 +18,15 @@
         </thead>
         <tbody>
         <tr>
-            <td>資電館</td><td>輕度</td><td>20</td><td>暫時將此區域水管管線供水, 街道積水尚未清理</td><td>2015-06-05 08:29:14</td>
+            @foreach ($mission_new_locations as $mission_new_location)
+
+                @if (isset($mission_new_location) )
+        <tr>
+            <td>{!!$mission_new_location->location!!}</td>
+            <td>{!!$mission_new_location->severe_level!!}</td>
+            <td>{!!$mission_new_location->victim_number!!}</td>
+            <td>{!!$mission_new_location->situation!!}</td>
+            <td>{!!$mission_new_location->analysis_time!!}</td>
             <td>
                 <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createTeam">
                     分派人員
@@ -36,14 +44,14 @@
                                 <div class="row">
                                     <div class="col-md-5" id="busy">
                                         {{--<dl class="dl-horizontal">--}}
-                                            {{--<dt>任務名稱</dt>--}}
-                                            {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
-                                            {{--<dt>負責人</dt>--}}
-                                            {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
-                                            {{--<dt>脫困組人數</dt>--}}
-                                            {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
-                                            {{--<dt>醫療組人數</dt>--}}
-                                            {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
+                                        {{--<dt>任務名稱</dt>--}}
+                                        {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                        {{--<dt>負責人</dt>--}}
+                                        {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
+                                        {{--<dt>脫困組人數</dt>--}}
+                                        {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                        {{--<dt>醫療組人數</dt>--}}
+                                        {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
                                         {{--</dl>--}}
                                         <b>執行任務人員</b>
                                         <div class="input-group">
@@ -79,14 +87,14 @@
                                     </div>
                                     <div class="col-md-offset-1 col-md-5" id="idle">
                                         {{--<dl class="dl-horizontal ">--}}
-                                            {{--<dt>任務名稱</dt>--}}
-                                            {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
-                                            {{--<dt>負責人</dt>--}}
-                                            {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
-                                            {{--<dt>脫困組人數</dt>--}}
-                                            {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
-                                            {{--<dt>醫療組人數</dt>--}}
-                                            {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
+                                        {{--<dt>任務名稱</dt>--}}
+                                        {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                        {{--<dt>負責人</dt>--}}
+                                        {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
+                                        {{--<dt>脫困組人數</dt>--}}
+                                        {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                        {{--<dt>醫療組人數</dt>--}}
+                                        {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
                                         {{--</dl>--}}
                                         <b>未分配人員</b>
                                         <div class="input-group">
@@ -143,6 +151,10 @@
                 </div><!-- /.modal -->
             </td>
         </tr>
+        @endif
+
+        @endforeach
+
         </tbody>
     </table>
 @endsection

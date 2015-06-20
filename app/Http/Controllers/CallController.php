@@ -16,18 +16,29 @@ class CallController extends Controller {
 	public function index()
 	{
         $mission_lists = DB::table('mission_lists')->get();
-
+ //dd($mission_lists);
         //計算各任務通報總數
         $mission_counts = DB::table('missions')
             ->select('mission_list_id',DB::raw('count(*) as total'))
             ->groupBy('mission_list_id')
             ->get();
-
+// dd($mission_counts);
         $mission_counts_array =[];
-        foreach($mission_counts as $mission_count){
-            $mission_counts_array[$mission_count->mission_list_id] = $mission_count->total;
+        foreach($mission_lists as $mission_list){
+            $unfind = false;
+            foreach($mission_counts as $mission_count){
+                if($mission_list->mission_list_id == $mission_count->mission_list_id) {
+                    $unfind = true;
+                    $mission_counts_array[$mission_list->mission_list_id] = $mission_count->total;
+                }
+            }
+            if( $unfind == false ) {
+                $mission_counts_array[$mission_list->mission_list_id] = 0;
+            }
         }
-        // dd($mission_counts_array);
+
+
+         //dd($mission_counts_array);
 
         //計算各任務醫療人員總人數
         $emtUsers = DB::table('users')
@@ -38,10 +49,20 @@ class CallController extends Controller {
             ->get();
 
         $emtUsersArray =[];
-        foreach($emtUsers as $emtUser){
-            $emtUsersArray[$emtUser->mission_list_id] = $emtUser->total;
+        foreach($mission_lists as $mission_list){
+            $unfind = false;
+            foreach($emtUsers as $emtUser){
+                if($mission_list->mission_list_id == $emtUser->mission_list_id) {
+                    $unfind = true;
+                    $emtUsersArray[$emtUser->mission_list_id] = $emtUser->total;
+                }
+            }
+            if( $unfind == false ) {
+                $emtUsersArray[$mission_list->mission_list_id] = 0;
+            }
         }
-        // dd($emtUsersArray);
+
+         //dd($emtUsersArray);
 
         //計算各任務脫困人員總人數
         $relieverUsers = DB::table('users')
@@ -52,9 +73,19 @@ class CallController extends Controller {
             ->get();
 
         $relieverUsersArray =[];
-        foreach($relieverUsers as $relieverUser){
-            $relieverUsersArray[$relieverUser->mission_list_id] = $relieverUser->total;
+        foreach($mission_lists as $mission_list){
+            $unfind = false;
+            foreach($relieverUsers as $relieverUser){
+                if($mission_list->mission_list_id == $relieverUser->mission_list_id) {
+                    $unfind = true;
+                    $relieverUsersArray[$relieverUser->mission_list_id] = $relieverUser->total;
+                }
+            }
+            if( $unfind == false ) {
+                $relieverUsersArray[$mission_list->mission_list_id] = 0;
+            }
         }
+
         // dd($relieverUsersArray);
 
         //讀取mission所有資料

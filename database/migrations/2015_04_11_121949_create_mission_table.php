@@ -23,6 +23,26 @@ class CreateMissionTable extends Migration {
             $table->timestamp('complete_time')->nullable();
         });
 
+        Schema::create('mission_new_locations', function(Blueprint $table)
+        {
+            $table->increments('mission_new_locations_id');
+            $table->unsignedInteger('mission_list_id');
+            $table->string('location');
+            $table->enum('severe_level', ['輕度', '中度','重度']);
+            $table->text('situation');
+            $table->integer('victim_number');
+            $table->timestamp('analysis_time');
+            $table->timestamps();
+        });
+
+        Schema::create('works_ons', function(Blueprint $table)
+        {
+            $table->increments('works_on_id');
+            $table->unsignedInteger('mission_new_locations_id');
+            $table->unsignedInteger('id');
+            $table->timestamps();
+        });
+
         Schema::create('mission_support_people', function(Blueprint $table)
         {
             $table->increments('mission_support_person_id');
@@ -96,6 +116,8 @@ class CreateMissionTable extends Migration {
         Schema::drop('local_reports');
         Schema::drop('mission_support_people');
         Schema::drop('mission_support_products');
+        Schema::drop('mission_new_locations');
+        Schema::drop('works_ons');
     }
 
 }

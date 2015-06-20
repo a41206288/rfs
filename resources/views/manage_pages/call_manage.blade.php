@@ -37,10 +37,10 @@
                                     <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
                                     <dt>負責人</dt>
                                     <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
-                                    <dt>脫困組人數</dt>
-                                    <dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>
-                                    <dt>醫療組人數</dt>
-                                    <dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>
+                                    {{--<dt>脫困組人數</dt>--}}
+                                    {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                    {{--<dt>醫療組人數</dt>--}}
+                                    {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
                                 </dl>
 
                             </div>
@@ -132,11 +132,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>編號</th>
-                <th>任務名稱</th>
-                <th>通報數</th>
-                <th>脫困組</th>
-                <th>醫療組</th>
+                <th width="15%">編號</th>
+                <th width="25%">任務名稱</th>
+                <th width="20%">通報數</th>
+                <th width="20%">脫困組</th>
+                <th width="20%">醫療組</th>
             </tr>
 
             @if (isset($mission_lists) )
