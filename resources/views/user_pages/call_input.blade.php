@@ -2,7 +2,7 @@
 @section('title')
     通報
 @endsection
-@section('application_active')
+@section('call_input_active')
     active
 @endsection
 @section('content')
@@ -15,7 +15,7 @@
             padding: 5px;
         }
     </style>
-    <h4><b>我要應徵</b></h4><hr>
+    <h4><b>我要通報</b></h4><hr>
     {!! Form::open(array('url' => 'call/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
     <div class="col-xs-6 col-sm-4 col-md-4" >
         <table>
@@ -41,13 +41,14 @@
             </tr>
 
         </table>
-    </div>
-    <div class="text-center">
-        <br>
+        <div class="text-center">
+            <br>
 
-        <br><br>
-        {!! Form::submit('通報給救災中心', ['class' => 'btn btn-primary btn-sm']) !!}
-    </div >
+            <br><br>
+            {!! Form::submit('通報給救災中心', ['class' => 'btn btn-primary btn-sm']) !!}
+        </div >
+    </div>
+
     <div class="col-xs-6 col-sm-4 col-md-4" >
 
         <table>

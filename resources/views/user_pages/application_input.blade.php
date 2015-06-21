@@ -2,7 +2,7 @@
 @section('title')
     人員招募
 @endsection
-@section('call_input_active')
+@section('application_active')
     active
 @endsection
 @section('content')
