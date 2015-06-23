@@ -180,16 +180,13 @@
 
 
     <script>
-        $('#idle div span').on('click', 'button', function(e){
-
-            alert("...");
+        $('#idle').on('click', 'button', function(e){
             add_person($(this).closest('div').find('span').eq(1).text(),false);
             $(this).closest('div').remove();
 
 
         });
-        $('#busy div span').on('click', 'button', function(e){
-            alert("...");
+        $('#busy').on('click', 'button', function(e){
             add_person($(this).closest('div').find('span').eq(0).text(),true);
             $(this).closest('div').remove();
 

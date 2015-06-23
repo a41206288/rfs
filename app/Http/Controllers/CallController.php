@@ -113,7 +113,7 @@ class CallController extends Controller {
 
         foreach ($queries as $query)
         {
-            $results[] = [$query->phone, $query->email, $query->id, $query->name];
+            $results[] = [$query->id, $query->name, $query->phone, $query->email];
         }//dd($results[0]);
         /*取得未分配任務之人員      END*/
 
