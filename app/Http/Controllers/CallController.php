@@ -107,15 +107,20 @@ class CallController extends Controller {
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
 
-        /*取得未分配任務之人員      START*/
+        /*取得未分配任務之地方指揮官      START*/
         $results = array();
-        $queries = DB::table('users')->select('id', 'name', 'email', 'phone')->where('mission_list_id', '=', 1)->get();
+        $queries = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->where('role_user.role_id','=',3)
+            ->where('users.mission_list_id','=',1)
+            ->select('users.id', 'users.name', 'users.email', 'users.phone')
+            ->get();
 
         foreach ($queries as $query)
         {
             $results[] = [$query->id, $query->name, $query->phone, $query->email];
         }//dd($results[0]);
-        /*取得未分配任務之人員      END*/
+        /*取得未分配任務之地方指揮官      END*/
 
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)
@@ -250,15 +255,20 @@ class CallController extends Controller {
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
 
-        /*取得未分配任務之人員      START*/
+        /*取得未分配任務之地方指揮官      START*/
         $results = array();
-        $queries = DB::table('users')->select('id', 'name', 'email', 'phone')->where('mission_list_id', '=', 1)->get();
+        $queries = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->where('role_user.role_id','=',3)
+            ->where('users.mission_list_id','=',1)
+            ->select('users.id', 'users.name', 'users.email', 'users.phone')
+            ->get();
 
         foreach ($queries as $query)
         {
-            $results[] = [$query->phone, $query->email, $query->id, $query->name];
+            $results[] = [$query->id, $query->name, $query->phone, $query->email];
         }//dd($results[0]);
-        /*取得未分配任務之人員      END*/
+        /*取得未分配任務之地方指揮官      END*/
 
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)

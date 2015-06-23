@@ -726,5 +726,31 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->save();
 
+        $user = new App\User;
+        $user->name = "高杉政";
+        $user->email = "049@yahoo.com.tw";
+        $user->password =Hash::make ('ae6f84');
+        $user->phone = '0904904949';
+        $user->save();
+
+        $user  = User::where('name', '=', '高杉政')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 1;
+        $user->save();
+
+        $user = new App\User;
+        $user->name = "魏瑜";
+        $user->email = "050@yahoo.com.tw";
+        $user->password =Hash::make ('e5gfq6f');
+        $user->phone = '0905005050';
+        $user->save();
+
+        $user  = User::where('name', '=', '魏瑜')->first();
+        $roleAdmin = Permission::where('name', '=', 'Local')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 1;
+        $user->save();
+
     }
 }
