@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Redirect;
 class AnalysisController extends Controller {
 
 	/**
@@ -59,9 +59,17 @@ class AnalysisController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
-		//
+
+        $location=$request->get('location_name') ;
+        $severe_level=$request->get('severe_level');
+        $situation=$request->get('situation');
+        $victim_number=$request->get('victim_number');
+
+        $mission_list_id=Auth::user()->mission_list_id;
+        DB::insert('insert into mission_new_locations (mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?)', array($mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
+        return Redirect::to('analysis/manage');
 	}
 
 	/**
@@ -173,9 +181,19 @@ class AnalysisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request)
 	{
-		//
+        $inputs=$request->except('_token');
+        dd($inputs);
+        $location=$request->get('location_name') ;
+        $severe_level=$request->get('severe_level');
+        $situation=$request->get('situation');
+        $victim_number=$request->get('victim_number');
+
+//        DB::insert('insert into mission_new_locations (mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?)', array($mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
+
+//        DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_list_id' => $inputs[$mission->mission_id]]);
+        return Redirect::to('analysis/manage');
 	}
 
 	/**

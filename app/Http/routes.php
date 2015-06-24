@@ -69,6 +69,8 @@ Route::group([
         //中央指揮官
         Route::post('mission/manage', 'MissionController@update');
         Route::get('mission/manage', 'MissionController@index');
+        Route::post('mission/manage/supportPeople', 'MissionController@store');
+        Route::post('mission/manage/Products', 'MissionController@store');
 
 
        // Route::get('post','HomeController@index');
@@ -98,6 +100,9 @@ Route::group([
     'is' => 'analysis'],
     function () {
         Route::get('analysis/manage', array('as' => 'analysisPanel', 'uses' => 'AnalysisController@index'));
+        //analysis manage 創建新地點
+        Route::post('analysis/manage/createLocation', 'AnalysisController@create');
+        Route::post('analysis/manage/updateLocation', 'AnalysisController@update');
     });
 
 
