@@ -6,6 +6,19 @@
     <li>{!! Html::link('call/manage', '通報管理') !!}</li>
     <li>{!! Html::link('mission/manage', '任務管理') !!}</li>
 @endsection
+@section('css')
+   tr.header_no_next
+    {
+    cursor:pointer;
+    }
+    .header_no_next .sign:after{
+    content:"▼";
+    display:inline-block;
+    }
+    .header_no_next.expand .sign:after{
+    content:"▲";
+    }
+@endsection
 @section('content_c9')
 
     <div class="table-responsive">
@@ -131,7 +144,7 @@
     <hr>
     <table class="table">
         <thead>
-            <tr>
+            <tr >
                 <th width="15%">編號</th>
                 <th width="25%">任務名稱</th>
                 <th width="20%">通報數</th>
@@ -143,12 +156,12 @@
             @foreach ($mission_lists as $mission_list )
             @if ($mission_list->mission_name != "未分配任務")
 
-            <tr>
+            <tr class="header_no_next expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
             <td >{!!$mission_list->mission_list_id!!}</td>
             <td >{!!$mission_list->mission_name!!}</td>
 
             @if (isset($mission_counts_array) )
-                <td>{!!$mission_counts_array[$mission_list->mission_list_id]!!} 則</td>
+                <td>{!!$mission_counts_array[$mission_list->mission_list_id]!!} 則 <span class="sign"></span></td>
             @endif
 
             @if (isset($relieverUsersArray) )
@@ -156,11 +169,12 @@
             @endif
 
             @if (isset($emtUsersArray) )
-            <td>{!!$emtUsersArray[$mission_list->mission_list_id]!!} 人</td>
+            <td>{!!$emtUsersArray[$mission_list->mission_list_id]!!} 人 </td>
             @endif
 
-
             </tr>
+            <tr><td>編號</td><td colspan="2">地址</td><td colspan="2">內容</td></tr>
+            <tr><td>12</td><td colspan="2">台中市西屯區公園</td><td colspan="2">火勢無法控制</td></tr>
 
             @endif
             @endforeach
@@ -176,6 +190,10 @@
     <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 
     <script language="JavaScript">
+        $('.header_no_next').click(function(){
+            $(this).toggleClass('expand').nextUntil('tr.header_no_next').slideToggle(100);
+        });
+        $('.header_no_next').trigger('click'); //trigger :觸發指定事件
 
         var readData   = <?php echo json_encode($users_data); ?>;
         for(var i = 0; i<readData.length; i++)

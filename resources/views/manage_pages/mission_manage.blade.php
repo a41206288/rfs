@@ -36,7 +36,7 @@
                 @if (isset($mission_lists) )
                 @foreach ($mission_lists as $mission_list )
                     @if ($mission_list->mission_name != "未分配任務")
-                <tr class="header expand"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td><td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td><td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td><th>編號</th><th>內容 <span class="sign"></span></th><th>時間</th><th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
+                <tr class="header expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td><td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td><td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td><th>編號</th><th>內容 <span class="sign"></span></th><th>時間</th><th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
                   <div style="display: none">
                  @if(count($reports_array[$mission_list->mission_list_id]) < 3 && count($mission_contents_array[$mission_list->mission_list_id]) <3)
                                 {!!$n=  4;!!}
