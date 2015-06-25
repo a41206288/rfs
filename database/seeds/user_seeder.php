@@ -128,7 +128,7 @@ class user_seeder extends Seeder{
 
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 1;
+        $Works_on->mission_new_locations_id = 3;
         $Works_on->id = 7;
         $Works_on->save();
 
@@ -237,7 +237,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 2;
+        $Works_on->mission_new_locations_id = 4;
         $Works_on->id = 14;
         $Works_on->save();
 
@@ -589,7 +589,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 1;
+        $Works_on->mission_new_locations_id = 3;
         $Works_on->id = 38;
         $Works_on->save();
 
@@ -724,7 +724,13 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '黃織圓')->first();
         $roleAdmin = Permission::where('name', '=', 'Resource')->first();
         $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
         $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 2;
+        $Works_on->id = 48;
+        $Works_on->save();
 
         $user = new App\User;
         $user->name = "高杉政";

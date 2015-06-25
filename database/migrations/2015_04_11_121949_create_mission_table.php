@@ -47,7 +47,8 @@ class CreateMissionTable extends Migration {
         {
             $table->increments('mission_support_person_id');
             $table->unsignedInteger('mission_list_id');
-            $table->integer('amount');
+            $table->integer('emt_num');
+            $table->integer('reliever_num');
             $table->timestamps();
         });
 
@@ -97,7 +98,9 @@ class CreateMissionTable extends Migration {
             $table->increments('local_report_id');
             $table->text('local_report_content');
             $table->timestamps();
-            $table->unsignedInteger('mission_id');
+            $table->unsignedInteger('mission_new_locations_id');
+            $table->unsignedInteger('mission_list_id');
+            $table->unsignedInteger('id');
             //$table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
         });
 

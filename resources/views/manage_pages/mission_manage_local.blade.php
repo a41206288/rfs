@@ -3,7 +3,7 @@
     任務管理
 @endsection
 @section('css')
-    tr.header,tr.header_no_next
+    tr.header
     {
     cursor:pointer;
     }
@@ -14,13 +14,7 @@
     .header.expand .sign:after{
     content:"▲";
     }
-    .header_no_next .sign:after{
-    content:"▼";
-    display:inline-block;
-    }
-    .header_no_next.expand .sign:after{
-    content:"▲";
-    }
+
 @endsection
 @section('content')
 
@@ -28,12 +22,39 @@
         <h4><b>任務管理</b></h4>
         <table class=" table table-bordered">
             {{--<tr><td>組別</td><td>人數</td><td>最新回報</td></tr>--}}
-            <tr class="header expand"><td>醫療組</td><td>醫療組人數</td><td>最新回報  <span class="sign"></span> </td><td>增援</td></tr>
-            <tr><td colspan="1"></td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td><button class="btn-circle btn-danger">人員</button></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
+            <tr ><td rowspan="2">醫療組</td><td rowspan="2">醫療組人數</td><td colspan="3">最新回報  <span class="sign"></span> </td></tr>
+            <tr><td >時間 </td><td>內容</td><td >增援</td></tr>
+            <div style="display: none">
+            @if(isset($local_reports_arrays[1]))
+                    {!!$n=count($local_reports_arrays[1]);!!}
+
+            @else
+                    {!!$n=1;!!}
+            @endif
+            </div>
+            @for($i=1;$i<=$n;$i++)
+                <tr><td colspan="1"></td>
+            @if($i==1 && isset($EmtUserAmounts))
+                <td>{!!$EmtUserAmounts[0]->total!!} 人</td>
+            @else
+                <td colspan="1"></td>
+            @endif
+            @if(isset($local_reports_arrays[1]))
+                    <td>{!!$local_reports_arrays[1][$i]['time']!!}</td>
+                    <td>{!!$local_reports_arrays[1][$i]['content']!!}</td>
+            @else
+                    <td colspan="3"></td>
+            @endif
+
+            @if($i==1 && isset($local_reports_arrays[1]))
+                <td><button class="btn-circle btn-danger">人員</button></td>
+            @else
+                <td></td>
+            @endif
+</tr>
+            @endfor
+
+
         </table>
         <br>
         <table class=" table table-bordered">
@@ -46,24 +67,51 @@
         </table>
         <br>
         <table class=" table table-bordered">
-            <tr><td>脫困組地點</td><td>人數</td><td>最新回報</td><td>增援</td></tr>
-            <tr  class="header_no_next expand"><td>資電館</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td><button class="btn-circle btn-danger">人員</button></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr  class="header_no_next expand"><td>忠勤樓</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td>按鈕</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr  class="header_no_next expand"><td>圖書館</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td>按鈕</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr  class="header_no_next expand"><td>科航館</td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援 <span class="sign"></span> </td><td>按鈕</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td></td></tr>
+            <tr><td rowspan="2">脫困組地點</td><td rowspan="2">脫困組人數</td><td colspan="3">最新回報</td></tr>
+            <tr><td >時間 </td><td>內容</td><td >增援</td></tr>
+
+            @if (isset($mission_new_locations) )
+                @foreach ($mission_new_locations as $mission_new_location )
+                    @if($mission_new_location->location != "醫療組" && $mission_new_location->location != "物資資源組")
+                        <div style="display: none">
+                        @if(isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
+                            {!!$n=count($local_reports_arrays[$mission_new_location->mission_new_locations_id]);!!}
+                        @else
+                            {!!$n=1;!!}
+                        @endif
+                        </div>
+                        @for($i=1;$i<=$n;$i++)
+                            <tr>
+                                @if($i==1)
+                                    <td>{!!$mission_new_location->location!!}</td>
+                                @else
+                                    <td colspan="1"></td>
+                                @endif
+                                @if($i==1 && isset($relieverNewLocationUserAmountsArrays))
+                                    <td>{!!$relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total']!!} 人</td>
+                                @else
+                                    <td colspan="1"></td>
+                                @endif
+                                @if(isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
+                                    <td>{!!$local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['time']!!}</td>
+                                    <td>{!!$local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['content']!!}</td>
+                                @else
+                                    <td colspan="3"></td>
+                                @endif
+
+                                @if($i==1 && isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
+                                    <td><button class="btn-circle btn-danger">人員</button></td>
+                                @else
+                                    <td></td>
+                                @endif
+
+                            </tr>
+                        @endfor
+
+                    @endif
+                @endforeach
+            @endif
+
 
         </table>
 
@@ -92,10 +140,7 @@
         });
         $('.header').trigger('click'); //trigger :觸發指定事件
 
-        $('.header_no_next').click(function(){
-            $(this).toggleClass('expand').nextUntil('tr.header_no_next').slideToggle(100);
-        });
-        $('.header_no_next').trigger('click'); //trigger :觸發指定事件
+
     </script>
 @endsection
 {{--@section('content_c7')--}}

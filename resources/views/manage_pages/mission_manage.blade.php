@@ -72,42 +72,65 @@
                                         <td colspan="2"></td>
                                 @endif
                                     <td>
+                                @if($i==1)
+                                    @if($mission_support_people_Array[$mission_list->mission_list_id."emt_num"] !=0 || $mission_support_people_Array[$mission_list->mission_list_id."reliever_num"] !=0)
+                                          <button class="btn-circle btn-danger" data-toggle="modal" data-target="#supportPeopleBlock{!!$mission_list->mission_list_id!!}">人員</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="supportPeopleBlock{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            {!! Form::open(array('url' => 'mission/manage/supportPeople', 'method' => 'post','class' => 'form-horizontal')) !!}
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="myModalLabel"><b>需求人員內容</b></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table class="table table-bordered">
+                                                                    <tr><th>任務編號</th><td>{!!$mission_list->mission_list_id!!}</td><th>任務名稱</th><td>{!!$mission_list->mission_name!!}</td></tr>
+                                                                    <tr><th>脫困組人數</th><td>{!!$relieverUsersArrays[$mission_list->mission_list_id]!!} 人</td>
+                                                                    <th>醫療組人數</th><td>{!!$emtUsersArrays[$mission_list->mission_list_id]!!} 人</td></tr>
+                                                                    <tr><th>所屬通報數量</th><td>{!!$mission_total_Arrays[$mission_list->mission_list_id]!!} 則</td>
+                                                                    <th>現場地點數量</th><td>{!!$mission_new_location_amount_arrays[$mission_list->mission_list_id]['total']!!} 個</td></tr>
+                                                                    <tr  class="header_no_next expand"><th colspan="4">查看任務現場<span class="sign"></span></th></tr>
+                                                                    <tr><td>編號</td><td colspan="3">地點名稱</td></tr>
 
-                                @if($i==1 && $mission_support_people_Array[$mission_list->mission_list_id."amount"] !=0 )
-                                      <button class="btn-circle btn-danger" data-toggle="modal" data-target="#supportPeopleBlock{!!$mission_list->mission_list_id!!}">人員</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="supportPeopleBlock{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        {!! Form::open(array('url' => 'mission/manage/supportPeople', 'method' => 'post','class' => 'form-horizontal')) !!}
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title" id="myModalLabel"><b>需求人員內容</b></h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <table class="table table-bordered">
-                                                                <tr><th>任務編號</th><td>{!!$mission_list->mission_list_id!!}</td><th>任務名稱</th><td>{!!$mission_list->mission_name!!}</td></tr>
-                                                                <tr><th>脫困組人數</th><td></td><th>醫療組人數</th><td></td></tr>
-                                                                <tr><th>所屬通報數量</th><td></td><th>現場地點數量</th><td></td></tr>
-                                                                <tr  class="header_no_next expand"><th colspan="4">查看任務現場<span class="sign"></span></th></tr>
-                                                                <tr><td>編號</td><td colspan="3">地點名稱</td></tr>
-                                                                <tr class="header_no_next expand"><th colspan="4">需求人員</th></tr>
-                                                                <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心待命人員數</th><th>欲分配人數</th></tr>
-                                                                <tr><td>醫療組</td><td class="text-right">12</td><td class="text-right">35</td><td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>
-                                                                <tr><td>脫困組</td><td class="text-right">12</td><td class="text-right">10</td><td>{!! Form::text('reliever','',['class' => 'form-control text-right']) !!}</td></tr>
-                                                            </table>
 
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                                            {!! Form::submit('派送支援', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
-                                                        </div>
-                                                        {!! Form::close() !!}
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
-                                @else
+                                                                    @if(isset($mission_new_location_Arrays[$mission_list->mission_list_id]))
+                                                                        @for($j=1;$j<=count($mission_new_location_Arrays[$mission_list->mission_list_id]);$j++)
+                                                                            @if($mission_new_location_Arrays[$mission_list->mission_list_id][$j]['location'] != '醫療組'
+                                                                            && $mission_new_location_Arrays[$mission_list->mission_list_id][$j]['location'] != '物資資源組')
+                                                                            <tr><td>{!!$mission_new_location_Arrays[$mission_list->mission_list_id][$j]['mission_new_locations_id']!!}</td>
+                                                                                <td colspan="3">{!!$mission_new_location_Arrays[$mission_list->mission_list_id][$j]['location']!!}</td></tr>
+                                                                            @endif
+                                                                        @endfor
+                                                                    @else
+                                                                        <tr><td></td>
+                                                                            <td colspan="3">現場尚未分析</td></tr>
+                                                                    @endif
+                                                                    <tr class="header_no_next expand"><th colspan="4">需求人員</th></tr>
+                                                                    <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心待命人員數</th><th>欲分配人數</th></tr>
 
+                                                                    <tr><td>醫療組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."emt_num"]!!} 人</td>
+                                                                        <td class="text-right">{!!$emtFreeUsers[0]->total!!} 人</td>
+                                                                        <td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>
+
+                                                                    <tr><td>脫困組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."reliever_num"]!!} 人</td>
+                                                                        <td class="text-right">{!!$relieverFreeUsers[0]->total!!} 人</td>
+                                                                        <td>{!! Form::text('reliever','',['class' => 'form-control text-right']) !!}</td></tr>
+                                                                </table>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                                                {!! Form::submit('派送支援', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                                            </div>
+                                                            {!! Form::close() !!}
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                    @else
+
+                                    @endif
                                 @endif
                                 @if($i==1 && isset($mission_support_product_Array[$mission_list->mission_list_id."id"] ) )
                                     <button class="btn-circle btn-warning" data-toggle="modal" data-target="#supportProductsBlock{!!$mission_list->mission_list_id!!}">物資</button>
@@ -123,8 +146,10 @@
                                                     <div class="modal-body">
                                                         <table class="table table-bordered" >
                                                             <tr><th>任務編號</th><td>{!!$mission_list->mission_list_id!!}</td><th>任務名稱</th><td>{!!$mission_list->mission_name!!}</td></tr>
-                                                            <tr><th>脫困組人數</th><td></td><th>醫療組人數</th><td></td></tr>
-                                                            <tr><th>所屬通報數量</th><td></td><th>現場地點數量</th><td></td></tr>
+                                                            <tr><th>脫困組人數</th><td>{!!$relieverUsersArrays[$mission_list->mission_list_id]!!} 人</td>
+                                                            <th>醫療組人數</th><td>{!!$emtUsersArrays[$mission_list->mission_list_id]!!} 人</td></tr>
+                                                            <tr><th>所屬通報數量</th><td>{!!$mission_total_Arrays[$mission_list->mission_list_id]!!} 則</td>
+                                                            <th>現場地點數量</th><td>{!!$mission_new_location_amount_arrays[$mission_list->mission_list_id]['total']!!} 個</td></tr>
                                                             <tr><th colspan="4">需求物資</th></tr>
                                                             <tr><th>需求物資名稱</th><th class="text-right">需求數量</th><th>中心庫存數</th><th>欲分配數量</th></tr>
                                                             <tr><td>泡麵</td><td class="text-right">12</td><td class="text-right">35</td><td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>

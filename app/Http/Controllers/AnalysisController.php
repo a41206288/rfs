@@ -17,6 +17,7 @@ class AnalysisController extends Controller {
 	public function index()
 	{
         $mission_list_id=Auth::user()->mission_list_id;
+
         if($mission_list_id != 1) {
 
             //讀取mission_list 名稱
@@ -93,10 +94,7 @@ class AnalysisController extends Controller {
         $mission_list_id=Auth::user()->mission_list_id;
         if($mission_list_id != 1) {
 
-            $mission_list_names = DB::table('mission_lists')
-                ->select('mission_name','mission_list_id')
-                ->where('mission_list_id', $mission_list_id)
-                ->get();
+
             //讀取mission所有資料
             $missions = DB::table('missions')
                 ->orderBy('country_or_city_input')
@@ -154,10 +152,12 @@ class AnalysisController extends Controller {
             $mission_list_names = null;
             $missions = null;
             $mission_new_locations = null;
-
+            $relieverFreeUsers = null;
+            $relieverNewLocationUsers = null;
+            $relieverNewLocationUsersArray = null;
+            $relieverFreeUsersArray = null;
         }
         return view('manage_pages.analysis_manage_local')
-            ->with('mission_list_names', $mission_list_names)
             ->with('missions', $missions)
             ->with('mission_new_locations', $mission_new_locations)
             ->with('relieverNewLocationUsersArray', $relieverNewLocationUsersArray)

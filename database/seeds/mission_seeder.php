@@ -20,8 +20,8 @@ class mission_seeder extends Seeder{
         DB:: table('mission_support_people')->delete();
         DB:: table('mission_support_products')->delete();
         DB:: table('mission_new_locations')->delete();
-        //DB:: table('local_reports')->delete();
-       // DB:: table('reports')->delete();
+//        DB:: table('local_reports')->delete();
+//        DB:: table('reports')->delete();
 
 
         $mission_list = new App\Mission_list;
@@ -62,38 +62,56 @@ class mission_seeder extends Seeder{
         //人員需求
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 2;
-        $mission_support_person->amount = 10;
+        $mission_support_person->emt_num = 10;
+        $mission_support_person->reliever_num = 20;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 3;
-        $mission_support_person->amount = 0;
+        $mission_support_person->emt_num = 0;
+        $mission_support_person->reliever_num = 10;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 4;
-        $mission_support_person->amount = 5;
+        $mission_support_person->emt_num = 5;
+        $mission_support_person->reliever_num = 0;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 5;
-        $mission_support_person->amount = 20;
+        $mission_support_person->emt_num = 30;
+        $mission_support_person->reliever_num = 20;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 6;
-        $mission_support_person->amount = 0;
+        $mission_support_person->emt_num = 10;
+        $mission_support_person->reliever_num = 5;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 7;
-        $mission_support_person->amount = 0;
+        $mission_support_person->emt_num = 0;
+        $mission_support_person->reliever_num = 0;
         $mission_support_person->save();
 
         //物資支援
         $mission_support_person = new App\Mission_support_product;
         $mission_support_person->mission_list_id = 2;
         $mission_support_person->product_total_amount_id = 2;
+        $mission_support_person->amount = 10;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_product;
+        $mission_support_person->mission_list_id = 2;
+        $mission_support_person->product_total_amount_id = 3;
+        $mission_support_person->amount = 10;
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_product;
+        $mission_support_person->mission_list_id = 2;
+        $mission_support_person->product_total_amount_id = 4;
         $mission_support_person->amount = 10;
         $mission_support_person->save();
 
@@ -105,14 +123,14 @@ class mission_seeder extends Seeder{
 
         $mission_support_person = new App\Mission_support_product;
         $mission_support_person->mission_list_id = 4;
-        $mission_support_person->product_total_amount_id = 0;
+        $mission_support_person->product_total_amount_id = 4;
         $mission_support_person->amount = 10;
         $mission_support_person->save();
 
 
         $mission_support_person = new App\Mission_support_product;
         $mission_support_person->mission_list_id = 6;
-        $mission_support_person->product_total_amount_id = 2;
+        $mission_support_person->product_total_amount_id = 5;
         $mission_support_person->amount = 10;
         $mission_support_person->save();
 
@@ -517,6 +535,19 @@ class mission_seeder extends Seeder{
 //
 
         $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 1;
+        $mission->mission_list_id = 2;
+        $mission->location = '醫療組';
+        $mission->save();
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 2;
+        $mission->mission_list_id = 2;
+        $mission->location = '物資資源組';
+        $mission->save();
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 2;
         $mission->victim_number = 50;
         $mission->situation = '建築物主要出入口皆坍塌, 尚無法確認有多少人受困';
@@ -525,6 +556,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 4;
         $mission->mission_list_id = 2;
         $mission->victim_number = 30;
         $mission->situation = '火勢無法控制, 需要更多脫困及醫療人員支援';
@@ -568,110 +600,127 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 1;
+        $local_report->mission_new_locations_id = 1;
+        $local_report->local_report_content = '目前傷患醫療作業順利進行中';
+        $local_report->id = 6;
+        $local_report->mission_list_id = 2;
+        $local_report->save();
+
+        $local_report = new App\Local_report;
+        //$local_report->local_report_id = 1;
+        $local_report->mission_new_locations_id = 3;
         $local_report->local_report_content = '人手不足火勢無法控制住，有繼續延燒至一旁住宅的危險';
-        $local_report->mission_id = 3;
+        $local_report->id = 7;
+        $local_report->mission_list_id = 2;
         $local_report->save();
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 2;
+        $local_report->mission_new_locations_id = 3;
         $local_report->local_report_content = '已救出3人，但從被救出名眾口中得知有2人可能被困在3樓的會議室';
-        $local_report->mission_id = 4;
+        $local_report->mission_list_id = 2;
+        $local_report->id = 38;
         $local_report->save();
 
         $local_report = new App\Local_report;
        // $local_report->local_report_id = 3;
+        $local_report->mission_new_locations_id = 4;
         $local_report->local_report_content = '火勢已撲滅，等待大型機具將電線杆從路中央移開';
-        $local_report->mission_id = 5;
+        $local_report->mission_list_id = 2;
+        $local_report->id = 14;
         $local_report->save();
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 4;
+        $local_report->mission_new_locations_id = 4;
         $local_report->local_report_content = '已將附近水管管線關閉，正在清理積水';
-        $local_report->mission_id = 6;
+        $local_report->mission_list_id = 2;
+        $local_report->id = 14;
         $local_report->save();
 
-        $local_report = new App\Local_report;
-       // $local_report->local_report_id = 5;
-        $local_report->local_report_content = '1樓未發現受困民眾，2樓坍塌較嚴重需要較多時間才能確定是否有人受困';
-        $local_report->mission_id = 7;
-        $local_report->save();
 
-        $local_report = new App\Local_report;
-       // $local_report->local_report_id = 6;
-        $local_report->local_report_content = '確認是機房起火並且已控制住火勢';
-        $local_report->mission_id = 8;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 7;
-        $local_report->local_report_content = '目前無法確認路面裂痕原因，先將此路段封閉避免有危險';
-        $local_report->mission_id = 9;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 8;
-        $local_report->local_report_content = '將通往橋梁之路段封鎖，並佈署人員於此看守';
-        $local_report->mission_id = 10;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 9;
-        $local_report->local_report_content = '正在確認是否有人被埋在房子下，時間緊迫需要更多人幫忙';
-        $local_report->mission_id = 11;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-       // $local_report->local_report_id = 10;
-        $local_report->local_report_content = '連絡不到水電相關人員，水依舊不斷湧出';
-        $local_report->mission_id = 12;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-       // $local_report->local_report_id = 11;
-        $local_report->local_report_content = '火勢已完全撲滅';
-        $local_report->mission_id = 13;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 12;
-        $local_report->local_report_content = '電線杆的火已撲滅，並將電線杆移至路邊';
-        $local_report->mission_id = 14;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 13;
-        $local_report->local_report_content = '已將此路段封鎖';
-        $local_report->mission_id = 15;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 14;
-        $local_report->local_report_content = '起火處已撲滅，但周遭房屋仍在燃燒';
-        $local_report->mission_id = 17;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 15;
-        $local_report->local_report_content = '專業救火的人員尚未到達，火勢逐漸變大';
-        $local_report->mission_id = 28;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 16;
-        $local_report->local_report_content = '關閉整棟建築之水管管線，正在等待水電人員修理';
-        $local_report->mission_id = 29;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 17;
-        $local_report->local_report_content = '已將車上受傷民眾救出，車輛沒撞擊到油箱無爆炸之可能';
-        $local_report->mission_id = 30;
-        $local_report->save();
-
-        $local_report = new App\Local_report;
-        //$local_report->local_report_id = 18;
-        $local_report->local_report_content = '有人員正在挖通出入口處，因目前建築結構脆弱，開挖作業要較為謹慎且需要時間';
-        $local_report->mission_id = 31;
-        $local_report->save();
+//        $local_report = new App\Local_report;
+//       // $local_report->local_report_id = 5;
+//        $local_report->local_report_content = '1樓未發現受困民眾，2樓坍塌較嚴重需要較多時間才能確定是否有人受困';
+//        $local_report->mission_id = 7;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//       // $local_report->local_report_id = 6;
+//        $local_report->local_report_content = '確認是機房起火並且已控制住火勢';
+//        $local_report->mission_id = 8;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 7;
+//        $local_report->local_report_content = '目前無法確認路面裂痕原因，先將此路段封閉避免有危險';
+//        $local_report->mission_id = 9;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 8;
+//        $local_report->local_report_content = '將通往橋梁之路段封鎖，並佈署人員於此看守';
+//        $local_report->mission_id = 10;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 9;
+//        $local_report->local_report_content = '正在確認是否有人被埋在房子下，時間緊迫需要更多人幫忙';
+//        $local_report->mission_id = 11;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//       // $local_report->local_report_id = 10;
+//        $local_report->local_report_content = '連絡不到水電相關人員，水依舊不斷湧出';
+//        $local_report->mission_id = 12;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//       // $local_report->local_report_id = 11;
+//        $local_report->local_report_content = '火勢已完全撲滅';
+//        $local_report->mission_id = 13;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 12;
+//        $local_report->local_report_content = '電線杆的火已撲滅，並將電線杆移至路邊';
+//        $local_report->mission_id = 14;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 13;
+//        $local_report->local_report_content = '已將此路段封鎖';
+//        $local_report->mission_id = 15;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 14;
+//        $local_report->local_report_content = '起火處已撲滅，但周遭房屋仍在燃燒';
+//        $local_report->mission_id = 17;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 15;
+//        $local_report->local_report_content = '專業救火的人員尚未到達，火勢逐漸變大';
+//        $local_report->mission_id = 28;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 16;
+//        $local_report->local_report_content = '關閉整棟建築之水管管線，正在等待水電人員修理';
+//        $local_report->mission_id = 29;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 17;
+//        $local_report->local_report_content = '已將車上受傷民眾救出，車輛沒撞擊到油箱無爆炸之可能';
+//        $local_report->mission_id = 30;
+//        $local_report->save();
+//
+//        $local_report = new App\Local_report;
+//        //$local_report->local_report_id = 18;
+//        $local_report->local_report_content = '有人員正在挖通出入口處，因目前建築結構脆弱，開挖作業要較為謹慎且需要時間';
+//        $local_report->mission_id = 31;
+//        $local_report->save();
     }
 }

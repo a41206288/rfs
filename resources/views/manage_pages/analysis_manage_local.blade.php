@@ -18,6 +18,7 @@
         </thead>
         <tbody>
         <tr>
+            @if (is_array($mission_new_locations) )
             @foreach ($mission_new_locations as $mission_new_location)
 
                 @if (isset($mission_new_location) )
@@ -154,6 +155,7 @@
         @endif
 
         @endforeach
+        @endif
 
         </tbody>
     </table>

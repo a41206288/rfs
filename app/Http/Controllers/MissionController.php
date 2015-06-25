@@ -83,71 +83,101 @@ class MissionController extends Controller {
                     $mission_list_charge_Array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
                 }
 //dd($mission_list_charge_Array);
-                //計算醫療人員人數
+
+                //計算各任務醫療人員人數
                 $emtUsers = DB::table('users')
+                    ->join('role_user','users.id','=','role_user.user_id')
+                    ->select('mission_list_id',DB::raw('count(*) as total'))
+                    ->where('role_user.role_id','=',6)
+                    ->groupBy('users.mission_list_id')
+                    ->get();
+
+                $emtUsersArrays =[];
+                foreach($emtUsers as $emtUser){
+                    $emtUsersArrays[$emtUser->mission_list_id] = $emtUser->total;
+                }
+//dd($emtUsersArray);
+
+
+                //計算各任務脫困人員總人數(未分配+已分配)
+                $relieverUsers = DB::table('users')
                     ->join('role_user','users.id','=','role_user.user_id')
                     ->select('mission_list_id',DB::raw('count(*) as total'))
                     ->where('role_user.role_id','=',5)
                     ->groupBy('users.mission_list_id')
                     ->get();
 
-                $emtUsersArray =[];
-                foreach($emtUsers as $emtUser){
-                    $emtUsersArray[$emtUser->mission_list_id] = $emtUser->total;
-                }
-
-                //暫時取出任務編號為7的醫療人員人數
-                $emtMissionUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->select('mission_id',DB::raw('count(*) as total'))
-                    ->where('role_id','=',5 )
-                   ->where('mission_list_id','=',7 )
-
-                    //->groupBy('mission_id')
-                    ->get();
-
-
-
-                //計算各任務脫困人員總人數
-                $relieverUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->select('mission_list_id',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',4)
-                    ->groupBy('users.mission_list_id')
-                    ->get();
-
-                $relieverUsersArray =[];
+                $relieverUsersArrays =[];
                 foreach($relieverUsers as $relieverUser){
-                    $relieverUsersArray[$relieverUser->mission_list_id] = $relieverUser->total;
+                    $relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
                 }
-       // dd($relieverUsersArray);
+//        dd($relieverUsersArray);
 
-                //暫時取出任務編號為7的脫困組人員個數
-                $relieverMissionUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->select('mission_id',DB::raw('count(*) as total'))
-                    ->where('role_id','=',4 )
-                    ->where('mission_list_id','=',7 )
-                    ->groupBy('mission_id')
-                    ->get();
-//dd($relieverMissionUsers);
-                $relieverMissionUsersArray =[];
-                foreach($mission_contents as $mission_content){
-                    $unfind = false;
-                    foreach($relieverMissionUsers as $relieverMissionUser){
-                        if($mission_content->mission_id == $relieverMissionUser->mission_id) {
-                            $unfind = true;
-                            $relieverMissionUsersArray[$mission_content->mission_id] = $relieverMissionUser->total;
-                        }
-                    }
-                    if( $unfind == false ) {
-                        $relieverMissionUsersArray[$mission_content->mission_id] = 0;
-                    }
+
+        //計算未分配個數的脫困組人數
+        $relieverFreeUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->select(DB::raw('count(*) as total'))
+            ->where('mission_list_id','=',1)
+            ->where('role_user.role_id','=',5)
+            ->get();
+//        dd($relieverFreeUsers);
+        //計算未分配個數的醫療組人數
+        $emtFreeUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->select(DB::raw('count(*) as total'))
+            ->where('mission_list_id','=',1)
+            ->where('role_user.role_id','=',6)
+            ->get();
+//        dd($emtFreeUsers);
+
+//取出所有現場資料
+        $mission_new_locations =  DB::table('mission_new_locations')
+            ->orderBy('analysis_time')
+            ->get();
+//dd($mission_new_locations);
+        $mission_new_location_Arrays =[];
+        foreach($mission_new_locations as $mission_new_location){
+
+            //$mission_new_location_Arrays 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+            if(!isset($mission_new_location_Arrays[$mission_new_location->mission_list_id]))
+            {
+                $i=1;
+            }
+            else
+            {
+                // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+                $i=count($mission_new_location_Arrays[$mission_new_location->mission_list_id])+1;
+            }
+
+            $mission_new_location_Arrays[$mission_new_location->mission_list_id][$i]['mission_new_locations_id'] = $mission_new_location->mission_new_locations_id;
+            $mission_new_location_Arrays[$mission_new_location->mission_list_id][$i]['location'] = $mission_new_location->location;
+        }
+//dd($mission_new_location_Arrays);
+
+        //計算現場個數
+        $mission_new_location_amounts =  DB::table('mission_new_locations')
+            ->select('mission_list_id',DB::raw('count(*) as total'))
+            ->orderBy('mission_list_id')
+            ->get();
+//        dd($mission_new_locations);
+
+        $mission_new_location_amount_arrays = [];
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            foreach($mission_new_location_amounts as $mission_new_location_amount){
+
+                if($mission_new_location_amount->mission_list_id == $mission_list ->mission_list_id){
+                    $unfind = true;
+                    $mission_new_location_amount_arrays[$mission_list->mission_list_id]['total'] = $mission_new_location_amount->total;
+
                 }
-
-      // dd($relieverMissionUsersArray);
-
-               // $reports = DB::table('reports')->lists('report_content','mission_list_id');
+            }
+            if( $unfind == false ){
+                $mission_new_location_amount_arrays[$mission_list->mission_list_id]['total'] = 0;
+            }
+        }
+//        dd($mission_new_location_amount_arrays);
 
 
         $reports = DB::table('reports')->get();
@@ -170,12 +200,15 @@ class MissionController extends Controller {
         }
 //         dd($reports_array);
 
-        $mission_support_people = DB::table('mission_support_people')->get();
+
+        //取出取出需求增員人數(醫療+脫困)
+      $mission_support_people = DB::table('mission_support_people')->get();
         //dd($mission_support_people);
 
         $mission_support_people_Array =[];
         foreach($mission_support_people as $mission_support_person){
-            $mission_support_people_Array[$mission_support_person->mission_list_id."amount"] = $mission_support_person->amount;
+            $mission_support_people_Array[$mission_support_person->mission_list_id."emt_num"] = $mission_support_person->emt_num;
+            $mission_support_people_Array[$mission_support_person->mission_list_id."reliever_num"] = $mission_support_person->reliever_num;
             $mission_support_people_Array[$mission_support_person->mission_list_id."created_at"] = $mission_support_person->created_at;
         }
 //dd($mission_support_people_Array );
@@ -192,11 +225,16 @@ class MissionController extends Controller {
         //dd($mission_support_product_Array);
 
                 //計算總通報個數
-                $missions_total = DB::table('missions')
+                $mission_totals = DB::table('missions')
                 ->select('mission_list_id',DB::raw('count(*) as total'))
                 ->groupBy('mission_list_id')
                 ->get();
-                //dd($missions);
+//                dd($missions_total);
+                 $mission_total_Arrays =[];
+                foreach($mission_totals as $mission_total){
+                    $mission_total_Arrays[$mission_total->mission_list_id] = $mission_total->total;
+                }
+//                        dd($mission_total_Arrays);
 
                 //計算已完成通報個數
                 $complete_missions = DB::table('missions')
@@ -208,7 +246,7 @@ class MissionController extends Controller {
 
                 //計算各任務達成率
                 $achievement_array = [];
-                foreach($missions_total as $mission ){
+                foreach($mission_totals as $mission ){
                     $unfind = false;
                     foreach($complete_missions as $complete_mission){
 
@@ -224,18 +262,21 @@ class MissionController extends Controller {
                     }
                 }
 
-        //dd($mission_list_charge_Array);
+
         return view('manage_pages.mission_manage')
             ->with('mission_lists', $mission_lists)
-            ->with('emtUsersArray', $emtUsersArray)
-            ->with('relieverUsersArray', $relieverUsersArray)
+            ->with('mission_total_Arrays', $mission_total_Arrays)
+            ->with('emtUsersArrays', $emtUsersArrays)
+            ->with('relieverUsersArrays', $relieverUsersArrays)
+            ->with('mission_new_location_Arrays', $mission_new_location_Arrays)
+            ->with('mission_new_location_amount_arrays', $mission_new_location_amount_arrays)
+            ->with('relieverFreeUsers', $relieverFreeUsers)
+            ->with('emtFreeUsers', $emtFreeUsers)
             ->with('reports_array', $reports_array)
             //->with('mission_list_reports', $mission_list_reports)
             ->with('achievement_array', $achievement_array)
             ->with('mission_list_charge_Array', $mission_list_charge_Array)
             ->with('mission_contents', $mission_contents)
-            ->with('emtMissionUsers', $emtMissionUsers)
-            ->with('relieverMissionUsersArray', $relieverMissionUsersArray)
             ->with('mission_contents_array', $mission_contents_array)
             ->with('mission_support_people_Array', $mission_support_people_Array)
             ->with('mission_support_product_Array', $mission_support_product_Array);
