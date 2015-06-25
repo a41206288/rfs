@@ -183,8 +183,10 @@ class AnalysisController extends Controller {
 	 */
 	public function update(Request $request)
 	{
-        $inputs=$request->except('_token');
-        dd($inputs);
+//        $inputs=$request->except('_token');
+//
+//        dd($inputs);
+        $mission_new_locations_id=$request->get('mission_new_locations_id');
         $location=$request->get('location_name') ;
         $severe_level=$request->get('severe_level');
         $situation=$request->get('situation');
@@ -192,7 +194,7 @@ class AnalysisController extends Controller {
 
 //        DB::insert('insert into mission_new_locations (mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?)', array($mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
 
-//        DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_list_id' => $inputs[$mission->mission_id]]);
+        DB::table('mission_new_locations')->where('mission_new_locations_id',$mission_new_locations_id)->update(['location' => $location,'severe_level'=>$severe_level,'situation'=>$situation,'victim_number'=>$victim_number]);
         return Redirect::to('analysis/manage');
 	}
 

@@ -52,7 +52,7 @@
                     <div class="modal-body">
                         <dl class="dl-horizontal">
                             <dt>地點名稱</dt>
-                            <dd> {!! Form::text('localtion_name','',['id' =>  'localtion_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                            <dd> {!! Form::text('location_name','',['id' =>  'location_name','class' => 'form-control', 'required']) !!}</dd> <br>
                             <dt>嚴重程度</dt>
                             <dd> {!! Form::select('severe_level', array('輕度' => '輕度', '中度' => '中度', '重度' => '重度'), '輕度', ['id' =>  'severe_level','class' => 'form-control', 'required']) !!}<br>
                             <dt>預估傷亡人數</dt>
@@ -84,20 +84,27 @@
                         <td>{!!$mission_new_location->victim_number!!}</td>
                         <td>{!!$mission_new_location->situation!!}</td>
                         <td>{!!$mission_new_location->analysis_time!!}</td>
-                        <td><button class="btn btn-link btn-sm"data-toggle="modal" data-target="#updateLocalBlock{!!$mission_new_location->location!!}">修改</button></td>
+                        <td><button class="btn btn-link btn-sm"data-toggle="modal" data-target="#updateLocalBlock{!!$mission_new_location->mission_new_locations_id!!}">修改</button></td>
                         <!-- Modal -->
-                        <div class="modal fade" id="updateLocalBlock{!!$mission_new_location->location!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        {!! Form::open(array('url' => 'analysis/manage/updateLocation', 'method' => 'post','class' => 'form-horizontal')) !!}
+                        <div class="modal fade" id="updateLocalBlock{!!$mission_new_location->mission_new_locations_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    {!! Form::open(array('url' => 'analysis/manage/updateLocation', 'method' => 'post','class' => 'form-horizontal')) !!}
+
+                                    {{--{!!dd($mission_new_location->mission_new_locations_id)!!}--}}
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel" ><b>創建新地點</b></h4>
+                                        <h4 class="modal-title" id="myModalLabel" ><b>修改地點</b></h4>
                                     </div>
+
                                     <div class="modal-body">
+
                                         <dl class="dl-horizontal">
-                                            <dt>編號</dt>Form::label('email', 'E-Mail Address');
-                                            <dd> {!! Form::label('location_number',$mission_new_location->location,['id' =>  'location_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                                            <dt>編號</dt>
+                                            <dd>
+                                                {{--{!!$mission_new_location->mission_new_locations_id!!}--}}
+                                                {!! Form::hidden('mission_new_locations_id',$mission_new_location->mission_new_locations_id,['id' =>  'mission_new_locations_id','class' => 'form-control']) !!}
+                                            </dd> <br>
                                             <dt>地點名稱</dt>
                                             <dd> {!! Form::text('location_name',$mission_new_location->location,['id' =>  'location_name','class' => 'form-control', 'required']) !!}</dd> <br>
                                             <dt>嚴重程度</dt>
@@ -110,12 +117,13 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        {!! Form::submit('創建地點', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                        {!! Form::submit('修改地點', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                                     </div>
-                                    {!! Form::close() !!}
+
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
+                        {!! Form::close() !!}
                     </tr>
                 @endif
 
