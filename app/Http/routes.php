@@ -93,6 +93,7 @@ Route::group([
         Route::get('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@index') );
         Route::post('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@update'));
         Route::get('analysis/manage/local', 'AnalysisController@show');
+        Route::post('analysis/manage/local', 'AnalysisController@edit');
     });
 
 Route::group([

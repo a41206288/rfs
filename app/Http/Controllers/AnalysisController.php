@@ -62,7 +62,9 @@ class AnalysisController extends Controller {
 	 */
 	public function create(Request $request)
 	{
+        $inputs=$request->except('_token');
 
+//        dd($inputs);
         $location=$request->get('location_name') ;
         $severe_level=$request->get('severe_level');
         $situation=$request->get('situation');
@@ -170,9 +172,10 @@ class AnalysisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request)
 	{
-		//
+        $inputs=$request->except('_token');
+        dd($inputs);
 	}
 
 	/**

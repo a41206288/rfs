@@ -71,18 +71,7 @@
         <div class="col-xs-2 col-sm-6 col-md-3">
             @yield('content_c3')
         </div>
-        <div class="col-xs-10 col-sm-6 col-md-8" >
-            @yield('content_c8')
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-4">
-            @yield('content_c4')
-        </div>
-        <div class="col-xs-9 col-sm-6 col-md-7" >
-            @yield('content_c7')
-        </div>
-        <div class="col-xs-7 col-sm-6 col-md-5">
-            @yield('content_c5')
-        </div>
+
 
     </div>
 

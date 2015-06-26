@@ -3,9 +3,14 @@
     現場分析
 @endsection
 @section('content')
-    @if (isset($mission_list_names) )
-        <h5><b>任務編號 : {!!Auth::user()->mission_list_id;!!} 任務名稱 : {!!$mission_list_names[0]->mission_name;!!}</b></h5>
-    @endif
+    <table class="table-nonbordered">
+        @if (isset($mission_list_names) )
+
+            <tr><th>任務編號 :</th><td> {!!Auth::user()->mission_list_id;!!} </td><th>任務名稱 :</th><td> {!!$mission_list_names[0]->mission_name;!!}</td></tr>
+
+        @endif
+    </table>
+    <hr>
     <div class="col-xs-7 col-sm-6 col-md-5">
 
         <h5><b>通報地點</b></h5>
@@ -56,16 +61,36 @@
                             <dt>嚴重程度</dt>
                             <dd> {!! Form::select('severe_level', array('輕度' => '輕度', '中度' => '中度', '重度' => '重度'), '輕度', ['id' =>  'severe_level','class' => 'form-control', 'required']) !!}<br>
                             <dt>預估傷亡人數</dt>
-                            <dd> {!! Form::text('victim_number', '', ['id' =>  'victim_number', 'class' => 'form-control', 'required']) !!}</dd> <br>
+                            <dd> {!! Form::number('victim_number', '', ['id' =>  'victim_number', 'class' => 'form-control', 'required','min'=>'0']) !!}</dd> <br>
                             <dt>現場狀況</dt>
-                            <dd> {!! Form::textarea('situation','',['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd>
+                            <dd> {!! Form::textarea('situation','',['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd><br>
+                            <dt>包含的通報</dt>
+                            <dd>
+                                <table class="table table-bordered">
+                                    <tr><td></td><td>通報編號</td><td>通報地址</td><td>通報內容</td></tr>
+                                    @foreach ($missions as $mission)
+
+                                        @if (isset($mission) )
+                                            <tr>
+
+                                                @if ( is_null($mission->complete_time) )
+                                                    <td>{!!Form::checkbox('calls[]', $mission->mission_id)!!}</td>
+                                                    <td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td>
+                                                @endif
+
+                                            </tr>
+                                        @endif
+
+                                    @endforeach
+                                </table>
+                            </dd>
                         </dl>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
                         {!! Form::submit('創建地點', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                     </div>
-                    {{--{!! Form::close() !!}--}}
+                    {!! Form::close() !!}
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -102,7 +127,7 @@
                                         <dl class="dl-horizontal">
                                             <dt>編號</dt>
                                             <dd>
-                                                {{--{!!$mission_new_location->mission_new_locations_id!!}--}}
+                                                {!!$mission_new_location->mission_new_locations_id!!}
                                                 {!! Form::hidden('mission_new_locations_id',$mission_new_location->mission_new_locations_id,['id' =>  'mission_new_locations_id','class' => 'form-control']) !!}
                                             </dd> <br>
                                             <dt>地點名稱</dt>
@@ -110,9 +135,29 @@
                                             <dt>嚴重程度</dt>
                                             <dd> {!! Form::select('severe_level', array('輕度' => '輕度', '中度' => '中度', '重度' => '重度'), $mission_new_location->severe_level, ['id' =>  'severe_level','class' => 'form-control', 'required']) !!}<br>
                                             <dt>預估傷亡人數</dt>
-                                            <dd> {!! Form::text('victim_number', $mission_new_location->victim_number, ['id' =>  'victim_number', 'class' => 'form-control', 'required']) !!}</dd> <br>
+                                            <dd> {!! Form::number('victim_number', $mission_new_location->victim_number, ['id' =>  'victim_number', 'class' => 'form-control', 'required','min'=>'0']) !!}</dd> <br>
                                             <dt>現場狀況</dt>
                                             <dd> {!! Form::textarea('situation',$mission_new_location->situation,['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd>
+                                            <dt>包含的通報</dt>
+                                            <dd>
+                                                {{--<table class="table table-bordered">--}}
+                                                    {{--<tr><td></td><td>通報編號</td><td>通報地址</td><td>通報內容</td></tr>--}}
+                                                    {{--@foreach ($missions as $mission)--}}
+
+                                                        {{--@if (isset($mission) )--}}
+                                                            {{--<tr>--}}
+
+                                                                {{--@if ( is_null($mission->complete_time) )--}}
+                                                                    {{--<td>{!!Form::checkbox('calls[]', $mission->mission_id)!!}</td>--}}
+                                                                    {{--<td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td>--}}
+                                                                {{--@endif--}}
+
+                                                            {{--</tr>--}}
+                                                        {{--@endif--}}
+
+                                                    {{--@endforeach--}}
+                                                {{--</table>--}}
+                                            </dd>
                                         </dl>
                                     </div>
                                     <div class="modal-footer">

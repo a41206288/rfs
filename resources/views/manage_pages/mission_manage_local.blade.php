@@ -2,6 +2,10 @@
 @section('title')
     任務管理
 @endsection
+@section('link')
+    <li>{!! Html::link('analysis/manage/local', '現場分析地點管理') !!}</li>
+    <li>{!! Html::link('mission/manage/local', '任務管理') !!}</li>
+@endsection
 @section('css')
     tr.header
     {
