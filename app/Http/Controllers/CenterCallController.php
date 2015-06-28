@@ -254,7 +254,7 @@ class CenterCallController extends Controller {
         $emtUsers = DB::table('users')
             ->join('role_user','users.id','=','role_user.user_id')
             ->select('mission_list_id',DB::raw('count(*) as total'))
-            ->where('role_user.role_id','=',5)
+            ->where('role_user.role_id','=',6)
             ->groupBy('users.mission_list_id')
             ->get();
 
@@ -278,7 +278,7 @@ class CenterCallController extends Controller {
         $relieverUsers = DB::table('users')
             ->join('role_user','users.id','=','role_user.user_id')
             ->select('mission_list_id',DB::raw('count(*) as total'))
-            ->where('role_user.role_id','=',4)
+            ->where('role_user.role_id','=',5)
             ->groupBy('users.mission_list_id')
             ->get();
 
@@ -364,6 +364,28 @@ class CenterCallController extends Controller {
             $results[] = [$query->id, $query->name, $query->phone, $query->email];
         }//dd($results[0]);
         /*取得未分配任務之地方指揮官      END*/
+        //取出各任務的通報內容
+        $mission_contents = DB::table('missions')
+            ->get();
+//dd($mission_contents);
+
+        //dd($mission_counts_array);
+        $mission_contents_array =[];
+        foreach($mission_contents as $mission_content){
+            if(!isset($mission_contents_array[$mission_content->mission_list_id]))
+            {
+                $i=1;
+            }
+            else
+            {
+                $i=count($mission_contents_array[$mission_content->mission_list_id])+1;
+            }
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['id'] = $mission_content->mission_id;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['country_or_city_input'] = $mission_content->country_or_city_input;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['township_or_district_input'] = $mission_content->township_or_district_input;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['location'] = $mission_content->location;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['content'] = $mission_content->mission_content;
+        }
 
         return view('manage_pages.call_manage')->with('missions', $missions)
             ->with('country_or_city_inputs', $country_or_city_inputs)
@@ -373,6 +395,7 @@ class CenterCallController extends Controller {
             ->with('mission_lists', $mission_lists)
             ->with('emtUsersArray', $emtUsersArray)
             ->with('relieverUsersArray', $relieverUsersArray)
+            ->with('mission_contents_array', $mission_contents_array)
             ->with('mission_counts_array', $mission_counts_array);
     }
 
