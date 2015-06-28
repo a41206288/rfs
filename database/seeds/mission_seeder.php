@@ -564,6 +564,24 @@ class mission_seeder extends Seeder{
         $mission->analysis_time = date('Y-m-d H:i:s');
         $mission->save();
 
+        $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 5;
+        $mission->mission_list_id = 2;
+        $mission->victim_number = 40;
+        $mission->situation = '體育館樓梯與支架坍方, 館內有多人受困';
+        $mission->location = '體育館';
+        $mission->analysis_time = date('Y-m-d H:i:s');
+        $mission->save();
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 6;
+        $mission->mission_list_id = 2;
+        $mission->victim_number = 10;
+        $mission->situation = '人言大樓施工設施掉落, 造成道路阻礙與人員傷亡';
+        $mission->location = '人言大樓';
+        $mission->analysis_time = date('Y-m-d H:i:s');
+        $mission->save();
+
 
 
         $report = new App\Report;

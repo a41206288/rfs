@@ -27,7 +27,10 @@
             @if (is_array($mission_new_locations) )
             @foreach ($mission_new_locations as $mission_new_location)
 
-                @if (isset($mission_new_location) &&)
+                @if (isset($mission_new_location)
+                && $mission_new_location->location != '醫療組'
+                && $mission_new_location->location != '物資資源組'
+                && $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] == 0)
         <tr>
             <td>{!!$mission_new_location->location!!}</td>
             <td>{!!$mission_new_location->severe_level!!}</td>
@@ -35,11 +38,11 @@
             <td>{!!$mission_new_location->situation!!}</td>
             <td>{!!$mission_new_location->analysis_time!!}</td>
             <td>
-                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createTeam">
+                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#{!!$mission_new_location->mission_new_locations_id!!}" >
                     分派人員
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="createTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="{!!$mission_new_location->mission_new_locations_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog"  style="width:  800px">
                         <div class="modal-content">
                             {!! Form::open(array('url' => 'analysis/manage/local', 'method' => 'post','class' => 'form-horizontal')) !!}
@@ -52,87 +55,45 @@
                                     <div class="col-md-5" id="busy">
 
                                         <b>執行任務人員</b>
-                                        <div class="input-group">
-                                            <span class="form-control">這裡是人員名字</span>
-                                            {!! Form::hidden('任務執行[]','這裡放人員ID') !!}
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">-</button>
-                                            </span>
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="form-control" >任務中人員2</span>
-                                            {!! Form::hidden('任務執行[]','ID2') !!}
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">-</button>
-                                            </span>
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="form-control" >任務中人員3</span>
-                                            {!! Form::hidden('任務執行[]','ID3') !!}
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">-</button>
-                                            </span>
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="form-control" >任務中人員4</span>
-                                            {!! Form::hidden('任務執行[]','ID4') !!}
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">-</button>
-                                            </span>
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="form-control" >任務中人員5</span>
-                                            {!! Form::hidden('任務執行[]','ID5') !!}
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">-</button>
-                                            </span>
-                                        </div>
+                                        @if(isset($relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id]))
+                                            @for($j=1;$j<=count($relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id]);$j++)
+
+                                                        <div class="input-group">
+                                                            <span class="form-control">{!!$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['name']!!}</span>
+                                                            {!! Form::hidden('任務執行[]',$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['id']) !!}
+                                                    <span class="input-group-btn" >
+                                                        <button class="btn btn-default" type="button">-</button>
+                                                    </span>
+                                                        </div>
+
+                                            @endfor
+                                        @else
+
+                                        @endif
+
+
                                     </div>
                                     <div class="col-md-offset-1 col-md-5" id="idle">
 
                                         <b>未分配人員</b>
-                                        <div class="input-group">
+
+                                       @if(isset($relieverFreeUsersArrays))
+                                            @foreach($relieverFreeUsersArrays as $relieverFreeUsersArray)
+                                            <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="button">+</button>
                                             </span>
-                                            <span class="form-control">未分配人員1</span>
-                                            {!! Form::hidden('待命[]','ID6') !!}
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button">+</button>
-                                            </span>
-                                            <span class="form-control">未分配人員2</span>
-                                            {!! Form::hidden('待命[]','ID7') !!}
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">+</button>
-                                            </span>
-                                            <span class="form-control">未分配人員3</span>
-                                            {!! Form::hidden('待命[]','ID8') !!}
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">+</button>
-                                            </span>
-                                            <span class="form-control" >未分配人員4</span>
-                                            {!! Form::hidden('待命[]','ID9') !!}
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">+</button>
-                                            </span>
-                                            <span class="form-control" >未分配人員5</span>
-                                            {!! Form::hidden('待命[]','ID10') !!}
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-btn" >
-                                                <button class="btn btn-default" type="button">+</button>
-                                            </span>
-                                            <span class="form-control" >未分配人員6</span>
-                                            {!! Form::hidden('待命[]','ID11') !!}
-                                        </div>
+                                                <span class="form-control">{!!$relieverFreeUsersArray['name']!!}</span>
+                                                {!! Form::hidden('待命[]',$relieverFreeUsersArray['id']) !!}
+                                            </div>
+                                             @endforeach
+                                       @endif
+
+
+
+
+
+
                                     </div>
                                 </div>
 

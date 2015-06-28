@@ -42,6 +42,9 @@ class AnalysisController extends Controller {
 //            dd($mission_new_locations);
 
 
+
+
+
         }else{
             $mission_list_names = null;
             $missions = null;
@@ -112,12 +115,12 @@ class AnalysisController extends Controller {
 //            dd($mission_new_locations);
 
             //取出該任務所有脫困組人員
-            $relieverFreeUsers = DB::table('users')
+            $relieverAllUsers = DB::table('users')
                 ->join('role_user','users.id','=','role_user.user_id')
                 ->where('role_id','=',5 )
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
-//            dd($relieverFreeUsers);
+//            dd($relieverAllUsers);
 
             //取出個地點的脫困組人員
             $relieverNewLocationUsers = DB::table('users')
@@ -129,41 +132,95 @@ class AnalysisController extends Controller {
 //            dd($relieverNewLocationUsers);
 
             //將個地點的脫困組人員依地點分類
-            $relieverNewLocationUsersArray =[];
+            $relieverNewLocationUsersArrays =[];
             foreach($relieverNewLocationUsers as $relieverNewLocationUser){
-                $relieverNewLocationUsersArray[$relieverNewLocationUser->mission_new_locations_id][$relieverNewLocationUser->id]['name'] = $relieverNewLocationUser->name;
+
+                //如果$local_reports_array 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+                if(!isset($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id]))
+                {
+                    $i=1;
+                }
+                else
+                {
+                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+                    $i=count($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id])+1;
+                }
+                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['id'] = $relieverNewLocationUser->id;
+                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['name'] = $relieverNewLocationUser->name;
             }
-//            dd($relieverNewLocationUsersArray);
+
+//            dd($relieverNewLocationUsersArrays);
 
             //取出該任務的閒置脫困組人員
-            $relieverFreeUsersArray =[];
-            foreach($relieverFreeUsers as $relieverFreeUser){
+            $relieverFreeUsersArrays =[];
+            foreach($relieverAllUsers as $relieverAllUser){
                 $unfind = false;
                 foreach($relieverNewLocationUsers as $relieverNewLocationUser){
-                    if($relieverFreeUser->user_id == $relieverNewLocationUser->user_id) {
+                    if($relieverAllUser->user_id == $relieverNewLocationUser->user_id) {
                         $unfind = true;
                     }
                 }
                 if( $unfind == false ) {
-                    $relieverFreeUsersArray[$relieverFreeUser->id]['name'] = $relieverFreeUser->name;
+                    $relieverFreeUsersArrays[$relieverAllUser->id]['name'] = $relieverAllUser->name;
+                    $relieverFreeUsersArrays[$relieverAllUser->id]['id'] = $relieverAllUser->id;
                 }
             }
-//            dd($relieverFreeUsersArray);
+//            dd($relieverFreeUsersArrays);
+
+            //取出個地點的脫困組人員
+            $relieverNewLocationUsers = DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('works_ons','users.id','=','works_ons.id')
+                ->where('role_id','=',5 )
+                ->where('mission_list_id', $mission_list_id)
+                ->get();
+//            dd($relieverNewLocationUsers);
+
+            //取出個地點的脫困組人員個數
+            $relieverNewLocationUserAmounts = DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('works_ons','users.id','=','works_ons.id')
+                ->select('mission_new_locations_id',DB::raw('count(*) as total'))
+                ->where('role_id','=',5 )
+                ->where('mission_list_id', $mission_list_id)
+                ->groupBy('mission_new_locations_id')
+                ->get();
+//            dd($relieverNewLocationUserAmounts);
+
+            $relieverNewLocationUserAmountsArrays =[];
+
+
+            foreach($mission_new_locations as $mission_new_location){
+                $unfind = false;
+                foreach($relieverNewLocationUserAmounts as $relieverNewLocationUserAmount){
+                    if($relieverNewLocationUserAmount->mission_new_locations_id == $mission_new_location->mission_new_locations_id) {
+                        $unfind = true;
+                        $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = $relieverNewLocationUserAmount->total;
+                    }
+                }
+                if( $unfind == false ) {
+                    $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = 0;
+                }
+            }
+//                dd($relieverNewLocationUserAmountsArrays);
 
         }else{
             $mission_list_names = null;
             $missions = null;
             $mission_new_locations = null;
-            $relieverFreeUsers = null;
+            $relieverAllUsers = null;
             $relieverNewLocationUsers = null;
             $relieverNewLocationUsersArray = null;
             $relieverFreeUsersArray = null;
+            $relieverNewLocationUserAmountsArrays = null;
         }
         return view('manage_pages.analysis_manage_local')
             ->with('missions', $missions)
             ->with('mission_new_locations', $mission_new_locations)
-            ->with('relieverNewLocationUsersArray', $relieverNewLocationUsersArray)
-            ->with('relieverFreeUsersArray', $relieverFreeUsersArray);
+            ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
+            ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
+            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays);
+
 	}
 
 	/**

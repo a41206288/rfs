@@ -55,20 +55,20 @@
             @else
                 <td></td>
             @endif
-</tr>
+            </tr>
             @endfor
-
-
-        </table>
-        <br>
-        <table class=" table table-bordered">
-            <tr class="header expand"><td>後勤組</td><td>待命區人數</td><td>最新回報  <span class="sign"></span> </td><td>增援</td></tr>
-            <tr><td colspan="1"></td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td><button class="btn-circle btn-danger">人員</button></td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-            <tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>
-        </table>
+            </table>
+                    {{--後勤組--}}
+                            {{--</table>--}}
+                            {{--<br>--}}
+                            {{--<table class=" table table-bordered">--}}
+                                {{--<tr class="header expand"><td>後勤組</td><td>待命區人數</td><td>最新回報  <span class="sign"></span> </td><td>增援</td></tr>--}}
+                                {{--<tr><td colspan="1"></td><td>12</td><td>勢無法控制, 需要更多脫困及醫療人員支援</td><td><button class="btn-circle btn-danger">人員</button></td></tr>--}}
+                                {{--<tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>--}}
+                                {{--<tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>--}}
+                                {{--<tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>--}}
+                                {{--<tr><td colspan="2"></td><td>勢無法控制, 需要更多脫困及醫療人員支援</td></tr>--}}
+                            {{--</table>--}}
         <br>
         <table class=" table table-bordered">
             <tr><td rowspan="2">脫困組地點</td><td rowspan="2">脫困組人數</td><td colspan="3">最新回報</td></tr>
@@ -76,7 +76,9 @@
 
             @if (isset($mission_new_locations) )
                 @foreach ($mission_new_locations as $mission_new_location )
-                    @if($mission_new_location->location != "醫療組" && $mission_new_location->location != "物資資源組")
+                    @if($mission_new_location->location != "醫療組"
+                    && $mission_new_location->location != "物資資源組"
+                    && $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] != 0)
                         <div style="display: none">
                         @if(isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
                             {!!$n=count($local_reports_arrays[$mission_new_location->mission_new_locations_id]);!!}
@@ -104,7 +106,77 @@
                                 @endif
 
                                 @if($i==1 && isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
-                                    <td><button class="btn-circle btn-danger">人員</button></td>
+                                    <td><button class="btn-circle btn-danger" data-toggle="modal" data-target="#{!!$mission_new_location->mission_new_locations_id!!}">人員</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="{!!$mission_new_location->mission_new_locations_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog"  style="width:  800px">
+                                                <div class="modal-content">
+                                                    {!! Form::open(array('url' => 'analysis/manage/local', 'method' => 'post','class' => 'form-horizontal')) !!}
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel"><b>分派人員</b></h4>
+                                                    </div>
+                                                    <div class="modal-body ">
+                                                        <div class="row">
+                                                            <div class="col-md-5" id="busy">
+                                                                <b>執行任務人員</b>
+                                                                {{--{!!dd($relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id]);!!}--}}
+                                                                @if(isset($relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id]))
+                                                                    @for($j=1;$j<=count($relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id]);$j++)
+
+                                                                        <div class="input-group">
+                                                                            <span class="form-control">{!!$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['name']!!}</span>
+                                                                            {!! Form::hidden('任務執行[]',$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['id']) !!}
+                                                    <span class="input-group-btn" >
+                                                        <button class="btn btn-default" type="button">-</button>
+                                                    </span>
+                                                                        </div>
+
+                                                                    @endfor
+                                                                @else
+
+                                                                @endif
+
+
+                                                            </div>
+                                                            <div class="col-md-offset-1 col-md-5" id="idle">
+
+                                                                <b>未分配人員</b>
+
+                                                                @if(isset($relieverFreeUsersArrays))
+                                                                    @foreach($relieverFreeUsersArrays as $relieverFreeUsersArray)
+                                                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button">+</button>
+                                            </span>
+                                                                            <span class="form-control">{!!$relieverFreeUsersArray['name']!!}</span>
+                                                                            {!! Form::hidden('待命[]',$relieverFreeUsersArray['id']) !!}
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
+
+
+
+
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                                        {!! Form::submit('送出分配', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                                    </div>
+                                                    {!! Form::close() !!}
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                    </td>
                                 @else
                                     <td></td>
                                 @endif
@@ -145,6 +217,86 @@
         $('.header').trigger('click'); //trigger :觸發指定事件
 
 
+    </script>
+    <script>
+        $('#idle').on('click', 'button', function(e){
+            add_person($(this).closest('div').find('input').val(),$(this).closest('div').find('span').eq(1).text(),false);
+            $(this).closest('div').remove();
+
+
+        });
+        $('#busy').on('click', 'button', function(e){
+            add_person($(this).closest('div').find('input').val(),$(this).closest('div').find('span').eq(0).text(),true);
+            $(this).closest('div').remove();
+
+        });
+
+        function add_person(id,name,isBusyTable)
+        {
+            if(isBusyTable){
+                var obj=document.getElementById("idle");
+
+                var div = document.createElement("div");
+                div.setAttribute("class", "input-group");
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "input-group-btn");
+
+
+                var span_btn = document.createElement("button");
+                span_btn.setAttribute("class", "btn btn-default");
+                span_btn.setAttribute("type", "button");
+                span_btn.innerHTML="+";
+
+                span.appendChild(span_btn);
+                div.appendChild(span);
+
+                var hidden_input= document.createElement("input");
+                hidden_input.name="待命[]";
+                hidden_input.value=id;
+                hidden_input.setAttribute("type", "hidden");
+                div.appendChild(hidden_input);
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "form-control");
+                span.innerHTML=name;
+
+                div.appendChild(span);
+
+                obj.appendChild(div);
+            }
+            else{
+                var obj=document.getElementById("busy");
+                var div = document.createElement("div");
+                div.setAttribute("class", "input-group");
+
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "form-control");
+                span.innerHTML=name;
+
+                div.appendChild(span);
+
+                var span = document.createElement("span");
+                span.setAttribute("class", "input-group-btn");
+
+                var span_btn = document.createElement("button");
+                span_btn.setAttribute("class", "btn btn-default");
+                span_btn.setAttribute("type", "button");
+                span_btn.innerHTML="-";
+
+                span.appendChild(span_btn);
+                div.appendChild(span);
+                var hidden_input= document.createElement("input");
+                hidden_input.name="任務執行[]";
+                hidden_input.value=id;
+                hidden_input.setAttribute("type", "hidden");
+                div.appendChild(hidden_input);
+
+                obj.appendChild(div);
+            }
+
+        }
     </script>
 @endsection
 {{--@section('content_c7')--}}

@@ -23,30 +23,13 @@ class MissionController extends Controller {
 
                 $mission_lists = DB::table('mission_lists')->get();
 
-                //暫時取出任務編號為7的通報所有內容
+                //取出各任務的通報內容
                 $mission_contents = DB::table('missions')
-                //    ->groupBy('mission_list_id')
-                //->where('mission_list_id','=','7')
                 ->get();
 //dd($mission_contents);
 
-        $mission_first_content = DB::table('missions')
-            ->groupBy('mission_list_id')
-            ->get();
-
-//        $mission_first_content_array =[];
-//        foreach($mission_first_content as $mission_content){
-//            $mission_first_content_array[$mission_content->mission_list_id."id"] = $mission_content->mission_id;
-//            $mission_first_content_array[$mission_content->mission_list_id."content"] = $mission_content->mission_content;
-//        }
-        //dd($mission_first_content_array);
         $mission_contents_array =[];
-
-        //$i = 1;
         foreach($mission_contents as $mission_content){
-//            dd(array_first($mission_contents_array, function($k, $v) {return $k == 1;}, 1));
-//            $first = array_first($mission_contents_array, function($k, $v) {return $k == 1;},0);
-//            dd($first);
                 if(!isset($mission_contents_array[$mission_content->mission_list_id]))
                 {
                     $i=1;
@@ -55,13 +38,10 @@ class MissionController extends Controller {
             {
                 $i=count($mission_contents_array[$mission_content->mission_list_id])+1;
             }
-
             $mission_contents_array[$mission_content->mission_list_id][ $i]['id'] = $mission_content->mission_id;
             $mission_contents_array[$mission_content->mission_list_id][ $i]['content'] = $mission_content->mission_content;
-            //$i++;
-
         }
-        //$mission_contents_array = array_dot($mission_contents_array);
+
         //dd($mission_contents_array);
                  //取出各任務的負責人資料
                 $mission_list_charges = DB::table('users')
@@ -106,15 +86,15 @@ class MissionController extends Controller {
                     ->where('role_user.role_id','=',5)
                     ->groupBy('users.mission_list_id')
                     ->get();
-
+//        dd($relieverUsers);
                 $relieverUsersArrays =[];
                 foreach($relieverUsers as $relieverUser){
                     $relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
                 }
-//        dd($relieverUsersArray);
+//        dd($relieverUsersArrays);
 
 
-        //計算未分配個數的脫困組人數
+        //計算中心待命的脫困組人數
         $relieverFreeUsers = DB::table('users')
             ->join('role_user','users.id','=','role_user.user_id')
             ->select(DB::raw('count(*) as total'))
@@ -122,7 +102,7 @@ class MissionController extends Controller {
             ->where('role_user.role_id','=',5)
             ->get();
 //        dd($relieverFreeUsers);
-        //計算未分配個數的醫療組人數
+        //計算中心待命的醫療組人數
         $emtFreeUsers = DB::table('users')
             ->join('role_user','users.id','=','role_user.user_id')
             ->select(DB::raw('count(*) as total'))
@@ -201,7 +181,7 @@ class MissionController extends Controller {
 //         dd($reports_array);
 
 
-        //取出取出需求增員人數(醫療+脫困)
+        //取出各任務需求增員人數(醫療+脫困)
       $mission_support_people = DB::table('mission_support_people')->get();
         //dd($mission_support_people);
 
@@ -213,16 +193,52 @@ class MissionController extends Controller {
         }
 //dd($mission_support_people_Array );
 
-        $mission_support_products = DB::table('mission_support_products')->get();
-        //dd($mission_support_people);
+        //取出各任務物資需求
+        $mission_support_products = DB::table('mission_support_products')
+            ->join('product_total_amounts','product_total_amounts.product_total_amount_id','=','mission_support_products.product_total_amount_id')
+            ->get();
+//        dd($mission_support_products);
 
-        $mission_support_product_Array =[];
+        $mission_support_product_Arrays =[];
+
         foreach($mission_support_products as $mission_support_product){
-            $mission_support_product_Array[$mission_support_product->mission_list_id."id"] = $mission_support_product->mission_list_id;
-            $mission_support_product_Array[$mission_support_product->mission_list_id."amount"] = $mission_support_product->amount;
-            $mission_support_product_Array[$mission_support_product->mission_list_id."created_at"] = $mission_support_product->created_at;
+
+            //$mission_new_location_Arrays 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+            if(!isset($mission_support_product_Arrays[$mission_support_product->mission_list_id]))
+            {
+                $i=1;
+            }
+            else
+            {
+                // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+                $i=count($mission_support_product_Arrays[$mission_support_product->mission_list_id])+1;
+            }
+
+            $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['product_total_amount_id'] = $mission_support_product->product_total_amount_id;
+            $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['amount'] = $mission_support_product->amount;
+            $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['product_name'] = $mission_support_product->product_name;
+            $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['unit'] = $mission_support_product->unit;
         }
-        //dd($mission_support_product_Array);
+
+//        dd($mission_support_product_Arrays);
+
+                //取出中心庫存數
+                    $center_amounts = DB::table('local_safe_amounts')
+                    ->where('mission_list_id','=',1)
+                    ->get();
+//                        dd($center_safe_amounts);
+                $center_amounts_arrays =[];
+                foreach($center_amounts as $center_amount){
+                    $center_amounts_arrays[$center_amount->product_total_amount_id] = $center_amount->amount;
+                }
+//                                dd($center_amounts_Arrays);
+
+//        // 安全存量
+//        $product_total_amount_saves = DB::table('local_safe_amounts')
+//            ->select('product_total_amount_id',DB::raw('amount-safe_amount as total'))
+//            ->groupBy('product_total_amount_id')
+//            ->get();
+
 
                 //計算總通報個數
                 $mission_totals = DB::table('missions')
@@ -279,8 +295,8 @@ class MissionController extends Controller {
             ->with('mission_contents', $mission_contents)
             ->with('mission_contents_array', $mission_contents_array)
             ->with('mission_support_people_Array', $mission_support_people_Array)
-            ->with('mission_support_product_Array', $mission_support_product_Array);
-           // ->with('mission_first_content_array', $mission_first_content_array);
+            ->with('mission_support_product_Arrays', $mission_support_product_Arrays)
+            ->with('center_amounts_arrays', $center_amounts_arrays);
 
 	}
 

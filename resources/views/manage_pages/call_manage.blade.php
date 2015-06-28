@@ -171,10 +171,27 @@
             @if (isset($emtUsersArray) )
             <td>{!!$emtUsersArray[$mission_list->mission_list_id]!!} 人 </td>
             @endif
+            <tr><td><b>編號</b></td><td colspan="2"><b>地址</b></td><td colspan="2"><b>內容</b></td></tr>
+            @if(isset($mission_contents_array[$mission_list->mission_list_id]))
+                @for($j=1;$j<=count($mission_contents_array[$mission_list->mission_list_id]);$j++)
 
-            </tr>
-            <tr><td>編號</td><td colspan="2">地址</td><td colspan="2">內容</td></tr>
-            <tr><td>12</td><td colspan="2">台中市西屯區公園</td><td colspan="2">火勢無法控制</td></tr>
+                    </tr>
+
+                    <tr><td>{!!$mission_contents_array[$mission_list->mission_list_id][$j]['id']!!}</td>
+                        <td colspan="2">
+                            {!!$mission_contents_array[$mission_list->mission_list_id][$j]['country_or_city_input']!!}
+                            {!!$mission_contents_array[$mission_list->mission_list_id][$j]['township_or_district_input']!!}
+                            <br>
+                            {!!$mission_contents_array[$mission_list->mission_list_id][$j]['location']!!}</td>
+                        <td colspan="2">{!!$mission_contents_array[$mission_list->mission_list_id][$j]['content']!!}</td></tr>
+
+                @endfor
+            @else
+                <tr><td></td>
+                    <td colspan="3"></td>
+            @endif
+
+
 
             @endif
             @endforeach

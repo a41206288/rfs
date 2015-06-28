@@ -758,5 +758,33 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 1;
         $user->save();
 
+        $user = new App\User;
+        $user->id = 51;
+        $user->name = "郭大建";
+        $user->email = "051@yahoo.com.tw";
+        $user->password =Hash::make ('s3dv21');
+        $user->phone = '0905105151';
+        $user->save();
+
+        $user  = User::where('name', '=', '郭大建')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
+        $user->save();
+
+        $user = new App\User;
+        $user->id = 52;
+        $user->name = "郭中建";
+        $user->email = "052@yahoo.com.tw";
+        $user->password =Hash::make ('s3dv21');
+        $user->phone = '0905205252';
+        $user->save();
+
+        $user  = User::where('name', '=', '郭中建')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
+        $user->save();
+
     }
 }

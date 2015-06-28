@@ -132,7 +132,7 @@
 
                                     @endif
                                 @endif
-                                @if($i==1 && isset($mission_support_product_Array[$mission_list->mission_list_id."id"] ) )
+                                @if($i==1 && isset($mission_support_product_Arrays[$mission_list->mission_list_id] ) )
                                     <button class="btn-circle btn-warning" data-toggle="modal" data-target="#supportProductsBlock{!!$mission_list->mission_list_id!!}">物資</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="supportProductsBlock{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -152,8 +152,24 @@
                                                             <th>現場地點數量</th><td>{!!$mission_new_location_amount_arrays[$mission_list->mission_list_id]['total']!!} 個</td></tr>
                                                             <tr><th colspan="4">需求物資</th></tr>
                                                             <tr><th>需求物資名稱</th><th class="text-right">需求數量</th><th>中心庫存數</th><th>欲分配數量</th></tr>
-                                                            <tr><td>泡麵</td><td class="text-right">12</td><td class="text-right">35</td><td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>
-                                                            <tr><td>水</td><td class="text-right">12</td><td class="text-right">10</td><td>{!! Form::text('reliever','',['class' => 'form-control text-right']) !!}</td></tr>
+                                                            @if(isset($mission_support_product_Arrays[$mission_list->mission_list_id]))
+                                                                @for($k=1;$k<=count($mission_support_product_Arrays[$mission_list->mission_list_id]);$k++)
+
+                                                                    <tr><td>{!!$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['product_name']!!}</td>
+                                                                        <td class="text-right">{!!$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['amount']!!}
+                                                                            {!!$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['unit']!!}
+                                                                        </td>
+                                                                        <td class="text-right">{!!$center_amounts_arrays[$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['product_total_amount_id']]!!}
+                                                                            {!!$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['unit']!!}</td>
+                                                                        <td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>
+
+                                                                @endfor
+                                                            @else
+                                                                <tr><td></td>
+                                                                    <td colspan="3">現場尚未分析</td></tr>
+                                                            @endif
+
+
                                                         </table>
                                                     </div>
                                                     <div class="modal-footer">

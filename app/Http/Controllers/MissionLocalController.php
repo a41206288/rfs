@@ -75,19 +75,44 @@ class MissionLocalController extends Controller {
 //            dd($relieverNewLocationUserAmounts);
 
             $relieverNewLocationUserAmountsArrays =[];
-            foreach($relieverNewLocationUserAmounts as $relieverNewLocationUserAmount){
-                $relieverNewLocationUserAmountsArrays[$relieverNewLocationUserAmount->mission_new_locations_id]['total'] = $relieverNewLocationUserAmount->total;
+
+
+            foreach($mission_new_locations as $mission_new_location){
+                $unfind = false;
+                foreach($relieverNewLocationUserAmounts as $relieverNewLocationUserAmount){
+                    if($relieverNewLocationUserAmount->mission_new_locations_id == $mission_new_location->mission_new_locations_id) {
+                        $unfind = true;
+                        $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = $relieverNewLocationUserAmount->total;
+                    }
+                }
+                if( $unfind == false ) {
+                    $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = 0;
+                }
             }
 //                dd($relieverNewLocationUserAmountsArrays);
+
+
             //將個地點的脫困組人員依地點分類
             $relieverNewLocationUsersArrays =[];
             foreach($relieverNewLocationUsers as $relieverNewLocationUser){
-                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$relieverNewLocationUser->id]['name'] = $relieverNewLocationUser->name;
+
+                //如果$local_reports_array 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+                if(!isset($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id]))
+                {
+                    $i=1;
+                }
+                else
+                {
+                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+                    $i=count($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id])+1;
+                }
+                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['id'] = $relieverNewLocationUser->id;
+                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['name'] = $relieverNewLocationUser->name;
             }
 //            dd($relieverNewLocationUsersArrays);
 
             //取出該任務的閒置脫困組人員
-            $relieverFreeUsersArray =[];
+            $relieverFreeUsersArrays =[];
             foreach($relieverFreeUsers as $relieverFreeUser){
                 $unfind = false;
                 foreach($relieverNewLocationUsers as $relieverNewLocationUser){
@@ -96,10 +121,11 @@ class MissionLocalController extends Controller {
                     }
                 }
                 if( $unfind == false ) {
-                    $relieverFreeUsersArray[$relieverFreeUser->id]['name'] = $relieverFreeUser->name;
+                    $relieverFreeUsersArrays[$relieverFreeUser->id]['name'] = $relieverFreeUser->name;
+                    $relieverFreeUsersArrays[$relieverFreeUser->id]['id'] = $relieverFreeUser->id;
                 }
             }
-//            dd($relieverFreeUsersArray);
+//            dd($relieverFreeUsersArrays);
 
         //取出該任務的醫療組人員個數
             $EmtUserAmounts = DB::table('users')
@@ -140,10 +166,12 @@ class MissionLocalController extends Controller {
             $missions = null;
             $mission_new_locations = null;
             $relieverFreeUsers = null;
+            $EmtUserAmounts = null;
+            $relieverFreeUserAmounts = null;
             $relieverNewLocationUsers = null;
             $relieverNewLocationUsersArrays = null;
             $relieverNewLocationUserAmountsArrays = null;
-            $relieverFreeUsersArray = null;
+            $relieverFreeUsersArrays = null;
             $local_reports_arrays = null;
         }
 
@@ -234,6 +262,8 @@ class MissionLocalController extends Controller {
             ->with('EmtUserAmounts', $EmtUserAmounts)
             ->with('local_reports_arrays', $local_reports_arrays)
             ->with('$mission_new_locations', $mission_new_locations)
+            ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
+            ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
             ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays);
 	}
 
