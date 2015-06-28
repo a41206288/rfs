@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Kodeine\Acl\Models\Eloquent\Role;
 use Kodeine\Acl\Models\Eloquent\Permission;
 use Kodeine\Acl\Traits\HasRole;
-class LoginController extends Controller {
+class UsersLoginController extends Controller {
 
     public function show()
     {

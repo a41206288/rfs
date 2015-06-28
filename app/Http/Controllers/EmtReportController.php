@@ -4,8 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
-class MissingPosterController extends Controller {
+use Illuminate\Support\Facades\Redirect;
+class EmtReportController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class MissingPosterController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        return view('manage_pages.report_EMT');
 	}
 
 	/**
@@ -24,7 +24,7 @@ class MissingPosterController extends Controller {
 	 */
 	public function create()
 	{
-        return view('user_pages.missing_poster_input');
+        return Redirect::to('report/EMT');
 	}
 
 	/**

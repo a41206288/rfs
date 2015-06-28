@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ApplicationController extends Controller {
+class UsersHomeController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ApplicationController extends Controller {
 	 */
 	public function index()
 	{
-        return view('user_pages.application_input');
+        return view('user_pages.home');
 	}
 
 	/**

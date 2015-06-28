@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class DonateController extends Controller {
+class ResourceDonateController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +24,7 @@ class DonateController extends Controller {
 	 */
 	public function create()
 	{
-        return view('user_pages.donate_input');
+		//
 	}
 
 	/**

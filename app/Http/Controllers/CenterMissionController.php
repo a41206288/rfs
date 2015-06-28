@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Traits\HasRole;
 
 use App\Mission_list;
-
-class MissionController extends Controller {
+class CenterMissionController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -20,6 +19,7 @@ class MissionController extends Controller {
 	 */
 	public function index()
 	{
+        $mission_lists = DB::table('mission_lists')->get();
 
                 $mission_lists = DB::table('mission_lists')->get();
 
@@ -219,6 +219,7 @@ class MissionController extends Controller {
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['product_name'] = $mission_support_product->product_name;
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['unit'] = $mission_support_product->unit;
         }
+        //dd($mission_support_product_Array);
 
 //        dd($mission_support_product_Arrays);
 
@@ -370,22 +371,5 @@ class MissionController extends Controller {
 	{
 		//
 	}
-    public function auto_complete(Request $request){
 
-
-        $mission_leader_name = $request->input('leader');
-//        dd($mission_leader_name);
-        $results = array();
-
-        $queries = DB::table('users')
-            ->where('name', 'LIKE', '%'.$mission_leader_name.'%')
-            ->orWhere('id', 'LIKE', '%'.$mission_leader_name.'%')
-            ->take(5)->get();
-//        dd($queries);
-        foreach ($queries as $query)
-        {
-            $results[] = [ 'id' => $query->id, 'value' => $query->name ];
-        }
-        return Response::json($results);
-    }
 }

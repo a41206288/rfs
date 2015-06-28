@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CallController extends Controller {
+class CenterCallController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,7 +16,7 @@ class CallController extends Controller {
 	public function index()
 	{
         $mission_lists = DB::table('mission_lists')->get();
- //dd($mission_lists);
+        //dd($mission_lists);
         //計算各任務通報總數
         $mission_counts = DB::table('missions')
             ->select('mission_list_id',DB::raw('count(*) as total'))
@@ -43,6 +43,7 @@ class CallController extends Controller {
             ->get();
 //dd($mission_contents);
 
+        //dd($mission_counts_array);
         $mission_contents_array =[];
         foreach($mission_contents as $mission_content){
             if(!isset($mission_contents_array[$mission_content->mission_list_id]))
@@ -84,7 +85,7 @@ class CallController extends Controller {
             }
         }
 
-         //dd($emtUsersArray);
+        //dd($emtUsersArray);
 
         //計算各任務脫困人員總人數
         $relieverUsers = DB::table('users')
@@ -164,7 +165,7 @@ class CallController extends Controller {
 	 */
 	public function create()
 	{
-
+		//
 	}
 
 	/**
@@ -174,7 +175,6 @@ class CallController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-
         $inputs=$request->except('_token');
         $missions_index = DB::table('missions')->select('mission_id')->where('mission_list_id', 1)->get();
 
@@ -202,7 +202,7 @@ class CallController extends Controller {
 	 */
 	public function show()
 	{
-        return view('user_pages.call_input');
+		//
 	}
 
 	/**
@@ -225,7 +225,78 @@ class CallController extends Controller {
 	public function update(Request $request)
 	{
 
+        $mission_lists = DB::table('mission_lists')->get();
+        //dd($mission_lists);
+        //計算各任務通報總數
+        $mission_counts = DB::table('missions')
+            ->select('mission_list_id',DB::raw('count(*) as total'))
+            ->groupBy('mission_list_id')
+            ->get();
+// dd($mission_counts);
+        $mission_counts_array =[];
+        foreach($mission_lists as $mission_list){
+            $unfind = false;
+            foreach($mission_counts as $mission_count){
+                if($mission_list->mission_list_id == $mission_count->mission_list_id) {
+                    $unfind = true;
+                    $mission_counts_array[$mission_list->mission_list_id] = $mission_count->total;
+                }
+            }
+            if( $unfind == false ) {
+                $mission_counts_array[$mission_list->mission_list_id] = 0;
+            }
+        }
 
+
+        //dd($mission_counts_array);
+
+        //計算各任務醫療人員總人數
+        $emtUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->select('mission_list_id',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',5)
+            ->groupBy('users.mission_list_id')
+            ->get();
+
+        $emtUsersArray =[];
+        foreach($mission_lists as $mission_list){
+            $unfind = false;
+            foreach($emtUsers as $emtUser){
+                if($mission_list->mission_list_id == $emtUser->mission_list_id) {
+                    $unfind = true;
+                    $emtUsersArray[$emtUser->mission_list_id] = $emtUser->total;
+                }
+            }
+            if( $unfind == false ) {
+                $emtUsersArray[$mission_list->mission_list_id] = 0;
+            }
+        }
+
+        //dd($emtUsersArray);
+
+        //計算各任務脫困人員總人數
+        $relieverUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->select('mission_list_id',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',4)
+            ->groupBy('users.mission_list_id')
+            ->get();
+
+        $relieverUsersArray =[];
+        foreach($mission_lists as $mission_list){
+            $unfind = false;
+            foreach($relieverUsers as $relieverUser){
+                if($mission_list->mission_list_id == $relieverUser->mission_list_id) {
+                    $unfind = true;
+                    $relieverUsersArray[$relieverUser->mission_list_id] = $relieverUser->total;
+                }
+            }
+            if( $unfind == false ) {
+                $relieverUsersArray[$mission_list->mission_list_id] = 0;
+            }
+        }
+
+        // dd($relieverUsersArray);
         $country =$request->input('country');
         $township = $request->input('township');
 //dd( $country);
@@ -298,10 +369,12 @@ class CallController extends Controller {
             ->with('country_or_city_inputs', $country_or_city_inputs)
             ->with('township_or_district_inputs',  $township_or_district_inputs)
             ->with('mission_names', $mission_names)
-            ->with('users_data', $results);
-
-	}
-
+            ->with('users_data', $results)
+            ->with('mission_lists', $mission_lists)
+            ->with('emtUsersArray', $emtUsersArray)
+            ->with('relieverUsersArray', $relieverUsersArray)
+            ->with('mission_counts_array', $mission_counts_array);
+    }
 
 	/**
 	 * Remove the specified resource from storage.

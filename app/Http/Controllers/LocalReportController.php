@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class GuidanceController extends Controller {
+class LocalReportController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class GuidanceController extends Controller {
 	 */
 	public function index()
 	{
-        return view('user_pages.guidance');
+
 	}
 
 	/**

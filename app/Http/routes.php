@@ -12,26 +12,32 @@
 */
 use Illuminate\Support\Facades\App;
 //民眾用頁面route
-Route::get('/', 'HomeController@index');
-Route::get('call/input', 'CallController@show');
-Route::post('call/input', 'CallController@create');
-Route::get('donate/input', 'DonateController@create');
-Route::get('guidance', 'GuidanceController@index');
+Route::get('/', 'UsersHomeController@index');
+Route::get('call/input', 'UsersCallController@index');
+//Route::post('call/input', 'UsersCallController@create');
+Route::get('donate/input', 'UsersDonateController@index');
+Route::get('guidance', 'UsersGuidanceController@index');
 //Route::get('guidance_map', 'GuidanceController@');
-Route::get('application/input', 'ApplicationController@index');
-Route::get('missing_poster/input', 'MissingPosterController@create');
+Route::get('application/input', 'UsersApplicationController@index');
+Route::get('missing_poster/input', 'UsersMissingPosterController@index');
 
 //登入用route
-Route::get('login', 'LoginController@show');
-Route::post('login', 'LoginController@login');
-Route::get('logout', 'LoginController@logout');
+Route::get('login', 'UsersLoginController@show');
+Route::post('login', 'UsersLoginController@login');
+Route::get('logout', 'UsersLoginController@logout');
 //這行上面的請勿移動
 
 
 //-------------------------------------------分隔線-------------------------------------------------------
 
 //下面請根據權限放至各Panel下  (此為暫放)
-Route::get('analysis/manage', 'AnalysisController@index');
+
+Route::get('analysis/manage', 'AnalysisAnalysisController@index');
+Route::get('report/EMT', 'EmtReportController@index');
+Route::post('report/reliever', 'EmtReportController@create');
+Route::get('report/reliever', 'RelieverReportController@index');
+Route::post('report/reliever', 'RelieverReportController@create');
+//Route::get('analysis/manage', 'AnalysisController@index');
 
 //Route::get('mission/manage/local', 'MissionLocalController@index');
 //Route::post('mission/manage/local', 'MissionLocalController@update');
@@ -40,7 +46,7 @@ Route::get('analysis/manage', 'AnalysisController@index');
 //需要設定權限的route
 //Route::get('login', 'LoginController@index');
 //Route::post('login', 'LoginController@login');
-Route::resource('post', 'HomeController');
+//Route::resource('post', 'HomeController');
 
 //Route::group(function () {
 //
@@ -56,21 +62,22 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator'],
     function () {
-        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CallController@index'));
+        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CenterCallController@index'));
         //call manage 動態印出通報用
-        Route::post('call/manage', 'CallController@update');
-        Route::post('call/manage/save', 'CallController@store');
+        Route::post('call/manage', 'CenterCallController@update');
+        Route::post('call/manage/save', 'CenterCallController@store');
 
         //call manage 創建新任務
-        Route::post('call/manage/createMission', 'MissionController@create');
+        Route::post('call/manage/createMission', 'CenterMissionController@create');
         //Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
 
         //mission manage()
         //中央指揮官
-        Route::post('mission/manage', 'MissionController@update');
-        Route::get('mission/manage', 'MissionController@index');
-        Route::post('mission/manage/supportPeople', 'MissionController@store');
-        Route::post('mission/manage/Products', 'MissionController@store');
+        Route::post('mission/manage', 'CenterMissionController@update');
+        Route::get('mission/manage', 'CenterMissionController@index');
+
+//        Route::post('mission/manage/supportPeople', 'CenterMissionController@store');
+//        Route::post('mission/manage/supportProducts', 'CenterMissionController@store');
 
 
        // Route::get('post','HomeController@index');
@@ -90,25 +97,20 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'local'],
     function () {
-        Route::get('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@index') );
-        Route::post('mission/manage/local',array('as' => 'localPanel', 'uses' => 'MissionLocalController@update'));
-        Route::get('analysis/manage/local', 'AnalysisController@show');
-        Route::post('analysis/manage/local', 'AnalysisController@edit');
+        Route::get('mission/manage/local',array('as' => 'localPanel', 'uses' => 'LocalMissionController@index') );
+        Route::get('analysis/manage/local', 'LocalAnalysisController@index');
+        Route::post('analysis/manage/local', 'LocalAnalysisController@edit');
     });
 
 Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'analysis'],
     function () {
-        Route::get('analysis/manage', array('as' => 'analysisPanel', 'uses' => 'AnalysisController@index'));
+        Route::get('analysis/manage', array('as' => 'analysisPanel', 'uses' => 'AnalysisAnalysisController@index'));
         //analysis manage 創建新地點
-        Route::post('analysis/manage/createLocation', 'AnalysisController@create');
-        Route::post('analysis/manage/updateLocation', 'AnalysisController@update');
+        Route::post('analysis/manage/createLocation', 'AnalysisAnalysisController@create');
+        Route::post('analysis/manage/updateLocation', 'AnalysisAnalysisController@update');
     });
 
 
 
-
-
-
-//Route::get('logout', 'LoginController@logout');
