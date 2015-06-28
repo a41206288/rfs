@@ -96,14 +96,16 @@
         </div><!-- /.modal -->
         <table class="table table-bordered">
             <thead>
-                <tr><th>編號</th><th>地點</th><th>嚴重程度</th><th>預估傷亡人數</th><th>現場狀況</th><th>評估時間</th><th>修改</th></tr>
+                <tr><th>地點</th><th>嚴重程度</th><th>預估傷亡人數</th><th>現場狀況</th><th>評估時間</th><th>修改</th></tr>
             </thead>
             <tbody>
             @foreach ($mission_new_locations as $mission_new_location)
 
-                @if (isset($mission_new_location) )
+                @if (isset($mission_new_location)
+                 && $mission_new_location->location != '醫療組'
+                && $mission_new_location->location != '物資資源組')
                     <tr>
-                        <td>{!!$mission_new_location->mission_new_locations_id!!}</td>
+
                         <td>{!!$mission_new_location->location!!}</td>
                         <td>{!!$mission_new_location->severe_level!!}</td>
                         <td>{!!$mission_new_location->victim_number!!}</td>

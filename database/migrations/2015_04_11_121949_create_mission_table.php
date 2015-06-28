@@ -81,6 +81,7 @@ class CreateMissionTable extends Migration {
             $table->text('location');
             $table->boolean('notice');
             $table->unsignedInteger('mission_list_id');
+            $table->unsignedInteger('mission_new_locations');
             $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
         });
 
