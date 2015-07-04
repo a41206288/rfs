@@ -133,6 +133,7 @@ class user_seeder extends Seeder{
         $Works_on->save();
 
         $user = new App\User;
+        $user->id = 8;
         $user->name = "吳番薯";
         $user->email = "008@yahoo.com.tw";
         $user->password =Hash::make ('xv3z21vz');
@@ -148,6 +149,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 9;
         $user->name = "葉欣偉";
         $user->email = "009@yahoo.com.tw";
         $user->password =Hash::make ('wer75qr13');
@@ -163,6 +165,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 10;
         $user->name = "楊光冽";
         $user->email = "010@yahoo.com.tw";
         $user->password =Hash::make ('3we2r1');
@@ -176,8 +179,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 5;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 18;
+        $Works_on->id = 10;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 11;
         $user->name = "簡道鉗";
         $user->email = "011@yahoo.com.tw";
         $user->password =Hash::make ('w13e54f');
@@ -193,6 +202,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 12;
         $user->name = "林語";
         $user->email = "012@yahoo.com.tw";
         $user->password =Hash::make ('6a5s4d');
@@ -206,8 +216,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 7;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 26;
+        $Works_on->id = 12;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 13;
         $user->name = "耿夜";
         $user->email = "013@yahoo.com.tw";
         $user->password =Hash::make ('we4a6sf45');
@@ -243,6 +259,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 15;
         $user->name = "黃奇偉";
         $user->email = "015@yahoo.com.tw";
         $user->password =Hash::make ('4wg9e87f');
@@ -256,8 +273,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 3;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 13;
+        $Works_on->id = 15;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 16;
         $user->name = "丁凝";
         $user->email = "016@yahoo.com.tw";
         $user->password =Hash::make ('d4q9w8f4');
@@ -271,8 +294,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 4;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 14;
+        $Works_on->id = 16;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 17;
         $user->name = "曾家琪";
         $user->email = "017@yahoo.com.tw";
         $user->password =Hash::make ('d46qw7f');
@@ -286,8 +315,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 5;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 19;
+        $Works_on->id = 17;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 18;
         $user->name = "顧溪中";
         $user->email = "018@yahoo.com.tw";
         $user->password =Hash::make ('t6y15mrn');
@@ -301,8 +336,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 6;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 23;
+        $Works_on->id = 18;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 19;
         $user->name = "鍾渝";
         $user->email = "019@yahoo.com.tw";
         $user->password =Hash::make ('q9w87zc213');
@@ -318,6 +359,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 20;
         $user->name = "金南響";
         $user->email = "020@yahoo.com.tw";
         $user->password =Hash::make ('af987w');
@@ -332,6 +374,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 21;
         $user->name = "呂伙棲";
         $user->email = "021@yahoo.com.tw";
         $user->password =Hash::make ('z3xv5d4');
@@ -346,6 +389,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 22;
         $user->name = "江晉玖";
         $user->email = "022@yahoo.com.tw";
         $user->password =Hash::make ('6qef4zv');
@@ -360,6 +404,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 23;
         $user->name = "高吉夙";
         $user->email = "023@yahoo.com.tw";
         $user->password =Hash::make ('s65dg4');
@@ -374,6 +419,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 24;
         $user->name = "柯苛科";
         $user->email = "024@yahoo.com.tw";
         $user->password =Hash::make ('6s5df4');
@@ -386,8 +432,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 7;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 27;
+        $Works_on->id = 24;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 25;
         $user->name = "白卓逸";
         $user->email = "025@yahoo.com.tw";
         $user->password =Hash::make ('s65df4s5d4v');
@@ -421,6 +473,7 @@ class user_seeder extends Seeder{
 //        $Works_on->save();
 
         $user = new App\User;
+        $user->id = 27;
         $user->name = "詹絳";
         $user->email = "027@yahoo.com.tw";
         $user->password =Hash::make ('s35df44w');
@@ -435,6 +488,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 28;
         $user->name = "趙漾刻";
         $user->email = "028@yahoo.com.tw";
         $user->password =Hash::make ('svd97ga');
@@ -447,8 +501,14 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 4;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 15;
+        $Works_on->id = 28;
+        $Works_on->save();
+
 
         $user = new App\User;
+        $user->id = 29;
         $user->name = "朱禮姚";
         $user->email = "029@yahoo.com.tw";
         $user->password =Hash::make ('x3v54g');
@@ -463,6 +523,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 30;
         $user->name = "唐臥土";
         $user->email = "030@yahoo.com.tw";
         $user->password =Hash::make ('ca6s5f4');
@@ -477,6 +538,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User; //測試用密碼是1234
+        $user->id = 31;
         $user->name = "尤燕";
         $user->email = "031@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -491,6 +553,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 32;
         $user->name = "謝卸";
         $user->email = "032@yahoo.com.tw";
         $user->password =Hash::make ('asc65f7');
@@ -505,6 +568,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 33;
         $user->name = "莊簿郝";
         $user->email = "033@yahoo.com.tw";
         $user->password =Hash::make ('n98r7b');
@@ -519,6 +583,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 34;
         $user->name = "鄭織恩";
         $user->email = "034@yahoo.com.tw";
         $user->password =Hash::make ('a6s5v1c4a6f');
@@ -533,6 +598,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 35;
         $user->name = "許瑗慈";
         $user->email = "035@yahoo.com.tw";
         $user->password =Hash::make ('6d54ca1');
@@ -547,6 +613,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 36;
         $user->name = "張俞";
         $user->email = "036@yahoo.com.tw";
         $user->password =Hash::make ('ac987sf');
@@ -561,6 +628,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
+        $user->id = 37;
         $user->name = "劉夏萊";
         $user->email = "037@yahoo.com.tw";
         $user->password =Hash::make ('a6s54c6f4a');
@@ -594,6 +662,7 @@ class user_seeder extends Seeder{
         $Works_on->save();
 
         $user = new App\User;
+        $user->id =39;
         $user->name = "鍾堅植";
         $user->email = "039@yahoo.com.tw";
         $user->password =Hash::make ('cas6c1');
@@ -608,6 +677,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 40;
         $user->name = "顧赭鴟";
         $user->email = "040@yahoo.com.tw";
         $user->password =Hash::make ('a5sc465');
@@ -622,6 +692,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id =41;
         $user->name = "簡依舞";
         $user->email = "041@yahoo.com.tw";
         $user->password =Hash::make ('q9w87d4cf1');
@@ -635,7 +706,13 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 6;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 22;
+        $Works_on->id = 41;
+        $Works_on->save();
+
         $user = new App\User;
+        $user->id =42;
         $user->name = "曾晉瑋";
         $user->email = "042@yahoo.com.tw";
         $user->password =Hash::make ('a6c5s4');
@@ -650,6 +727,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 43;
         $user->name = "詹欣束";
         $user->email = "043@yahoo.com.tw";
         $user->password =Hash::make ('6a5c1c');
@@ -663,6 +741,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 44;
         $user->name = "趙則恩";
         $user->email = "044@yahoo.com.tw";
         $user->password =Hash::make ('a16s5c1');
@@ -676,6 +755,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 45;
         $user->name = "郭編范";
         $user->email = "045@yahoo.com.tw";
         $user->password =Hash::make ('c1as65c');
@@ -688,7 +768,13 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 2;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 3;
+        $Works_on->id = 45;
+        $Works_on->save();
+
         $user = new App\User;
+        $user->id = 46;
         $user->name = "范聖佩";
         $user->email = "046@yahoo.com.tw";
         $user->password =Hash::make ('6as5c1');
@@ -702,6 +788,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 47;
         $user->name = "江文欣";
         $user->email = "047@yahoo.com.tw";
         $user->password =Hash::make ('as65c1');
@@ -714,7 +801,13 @@ class user_seeder extends Seeder{
         $user->mission_list_id = 7;
         $user->save();
 
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 28;
+        $Works_on->id = 47;
+        $Works_on->save();
+
         $user = new App\User; //測試用密碼是1234
+        $user->id = 48;
         $user->name = "黃織圓";
         $user->email = "048@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -733,6 +826,7 @@ class user_seeder extends Seeder{
         $Works_on->save();
 
         $user = new App\User;
+        $user->id =49;
         $user->name = "高杉政";
         $user->email = "049@yahoo.com.tw";
         $user->password =Hash::make ('ae6f84');
@@ -746,6 +840,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $user = new App\User;
+        $user->id = 50;
         $user->name = "魏瑜";
         $user->email = "050@yahoo.com.tw";
         $user->password =Hash::make ('e5gfq6f');
@@ -785,6 +880,11 @@ class user_seeder extends Seeder{
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
         $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 4;
+        $Works_on->id = 52;
+        $Works_on->save();
 
     }
 }
