@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\App;
 //民眾用頁面route
 Route::get('/', 'UsersHomeController@index');
 Route::get('call/input', 'UsersCallController@index');
-//Route::post('call/input', 'UsersCallController@create');
+Route::post('call/input', 'UsersCallController@create');
 Route::get('donate/input', 'UsersDonateController@index');
+Route::post('donate/input', 'UsersDonateController@show');
 Route::get('guidance', 'UsersGuidanceController@index');
 //Route::get('guidance_map', 'GuidanceController@');
 Route::get('application/input', 'UsersApplicationController@index');
+Route::post('application/input', 'UsersApplicationController@create');
 Route::get('missing_poster/input', 'UsersMissingPosterController@index');
 
 //登入用route

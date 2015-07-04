@@ -43,9 +43,9 @@ class UsersDonateController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
+        return view('user_pages.submit_success')->with('string',"捐贈物資，請盡快將捐贈之物資寄至「台中市西屯區逢甲路100號」");
 	}
 
 	/**

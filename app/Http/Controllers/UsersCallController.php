@@ -24,7 +24,7 @@ class UsersCallController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('user_pages.submit_success')->with('string',"向我們提供災情最新情況");
 	}
 
 	/**

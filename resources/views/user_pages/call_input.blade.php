@@ -83,6 +83,7 @@
                 <td>事件備註</td><td colspan="2">{!! Form::textarea('remark','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
             </tr>
 
+
         </table>
     </div>
     <div class="col-xs-6 col-sm-4 col-md-4" >
@@ -94,7 +95,7 @@
                         <option value="">請選擇縣/市</option>
                     </select></td>
                 <td width="50%"><select class="form-control" name="township_or_district" id="township_or_district">
-                        <option value="">請選擇區</option>
+                        <option value="">請選擇鄉鎮區</option>
                     </select></td>
             </tr>
             <tr>
@@ -135,9 +136,22 @@
                 alert("請選擇完整事件種類");
                 return false;
             }
+            if( ($('#country_or_city :selected').text() == "請選擇縣市" || $('#township_or_district :selected').text() == "請選擇鄉鎮區" ) && $('#other').val() == ""  )
+            {
+                if($('#country_or_city :selected').text() == "請選擇縣市" ){
+                    $('#country_or_city').focus();
+                    alert("請選擇縣市");
+                }
+                else{
+                    $('#township_or_district').focus();
+                    alert("請選擇鄉鎮區");
+                }
+                return false;
+            }
             if( $('#adressDetail').val() == "" )
             {
                 alert("請填寫詳細位置");
+                $('#adressDetail').focus();
                 return false;
             }
             if( !isPhone( $('#phone').val() ) )
@@ -155,12 +169,28 @@
 
         function isPhone(phoneNum) {
             if(phoneNum!=''){
-                var regex = /^0[2-9]{1}[0-9]{8}$/;
-                if ( !regex.test(phoneNum) ) {
-                    alert("電話格式不正確");
-                    return false;
+                if(phoneNum.length == 10){
+                    var regex = /^0[249]{1}[0-9]{8}$/;
+                    if( !regex.test(phoneNum)){
+                        alert("電話格式有誤，請檢查是否輸入正確");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                else if(phoneNum.length == 9){
+                    var regex = /^0[345678]{1}[0-9]{7}$/;
+                    if( !regex.test(phoneNum)){
+                        alert("電話格式有誤，請檢查是否輸入正確");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
                 }
                 else{
+                    alert("您輸入了" + phoneNum.length + "碼電話號碼\n請再次檢查您輸入的資料是否有誤\n若為市話請記得加上區碼");
                     return true;
                 }
             }
@@ -168,7 +198,7 @@
         }
 
         function isEmail(email) {
-            var regex = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+            var regex = /^[A-Za-z0-9]\w*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
             if ( !regex.test(email) ) {
                 alert("信箱格式不正確");
                 return false;

@@ -25,7 +25,7 @@ class UsersApplicationController extends Controller {
      */
     public function create()
     {
-        //
+        return view('user_pages.submit_success')->with('string',"來信應徵，日後將會通知您救災的地點");
     }
 
     /**

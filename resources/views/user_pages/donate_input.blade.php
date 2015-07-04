@@ -16,7 +16,7 @@
         }
     </style>
     <h4><b>我要捐贈</b></h4><hr>
-    {!! Form::open(array('url' => 'call/input', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
+    {!! Form::open(array('url' => 'donate/input', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
     <div class="col-xs-6 col-sm-4 col-md-4" >
         <table>
             <tr><td colspan="2"><b>捐贈人資料</b></td></tr>
@@ -173,10 +173,12 @@
             }
             if( !isPhone( $('#phone').val() ) )
             {
+                $('#phone').focus();
                 return false;
             }
             if( $('#email').val() != "" && !isEmail( $('#email').val() ) )
             {
+                $('#email').focus();
                 return false;
             }
             if($('#donate_table tr').length<2)
@@ -189,12 +191,28 @@
 
         function isPhone(phoneNum) {
             if(phoneNum!=''){
-                var regex = /^0[2-9]{1}[0-9]{8}$/;
-                if ( !regex.test(phoneNum) ) {
-                    alert("電話格式不正確");
-                    return false;
+                if(phoneNum.length == 10){
+                    var regex = /^0[249]{1}[0-9]{8}$/;
+                    if( !regex.test(phoneNum)){
+                        alert("電話格式有誤，請檢查是否輸入正確");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+                else if(phoneNum.length == 9){
+                    var regex = /^0[345678]{1}[0-9]{7}$/;
+                    if( !regex.test(phoneNum)){
+                        alert("電話格式有誤，請檢查是否輸入正確");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
                 }
                 else{
+                    alert("您輸入了" + phoneNum.length + "碼電話號碼\n請再次檢查您輸入的資料是否有誤\n若為市話請記得加上區碼");
                     return true;
                 }
             }
@@ -202,7 +220,7 @@
         }
 
         function isEmail(email) {
-            var regex = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+            var regex = /^[A-Za-z0-9]\w*[A-Za-z0-9]\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
             if ( !regex.test(email) ) {
                 alert("信箱格式不正確");
                 return false;
