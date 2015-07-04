@@ -107,7 +107,10 @@
                                                                         <tr><td></td>
                                                                             <td colspan="3">現場尚未分析</td></tr>
                                                                     @endif
-                                                                    <tr class="header_no_next expand"><th colspan="4">需求人員</th></tr>
+
+                                                                </table>
+                                                                <table class="table table-bordered">
+                                                                    <tr class=""><th colspan="4">需求人員</th></tr>
                                                                     <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心待命人員數</th><th>欲分配人數</th></tr>
 
                                                                     <tr><td>醫療組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."emt_num"]!!} 人</td>
@@ -118,7 +121,6 @@
                                                                         <td class="text-right">{!!$relieverFreeUsers[0]->total!!} 人</td>
                                                                         <td>{!! Form::text('reliever','',['class' => 'form-control text-right']) !!}</td></tr>
                                                                 </table>
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>

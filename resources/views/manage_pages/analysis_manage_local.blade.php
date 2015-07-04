@@ -52,7 +52,7 @@
                             </div>
                             <div class="modal-body ">
                                 <div class="row">
-                                    <div class="col-md-5" id="busy">
+                                    <div class="col-md-5" id="busy{!!$mission_new_location->mission_new_locations_id!!}">
 
                                         <b>執行任務人員</b>
                                         @if(isset($relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id]))
@@ -73,7 +73,7 @@
 
 
                                     </div>
-                                    <div class="col-md-offset-1 col-md-5" id="idle">
+                                    <div class="col-md-offset-1 col-md-5" id="idle{!!$mission_new_location->mission_new_locations_id!!}">
 
                                         <b>未分配人員</b>
 
@@ -142,22 +142,22 @@
 
 
     <script>
-        $('#idle').on('click', 'button', function(e){
-            add_person($(this).closest('div').find('input').val(),$(this).closest('div').find('span').eq(1).text(),false);
-            $(this).closest('div').remove();
-
-
+        $(document).on('click','.btn-default', function(e){
+            if($(this).closest('div').parent('div').attr('id').indexOf("busy")==0){
+                add_person($(this).closest('div').find('input').val(), $(this).closest('div').find('span').eq(0).text(), $(this).closest('div').parent('div').attr('id'),true);
+                $(this).closest('div').remove();
+            }
+            else if($(this).closest('div').parent('div').attr('id').indexOf("idle")==0){
+                add_person($(this).closest('div').find('input').val(), $(this).closest('div').find('span').eq(1).text(), $(this).closest('div').parent('div').attr('id'),false);
+                $(this).closest('div').remove();
+            }
+            else{} //其他class="btn-default"不用動作
         });
-        $('#busy').on('click', 'button', function(e){
-            add_person($(this).closest('div').find('input').val(),$(this).closest('div').find('span').eq(0).text(),true);
-            $(this).closest('div').remove();
 
-        });
-
-        function add_person(id,name,isBusyTable)
+        function add_person(id,name,div_id,isBusyTable)
         {
             if(isBusyTable){
-                var obj=document.getElementById("idle");
+                var obj=document.getElementById(div_id.replace(/busy/,"idle"));
 
                 var div = document.createElement("div");
                 div.setAttribute("class", "input-group");
@@ -189,7 +189,7 @@
                 obj.appendChild(div);
             }
             else{
-                var obj=document.getElementById("busy");
+                var obj=document.getElementById(div_id.replace(/idle/,"busy"));
                 var div = document.createElement("div");
                 div.setAttribute("class", "input-group");
 

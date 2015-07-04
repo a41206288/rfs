@@ -39,7 +39,7 @@
                 <div class="modal fade" id="createMissionBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal')) !!}
+                            {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
@@ -213,14 +213,27 @@
         $('.header_no_next').trigger('click'); //trigger :觸發指定事件
 
         var readData   = <?php echo json_encode($users_data); ?>;
+        var leaderData = Array(); //存負責人名字
+        for(var i = 0; i<readData.length; i++)
+        {
+            leaderData[i] = readData[i][1];
+        }
         for(var i = 0; i<readData.length; i++)
         {
             readData[i] = readData[i].join(" - "); //陣列所有項目合成字串 ,每項間用" - "隔開
         }
-
         $(document).ready(function(){
             $("#leader").autocomplete({source: readData, appendTo:"#createMissionBlock"});
         });
+        function checkForm(){
+            for(var i = 0;i<leaderData.length;i++){
+                if($('#leader').val().indexOf(leaderData[i]) != -1){
+                    return true;
+                }
+            }
+            alert("負責人有誤");
+            return false;
+        }
     </script>
 
 @endsection
