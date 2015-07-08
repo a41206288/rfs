@@ -47,7 +47,7 @@
                     <td>{!!$local_reports_arrays[1][$i]['time']!!}</td>
                     <td>{!!$local_reports_arrays[1][$i]['content']!!}</td>
             @else
-                    <td colspan="3"></td>
+                    <td colspan="2">尚未有最新回報。</td>
             @endif
 
             @if($i==1 && isset($local_reports_arrays[1]))
@@ -79,6 +79,7 @@
                     @if($mission_new_location->location != "醫療組"
                     && $mission_new_location->location != "物資資源組"
                     && $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] != 0)
+
                         <div style="display: none">
                         @if(isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
                             {!!$n=count($local_reports_arrays[$mission_new_location->mission_new_locations_id]);!!}
@@ -186,7 +187,9 @@
                         @endfor
 
                     @endif
+
                 @endforeach
+
             @endif
 
 

@@ -49,6 +49,8 @@ class CreateMissionTable extends Migration {
             $table->unsignedInteger('mission_list_id');
             $table->integer('emt_num');
             $table->integer('reliever_num');
+            $table->integer('assign_emt_num')->default(0);
+            $table->integer('assign_reliever_num')->default(0);
             $table->timestamps();
         });
 
