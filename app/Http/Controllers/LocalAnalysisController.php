@@ -35,8 +35,8 @@ class LocalAnalysisController extends Controller {
 //            dd($mission_new_locations);
 
             //取出該任務所有脫困組人員
-            $relieverAllUsers = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
+            $relieverAllUsers = DB::table('role_user')
+                ->join('users','users.id','=','role_user.user_id')
                 ->where('role_id','=',5 )
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
@@ -183,9 +183,38 @@ class LocalAnalysisController extends Controller {
 	 */
 	public function edit(Request $request)
 	{
-        $inputs=$request->except('_token');
-        dd($inputs);
-	}
+//        $inputs=$request->except('_token');
+//        dd($inputs);
+        $frees=$request->input('free');
+        $missions=$request->input('mission');
+//        dd($missions);
+        $mission_new_locations_id=$request->input('mission_new_locations_id');
+        if(isset($frees)) {
+            foreach ($frees as $free) {
+                $delete = DB::table('works_ons')->where('id', $free)->get();
+                if (isset($delete)) {
+                    DB::table('works_ons')->where('id', $free)->delete();
+                }
+            }
+        }
+        if(isset($missions)) {
+            foreach ($missions as $mission) {
+                $insert= DB::table('works_ons')->where('id', $mission)->get();
+
+                if($insert == null)
+                {
+
+                    DB::insert('insert into works_ons (mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?)', array($mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
+                }
+                else
+                {
+
+                }
+         }
+
+        }
+        return Redirect::to('analysis/manage/local');
+    }
 
 	/**
 	 * Update the specified resource in storage.

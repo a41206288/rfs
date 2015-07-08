@@ -34,8 +34,8 @@ class LocalMissionController extends Controller {
 //            dd($mission_new_locations);
 
             //取出該任務所有脫困組人員
-            $relieverFreeUsers = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
+            $relieverFreeUsers = DB::table('role_user')
+                ->join('users','users.id','=','role_user.user_id')
                 ->where('role_id','=',5 )
                 ->where('mission_list_id', $mission_list_id)
                 ->get();

@@ -112,6 +112,7 @@
                                             <div class="modal-dialog"  style="width:  800px">
                                                 <div class="modal-content">
                                                     {!! Form::open(array('url' => 'analysis/manage/local', 'method' => 'post','class' => 'form-horizontal')) !!}
+                                                    {!! Form::hidden('mission_new_locations_id',$mission_new_location->mission_new_locations_id) !!}
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         <h4 class="modal-title" id="myModalLabel"><b>分派人員</b></h4>
@@ -126,7 +127,7 @@
 
                                                                         <div class="input-group">
                                                                             <span class="form-control">{!!$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['name']!!}</span>
-                                                                            {!! Form::hidden('任務執行[]',$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['id']) !!}
+                                                                            {!! Form::hidden('mission[]',$relieverNewLocationUsersArrays[$mission_new_location->mission_new_locations_id][$j]['id']) !!}
                                                     <span class="input-group-btn" >
                                                         <button class="btn btn-default" type="button">-</button>
                                                     </span>
@@ -150,7 +151,7 @@
                                                 <button class="btn btn-default" type="button">+</button>
                                             </span>
                                                                             <span class="form-control">{!!$relieverFreeUsersArray['name']!!}</span>
-                                                                            {!! Form::hidden('待命[]',$relieverFreeUsersArray['id']) !!}
+                                                                            {!! Form::hidden('free[]',$relieverFreeUsersArray['id']) !!}
                                                                         </div>
                                                                     @endforeach
                                                                 @endif
@@ -251,7 +252,7 @@
                 div.appendChild(span);
 
                 var hidden_input= document.createElement("input");
-                hidden_input.name="待命[]";
+                hidden_input.name="free[]";
                 hidden_input.value=id;
                 hidden_input.setAttribute("type", "hidden");
                 div.appendChild(hidden_input);
@@ -287,7 +288,7 @@
                 span.appendChild(span_btn);
                 div.appendChild(span);
                 var hidden_input= document.createElement("input");
-                hidden_input.name="任務執行[]";
+                hidden_input.name="mission[]";
                 hidden_input.value=id;
                 hidden_input.setAttribute("type", "hidden");
                 div.appendChild(hidden_input);
