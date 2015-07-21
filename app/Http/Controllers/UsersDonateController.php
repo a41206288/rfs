@@ -2,9 +2,13 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
+use App\Donate;
+use App\Donate_product;
 class UsersDonateController extends Controller {
 
 	/**
@@ -14,7 +18,13 @@ class UsersDonateController extends Controller {
 	 */
 	public function index()
 	{
-        return view('user_pages.donate_input');
+        $center_support_products =  DB::table('center_support_products')
+            ->join('product_total_amounts','product_total_amounts.product_total_amount_id','=','center_support_products.product_total_amount_id')
+            ->orderBy('center_support_product_amount','desc')
+            ->get();
+//        dd($center_support_products);
+        return view('user_pages.donate_input')
+            ->with('center_support_products', $center_support_products);
 	}
 
 	/**
@@ -43,8 +53,39 @@ class UsersDonateController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show()
+	public function show(Request $request)
 	{
+        $input=$request->except('_token');
+//        dd( $input);
+        $lname =$request->input('lname');
+        $fname =$request->input('fname');
+        $phone = $request->input('phone');
+        $email = $request->input('email');
+        $product_name = $request->input('product_name');
+//        dd( $product_name);
+        $donate = new Donate;
+        $donate->lname = $lname;
+        $donate->fname = $fname;
+        $donate->phone = $phone;
+        $donate->email = $email;
+        $donate->save();
+
+        $donate_id = Donate::where('lname', '=', $lname)
+            ->where('fname', '=', $fname)
+            ->where('phone', '=', $phone)
+            ->where('email', '=', $email)
+            ->orderBy('created_at','desc')
+            ->first();
+//        dd( $donate_id);
+
+        foreach ($product_name as $product_total_amount_id => $donate_amount){
+            $donate_product = new Donate_product;
+            $donate_product->donate_id = $donate_id->donate_id;
+            $donate_product->product_total_amount_id = $product_total_amount_id;
+            $donate_product->donate_amount = $donate_amount;
+            $donate_product->save();
+        }
+
         return view('user_pages.submit_success')->with('string',"捐贈物資，請盡快將捐贈之物資寄至「台中市西屯區逢甲路100號」");
 	}
 

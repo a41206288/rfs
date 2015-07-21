@@ -31,13 +31,28 @@ class CreateSupportTable extends Migration {
         });
 
         Schema::create('donates', function(Blueprint $table){
-            $table->increments('donate_id');
+        $table->increments('donate_id');
+        $table->string('lname');
+        $table->string('fname');
+        $table->string('email');//->unique()
+        $table->string('phone');
+        $table->timestamps();
+        //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
+    });
+
+        Schema::create('donate_products', function(Blueprint $table){
+            $table->increments('donate_product_id');
+            $table->unsignedInteger('donate_id');
+            $table->integer('donate_amount');
             $table->unsignedInteger('product_total_amount_id');
-            $table->integer('amount');
-            $table->string('lname');
-            $table->string('fname');
-            $table->string('email')->unique();
-            $table->string('phone');
+            $table->timestamps();
+            //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
+        });
+
+        Schema::create('center_support_products', function(Blueprint $table){
+            $table->increments('center_support_product_id');
+            $table->unsignedInteger('product_total_amount_id');
+            $table->integer('center_support_product_amount');
             $table->timestamps();
             //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
         });
@@ -90,10 +105,13 @@ class CreateSupportTable extends Migration {
         Schema::drop('product_total_amounts');
         Schema::drop('local_safe_amounts');
         Schema::drop('donates');
+        Schema::drop('donate_products');
+        Schema::drop('center_support_products');
         Schema::drop('buys');
         Schema::drop('companies');
         Schema::drop('interviews');
         Schema::drop('interviewers');
+
 	}
 
 }

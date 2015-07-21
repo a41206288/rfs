@@ -19,10 +19,13 @@ class support_seeder extends Seeder{
         DB:: table('product_total_amounts')->delete();
         DB:: table('local_safe_amounts')->delete();
         DB:: table('donates')->delete();
+//        DB:: table('donate_products')->delete();
+        DB:: table('center_support_products')->delete();
         DB:: table('buys')->delete();
         DB:: table('companies')->delete();
         DB:: table('interviews')->delete();
         DB:: table('interviewers')->delete();
+
 
         $product_total_amount = new App\Product_total_amount;
         $product_total_amount->product_total_amount_id = 1;
@@ -290,101 +293,155 @@ class support_seeder extends Seeder{
         /* !!注意!!  email是unique */
         $donate = new App\Donate;
         $donate->donate_id = 1;
-        $donate->product_total_amount_id = 2;
-        $donate->amount = 10;
         $donate->lname = "周";
         $donate->fname = "沃昂";
         $donate->phone = "0900100187";
         $donate->save();
 
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 1;
+        $donate_product->product_total_amount_id = 1;
+        $donate_product->donate_amount = 10;
+        $donate_product->save();
+
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 1;
+        $donate_product->product_total_amount_id = 2;
+        $donate_product->donate_amount = 30;
+        $donate_product->save();
+
+
         $donate = new App\Donate;
         $donate->donate_id = 2;
-        $donate->product_total_amount_id = 7;
-        $donate->amount = 2;
         $donate->lname = "蔡";
         $donate->email = "tsai982@yahoo.com.tw";
         $donate->phone = "0900200287";
         $donate->save();
 
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 2;
+        $donate_product->product_total_amount_id = 2;
+        $donate_product->donate_amount = 20;
+        $donate_product->save();
+
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 2;
+        $donate_product->product_total_amount_id = 4;
+        $donate_product->donate_amount = 50;
+
+        $donate_product->save();
+
         $donate = new App\Donate;
         $donate->donate_id = 3;
-        $donate->product_total_amount_id = 3;
-        $donate->amount = 10;
         $donate->lname = "游";
         $donate->fname = "逸慈";
         $donate->email = "yo123yo@yahoo.com.tw";
         $donate->save();
 
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 3;
+        $donate_product->product_total_amount_id = 5;
+        $donate_product->donate_amount = 10;
+        $donate_product->save();
+
         $donate = new App\Donate;
         $donate->donate_id = 4;
-        $donate->product_total_amount_id = 7;
-        $donate->amount = 1;
         $donate->lname = "劉";
         $donate->email = "wowawow@yahoo.com.tw";
         $donate->phone = "0900400487";
         $donate->save();
 
-        $donate = new App\Donate;
-        $donate->donate_id = 5;
-        $donate->product_total_amount_id = 2;
-        $donate->amount = 5;
-        $donate->lname = "吳";
-        $donate->fname = "蜀杏";
-        $donate->email = "nonono56@yahoo.com.tw";
-        $donate->phone = "0900500587";
-        $donate->save();
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 4;
+        $donate_product->product_total_amount_id = 6;
+        $donate_product->donate_amount = 20;
+        $donate_product->save();
 
-        $donate = new App\Donate;
-        $donate->donate_id = 6;
-        $donate->product_total_amount_id = 2;
-        $donate->amount = 110;
-        $donate->lname = "林";
-        $donate->email = "linlin1919@yahoo.com.tw";
-        $donate->phone = "0900600687";
-        $donate->save();
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 4;
+        $donate_product->product_total_amount_id = 7;
+        $donate_product->donate_amount = 40;
+        $donate_product->save();
+
+        $donate_product = new App\Donate_product;
+        $donate_product->donate_id = 4;
+        $donate_product->product_total_amount_id = 8;
+        $donate_product->donate_amount = 60;
+        $donate_product->save();
+
+//        $donate = new App\Donate;
+//        $donate->donate_id = 5;
+//        $donate->center_support_product_id = 2;
+//        $donate->donate_amount = 5;
+//        $donate->lname = "吳";
+//        $donate->fname = "蜀杏";
+//        $donate->email = "nonono56@yahoo.com.tw";
+//        $donate->phone = "0900500587";
+//        $donate->save();
+//
+//        $donate = new App\Donate;
+//        $donate->donate_id = 6;
+//        $donate->center_support_product_id = 2;
+//        $donate->donate_amount = 110;
+//        $donate->lname = "林";
+//        $donate->email = "linlin1919@yahoo.com.tw";
+//        $donate->phone = "0900600687";
+//        $donate->save();
+//
+//
+//        $donate = new App\Donate;
+//        $donate->donate_id = 7;
+//        $donate->center_support_product_id = 2;
+//        $donate->donate_amount = 85;
+//        $donate->lname = "劉";
+//        $donate->fname = "士萱";
+//        $donate->email = "gs9825@yahoo.com.tw";
+//        $donate->phone = "0900700787";
+//        $donate->save();
+//
+//
+//        $donate = new App\Donate;
+//        $donate->donate_id = 8;
+//        $donate->center_support_product_id = 3;
+//        $donate->donate_amount = 50;
+//        $donate->lname = "葉";
+//        $donate->email = "ocean555@yahoo.com.tw";
+//        $donate->phone = "0900800887";
+//        $donate->save();
+//
+//
+//        $donate = new App\Donate;
+//        $donate->donate_id = 9;
+//        $donate->center_support_product_id = 3;
+//        $donate->donate_amount = 40;
+//        $donate->lname = "黃";
+//        $donate->fname = "志偉";
+//        $donate->email = "jiwei889@yahoo.com.tw";
+//        $donate->phone = "0900900987";
+//        $donate->save();
+//
+//
+//        $donate = new App\Donate;
+//        $donate->donate_id = 10;
+//        $donate->center_support_product_id = 7;
+//        $donate->donate_amount = 9;
+//        $donate->lname = "陳";
+//        $donate->email = "chen741@yahoo.com.tw";
+//        $donate->phone = "0901001087";
+//        $donate->save();
 
 
-        $donate = new App\Donate;
-        $donate->donate_id = 7;
-        $donate->product_total_amount_id = 2;
-        $donate->amount = 85;
-        $donate->lname = "劉";
-        $donate->fname = "士萱";
-        $donate->email = "gs9825@yahoo.com.tw";
-        $donate->phone = "0900700787";
-        $donate->save();
+        $center_support_product = new App\Center_support_product;
+        $center_support_product->center_support_product_id = 1;
+        $center_support_product->product_total_amount_id = 2;
+        $center_support_product->center_support_product_amount = 400;
+        $center_support_product->save();
 
-
-        $donate = new App\Donate;
-        $donate->donate_id = 8;
-        $donate->product_total_amount_id = 3;
-        $donate->amount = 50;
-        $donate->lname = "葉";
-        $donate->email = "ocean555@yahoo.com.tw";
-        $donate->phone = "0900800887";
-        $donate->save();
-
-
-        $donate = new App\Donate;
-        $donate->donate_id = 9;
-        $donate->product_total_amount_id = 3;
-        $donate->amount = 40;
-        $donate->lname = "黃";
-        $donate->fname = "志偉";
-        $donate->email = "jiwei889@yahoo.com.tw";
-        $donate->phone = "0900900987";
-        $donate->save();
-
-
-        $donate = new App\Donate;
-        $donate->donate_id = 10;
-        $donate->product_total_amount_id = 7;
-        $donate->amount = 9;
-        $donate->lname = "陳";
-        $donate->email = "chen741@yahoo.com.tw";
-        $donate->phone = "0901001087";
-        $donate->save();
-
+        $center_support_product = new App\Center_support_product;
+        $center_support_product->center_support_product_id = 2;
+        $center_support_product->product_total_amount_id = 3;
+        $center_support_product->center_support_product_amount = 200;
+        $center_support_product->save();
 
 
 

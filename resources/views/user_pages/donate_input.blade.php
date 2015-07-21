@@ -49,14 +49,7 @@
             <tr><td colspan="2"><b>捐贈物資</b></td></tr>
             </thead>
 
-            {{--<tr id="物資名稱1">--}}
-                {{--<td width="20%">物資名稱1</td><td width="10%"></td><td width="15%"> {!! Form::selectRange('number', 10, 20,'',['class' => 'form-control'])!!}</td>--}}
-                {{--<td width="5%"><input class="btn" type="button" value="刪除"/></td>--}}
-            {{--</tr>--}}
-            {{--<tr id="物資名稱2">--}}
-                {{--<td width="20%">物資名稱2</td><td width="10%"></td><td width="15%"> {!! Form::selectRange('number', 10, 20,'',['class' => 'form-control'])!!}</td>--}}
-                {{--<td width="5%"><input class="btn" type="button" value="刪除" onclick="remove_donate()" /></td>--}}
-            {{--</tr>--}}
+
 
 
 
@@ -70,21 +63,18 @@
 
     </div>
     {!! Form::close() !!}
+
     <div class="col-xs-6 col-sm-4 col-md-4" >
         <div style="height:400px;width:100%;overflow:auto;">
         <table class="btn-group-vertical" id="needed">
             <thead><tr><td colspan="2"><b>需求物資列表</b>(請在此選擇欲捐贈物品)</td></tr></thead>
             <tbody>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">泡麵</td><td width="10%"></td><td width="10%">99</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">礦泉水</td><td width="10%"></td><td width="10%">95</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">麵包</td><td width="10%"></td><td width="10%">66</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">繃帶</td><td width="10%"></td><td width="10%">51</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">口糧</td><td width="10%"></td><td width="10%">35</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">雨衣</td><td width="10%"></td><td width="10%">37</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">手電筒</td><td width="10%"></td><td width="10%">10</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">垃圾袋</td><td width="10%"></td><td width="10%">20</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">衛生紙</td><td width="10%"></td><td width="10%">15</td></tr>
-                <tr class="btn btn-block btn-default btn-sm"><td width="20%">薄被子</td><td width="10%"></td><td width="10%">5</td></tr>
+            @if (isset($center_support_products) )
+                @foreach ($center_support_products as $center_support_product )
+                <tr class="btn btn-block btn-default btn-sm"><td>{!!$center_support_product->product_total_amount_id!!}</td><td width="20%">{!!$center_support_product->product_name!!} </td>
+                    <td width="10%"></td><td width="10%">{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td></tr>
+                @endforeach
+            @endif
             </tbody>
 
 
@@ -107,11 +97,11 @@
             var rowIndex = $('#needed tr').index(this); //取得tr的index
             if(rowIndex==0){}  //標題tr不做任何事
             else if(has_selected[rowIndex]){
-                alert('您已經選擇了\' ' + $('#needed').find('tr').eq(rowIndex).find('td:eq(0)').text() + ' \' ');
+                alert('您已經選擇了\' ' + $('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text() + ' \' ');
             }
             else{
                 has_selected[rowIndex] = true;
-                add_donate($('#needed').find('tr').eq(rowIndex).find('td:eq(0)').text(), $('#needed').find('tr').eq(rowIndex).find('td:eq(2)').text(),rowIndex);
+                add_donate($('#needed').find('tr').eq(rowIndex).find('td:eq(0)').text(),$('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text(), $('#needed').find('tr').eq(rowIndex).find('td:eq(3)').text(),rowIndex);
             }
 
         });
@@ -122,7 +112,7 @@
         });
 
         /* 動態增加選擇的物資 */
-        function add_donate(name,amount,index)
+        function add_donate(id,name,amount,index)
         {
             var obj=document.getElementById("donate_table");
             var tr = document.createElement("tr");
@@ -140,7 +130,7 @@
             td.width = "15%";
             var select = document.createElement("select");
             select.setAttribute("class", "form-control");
-            select.setAttribute("name", "number");
+            select.setAttribute("name", "product_name["+id+"]");
             for(var i = 1; i<=parseInt(amount); i++){
                 var option = document.createElement("option");
                 option.value = i;
