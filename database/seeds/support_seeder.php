@@ -23,8 +23,8 @@ class support_seeder extends Seeder{
         DB:: table('center_support_products')->delete();
         DB:: table('buys')->delete();
         DB:: table('companies')->delete();
-        DB:: table('interviews')->delete();
-        DB:: table('interviewers')->delete();
+//        DB:: table('interviews')->delete();
+//        DB:: table('interviewers')->delete();
 
 
         $product_total_amount = new App\Product_total_amount;
@@ -302,12 +302,14 @@ class support_seeder extends Seeder{
         $donate_product->donate_id = 1;
         $donate_product->product_total_amount_id = 1;
         $donate_product->donate_amount = 10;
+        $donate_product->arrived = 0;
         $donate_product->save();
 
         $donate_product = new App\Donate_product;
         $donate_product->donate_id = 1;
         $donate_product->product_total_amount_id = 2;
         $donate_product->donate_amount = 30;
+        $donate_product->arrived = 0;
         $donate_product->save();
 
 
@@ -322,13 +324,14 @@ class support_seeder extends Seeder{
         $donate_product->donate_id = 2;
         $donate_product->product_total_amount_id = 2;
         $donate_product->donate_amount = 20;
+        $donate_product->arrived = 1;
         $donate_product->save();
 
         $donate_product = new App\Donate_product;
         $donate_product->donate_id = 2;
         $donate_product->product_total_amount_id = 4;
         $donate_product->donate_amount = 50;
-
+        $donate_product->arrived = 0;
         $donate_product->save();
 
         $donate = new App\Donate;
@@ -342,6 +345,7 @@ class support_seeder extends Seeder{
         $donate_product->donate_id = 3;
         $donate_product->product_total_amount_id = 5;
         $donate_product->donate_amount = 10;
+        $donate_product->arrived = 0;
         $donate_product->save();
 
         $donate = new App\Donate;
@@ -355,18 +359,21 @@ class support_seeder extends Seeder{
         $donate_product->donate_id = 4;
         $donate_product->product_total_amount_id = 6;
         $donate_product->donate_amount = 20;
+        $donate_product->arrived = 0;
         $donate_product->save();
 
         $donate_product = new App\Donate_product;
         $donate_product->donate_id = 4;
         $donate_product->product_total_amount_id = 7;
         $donate_product->donate_amount = 40;
+        $donate_product->arrived = 0;
         $donate_product->save();
 
         $donate_product = new App\Donate_product;
         $donate_product->donate_id = 4;
         $donate_product->product_total_amount_id = 8;
         $donate_product->donate_amount = 60;
+        $donate_product->arrived = 0;
         $donate_product->save();
 
 //        $donate = new App\Donate;
@@ -518,58 +525,64 @@ class support_seeder extends Seeder{
         $buy->save();
 
 
+        $center_support_person = new App\Center_support_person;
+        $center_support_person->center_support_person_id = 1;
+        $center_support_person->center_support_person_num = 10;
+        $center_support_person->center_support_person_requirement = "需要有醫療背景的人";
+        $center_support_person->arrived = 0;
+        $center_support_person->save();
 
-        $interview = new App\Interview;
-        $interview->interview_id = 1;
-        $interview->interview_goal = 10;
-        $interview->save();
+        $center_support_person = new App\Center_support_person;
+        $center_support_person->center_support_person_id = 2;
+        $center_support_person->center_support_person_num = 20;
+        $center_support_person->center_support_person_requirement = "需要有過救援訓練的人";
+        $center_support_person->arrived = 0;
+        $center_support_person->save();
 
+        $center_support_person_detail = new App\Center_support_person_detail;
+        $center_support_person_detail->center_support_person_detail_id = 1;
+        $center_support_person_detail->center_support_person_detail_name = "蔣清濋";
+        $center_support_person_detail->email = "clear5656@yahoo.com.tw";
+        $center_support_person_detail->phone = "0900100160";
+        $center_support_person_detail->center_support_person_id = 1;
+        $center_support_person_detail->skill = "有醫生執照";
+        $center_support_person_detail->save();
 
-
-        $interviewer = new App\Interviewer;
-        $interviewer->interviewer_id = 1;
-        $interviewer->interview_name = "蔣清濋";
-        $interviewer->email = "clear5656@yahoo.com.tw";
-        $interviewer->phone = "0900100160";
-        $interviewer->interview_id = 1;
-        $interviewer->skill = "修理水電";
-        $interviewer->save();
-
-        $interviewer = new App\Interviewer;
-        $interviewer->interviewer_id = 2;
-        $interviewer->interview_name = "魏伊更";
-        $interviewer->email = "one7625@yahoo.com.tw";
-        $interviewer->phone = "0900200260";
-        $interviewer->interview_id = 1;
-        $interviewer->skill = "有護士執照";
-        $interviewer->save();
-
-        $interviewer = new App\Interviewer;
-        $interviewer->interviewer_id = 3;
-        $interviewer->interview_name = "余世瞭";
-        $interviewer->email = "fishfood@yahoo.com.tw";
-        $interviewer->phone = "0900300360";
-        $interviewer->interview_id = 1;
-        $interviewer->skill = "當過消防員";
-        $interviewer->save();
-
-        $interviewer = new App\Interviewer;
-        $interviewer->interviewer_id = 4;
-        $interviewer->interview_name = "游黛佳";
-        $interviewer->email = "bring5489@yahoo.com.tw";
-        $interviewer->phone = "0900400460";
-        $interviewer->interview_id = 1;
-        $interviewer->skill = "救生員";
-        $interviewer->save();
-
-        $interviewer = new App\Interviewer;
-        $interviewer->interviewer_id = 5;
-        $interviewer->interview_name = "柯綺倫";
-        $interviewer->email = "wheel885@yahoo.com.tw";
-        $interviewer->phone = "0900500560";
-        $interviewer->interview_id = 1;
-        $interviewer->skill = "修車";
-        $interviewer->save();
+        $center_support_person_detail = new App\Center_support_person_detail;
+        $center_support_person_detail->center_support_person_detail_id = 2;
+        $center_support_person_detail->center_support_person_detail_name = "魏伊更";
+        $center_support_person_detail->email = "one7625@yahoo.com.tw";
+        $center_support_person_detail->phone = "0900200260";
+        $center_support_person_detail->center_support_person_id = 1;
+        $center_support_person_detail->skill = "有護士執照";
+        $center_support_person_detail->save();
+//
+        $center_support_person_detail = new App\Center_support_person_detail;
+        $center_support_person_detail->center_support_person_detail_id = 3;
+        $center_support_person_detail->center_support_person_detail_name = "余世瞭";
+        $center_support_person_detail->email = "fishfood@yahoo.com.tw";
+        $center_support_person_detail->phone = "0900300360";
+        $center_support_person_detail->center_support_person_id = 2;
+        $center_support_person_detail->skill = "當過消防員";
+        $center_support_person_detail->save();
+//
+//        $center_support_person_detail = new App\Center_support_person_detail;
+//        $center_support_person_detail->center_support_person_detail_id = 4;
+//        $center_support_person_detail->center_support_person_detail_name = "游黛佳";
+//        $center_support_person_detail->email = "bring5489@yahoo.com.tw";
+//        $center_support_person_detail->phone = "0900400460";
+//        $center_support_person_detail->center_support_person_id = 1;
+//        $center_support_person_detail->skill = "救生員";
+//        $center_support_person_detail->save();
+//
+//        $center_support_person_detail = new App\Center_support_person_detail;
+//        $center_support_person_detail->center_support_person_detail_id = 5;
+//        $center_support_person_detail->center_support_person_detail_name = "柯綺倫";
+//        $center_support_person_detail->email = "wheel885@yahoo.com.tw";
+//        $center_support_person_detail->phone = "0900500560";
+//        $center_support_person_detail->center_support_person_id = 1;
+//        $center_support_person_detail->skill = "修車";
+//        $center_support_person_detail->save();
 
 
 

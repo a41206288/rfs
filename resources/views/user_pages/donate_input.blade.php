@@ -71,8 +71,38 @@
             <tbody>
             @if (isset($center_support_products) )
                 @foreach ($center_support_products as $center_support_product )
-                <tr class="btn btn-block btn-default btn-sm"><td>{!!$center_support_product->product_total_amount_id!!}</td><td width="20%">{!!$center_support_product->product_name!!} </td>
-                    <td width="10%"></td><td width="10%">{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td></tr>
+                <tr class="btn btn-block btn-default btn-sm">
+                    <td>{!!$center_support_product->product_total_amount_id!!}</td>
+                    <td width="20%">{!!$center_support_product->product_name!!} </td>
+                    <td width="10%"></td><td width="10%">
+                        {!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}
+                        <div style="display: none">
+                            {!!$n = $center_support_product->center_support_product_amount!!}
+                        </div>
+                    </td><td><table>
+
+                            @foreach ($donates as $donate )
+                                @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id
+                                && $donate->arrived == 0)
+                                    <div style="display: none">
+                                        {!!$n = $n - $donate->donate_amount!!}
+                                        </div>
+                           <tr>
+
+                                   <td>{!!$donate->lname!!} 先生/小姐 已捐贈 {!!$donate->donate_amount." ".$center_support_product->unit!!}</td>
+
+                           </tr>
+
+                            @endif
+                            @endforeach
+                                <tr>
+                                    <td>
+                                        目前尚須 {!!$n." ".$center_support_product->unit!!}
+                                    </td>
+
+                                </tr>
+                        </table></td></tr>
+
                 @endforeach
             @endif
             </tbody>

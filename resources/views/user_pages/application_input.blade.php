@@ -63,9 +63,13 @@
     <div class="col-xs-6 col-sm-4 col-md-4" >
         <div style="height:400px;width:100%;overflow:auto;">
             <table class="btn-group-vertical" id="needed">
-                <thead><tr><td colspan="2"><b>需求人員數</b></td></tr></thead>
+                <thead><tr><td colspan="2"><b>應徵志工種類</b>(請在此選擇欲應徵的志工種類)</td></tr></thead>
                 <tbody>
-                <tr><td></td><td>10</td></tr>
+                @if(isset($center_support_people))
+                    @foreach($center_support_people as $center_support_person)
+                        <tr class="btn btn-block btn-default btn-sm"><td></td><td>{!!$center_support_person->center_support_person_requirement ." ". $center_support_person->center_support_person_num!!} 人</td></tr>
+                    @endforeach
+                @endif
                 </tbody>
             </table>
         </div>

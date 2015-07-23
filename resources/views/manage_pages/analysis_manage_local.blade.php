@@ -19,7 +19,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>地點</th><th>嚴重程度</th><th>預估傷亡人數</th><th>現場狀況</th><th>評估時間</th><th>指派人員</th>
+            <th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估時間</th><th>指派人員</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
         <tr>
             <td>{!!$mission_new_location->location!!}</td>
             <td>{!!$mission_new_location->severe_level!!}</td>
-            <td>{!!$mission_new_location->victim_number!!}</td>
+            <td>{!!$mission_new_location->victim_number!!} 人</td>
             <td>{!!$mission_new_location->situation!!}</td>
             <td>{!!$mission_new_location->analysis_time!!}</td>
             <td>

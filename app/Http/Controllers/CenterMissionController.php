@@ -19,8 +19,6 @@ class CenterMissionController extends Controller {
 	 */
 	public function index()
 	{
-        $mission_lists = DB::table('mission_lists')->get();
-
                 $mission_lists = DB::table('mission_lists')->get();
 
                 //取出各任務的通報內容

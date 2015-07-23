@@ -96,7 +96,7 @@
         </div><!-- /.modal -->
         <table class="table table-bordered">
             <thead>
-                <tr><th>地點</th><th>嚴重程度</th><th>預估傷亡人數</th><th>現場狀況</th><th>評估時間</th><th>修改</th></tr>
+                <tr><th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估時間</th><th>修改</th></tr>
             </thead>
             <tbody>
             @foreach ($mission_new_locations as $mission_new_location)
@@ -108,7 +108,7 @@
 
                         <td>{!!$mission_new_location->location!!}</td>
                         <td>{!!$mission_new_location->severe_level!!}</td>
-                        <td>{!!$mission_new_location->victim_number!!}</td>
+                        <td>{!!$mission_new_location->victim_number!!} 人</td>
                         <td>{!!$mission_new_location->situation!!}</td>
                         <td>{!!$mission_new_location->analysis_time!!}</td>
                         <td><button class="btn btn-link btn-sm"data-toggle="modal" data-target="#updateLocalBlock{!!$mission_new_location->mission_new_locations_id!!}">修改</button></td>
