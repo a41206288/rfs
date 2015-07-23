@@ -79,14 +79,16 @@
                                                 <div class="modal fade" id="supportPeopleBlock{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
-                                                            {!! Form::open(array('url' => 'mission/manage/supportPeople', 'method' => 'post','class' => 'form-horizontal')) !!}
+                                                            {!! Form::open(array('url' => 'mission/manage/support', 'method' => 'post','class' => 'form-horizontal')) !!}
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                                 <h4 class="modal-title" id="myModalLabel"><b>需求人員內容</b></h4>
+                                                                {!! Form::hidden('support_type','1') !!}
                                                             </div>
                                                             <div class="modal-body">
                                                                 <table class="table table-bordered">
                                                                     <tr><th>任務編號</th><td>{!!$mission_list->mission_list_id!!}</td><th>任務名稱</th><td>{!!$mission_list->mission_name!!}</td></tr>
+                                                                    {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
                                                                     <tr><th>脫困組人數</th><td>{!!$relieverUsersArrays[$mission_list->mission_list_id]!!} 人</td>
                                                                     <th>醫療組人數</th><td>{!!$emtUsersArrays[$mission_list->mission_list_id]!!} 人</td></tr>
                                                                     <tr><th>所屬通報數量</th><td>{!!$mission_total_Arrays[$mission_list->mission_list_id]!!} 則</td>
@@ -110,16 +112,18 @@
 
                                                                 </table>
                                                                 <table class="table table-bordered">
-                                                                    <tr class=""><th colspan="4">需求人員</th></tr>
+                                                                    <tr class=""><th colspan="5">需求人員</th></tr>
                                                                     <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心待命人員數</th><th>欲分配人數</th></tr>
 
                                                                     <tr><td>醫療組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."emt_num"]!!} 人</td>
                                                                         <td class="text-right">{!!$emtFreeUsers[0]->total!!} 人</td>
-                                                                        <td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>
+                                                                        {{--<th>已分配數量</th>--}}
+                                                                        <td>{!! Form::number('emt', 0, ['id' =>  'emt', 'class' => 'form-control text-right','min'=>'0']) !!}</td></tr>
 
                                                                     <tr><td>脫困組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."reliever_num"]!!} 人</td>
                                                                         <td class="text-right">{!!$relieverFreeUsers[0]->total!!} 人</td>
-                                                                        <td>{!! Form::text('reliever','',['class' => 'form-control text-right']) !!}</td></tr>
+                                                                        {{--<th>已分配數量</th>--}}
+                                                                        <td>{!! Form::number('reliever', 0, ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td></tr>
                                                                 </table>
                                                             </div>
                                                             <div class="modal-footer">
@@ -140,19 +144,26 @@
                                         <div class="modal fade" id="supportProductsBlock{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal')) !!}
+                                                    {!! Form::open(array('url' => 'mission/manage/support', 'method' => 'post','class' => 'form-horizontal')) !!}
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                         <h4 class="modal-title" id="myModalLabel"><b>需求物資清單</b></h4>
+                                                        {!! Form::hidden('support_type','0') !!}
                                                     </div>
                                                     <div class="modal-body">
                                                         <table class="table table-bordered" >
                                                             <tr><th>任務編號</th><td>{!!$mission_list->mission_list_id!!}</td><th>任務名稱</th><td>{!!$mission_list->mission_name!!}</td></tr>
+                                                            {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
                                                             <tr><th>脫困組人數</th><td>{!!$relieverUsersArrays[$mission_list->mission_list_id]!!} 人</td>
                                                             <th>醫療組人數</th><td>{!!$emtUsersArrays[$mission_list->mission_list_id]!!} 人</td></tr>
                                                             <tr><th>所屬通報數量</th><td>{!!$mission_total_Arrays[$mission_list->mission_list_id]!!} 則</td>
                                                             <th>現場地點數量</th><td>{!!$mission_new_location_amount_arrays[$mission_list->mission_list_id]['total']!!} 個</td></tr>
-                                                            <tr><th colspan="4">需求物資</th></tr>
+
+
+
+                                                        </table>
+                                                        <table class="table table-bordered">
+                                                            <tr><th colspan="5">需求物資</th></tr>
                                                             <tr><th>需求物資名稱</th><th class="text-right">需求數量</th><th>中心庫存數</th><th>欲分配數量</th></tr>
                                                             @if(isset($mission_support_product_Arrays[$mission_list->mission_list_id]))
                                                                 @for($k=1;$k<=count($mission_support_product_Arrays[$mission_list->mission_list_id]);$k++)
@@ -163,15 +174,14 @@
                                                                         </td>
                                                                         <td class="text-right">{!!$center_amounts_arrays[$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['product_total_amount_id']]!!}
                                                                             {!!$mission_support_product_Arrays[$mission_list->mission_list_id][$k]['unit']!!}</td>
-                                                                        <td>{!! Form::text('emt','',['class' => 'form-control text-right']) !!}</td></tr>
+                                                                        {{--<th>已分配數量</th>--}}
+                                                                        <td> {!! Form::number($mission_support_product_Arrays[$mission_list->mission_list_id][$k]['product_total_amount_id'], 0, [ 'class' => 'form-control text-right','min'=>'0']) !!}</td></tr>
 
                                                                 @endfor
                                                             @else
                                                                 <tr><td></td>
                                                                     <td colspan="3">現場尚未分析</td></tr>
                                                             @endif
-
-
                                                         </table>
                                                     </div>
                                                     <div class="modal-footer">

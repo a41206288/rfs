@@ -10,7 +10,7 @@ class PagesController extends Controller {
 
 	public function index()
 	{
-		return view('user_pages.home');
+		return view('manage_pages.people_manage_resource_c');
 	}
 	public function show()
 	{

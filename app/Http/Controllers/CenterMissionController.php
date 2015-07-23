@@ -219,7 +219,7 @@ class CenterMissionController extends Controller {
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['product_name'] = $mission_support_product->product_name;
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['unit'] = $mission_support_product->unit;
         }
-        //dd($mission_support_product_Array);
+//        dd($mission_support_product_Array);
 
 //        dd($mission_support_product_Arrays);
 
@@ -323,9 +323,27 @@ class CenterMissionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+//        $inputs=$request->except('_token','support_type','mission_list_id');
+//        dd($inputs);
+        $people = 1;
+        $product = 0;
+
+        $support_type=$request->input('support_type');
+        $mission_list_id=$request->input('mission_list_id');
+        if($support_type==$people)
+        {
+            $emt=$request->input('emt');
+            $reliever=$request->input('reliever');
+            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['assign_emt_num' => $emt,'assign_reliever_num'=>$reliever]);
+        }
+        else if($support_type==$product)
+        {
+            $products=$request->except('_token','support_type','mission_list_id');
+        }
+
+        return redirect()->route('administratorPanel');
 	}
 
 	/**

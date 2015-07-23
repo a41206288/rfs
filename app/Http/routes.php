@@ -32,6 +32,8 @@ Route::get('logout', 'UsersLoginController@logout');
 
 //-------------------------------------------分隔線-------------------------------------------------------
 
+//測試用
+
 //下面請根據權限放至各Panel下  (此為暫放)
 
 Route::get('analysis/manage', 'AnalysisAnalysisController@index');
@@ -39,6 +41,13 @@ Route::get('report/EMT', 'EmtReportController@index');
 Route::post('report/reliever', 'EmtReportController@create');
 Route::get('report/reliever', 'RelieverReportController@index');
 Route::post('report/reliever', 'RelieverReportController@create');
+Route::get('victim/EMT', 'EmtVictimController@index');
+
+Route::get('resource/manage/product/local', 'ResourceLocalProductController@index');
+Route::get('resource/manage/product/center', 'ResourceCenterProductController@index');
+Route::get('resource/manage/people/local', 'ResourceLocalPeopleController@index');
+Route::get('resource/manage/people/center', 'ResourceCenterPeopleController@index');
+
 //Route::get('analysis/manage', 'AnalysisController@index');
 
 //Route::get('mission/manage/local', 'MissionLocalController@index');
@@ -75,8 +84,9 @@ Route::group([
 
         //mission manage()
         //中央指揮官
-        Route::post('mission/manage', 'CenterMissionController@update');
+
         Route::get('mission/manage', 'CenterMissionController@index');
+        Route::post('mission/manage/support', 'CenterMissionController@store');
 
 //        Route::post('mission/manage/supportPeople', 'CenterMissionController@store');
 //        Route::post('mission/manage/supportProducts', 'CenterMissionController@store');

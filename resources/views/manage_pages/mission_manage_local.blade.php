@@ -51,7 +51,37 @@
             @endif
 
             @if($i==1 && isset($local_reports_arrays[1]))
-                <td><button class="btn-circle btn-danger">人員</button></td>
+                        <td><button class="btn-circle btn-danger" data-toggle="modal" data-target="#emt">
+                                人員
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="emt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width:  800px">
+                                {{--{!! Form::open(array('url' => 'analysis/manage/local', 'method' => 'post','class' => 'form-horizontal')) !!}--}}
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="myModalLabel"><b>增援需求</b></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered">
+                                            <tr><th>時間</th><td></td><th>欲增援人數</th><td></td></tr>
+                                            <tr><th colspan="4">原因/備註</th></tr>
+                                            <tr><td colspan="4"></td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+                                        {!! Form::submit('向中央通報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                    </div>
+                                    {{--{!! Form::close() !!}--}}
+                                </div>
+                            </div>
+                        </div>
+
+
             @else
                 <td></td>
             @endif
@@ -116,9 +146,14 @@
                                                     {!! Form::hidden('mission_new_locations_id',$mission_new_location->mission_new_locations_id) !!}
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        <h4 class="modal-title" id="myModalLabel"><b>分派人員</b></h4>
+                                                        <h4 class="modal-title" id="myModalLabel"><b>增援需求</b></h4>
                                                     </div>
                                                     <div class="modal-body ">
+                                                        <table class="table table-bordered">
+                                                            <tr><th>時間</th><td></td><th>欲增援人數</th><td></td></tr>
+                                                            <tr><th colspan="4">原因/備註</th></tr>
+                                                            <tr><td colspan="4"></td></tr>
+                                                        </table>
                                                         <div class="row">
                                                             <div class="col-md-5" id="busy{!!$mission_new_location->mission_new_locations_id!!}">
                                                                 <b>執行任務人員</b>
@@ -198,7 +233,7 @@
     </div>
     <div class="col-xs-7 col-sm-6 col-md-5">
         <h4><b>中央通知</b></h4>
-        還不知道要放什麼~~
+        {{--還不知道要放什麼~~--}}
         {{--<div class="tab-content">--}}
         {{--<div class="tab-pane active" id="news">--}}
         {{--<blockquote class="blockquote-danger">--}}

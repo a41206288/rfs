@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ResourceDonateController extends Controller {
+class ResourceLocalPeopleController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ResourceDonateController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        return view('manage_pages.people_manage_resource_l');
 	}
 
 	/**

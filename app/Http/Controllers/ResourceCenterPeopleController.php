@@ -2,10 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-class RelieverReportController extends Controller {
+
+class ResourceCenterPeopleController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RelieverReportController extends Controller {
 	 */
 	public function index()
 	{
-        return view('manage_pages.report_reliever');
+        return view('manage_pages.people_manage_resource_c');
 	}
 
 	/**
@@ -24,7 +24,7 @@ class RelieverReportController extends Controller {
 	 */
 	public function create()
 	{
-        return Redirect::to('report/reliever');
+		//
 	}
 
 	/**
