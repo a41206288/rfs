@@ -63,10 +63,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <dl class="dl-horizontal">
-                                            <dt>任務名稱</dt>
-                                            <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                            <dt>負責人</dt>
-                                            <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
+                                            <dt>需求人數</dt>
+                                            <dd>{!! Form::text('require_number','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                                            <dt>需求人員資格內容</dt>
+                                            <dd> {!! Form::text('content', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
 
                                         </dl>
 
