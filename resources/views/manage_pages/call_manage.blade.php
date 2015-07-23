@@ -111,6 +111,7 @@
                     @foreach ($missions as $mission )
                         <tr>
                             @if (isset($mission) )
+
                                 <td width="10%">{!! $mission->mission_id!!}</td>
                                 <td width="20%">{!! $mission->mission_content!!}</td>
                                 <td width="20%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>

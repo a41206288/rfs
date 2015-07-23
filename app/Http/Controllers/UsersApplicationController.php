@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersApplicationController extends Controller {
 
@@ -15,7 +16,10 @@ class UsersApplicationController extends Controller {
      */
     public function index()
     {
-        return view('user_pages.application_input');
+        $center_support_people = DB::table('center_support_people')->get();
+
+        return view('user_pages.application_input')
+            ->with('center_support_people', $center_support_people);
     }
 
     /**

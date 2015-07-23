@@ -23,8 +23,15 @@ class UsersDonateController extends Controller {
             ->orderBy('center_support_product_amount','desc')
             ->get();
 //        dd($center_support_products);
+
+        $donates = DB::table('donate_products')
+            ->join('donates','donates.donate_id','=','donate_products.donate_id')
+            ->get();
+//        dd($donates);
+
         return view('user_pages.donate_input')
-            ->with('center_support_products', $center_support_products);
+            ->with('center_support_products', $center_support_products)
+            ->with('donates', $donates);
 	}
 
 	/**

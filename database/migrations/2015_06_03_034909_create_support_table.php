@@ -45,6 +45,7 @@ class CreateSupportTable extends Migration {
             $table->unsignedInteger('donate_id');
             $table->integer('donate_amount');
             $table->unsignedInteger('product_total_amount_id');
+            $table->boolean('arrived');
             $table->timestamps();
             //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
         });
@@ -53,6 +54,16 @@ class CreateSupportTable extends Migration {
             $table->increments('center_support_product_id');
             $table->unsignedInteger('product_total_amount_id');
             $table->integer('center_support_product_amount');
+            $table->timestamps();
+            //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
+        });
+
+        Schema::create('center_support_product_modifies', function(Blueprint $table){
+            $table->increments('center_support_product_modify_id');
+            $table->unsignedInteger('product_total_amount_id');
+            $table->integer('modify_amount');
+            $table->integer('old_amount');
+            $table->unsignedInteger('id');
             $table->timestamps();
             //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
         });
@@ -77,23 +88,36 @@ class CreateSupportTable extends Migration {
             //$table->foreign('donate_id')->references('donate_id')->on('donates');
         });
 
-        Schema::create('interviews', function(Blueprint $table){
-            $table->increments('interview_id');
-            $table->integer('interview_goal');
+        Schema::create('center_support_people', function(Blueprint $table){
+            $table->increments('center_support_person_id');
+            $table->integer('center_support_person_num');
+            $table->text('center_support_person_requirement');
+            $table->boolean('arrived');
             $table->timestamps();
         });
 
-        Schema::create('interviewers', function(Blueprint $table){
-            $table->increments('interviewer_id');
-            $table->string('interview_name');
-            $table->string('email')->unique();
+        Schema::create('center_support_person_details', function(Blueprint $table){
+            $table->increments('center_support_person_detail_id');
+            $table->string('center_support_person_detail_name');
+            $table->string('email');//->unique()
             $table->string('phone');
-            $table->unsignedInteger('interview_id');
+            $table->unsignedInteger('center_support_person_id');
             $table->text('skill');
             $table->timestamps();
             //$table->foreign('interviewer_id')->references('interviewer_id')->on('interviews');
         });
+
+        Schema::create('center_support_person_modifies', function(Blueprint $table){
+            $table->increments('center_support_person_modify_id');
+            $table->text('center_support_person_requirement');
+            $table->integer('modify_num');
+            $table->integer('old_num');
+            $table->timestamps();
+            //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
+        });
 	}
+
+
 
 	/**
 	 * Reverse the migrations.
@@ -107,10 +131,14 @@ class CreateSupportTable extends Migration {
         Schema::drop('donates');
         Schema::drop('donate_products');
         Schema::drop('center_support_products');
+        Schema::drop('center_support_product_modifies');
         Schema::drop('buys');
         Schema::drop('companies');
-        Schema::drop('interviews');
-        Schema::drop('interviewers');
+        Schema::drop('center_support_people');
+        Schema::drop('center_support_person_details');
+        Schema::drop('center_support_person_modifies');
+//        Schema::drop('interviews');
+//        Schema::drop('interviewers');
 
 	}
 
