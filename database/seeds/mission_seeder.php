@@ -199,6 +199,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '公園旁';
         $mission->mission_list_id = 2;
+        $mission->mission_new_locations_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
@@ -211,6 +212,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '逢甲路10號';
         $mission->mission_list_id = 2;
+        $mission->mission_new_locations_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -223,6 +225,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '北屯區';
         $mission->location = '青島路四段9號';
         $mission->mission_list_id = 3;
+        $mission->mission_new_locations_id = 13;
         $mission->save();
 
         $mission = new App\Mission;
@@ -249,6 +252,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '距一天橋10公尺左右';
         $mission->mission_list_id = 4;
+        $mission->mission_new_locations_id = 14;
         $mission->save();
 
         $mission = new App\Mission;
@@ -261,6 +265,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '朝陽橋';
         $mission->mission_list_id = 2;
+        $mission->mission_new_locations_id = 18;
         $mission->save();
 
         $mission = new App\Mission;
@@ -287,6 +292,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '中正區';
         $mission->location = '杭州南路一段55號';
         $mission->mission_list_id = 7;
+        $mission->mission_new_locations_id = 26;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -313,6 +319,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '苓雅區';
         $mission->location = '仁德街';
         $mission->mission_list_id = 6;
+        $mission->mission_new_locations_id = 22;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -326,6 +333,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '前金區';
         $mission->location = '85大樓周圍';
         $mission->mission_list_id = 6;
+        $mission->mission_new_locations_id = 23;
         $mission->save();
 
         $mission = new App\Mission;
@@ -351,6 +359,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
         $mission->location = '距捷運站5公尺處';
         $mission->mission_list_id = 5;
+        $mission->mission_new_locations_id = 19;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 

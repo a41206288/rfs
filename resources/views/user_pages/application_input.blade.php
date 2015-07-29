@@ -26,13 +26,13 @@
                 <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
             </tr>
             <tr>
-                <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
+                <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control', 'required']) !!}</td>
             </tr>
             <tr>
-                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone']) !!}</td>
+                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
             </tr>
             <tr>
-                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email']) !!}</td>
+                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
             </tr>
 
             <tr>
@@ -53,7 +53,10 @@
             <tr>
                 <td colspan="2"><font color="#ff0b11">※</font> 此欄為選填</td>
             </tr>
-
+            <tr><td colspan="2"></td></tr>
+            <tr><td colspan="2"></td></tr>
+            <tr><td colspan="2"><b>您選擇的志工種類</b></td></tr>
+            <tr><td><input type="hidden" value="-1" id="support_id"/></td><td id="choose">尚未選擇</td></tr>
         </table>
         <div class="text-center">
             <br><br><br><br><br>
@@ -62,12 +65,15 @@
     </div>
     <div class="col-xs-6 col-sm-4 col-md-4" >
         <div style="height:400px;width:100%;overflow:auto;">
-            <table class="btn-group-vertical" id="needed">
+            <table class="btn-group-vertical">
                 <thead><tr><td colspan="2"><b>應徵志工種類</b>(請在此選擇欲應徵的志工種類)</td></tr></thead>
-                <tbody>
+                <tbody id="needed">
                 @if(isset($center_support_people))
                     @foreach($center_support_people as $center_support_person)
-                        <tr class="btn btn-block btn-default btn-sm"><td></td><td>{!!$center_support_person->center_support_person_requirement ." ". $center_support_person->center_support_person_num!!} 人</td></tr>
+                        <tr class="btn btn-block btn-default btn-sm">
+                            <td><input type="hidden" value="{!! $center_support_person->center_support_person_id !!}"/></td>
+                            <td>{!!$center_support_person->center_support_person_requirement ." ". $center_support_person->center_support_person_num!!} 人</td>
+                        </tr>
                     @endforeach
                 @endif
                 </tbody>
@@ -80,24 +86,31 @@
 
 @section('javascript')
     <script>
+        $('#needed tr').click(function () {
+            var rowIndex = $('#needed tr').index(this); //取得tr的index
+            var choose_type = $('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text().slice(2);
+            var string_index = choose_type.search("的人");
+            choose_type = choose_type.slice(0,string_index);
+            $('#choose').text(choose_type);
+            $('#support_id').attr("value", $('#needed').find('tr').eq(rowIndex).find('td:eq(0)').find('input').attr("value"));
+        });
         function checkForm()
         {
-            if($('#phone').val() == "" && $('#email').val()=="")
-            {
-                alert("至少填寫1項聯絡方式");
-                $('#phone').focus();
-                return false;
-            }
             if( !isPhone( $('#phone').val() ) )
             {
                 $('#phone').focus();
                 return false;
             }
-            if( $('#email').val() != "" && !isEmail( $('#email').val() ) )
+            if( !isEmail( $('#email').val() ) )
             {
                 $('#email').focus();
                 return false;
             }
+            if($('#choose').text() == "尚未選擇")
+        {
+            alert("請在右方的志工種類中，選擇您要應徵的類型");
+            return false;
+        }
             return true;
         }
 
@@ -132,7 +145,7 @@
         }
 
         function isEmail(email) {
-            var regex = /^[A-Za-z0-9]\w*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+            var regex = /^[A-Za-z0-9]\w*[A-Za-z0-9]\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
             if ( !regex.test(email) ) {
                 alert("信箱格式不正確");
                 return false;
