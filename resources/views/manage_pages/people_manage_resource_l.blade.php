@@ -2,6 +2,10 @@
 @section('title')
     人員管理(地方)
 @endsection
+@section('link')
+    <li>{!! Html::link('resource/manage/product/local', '物資管理') !!}</li>
+    <li>{!! Html::link('resource/manage/people/local', '人員管理') !!}</li>
+@endsection
 @section('content')
     <div class="col-xs-8 col-sm-6 col-md-6" >
     {{--1.增援人員需求 (人數、人員背景) 地方指揮官--}}

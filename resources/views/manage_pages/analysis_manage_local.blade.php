@@ -124,7 +124,7 @@
 
 
 @section('javascript')
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
         function AllowDrop(event){
             event.preventDefault();

@@ -64,9 +64,10 @@
                                     <div class="modal-body">
                                         <dl class="dl-horizontal">
                                             <dt>需求人數</dt>
-                                            <dd>{!! Form::text('require_number','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
+                                            <dd>{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right', 'required','min'=>'0']) !!}</dd> <br>
+
                                             <dt>需求人員資格內容</dt>
-                                            <dd> {!! Form::text('content', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
+                                            <dd> {!! Form::textarea('content', '', ['id' =>  'leader','class' => 'form-control', 'required','style'=>'resize: vertical']) !!}<br>
 
                                         </dl>
 
@@ -138,9 +139,4 @@
 
     </div>
 
-@endsection
-@section('javascript')
-    <link href="/css/jquery-ui.css" rel="stylesheet">
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 @endsection

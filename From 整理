@@ -1,0 +1,31 @@
+set input
+    'id' => 'id',
+    'class' => 'form-control', 
+    'placeholder' => '', 
+    'required'
+    'style'=>'',
+
+same name 
+   name: name[]
+
+text
+    {!! Form::text('name','default',[set input]) !!}
+
+textarea
+    {!! Form::textarea('name','default',[set input]) !!}
+         'style'=>'resize: vertical'
+         'style'=>'resize:none'
+
+number
+    {!! Form::number('name', 'default', [set input]) !!}
+        'min'=>'0'
+        'max'=>''
+
+select
+    {!! Form::select('name', array('輕度' => '輕度', '中度' => '中度', '重度' => '重度'), '輕度', [set input]) !!}
+
+check box
+    {!! Form::checkbox('name', 'value')!!}
+
+hidden
+    {!! Form::hidden('name','value') !!}

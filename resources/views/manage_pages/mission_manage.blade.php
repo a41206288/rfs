@@ -212,7 +212,6 @@
 
 
 @section('javascript')
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
     <script language="JavaScript">
         $('.header').click(function(){

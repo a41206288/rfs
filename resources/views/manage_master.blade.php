@@ -83,6 +83,9 @@
     @yield('script')
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
+    <link href="/css/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
     @yield('javascript')
 
   </body>

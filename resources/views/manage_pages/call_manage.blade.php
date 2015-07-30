@@ -203,9 +203,7 @@
 @endsection
 
 @section('javascript')
-    <link href="/css/jquery-ui.css" rel="stylesheet">
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
 
     <script language="JavaScript">
         $('.header_no_next').click(function(){
