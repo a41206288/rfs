@@ -62,38 +62,38 @@ class mission_seeder extends Seeder{
         //人員需求
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 2;
-        $mission_support_person->emt_num = 10;
-        $mission_support_person->reliever_num = 20;
+        $mission_support_person->local_emt_num = 10;
+        $mission_support_person->local_reliever_num = 20;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 3;
-        $mission_support_person->emt_num = 0;
-        $mission_support_person->reliever_num = 10;
+        $mission_support_person->local_emt_num = 0;
+        $mission_support_person->local_reliever_num = 10;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 4;
-        $mission_support_person->emt_num = 5;
-        $mission_support_person->reliever_num = 0;
+        $mission_support_person->local_emt_num = 5;
+        $mission_support_person->local_reliever_num = 0;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 5;
-        $mission_support_person->emt_num = 30;
-        $mission_support_person->reliever_num = 20;
+        $mission_support_person->local_emt_num = 30;
+        $mission_support_person->local_reliever_num = 20;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 6;
-        $mission_support_person->emt_num = 10;
-        $mission_support_person->reliever_num = 5;
+        $mission_support_person->local_emt_num = 10;
+        $mission_support_person->local_reliever_num = 5;
         $mission_support_person->save();
 
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_list_id = 7;
-        $mission_support_person->emt_num = 0;
-        $mission_support_person->reliever_num = 0;
+        $mission_support_person->local_emt_num = 0;
+        $mission_support_person->local_reliever_num = 0;
         $mission_support_person->save();
 
         //物資支援
@@ -592,19 +592,19 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 7;
+        $mission->mission_new_locations_id = 1;
         $mission->mission_list_id = 3;
         $mission->location = '醫療組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 8;
+        $mission->mission_new_locations_id = 2;
         $mission->mission_list_id = 3;
         $mission->location = '物資資源組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 9;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 3;
         $mission->victim_number = 5;
         $mission->situation = '火勢延燒至一旁住戶';
@@ -613,7 +613,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 10;
+        $mission->mission_new_locations_id = 4;
         $mission->mission_list_id = 3;
         $mission->victim_number = 0;
         $mission->situation = '住家崩塌之入口處挖開沒有崩塌之危險';
@@ -622,19 +622,19 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 11;
+        $mission->mission_new_locations_id = 1;
         $mission->mission_list_id = 4;
         $mission->location = '醫療組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 12;
+        $mission->mission_new_locations_id = 2;
         $mission->mission_list_id = 4;
         $mission->location = '物資資源組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 13;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 4;
         $mission->victim_number = 10;
         $mission->situation = '各出入口皆坍塌嚴重，需較大型開挖工具';
@@ -643,7 +643,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 14;
+        $mission->mission_new_locations_id = 4;
         $mission->mission_list_id = 4;
         $mission->victim_number = 10;
         $mission->situation = '路面裂痕不深，為了避免裂痕加深應封鎖路段';
@@ -652,7 +652,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 15;
+        $mission->mission_new_locations_id = 5;
         $mission->mission_list_id = 4;
         $mission->victim_number = 10;
         $mission->situation = '餐廳仍在燃燒，裡面的客人已全部逃出';
@@ -661,19 +661,19 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 16;
+        $mission->mission_new_locations_id = 1;
         $mission->mission_list_id = 5;
         $mission->location = '醫療組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 17;
+        $mission->mission_new_locations_id = 2;
         $mission->mission_list_id = 5;
         $mission->location = '物資資源組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 18;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 5;
         $mission->victim_number = 0;
         $mission->situation = '每個出入口皆不易開鑿，且尚未確認是否有受困者';
@@ -682,7 +682,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 19;
+        $mission->mission_new_locations_id = 4;
         $mission->mission_list_id = 5;
         $mission->victim_number = 2;
         $mission->situation = '火勢不大且附近有消防栓可以使用';
@@ -691,19 +691,19 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 20;
+        $mission->mission_new_locations_id = 1;
         $mission->mission_list_id = 6;
         $mission->location = '醫療組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 21;
+        $mission->mission_new_locations_id = 2;
         $mission->mission_list_id = 6;
         $mission->location = '物資資源組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 22;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 6;
         $mission->victim_number = 10;
         $mission->situation = '抵達時只剩一點火，無延燒至一旁住宅';
@@ -712,7 +712,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 23;
+        $mission->mission_new_locations_id = 4;
         $mission->mission_list_id = 6;
         $mission->victim_number = 10;
         $mission->situation = '道路多處嚴重變形，車輛無法通過';
@@ -721,19 +721,22 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 24;
+        $mission->mission_new_locations_id = 1;
         $mission->mission_list_id = 7;
         $mission->location = '醫療組';
+        $mission->executive_require_people_num = 10;
+        $mission->executive_require_reason = "傷患過多，無法及時處理";
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 25;
+        $mission->mission_new_locations_id = 2;
         $mission->mission_list_id = 7;
         $mission->location = '物資資源組';
+
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 26;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 7;
         $mission->victim_number = 16;
         $mission->situation = '持續從地面慎出水，正在尋找此段水源開關';
@@ -742,25 +745,29 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 27;
+        $mission->mission_new_locations_id = 4;
         $mission->mission_list_id = 7;
         $mission->victim_number = 0;
         $mission->situation = '確認濃煙來源為此棟5樓之機房';
         $mission->location = '台新銀行';
         $mission->analysis_time = date('Y-m-d H:i:s');
+        $mission->executive_require_people_num = 20;
+        $mission->executive_require_reason = "支援人手不足，濃煙擴散持續增大";
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 28;
+        $mission->mission_new_locations_id = 5;
         $mission->mission_list_id = 7;
         $mission->victim_number = 10;
         $mission->situation = '多處管線斷裂嚴重，需要專業水電人員修理';
         $mission->location = '光華商場';
         $mission->analysis_time = date('Y-m-d H:i:s');
+        $mission->executive_require_people_num = 30;
+        $mission->executive_require_reason = "支援人手不足，可能會導致更多人員傷亡";
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 29;
+        $mission->mission_new_locations_id = 6;
         $mission->mission_list_id = 7;
         $mission->victim_number = 10;
         $mission->situation = '駕駛與2名乘客昏迷並受困於車中';
@@ -769,7 +776,7 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 30;
+        $mission->mission_new_locations_id = 7;
         $mission->mission_list_id = 7;
         $mission->victim_number = 10;
         $mission->situation = '出入口開鑿進行順利';
@@ -862,8 +869,8 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
        // $local_report->local_report_id = 6;
-        $local_report->mission_new_locations_id = 3;
-        $local_report->local_report_content = '確認是機房起火並且已控制住火勢';
+        $local_report->mission_new_locations_id = 1;
+        $local_report->local_report_content = '將已從火災現場救出的傷患做了初步處理';
         $local_report->mission_list_id = 2;
         $local_report->id = 45;
         $local_report->save();
@@ -900,8 +907,8 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
        // $local_report->local_report_id = 11;
-        $local_report->mission_new_locations_id = 27;
-        $local_report->local_report_content = '機房內火勢已完全撲滅';
+        $local_report->mission_new_locations_id = 1;
+        $local_report->local_report_content = '目前傷患眾多，無法確定醫療作業完成時間';
         $local_report->mission_list_id = 7;
         $local_report->id = 24;
         $local_report->save();
@@ -932,16 +939,16 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 15;
-        $local_report->mission_new_locations_id = 15;
-        $local_report->local_report_content = '專業救火的人員尚未到達，火勢逐漸變大';
+        $local_report->mission_new_locations_id = 1;
+        $local_report->local_report_content = '已將半數的傷患初步醫療作業完成';
         $local_report->mission_list_id = 4;
         $local_report->id = 28;
         $local_report->save();
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 16;
-        $local_report->mission_new_locations_id = 28;
-        $local_report->local_report_content = '關閉整棟建築之水管管線，正在等待水電人員修理';
+        $local_report->mission_new_locations_id = 1;
+        $local_report->local_report_content = '部分溺水的傷患仍在昏迷中';
         $local_report->mission_list_id = 7;
         $local_report->id = 47;
         $local_report->save();

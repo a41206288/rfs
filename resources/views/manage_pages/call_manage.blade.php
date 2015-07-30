@@ -94,7 +94,8 @@
                         @endif
                     </th>
                     {{--@endforeach--}}
-                    <th width="14%">通報時間</th>
+                    <th width="7%">通報日期</th>
+                    <th width="7%">通報時間</th>
                     <th width="10%">通報人</th>
                     <th width="10%">通報人電話</th>
                     <th width="10%">通報人信箱 </th>
@@ -115,7 +116,9 @@
                                 <td width="10%">{!! $mission->mission_id!!}</td>
                                 <td width="20%">{!! $mission->mission_content!!}</td>
                                 <td width="20%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>
-                                <td width="14%">{!! $mission->created_at!!}</td>
+                                {{--<td width="14%">{!! $mission->created_at!!}</td>--}}
+                                <td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>
+                                <td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>
                                 <td width="10%">{!! $mission->lname.$mission->fname!!}</td>
                                 <td width="10%">{!! $mission->phone!!}</td>
                                 <td width="10%">{!! $mission->email!!}</td>

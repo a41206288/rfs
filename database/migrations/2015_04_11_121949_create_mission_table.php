@@ -25,12 +25,14 @@ class CreateMissionTable extends Migration {
 
         Schema::create('mission_new_locations', function(Blueprint $table)
         {
-            $table->increments('mission_new_locations_id');
+            $table->unsignedInteger('mission_new_locations_id');
             $table->unsignedInteger('mission_list_id');
             $table->string('location');
             $table->enum('severe_level', ['輕度', '中度','重度']);
             $table->text('situation');
             $table->integer('victim_number');
+            $table->integer('executive_require_people_num');
+            $table->text('executive_require_reason');
             $table->timestamp('analysis_time');
             $table->timestamps();
         });
@@ -47,10 +49,10 @@ class CreateMissionTable extends Migration {
         {
             $table->increments('mission_support_person_id');
             $table->unsignedInteger('mission_list_id');
-            $table->integer('emt_num');
-            $table->integer('reliever_num');
-            $table->integer('assign_emt_num')->default(0);
-            $table->integer('assign_reliever_num')->default(0);
+            $table->integer('local_emt_num');
+            $table->integer('local_reliever_num');
+            $table->integer('center_assign_emt_num')->default(0);
+            $table->integer('center_assign_reliever_num')->default(0);
             $table->timestamps();
         });
 

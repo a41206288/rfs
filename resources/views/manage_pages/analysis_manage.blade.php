@@ -29,7 +29,9 @@
                     @if ( is_null($mission->complete_time) )
                         <td>分析未完成</td>
                     @else
-                        <td>分析完成 <br>{!!$mission->complete_time!!}</td>
+                        {{--<td>分析完成 <br>{!!$mission->complete_time!!}</td>--}}
+                        <td >分析完成<br>日期：{{ (new Carbon\Carbon($mission->complete_time))->formatLocalized('%Y/%m/%d')}} <br>時間：{{(new Carbon\Carbon($mission->complete_time))->formatLocalized('%H:%M:%S') }}</td>
+                        {{--<td >時間:{{ (new Carbon\Carbon($mission->complete_time))->formatLocalized('%H:%M:%S') }}</td>--}}
 
                     @endif
                     <td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td>
@@ -96,7 +98,7 @@
         </div><!-- /.modal -->
         <table class="table table-bordered">
             <thead>
-                <tr><th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估時間</th><th>修改</th></tr>
+                <tr><th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估日期</th><th>評估時間</th><th>修改</th></tr>
             </thead>
             <tbody>
             @foreach ($mission_new_locations as $mission_new_location)
@@ -110,7 +112,9 @@
                         <td>{!!$mission_new_location->severe_level!!}</td>
                         <td>{!!$mission_new_location->victim_number!!} 人</td>
                         <td>{!!$mission_new_location->situation!!}</td>
-                        <td>{!!$mission_new_location->analysis_time!!}</td>
+                        {{--<td>{!!$mission_new_location->analysis_time!!}</td>--}}
+                        <td >{{ (new Carbon\Carbon($mission_new_location->analysis_time))->formatLocalized('%Y/%m/%d') }}</td>
+                        <td >{{ (new Carbon\Carbon($mission_new_location->analysis_time))->formatLocalized('%H:%M:%S') }}</td>
                         <td><button class="btn btn-link btn-sm"data-toggle="modal" data-target="#updateLocalBlock{!!$mission_new_location->mission_new_locations_id!!}">修改</button></td>
                         <!-- Modal -->
                         {!! Form::open(array('url' => 'analysis/manage/updateLocation', 'method' => 'post','class' => 'form-horizontal')) !!}

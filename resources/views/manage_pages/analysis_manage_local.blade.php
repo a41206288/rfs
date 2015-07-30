@@ -19,7 +19,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估時間</th><th>指派人員</th>
+            <th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估日期</th><th>評估時間</th><th>指派人員</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,9 @@
             <td>{!!$mission_new_location->severe_level!!}</td>
             <td>{!!$mission_new_location->victim_number!!} 人</td>
             <td>{!!$mission_new_location->situation!!}</td>
-            <td>{!!$mission_new_location->analysis_time!!}</td>
+            {{--<td>{!!$mission_new_location->analysis_time!!}</td>--}}
+            <td >{{ (new Carbon\Carbon($mission_new_location->analysis_time))->formatLocalized('%Y/%m/%d') }}</td>
+            <td >{{ (new Carbon\Carbon($mission_new_location->analysis_time))->formatLocalized('%H:%M:%S') }}</td>
             <td>
                 <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#{!!$mission_new_location->mission_new_locations_id!!}" >
                     分派人員

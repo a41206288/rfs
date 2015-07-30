@@ -26,8 +26,8 @@
         <h4><b>任務管理</b></h4>
         <table class=" table table-bordered">
             {{--<tr><td>組別</td><td>人數</td><td>最新回報</td></tr>--}}
-            <tr ><td rowspan="2">醫療組</td><td rowspan="2">醫療組人數</td><td colspan="3">最新回報  <span class="sign"></span> </td></tr>
-            <tr><td >時間 </td><td>內容</td><td >增援</td></tr>
+            <tr ><td rowspan="2">醫療組</td><td rowspan="2">醫療組人數</td><td colspan="4">最新回報  <span class="sign"></span> </td></tr>
+            <tr><td >通報日期</td><td >通報時間</td><td>內容</td><td >增援</td></tr>
             <div style="display: none">
             @if(isset($local_reports_arrays[1]))
                     {!!$n=count($local_reports_arrays[1]);!!}
@@ -44,13 +44,15 @@
                 <td colspan="1"></td>
             @endif
             @if(isset($local_reports_arrays[1]))
-                    <td>{!!$local_reports_arrays[1][$i]['time']!!}</td>
+                    {{--<td>{!!$local_reports_arrays[1][$i]['time']!!}</td>--}}
+                        <td >{{ (new Carbon\Carbon($local_reports_arrays[1][$i]['time']))->formatLocalized('%Y/%m/%d') }}</td>
+                        <td >{{ (new Carbon\Carbon($local_reports_arrays[1][$i]['time']))->formatLocalized('%H:%M:%S') }}</td>
                     <td>{!!$local_reports_arrays[1][$i]['content']!!}</td>
             @else
                     <td colspan="2">尚未有最新回報。</td>
             @endif
 
-            @if($i==1 && isset($local_reports_arrays[1]))
+            @if($i==1 && $executiveRequireArrays[1][1]['executive_require_people_num'] != 0 &&  $executiveRequireArrays[1][1]['executive_require_reason'] != "")
                         <td><button class="btn-circle btn-danger" data-toggle="modal" data-target="#emt">
                                 人員
                         </button>
@@ -66,9 +68,11 @@
                                     </div>
                                     <div class="modal-body">
                                         <table class="table table-bordered">
-                                            <tr><th>時間</th><td></td><th>欲增援人數</th><td></td></tr>
-                                            <tr><th colspan="4">原因/備註</th></tr>
-                                            <tr><td colspan="4"></td></tr>
+                                            <tr><th>發布日期</th><td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%Y/%m/%d')}}</td>
+                                                <th>發布時間</th><td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%H:%M:%S')}}</td>
+                                                <th>欲增援人數</th><td>{!!$executiveRequireArrays[1][1]['executive_require_people_num']!!} 人</td></tr>
+                                            <tr><th colspan="6">原因/備註</th></tr>
+                                            <tr><td colspan="6">{!!$executiveRequireArrays[1][1]['executive_require_reason']!!}</td></tr>
                                         </table>
                                     </div>
                                     <div class="modal-footer">
@@ -101,8 +105,8 @@
                             {{--</table>--}}
         <br>
         <table class=" table table-bordered">
-            <tr><td rowspan="2">脫困組地點</td><td rowspan="2">脫困組人數</td><td colspan="3">最新回報</td></tr>
-            <tr><td >時間 </td><td>內容</td><td >增援</td></tr>
+            <tr><td rowspan="2">脫困組地點</td><td rowspan="2">脫困組人數</td><td colspan="4">最新回報</td></tr>
+            <tr><td >通報日期</td><td >通報時間</td><td>內容</td><td >增援</td></tr>
 
             @if (isset($mission_new_locations) )
                 @foreach ($mission_new_locations as $mission_new_location )
@@ -130,13 +134,16 @@
                                     <td colspan="1"></td>
                                 @endif
                                 @if(isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
-                                    <td>{!!$local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['time']!!}</td>
+                                    {{--<td>{!!$local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['time']!!}</td>--}}
+                                    <td >{{ (new Carbon\Carbon($local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['time']))->formatLocalized('%Y/%m/%d') }}</td>
+                                    <td >{{ (new Carbon\Carbon($local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['time']))->formatLocalized('%H:%M:%S') }}</td>
                                     <td>{!!$local_reports_arrays[$mission_new_location->mission_new_locations_id][$i]['content']!!}</td>
                                 @else
                                     <td colspan="3"></td>
                                 @endif
 
-                                @if($i==1 && isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
+                                @if($i==1 && $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_people_num'] != 0
+                                && $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_reason'] != "")
                                     <td><button class="btn-circle btn-danger" data-toggle="modal" data-target="#{!!$mission_new_location->mission_new_locations_id!!}">人員</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="{!!$mission_new_location->mission_new_locations_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -150,9 +157,11 @@
                                                     </div>
                                                     <div class="modal-body ">
                                                         <table class="table table-bordered">
-                                                            <tr><th>時間</th><td></td><th>欲增援人數</th><td></td></tr>
-                                                            <tr><th colspan="4">原因/備註</th></tr>
-                                                            <tr><td colspan="4"></td></tr>
+                                                            <tr><th>發布時間</th><td>{{ (new Carbon\Carbon($executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['updated_at']))->formatLocalized('%Y/%m/%d')}}</td>
+                                                                <th>發布時間</th><td>{{ (new Carbon\Carbon($executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['updated_at']))->formatLocalized('%H:%M:%S')}}</td>
+                                                                <th>欲增援人數</th><td>{!!$executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_people_num']!!} 人</td></tr>
+                                                            <tr><th colspan="6">原因/備註</th></tr>
+                                                            <tr><td colspan="6">{!! $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_reason']!!}</td></tr>
                                                         </table>
                                                         <div class="row">
                                                             <div class="col-md-5" id="busy{!!$mission_new_location->mission_new_locations_id!!}">
