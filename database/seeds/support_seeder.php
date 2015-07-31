@@ -19,12 +19,12 @@ class support_seeder extends Seeder{
         DB:: table('product_total_amounts')->delete();
         DB:: table('local_safe_amounts')->delete();
         DB:: table('donates')->delete();
-        DB:: table('donate_products')->delete();
+//        DB:: table('donate_products')->delete();
+        DB:: table('center_support_people')->delete();
+        DB:: table('center_support_person_details')->delete();
         DB:: table('center_support_products')->delete();
         DB:: table('buys')->delete();
         DB:: table('companies')->delete();
-        DB:: table('center_support_people')->delete();
-        DB:: table('center_support_person_details')->delete();
 //        DB:: table('interviews')->delete();
 //        DB:: table('interviewers')->delete();
 

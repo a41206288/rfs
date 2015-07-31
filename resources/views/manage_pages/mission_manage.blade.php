@@ -32,11 +32,16 @@
 
 
             <table class="table table-bordered">
-                <tr><th width="5%">任務編號</th><th width="10%">名稱</th><th colspan="2" width="15%">負責人</th><th  colspan="2" width="30%">通報</th><th  colspan="3" width="30%">最新回報</th></tr>
+                <tr><th width="5%">任務編號</th><th width="10%">名稱</th><th colspan="2" width="15%">負責人</th>
+                    <th  colspan="2" width="30%">通報</th><th  colspan="4" width="30%">最新回報</th></tr>
                 @if (isset($mission_lists) )
                 @foreach ($mission_lists as $mission_list )
                     @if ($mission_list->mission_name != "未分配任務")
-                <tr class="header expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td><td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td><td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td><th>編號</th><th>內容 <span class="sign"></span></th><th>時間</th><th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
+                <tr class="header expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td>
+                    <td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td>
+                    <td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td>
+                    <th>編號</th><th>內容 <span class="sign"></span></th><th>通報日期</th><th>通報時間</th>
+                    <th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
                   <div style="display: none">
                  @if(count($reports_array[$mission_list->mission_list_id]) < 3 && count($mission_contents_array[$mission_list->mission_list_id]) <3)
                                 {!!$n=  4;!!}
@@ -66,14 +71,16 @@
                                     <td colspan="2"></td>
                                 @endif
                                 @if($i < count($reports_array[$mission_list->mission_list_id])+1 && isset($reports_array[$mission_list->mission_list_id][$i]))
-                                    <td>{!!$reports_array[$mission_list->mission_list_id][$i]['time']!!}</td>
+                                    {{--<td>{!!$reports_array[$mission_list->mission_list_id][$i]['time']!!}</td>--}}
+                                        <td >{{ (new Carbon\Carbon($reports_array[$mission_list->mission_list_id][$i]['time']))->formatLocalized('%Y/%m/%d') }}</td>
+                                        <td >{{ (new Carbon\Carbon($reports_array[$mission_list->mission_list_id][$i]['time']))->formatLocalized('%H:%M:%S') }}</td>
                                    <td>{!!$reports_array[$mission_list->mission_list_id][$i]['content']!!}</td>
                                     @else
-                                        <td colspan="2"></td>
+                                        <td colspan="3"></td>
                                 @endif
                                     <td>
                                 @if($i==1)
-                                    @if($mission_support_people_Array[$mission_list->mission_list_id."emt_num"] !=0 || $mission_support_people_Array[$mission_list->mission_list_id."reliever_num"] !=0)
+                                    @if($mission_support_people_Array[$mission_list->mission_list_id."local_emt_num"] !=0 || $mission_support_people_Array[$mission_list->mission_list_id."local_reliever_num"] !=0)
                                           <button class="btn-circle btn-danger" data-toggle="modal" data-target="#supportPeopleBlock{!!$mission_list->mission_list_id!!}">人員</button>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="supportPeopleBlock{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -115,12 +122,12 @@
                                                                     <tr class=""><th colspan="5">需求人員</th></tr>
                                                                     <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心待命人員數</th><th>欲分配人數</th></tr>
 
-                                                                    <tr><td>醫療組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."emt_num"]!!} 人</td>
+                                                                    <tr><td>醫療組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."local_emt_num"]!!} 人</td>
                                                                         <td class="text-right">{!!$emtFreeUsers[0]->total!!} 人</td>
                                                                         {{--<th>已分配數量</th>--}}
                                                                         <td>{!! Form::number('emt', 0, ['id' =>  'emt', 'class' => 'form-control text-right','min'=>'0']) !!}</td></tr>
 
-                                                                    <tr><td>脫困組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."reliever_num"]!!} 人</td>
+                                                                    <tr><td>脫困組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."local_reliever_num"]!!} 人</td>
                                                                         <td class="text-right">{!!$relieverFreeUsers[0]->total!!} 人</td>
                                                                         {{--<th>已分配數量</th>--}}
                                                                         <td>{!! Form::number('reliever', 0, ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td></tr>

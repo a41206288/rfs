@@ -185,8 +185,8 @@ class CenterMissionController extends Controller {
 
         $mission_support_people_Array =[];
         foreach($mission_support_people as $mission_support_person){
-            $mission_support_people_Array[$mission_support_person->mission_list_id."emt_num"] = $mission_support_person->emt_num;
-            $mission_support_people_Array[$mission_support_person->mission_list_id."reliever_num"] = $mission_support_person->reliever_num;
+            $mission_support_people_Array[$mission_support_person->mission_list_id."local_emt_num"] = $mission_support_person->local_emt_num;
+            $mission_support_people_Array[$mission_support_person->mission_list_id."local_reliever_num"] = $mission_support_person->local_reliever_num;
             $mission_support_people_Array[$mission_support_person->mission_list_id."created_at"] = $mission_support_person->created_at;
         }
 //dd($mission_support_people_Array );

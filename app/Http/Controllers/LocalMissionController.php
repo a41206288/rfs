@@ -33,6 +33,27 @@ class LocalMissionController extends Controller {
                 ->get();
 //            dd($mission_new_locations);
 
+            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
+            $executiveRequireArrays =[];
+            foreach($mission_new_locations as $mission_new_location){
+
+                //如果$executiveRequireArrays 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+                if(!isset($executiveRequireArrays[$mission_new_location->mission_new_locations_id]))
+                {
+                    $i=1;
+                }
+                else
+                {
+                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+                    $i=count($executiveRequireArrays[$mission_new_location->mission_new_locations_id])+1;
+                }
+                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_people_num'] = $mission_new_location->executive_require_people_num;
+                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_reason'] = $mission_new_location->executive_require_reason;
+                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['updated_at'] = $mission_new_location->updated_at;
+            }
+//            dd($executiveRequireArrays);
+
+
             //取出該任務所有脫困組人員
             $relieverFreeUsers = DB::table('role_user')
                 ->join('users','users.id','=','role_user.user_id')
@@ -157,10 +178,13 @@ class LocalMissionController extends Controller {
             }
 //         dd($local_reports_arrays);
 
+
+
         }else{
             $mission_list_names = null;
             $missions = null;
             $mission_new_locations = null;
+            $executiveRequireArrays = null;
             $relieverFreeUsers = null;
             $EmtUserAmounts = null;
             $relieverFreeUserAmounts = null;
@@ -257,7 +281,8 @@ class LocalMissionController extends Controller {
             ->with('relieverFreeUserAmounts', $relieverFreeUserAmounts)
             ->with('EmtUserAmounts', $EmtUserAmounts)
             ->with('local_reports_arrays', $local_reports_arrays)
-            ->with('$mission_new_locations', $mission_new_locations)
+            ->with('mission_new_locations', $mission_new_locations)
+            ->with('executiveRequireArrays', $executiveRequireArrays)
             ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
             ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
             ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays);

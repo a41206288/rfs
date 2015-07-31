@@ -8,6 +8,7 @@
 		"laravel/framework": "5.0.*",
 		"janhenkgerritsen/codeception-laravel5": "~1.0",
       "illuminate/html": "~5.0",
+      "nesbot/carbon": "~1.18",
       "laravelcollective/html": "~5.0"
 	},
 	"require-dev": {

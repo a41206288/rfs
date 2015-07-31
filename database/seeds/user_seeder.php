@@ -548,7 +548,7 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '尤燕')->first();
         $roleAdmin = Permission::where('name', '=', 'Local')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_list_id = 1;
+        $user->mission_list_id = 7;
         $user->save();
 
 
