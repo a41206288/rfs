@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -32,7 +30,7 @@
       <file leaf-file-name="product_manage_resource_c.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7734513" vertical-offset="3477" max-vertical-offset="4788">
+            <state vertical-scroll-proportion="0.67256635" vertical-offset="3534" max-vertical-offset="4788">
               <caret line="206" column="188" selection-start-line="206" selection-start-column="188" selection-end-line="206" selection-end-column="188" />
               <folding>
                 <element signature="e#8578#8684#0#HTML" expanded="true" />
@@ -884,7 +882,13 @@
       <option name="project" value="LOCAL" />
       <updated>1438248852202</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="center resources  html update">
+      <created>1438336332555</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1438336332555</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -952,7 +956,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="下拉式database single row complete" />
     <MESSAGE value="讀取通報地址，任務名稱進入下拉式選單&#10;並排序完成" />
     <MESSAGE value="只顯示未加入任務的通報" />
     <MESSAGE value="任務管理 計算脫困與醫療人員數量" />
@@ -977,7 +980,8 @@
     <MESSAGE value="新增物資管理人員頁面及地方、中央controller" />
     <MESSAGE value="暫存" />
     <MESSAGE value="center resources  html finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="center resources  html finish" />
+    <MESSAGE value="center resources  html update" />
+    <option name="LAST_COMMIT_MESSAGE" value="center resources  html update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1298,7 +1302,7 @@
         <state vertical-scroll-proportion="-1.6231884" vertical-offset="610" max-vertical-offset="4427">
           <caret line="38" column="121" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="121" />
           <folding>
-            <element signature="e#1058#1137#0#HTML" expanded="true" />
+            <element signature="e#1079#1158#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1404,7 +1408,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7734513" vertical-offset="3477" max-vertical-offset="4788">
+        <state vertical-scroll-proportion="0.67256635" vertical-offset="3534" max-vertical-offset="4788">
           <caret line="206" column="188" selection-start-line="206" selection-start-column="188" selection-end-line="206" selection-end-column="188" />
           <folding>
             <element signature="e#8578#8684#0#HTML" expanded="true" />
