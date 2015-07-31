@@ -148,8 +148,8 @@
 
                         <tr class="header expand" style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td>1</td><td>王小明</td><td>0912312312</td><td>123yahoo.com.tw</td><td><span class="sign"></span></td></tr>
                         <tr><td></td><th>物資名稱</th><th>捐贈數量</th><th>單位</th><th>點收</th></tr>
-                        <tr><td></td><td>泡麵</td><td class="text-right">100</td><td>包</td><td>{!! Form::checkbox('name', 'value')!!}</td></tr>
-                        <tr><td></td><td>礦泉水</td><td class="text-right">2</td><td>瓶</td><td>{!! Form::checkbox('name', 'value')!!}</td></tr>
+                        <tr><td></td><td>泡麵</td><td class="text-right">100</td><td>包</td><td>{!! Form::number('name', 0 ,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
+                        <tr><td></td><td>礦泉水</td><td class="text-right">2</td><td>瓶</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
                         <tr><td colspan="4"></td><td>{!! Form::submit('點收完成', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
                         <tr class="header expand"  style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td>1</td><td>王小明</td><td>0912312312</td><td>123yahoo.com.tw</td><td><span class="sign"></span></td></tr>
                         <tr><td>物資名稱</td><td>捐贈數量</td></tr>
@@ -184,7 +184,7 @@
 
             <div class="col-xs-16 col-sm-12 col-md-12" >
 
-                <div class="col-xs-12 col-sm-8 col-md-8" >
+                {{--<div class="col-xs-14 col-sm-10 col-md-10" >--}}
                     <table class="table">
                         {{--{!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}--}}
                         <thead>
@@ -196,17 +196,17 @@
                             <tr class="header expand"  style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
                                 <td>1</td><td colspan="2">西屯區</td><td>陳芊蓉</td><td>0987654321</td><td>789yahoo.com.tw</td><td>警告:尚未送出物資</td><td><span class="sign"></span></td>
                             </tr>
-                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">安全存量</th><th width="15%">目前存量</th><th width="5%">單位</th><th width="20%">指揮官分配數量</th><th width="5%"></th></tr>
-                            <tr><td></td><td>1</td><td>泡麵</td><td class="text-right">345</td><td class="text-right">123</td><td>包</td><td class="text-right">60</td><td>{!! Form::checkbox('name', 'value')!!}</td></tr>
-                            <tr><td></td><td>2</td><td>礦泉水</td><td class="text-right">345</td><td class="text-right">123</td><td>瓶</td><td class="text-right">50</td><td>{!! Form::checkbox('name', 'value')!!}</td></tr>
+                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">安全存量</th><th width="15%">目前存量</th><th width="5%">單位</th><th width="15%">指揮官分配數量</th><th width="10%">實際點收</th></tr>
+                            <tr><td></td><td>1</td><td>泡麵</td><td class="text-right">345</td><td class="text-right">123</td><td>包</td><td class="text-right">60</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
+                            <tr><td></td><td>2</td><td>礦泉水</td><td class="text-right">345</td><td class="text-right">123</td><td>瓶</td><td class="text-right">50</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
                             <tr><td colspan="3"></td><td class="text-right">{!! Form::submit('修改安全存量', ['class' => 'btn btn-default btn-sm']) !!}</td><td colspan="2"></td><td colspan="2" class="text-right">{!! Form::submit('已送出物資', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
 
                             <tr class="header expand"  style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
                                 <td>2</td><td colspan="2">北屯區</td><td>陳芊蓉</td><td>0987654321</td><td>789yahoo.com.tw</td><td></td><td><span class="sign"></span></td>
                             </tr>
-                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">目前存量</th><th width="15%">安全存量</th><th width="5%">單位</th><th width="20%">中央指揮官分配數量</th><th width="5%"></th></tr>
-                            <tr><td></td><td>1</td><td>泡麵</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td class="text-right">0</td><td>{!! Form::checkbox('name', 'value')!!}</td></tr>
-                            <tr><td></td><td>2</td><td>礦泉水</td><td class="text-right">123</td><td class="text-right">345</td><td>瓶</td><td class="text-right">0</td><td>{!! Form::checkbox('name', 'value')!!}</td></tr>
+                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">目前存量</th><th width="15%">安全存量</th><th width="5%">單位</th><th width="15%">中央指揮官分配數量</th><th width="10%"></th></tr>
+                            <tr><td></td><td>1</td><td>泡麵</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td class="text-right">0</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
+                            <tr><td></td><td>2</td><td>礦泉水</td><td class="text-right">123</td><td class="text-right">345</td><td>瓶</td><td class="text-right">0</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
                             <tr><td colspan="3"></td><td class="text-right">{!! Form::submit('修改安全存量', ['class' => 'btn btn-default btn-sm']) !!}</td><td  colspan="2"></td><td colspan="2" class="text-right">{!! Form::submit('已送出物資', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
 
                         </tbody>

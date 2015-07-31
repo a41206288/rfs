@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="暫存">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/From 整理" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/analysis_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/analysis_manage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/analysis_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/analysis_manage_local.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_master.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_l.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_l.blade.php" />
+    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -41,13 +32,28 @@
       <file leaf-file-name="product_manage_resource_c.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.7038834" vertical-offset="2344" max-vertical-offset="4788">
-              <caret line="182" column="22" selection-start-line="178" selection-start-column="16" selection-end-line="182" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.7734513" vertical-offset="3477" max-vertical-offset="4788">
+              <caret line="206" column="188" selection-start-line="206" selection-start-column="188" selection-end-line="206" selection-end-column="188" />
               <folding>
                 <element signature="e#8578#8684#0#HTML" expanded="true" />
-                <element signature="e#9347#9453#0#HTML" expanded="true" />
-                <element signature="e#11312#11418#0#HTML" expanded="true" />
-                <element signature="e#12634#12740#0#HTML" expanded="true" />
+                <element signature="e#9458#9564#0#HTML" expanded="true" />
+                <element signature="e#11433#11539#0#HTML" expanded="true" />
+                <element signature="e#12870#12976#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product_manage_resource_l.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.071429" vertical-offset="798" max-vertical-offset="3762">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding>
+                <element signature="e#5668#5774#0#HTML" expanded="true" />
+                <element signature="e#6437#6543#0#HTML" expanded="true" />
+                <element signature="e#8322#8428#0#HTML" expanded="true" />
+                <element signature="e#9616#9722#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,7 +62,7 @@
       <file leaf-file-name="From 整理" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/From 整理">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.741936" vertical-offset="66" max-vertical-offset="684">
+            <state vertical-scroll-proportion="-9.354838" vertical-offset="109" max-vertical-offset="684">
               <caret line="21" column="17" selection-start-line="19" selection-start-column="4" selection-end-line="21" selection-end-column="17" />
               <folding />
             </state>
@@ -118,7 +124,6 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/from type model" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_l.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/analysis_manage.blade.php" />
@@ -127,6 +132,7 @@
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
         <option value="$PROJECT_DIR$/From 整理" />
+        <option value="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" />
       </list>
     </option>
@@ -872,13 +878,20 @@
       <option name="project" value="LOCAL" />
       <updated>1437645241226</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="center resources  html finish">
+      <created>1438248852202</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1438248852202</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -889,13 +902,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.261347" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14488189" sideWeight="0.49926794" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24094488" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24094488" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -940,7 +952,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="新增各controller &#10;route更改" />
     <MESSAGE value="下拉式database single row complete" />
     <MESSAGE value="讀取通報地址，任務名稱進入下拉式選單&#10;並排序完成" />
     <MESSAGE value="只顯示未加入任務的通報" />
@@ -965,7 +976,8 @@
     <MESSAGE value="地方指揮官 analysis table join&#10;" />
     <MESSAGE value="新增物資管理人員頁面及地方、中央controller" />
     <MESSAGE value="暫存" />
-    <option name="LAST_COMMIT_MESSAGE" value="暫存" />
+    <MESSAGE value="center resources  html finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="center resources  html finish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1233,14 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.75" vertical-offset="0" max-vertical-offset="361">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/report_EMT.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="11.714286" vertical-offset="404" max-vertical-offset="969">
@@ -1376,7 +1380,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/From 整理">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.741936" vertical-offset="66" max-vertical-offset="684">
+        <state vertical-scroll-proportion="-9.354838" vertical-offset="109" max-vertical-offset="684">
           <caret line="21" column="17" selection-start-line="19" selection-start-column="4" selection-end-line="21" selection-end-column="17" />
           <folding />
         </state>
@@ -1385,15 +1389,28 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.071429" vertical-offset="798" max-vertical-offset="3762">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#5668#5774#0#HTML" expanded="true" />
+            <element signature="e#6437#6543#0#HTML" expanded="true" />
+            <element signature="e#8322#8428#0#HTML" expanded="true" />
+            <element signature="e#9616#9722#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.7038834" vertical-offset="2344" max-vertical-offset="4788">
-          <caret line="182" column="22" selection-start-line="178" selection-start-column="16" selection-end-line="182" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.7734513" vertical-offset="3477" max-vertical-offset="4788">
+          <caret line="206" column="188" selection-start-line="206" selection-start-column="188" selection-end-line="206" selection-end-column="188" />
           <folding>
             <element signature="e#8578#8684#0#HTML" expanded="true" />
-            <element signature="e#9347#9453#0#HTML" expanded="true" />
-            <element signature="e#11312#11418#0#HTML" expanded="true" />
-            <element signature="e#12634#12740#0#HTML" expanded="true" />
+            <element signature="e#9458#9564#0#HTML" expanded="true" />
+            <element signature="e#11433#11539#0#HTML" expanded="true" />
+            <element signature="e#12870#12976#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
