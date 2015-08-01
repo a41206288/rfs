@@ -181,7 +181,7 @@ class CenterMissionController extends Controller {
 
         //取出各任務需求增員人數(醫療+脫困)
       $mission_support_people = DB::table('mission_support_people')->get();
-        //dd($mission_support_people);
+//        dd($mission_support_people);
 
         $mission_support_people_Array =[];
         foreach($mission_support_people as $mission_support_person){

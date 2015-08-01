@@ -548,6 +548,8 @@ class support_seeder extends Seeder{
         $center_support_person_detail->phone = "0900100160";
         $center_support_person_detail->center_support_person_id = 1;
         $center_support_person_detail->skill = "有醫生執照";
+        $center_support_person_detail->country_or_city_input = "台中市";
+        $center_support_person_detail->township_or_district_input = "北屯區";
         $center_support_person_detail->save();
 
         $center_support_person_detail = new App\Center_support_person_detail;
@@ -557,6 +559,8 @@ class support_seeder extends Seeder{
         $center_support_person_detail->phone = "0900200260";
         $center_support_person_detail->center_support_person_id = 1;
         $center_support_person_detail->skill = "有護士執照";
+        $center_support_person_detail->country_or_city_input = "台北市";
+        $center_support_person_detail->township_or_district_input = "萬華區";
         $center_support_person_detail->save();
 //
         $center_support_person_detail = new App\Center_support_person_detail;
@@ -566,6 +570,8 @@ class support_seeder extends Seeder{
         $center_support_person_detail->phone = "0900300360";
         $center_support_person_detail->center_support_person_id = 2;
         $center_support_person_detail->skill = "當過消防員";
+        $center_support_person_detail->country_or_city_input = "苗栗縣";
+        $center_support_person_detail->township_or_district_input = "公館鄉";
         $center_support_person_detail->save();
 //
 //        $center_support_person_detail = new App\Center_support_person_detail;

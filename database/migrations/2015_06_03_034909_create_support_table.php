@@ -91,6 +91,7 @@ class CreateSupportTable extends Migration {
         Schema::create('center_support_people', function(Blueprint $table){
             $table->increments('center_support_person_id');
             $table->integer('center_support_person_num');
+            $table->integer('called_person_num');
             $table->text('center_support_person_requirement');
             $table->boolean('arrived');
             $table->timestamps();
@@ -103,6 +104,8 @@ class CreateSupportTable extends Migration {
             $table->string('phone');
             $table->unsignedInteger('center_support_person_id');
             $table->text('skill');
+            $table->text('country_or_city_input');
+            $table->text('township_or_district_input');
             $table->timestamps();
             //$table->foreign('interviewer_id')->references('interviewer_id')->on('interviews');
         });

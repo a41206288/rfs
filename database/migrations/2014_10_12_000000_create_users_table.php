@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration {
             $table->unsignedInteger('mission_id');
             $table->unsignedInteger('mission_list_id');
             $table->string('phone');
+			$table->text('skill');
+			$table->text('country_or_city_input');
+			$table->text('township_or_district_input');
 			$table->rememberToken();
 			$table->timestamps();
 		});

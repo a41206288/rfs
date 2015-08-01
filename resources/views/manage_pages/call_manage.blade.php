@@ -179,7 +179,7 @@
             @if(isset($mission_contents_array[$mission_list->mission_list_id]))
                 @for($j=1;$j<=count($mission_contents_array[$mission_list->mission_list_id]);$j++)
 
-                    </tr>
+
 
                     <tr><td>{!!$mission_contents_array[$mission_list->mission_list_id][$j]['id']!!}</td>
                         <td colspan="2">

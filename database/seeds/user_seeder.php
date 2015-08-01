@@ -67,6 +67,9 @@ class user_seeder extends Seeder{
         $user->email = "004@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0900400404';
+        $user->skill = '無特殊技能';
+        $user->country_or_city_input = '苗栗縣';
+        $user->township_or_district_input = '公館鄉';
         $user->save();
 
         $user  = User::where('name', '=', '林麗雯')->first();
@@ -82,6 +85,9 @@ class user_seeder extends Seeder{
         $user->email = "005@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0900500505';
+        $user->skill = '有醫師執照';
+        $user->country_or_city_input = '台中市';
+        $user->township_or_district_input = '北屯區';
         $user->save();
 
         $user  = User::where('name', '=', '韓東霖')->first();
@@ -228,6 +234,9 @@ class user_seeder extends Seeder{
         $user->email = "013@yahoo.com.tw";
         $user->password =Hash::make ('we4a6sf45');
         $user->phone = '0901301313';
+        $user->skill = '無特殊技能';
+        $user->country_or_city_input = '新北市';
+        $user->township_or_district_input = '萬華區';
         $user->save();
 
         $user  = User::where('name', '=', '耿夜')->first();

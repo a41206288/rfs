@@ -44,11 +44,11 @@
                     <th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
                   <div style="display: none">
                  @if(count($reports_array[$mission_list->mission_list_id]) < 3 && count($mission_contents_array[$mission_list->mission_list_id]) <3)
-                                {!!$n=  4;!!}
+                                {!!$n=  4!!}
                 @elseif(count($reports_array[$mission_list->mission_list_id]) > count($mission_contents_array[$mission_list->mission_list_id]))
-                           {!!$n = count($reports_array[$mission_list->mission_list_id])+1;!!}
+                           {!!$n = count($reports_array[$mission_list->mission_list_id])+1!!}
                 @elseif(count($reports_array[$mission_list->mission_list_id]) < count($mission_contents_array[$mission_list->mission_list_id]))
-                                {!!$n = count($mission_contents_array[$mission_list->mission_list_id])+1;!!}
+                                {!!$n = count($mission_contents_array[$mission_list->mission_list_id])+1!!}
                 @endif
                   </div>
 

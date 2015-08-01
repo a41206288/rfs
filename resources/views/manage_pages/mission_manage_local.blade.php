@@ -30,10 +30,10 @@
             <tr><td >通報日期</td><td >通報時間</td><td>內容</td><td >增援</td></tr>
             <div style="display: none">
             @if(isset($local_reports_arrays[1]))
-                    {!!$n=count($local_reports_arrays[1]);!!}
+                    {!!$n=count($local_reports_arrays[1])!!}
 
             @else
-                    {!!$n=1;!!}
+                    {!!$n=1!!}
             @endif
             </div>
             @for($i=1;$i<=$n;$i++)
@@ -116,9 +116,9 @@
 
                         <div style="display: none">
                         @if(isset($local_reports_arrays[$mission_new_location->mission_new_locations_id]))
-                            {!!$n=count($local_reports_arrays[$mission_new_location->mission_new_locations_id]);!!}
+                            {!!$n=count($local_reports_arrays[$mission_new_location->mission_new_locations_id])!!}
                         @else
-                            {!!$n=1;!!}
+                            {!!$n=1!!}
                         @endif
                         </div>
                         @for($i=1;$i<=$n;$i++)
