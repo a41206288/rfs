@@ -186,7 +186,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 18;
+        $Works_on->mission_new_locations_id = 3;
         $Works_on->id = 10;
         $Works_on->save();
 
@@ -223,7 +223,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 26;
+        $Works_on->mission_new_locations_id = 3;
         $Works_on->id = 12;
         $Works_on->save();
 
@@ -283,7 +283,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 13;
+        $Works_on->mission_new_locations_id = 4;
         $Works_on->id = 15;
         $Works_on->save();
 
@@ -304,7 +304,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 14;
+        $Works_on->mission_new_locations_id = 4;
         $Works_on->id = 16;
         $Works_on->save();
 
@@ -325,7 +325,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 19;
+        $Works_on->mission_new_locations_id = 4;
         $Works_on->id = 17;
         $Works_on->save();
 
@@ -346,7 +346,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 23;
+        $Works_on->mission_new_locations_id = 4;
         $Works_on->id = 18;
         $Works_on->save();
 
@@ -442,7 +442,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 27;
+        $Works_on->mission_new_locations_id = 1;
         $Works_on->id = 24;
         $Works_on->save();
 
@@ -511,7 +511,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 15;
+        $Works_on->mission_new_locations_id = 1;
         $Works_on->id = 28;
         $Works_on->save();
 
@@ -716,7 +716,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 22;
+        $Works_on->mission_new_locations_id = 3;
         $Works_on->id = 41;
         $Works_on->save();
 
@@ -778,7 +778,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 3;
+        $Works_on->mission_new_locations_id = 1;
         $Works_on->id = 45;
         $Works_on->save();
 
@@ -811,7 +811,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->mission_new_locations_id = 28;
+        $Works_on->mission_new_locations_id = 1;
         $Works_on->id = 47;
         $Works_on->save();
 

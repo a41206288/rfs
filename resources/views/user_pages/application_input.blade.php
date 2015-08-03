@@ -97,9 +97,9 @@
     <script>
         $('#needed tr').click(function () {
             var rowIndex = $('#needed tr').index(this); //取得tr的index
-            var choose_type = $('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text().slice(2);
+            var choose_type = $('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text();
             var string_index = choose_type.search("的人");
-            choose_type = choose_type.slice(0,string_index);
+            choose_type = choose_type.slice(0,string_index+2);
             $('#choose').text(choose_type);
             $('#support_id').attr("value", $('#needed').find('tr').eq(rowIndex).find('td:eq(0)').find('input').attr("value"));
         });

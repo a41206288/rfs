@@ -66,51 +66,69 @@
 
     <div class="col-xs-6 col-sm-4 col-md-4" >
         <div style="height:400px;width:100%;overflow:auto;">
-        <table class="btn-group-vertical" id="needed">
+        <table class="btn-group-vertical">
             <thead><tr><td colspan="2"><b>需求物資列表</b>(請在此選擇欲捐贈物品)</td></tr></thead>
-            <tbody>
+            <tbody id="needed">
             @if (isset($center_support_products) )
                 @foreach ($center_support_products as $center_support_product )
                 <tr class="btn btn-block btn-default btn-sm">
-                    <td>{!!$center_support_product->product_total_amount_id!!}</td>
-                    <td width="20%">{!!$center_support_product->product_name!!} </td>
-                    <td width="10%"></td><td width="10%">
-                        {!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}
-                        <div style="display: none">
-                            {!!$n = $center_support_product->center_support_product_amount!!}
-                        </div>
-                    </td><td><table>
-
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <div style="display: none">
+                                {!!$n = $center_support_product->center_support_product_amount!!}
+                                </div>
+                                <td width="10">{!!$center_support_product->product_total_amount_id!!}</td>
+                                <td width="150">{!!$center_support_product->product_name!!}</td>
+                                <td width="50">{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td>
+                            </tr>
+                            <div style="display: none">
+                            {!!$hashr = false!!}
+                            </div>
                             @foreach ($donates as $donate )
-                                @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id
-                                && $donate->arrived == 0)
+                                @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id &&
+                                    $donate->arrived == 0)
+                                    @if($hashr == false)
+                                        <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
+                                        <div style="display: none">{!!$hashr = true!!}</div>
+                                    @endif
+                                    <tr>
+                                        <td></td>
+                                        <td>{!!$donate->lname!!} 先生/小姐 已捐贈</td>
+                                        <td>{!!$donate->donate_amount." ".$center_support_product->unit!!}</td>
+                                    </tr>
                                     <div style="display: none">
                                         {!!$n = $n - $donate->donate_amount!!}
-                                        </div>
-                           <tr>
-
-                                   <td>{!!$donate->lname!!} 先生/小姐 已捐贈 {!!$donate->donate_amount." ".$center_support_product->unit!!}</td>
-
-                           </tr>
-
-                            @endif
+                                    </div>
+                                @endif
                             @endforeach
+
+
+                            @if ($n != $center_support_product->center_support_product_amount)
+                                <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
                                 <tr>
-                                    <td>
-                                        目前尚須 {!!$n." ".$center_support_product->unit!!}
-                                    </td>
-
+                                    <td></td>
+                                    <td>目前尚須</td>
+                                    <td>{!!$n." ".$center_support_product->unit!!}</td>
                                 </tr>
-                        </table></td></tr>
+                            @endif
+                            </tbody>
+                        </table>
+                    </td>
 
+                </tr>
                 @endforeach
             @endif
+
+
             </tbody>
 
 
 
 
         </table>
+
         </div>
     </div>
 @endsection
@@ -118,22 +136,25 @@
 @section('javascript')
     <script>
         /* 紀錄需求物資欄是否有點過 */
-        var has_selected = new Array($('#needed tr').length-1);  //扣掉標題
+        var has_selected = new Array($('#needed tr.btn').length);
         for(var i = 0; i<has_selected.length; i++){
             has_selected[i] = false;
         }
         /* 需求物資點擊後觸發事件 */
-        $('#needed tr').click(function () {
-            var rowIndex = $('#needed tr').index(this); //取得tr的index
-            if(rowIndex==0){}  //標題tr不做任何事
-            else if(has_selected[rowIndex]){
-                alert('您已經選擇了\' ' + $('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text() + ' \' ');
+        $('#needed tr.btn').click(function () {
+            var rowIndex = $('#needed tr.btn').index(this); //取得tr的index
+            var id = $('#needed tr.btn').eq(rowIndex).find('tr').eq(0).find('td:eq(0)').text();
+            var name = $('#needed tr.btn').eq(rowIndex).find('tr').eq(0).find('td:eq(1)').text();
+            var trLength = $('#needed tr.btn').eq(rowIndex).find('tr').length;
+            var amount = $('#needed tr.btn').eq(rowIndex).find('tr').eq(trLength-1).find('td:eq(2)').text();
+
+            if(has_selected[rowIndex]){
+                alert('您已經選擇了\' ' + name + ' \' ');
             }
             else{
                 has_selected[rowIndex] = true;
-                add_donate($('#needed').find('tr').eq(rowIndex).find('td:eq(0)').text(),$('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text(), $('#needed').find('tr').eq(rowIndex).find('td:eq(3)').text(),rowIndex);
+                add_donate(id, name, amount, rowIndex);
             }
-
         });
         /* 刪除已選擇的物資 */
         $('#donate_table').on('click', 'input[type="button"]', function(e){

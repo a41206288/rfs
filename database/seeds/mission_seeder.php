@@ -190,27 +190,27 @@ class mission_seeder extends Seeder{
 
         $mission = new App\Mission;
         $mission->mission_id = 5;
-        $mission->mission_type = '道路倒塌';
-        $mission->mission_content = '電線杆倒塌,變電箱起火燃燒';
+        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '資電館部分已坍塌';
         $mission->fname = '鑫';
         $mission->lname = '李';
         $mission->phone = '0967812345';
         $mission->country_or_city_input = '台中市';
         $mission->township_or_district_input = '西屯區';
-        $mission->location = '公園旁';
+        $mission->location = '逢甲大學';
         $mission->mission_list_id = 2;
         $mission->mission_new_locations_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
         $mission->mission_id = 6;
-        $mission->mission_type = '道路淹水';
-        $mission->mission_content = '地下湧出大量水,造成路上嚴重積水';
+        $mission->mission_type = '建築物起火';
+        $mission->mission_content = '商學大樓傳出爆炸聲, 3、4樓正在燃燒';
         $mission->lname = '李';
         $mission->phone = '0978123456';
         $mission->country_or_city_input = '台中市';
         $mission->township_or_district_input = '西屯區';
-        $mission->location = '逢甲路10號';
+        $mission->location = '逢甲大學';
         $mission->mission_list_id = 2;
         $mission->mission_new_locations_id = 4;
         $mission->save();
@@ -225,7 +225,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '北屯區';
         $mission->location = '青島路四段9號';
         $mission->mission_list_id = 3;
-        $mission->mission_new_locations_id = 13;
+        $mission->mission_new_locations_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -252,7 +252,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '距一天橋10公尺左右';
         $mission->mission_list_id = 4;
-        $mission->mission_new_locations_id = 14;
+        $mission->mission_new_locations_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -265,7 +265,6 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '朝陽橋';
         $mission->mission_list_id = 2;
-        $mission->mission_new_locations_id = 18;
         $mission->save();
 
         $mission = new App\Mission;
@@ -279,6 +278,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
         $mission->location = '中正路621號';
         $mission->mission_list_id = 5;
+        $mission->mission_new_locations_id = 3;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -292,7 +292,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '中正區';
         $mission->location = '杭州南路一段55號';
         $mission->mission_list_id = 7;
-        $mission->mission_new_locations_id = 26;
+        $mission->mission_new_locations_id = 3;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -319,7 +319,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '苓雅區';
         $mission->location = '仁德街';
         $mission->mission_list_id = 6;
-        $mission->mission_new_locations_id = 22;
+        $mission->mission_new_locations_id = 3;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -333,7 +333,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '前金區';
         $mission->location = '85大樓周圍';
         $mission->mission_list_id = 6;
-        $mission->mission_new_locations_id = 23;
+        $mission->mission_new_locations_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -359,7 +359,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '新莊區';
         $mission->location = '距捷運站5公尺處';
         $mission->mission_list_id = 5;
-        $mission->mission_new_locations_id = 19;
+        $mission->mission_new_locations_id = 4;
         $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -845,7 +845,7 @@ class mission_seeder extends Seeder{
         $local_report = new App\Local_report;
        // $local_report->local_report_id = 3;
         $local_report->mission_new_locations_id = 4;
-        $local_report->local_report_content = '火勢已撲滅，等待大型機具將電線杆從路中央移開';
+        $local_report->local_report_content = '火勢已逐漸控制住';
         $local_report->mission_list_id = 2;
         $local_report->id = 14;
         $local_report->save();
@@ -853,7 +853,7 @@ class mission_seeder extends Seeder{
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 4;
         $local_report->mission_new_locations_id = 4;
-        $local_report->local_report_content = '已將附近水管管線關閉，正在清理積水';
+        $local_report->local_report_content = '現場火勢已完全撲滅';
         $local_report->mission_list_id = 2;
         $local_report->id = 52;
         $local_report->save();
@@ -861,7 +861,7 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
        // $local_report->local_report_id = 5;
-        $local_report->mission_new_locations_id = 13;
+        $local_report->mission_new_locations_id = 4;
         $local_report->local_report_content = '1樓未發現受困民眾，2樓坍塌較嚴重需要較多時間才能確定是否有人受困';
         $local_report->mission_list_id = 3;
         $local_report->id = 15;
@@ -877,7 +877,7 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 7;
-        $local_report->mission_new_locations_id = 14;
+        $local_report->mission_new_locations_id = 4;
         $local_report->local_report_content = '目前無法確認路面裂痕原因，先將此路段封閉避免有危險';
         $local_report->mission_list_id = 4;
         $local_report->id = 16;
@@ -891,7 +891,7 @@ class mission_seeder extends Seeder{
 //
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 9;
-        $local_report->mission_new_locations_id = 18;
+        $local_report->mission_new_locations_id = 3;
         $local_report->local_report_content = '正在確認是否有人被埋在房子下，時間緊迫需要更多人幫忙';
         $local_report->mission_list_id = 5;
         $local_report->id = 10;
@@ -899,7 +899,7 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
        // $local_report->local_report_id = 10;
-        $local_report->mission_new_locations_id = 26;
+        $local_report->mission_new_locations_id = 3;
         $local_report->local_report_content = '連絡不到水電相關人員，水依舊不斷湧出';
         $local_report->mission_list_id = 7;
         $local_report->id = 12;
@@ -915,7 +915,7 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 12;
-        $local_report->mission_new_locations_id = 22;
+        $local_report->mission_new_locations_id = 3;
         $local_report->local_report_content = '電線杆的火已撲滅，並將電線杆移至路邊';
         $local_report->mission_list_id = 6;
         $local_report->id = 41;
@@ -923,7 +923,7 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 13;
-        $local_report->mission_new_locations_id = 23;
+        $local_report->mission_new_locations_id = 4;
         $local_report->local_report_content = '已將此路段封鎖';
         $local_report->mission_list_id = 6;
         $local_report->id = 18;
@@ -931,7 +931,7 @@ class mission_seeder extends Seeder{
 
         $local_report = new App\Local_report;
         //$local_report->local_report_id = 14;
-        $local_report->mission_new_locations_id = 19;
+        $local_report->mission_new_locations_id = 4;
         $local_report->local_report_content = '起火處已撲滅，但周遭房屋仍在燃燒';
         $local_report->mission_list_id = 5;
         $local_report->id = 17;
