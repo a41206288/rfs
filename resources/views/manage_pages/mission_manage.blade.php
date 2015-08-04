@@ -120,7 +120,7 @@
                                                                 </table>
                                                                 <table class="table table-bordered">
                                                                     <tr class=""><th colspan="5">需求人員</th></tr>
-                                                                    <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心待命人員數</th><th>欲分配人數</th></tr>
+                                                                    <tr><th>需求種類</th><th class="text-right">需求人數</th><th>中心人員數</th><th>欲分配人數</th></tr>
 
                                                                     <tr><td>醫療組</td><td class="text-right">{!!$mission_support_people_Array[$mission_list->mission_list_id."local_emt_num"]!!} 人</td>
                                                                         <td class="text-right">{!!$emtFreeUsers[0]->total!!} 人</td>

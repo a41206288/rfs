@@ -115,22 +115,23 @@ class CenterCallController extends Controller {
         //讀取mission所有資料
         $missions = DB::table('missions')->orderBy('country_or_city_input')->orderBy('township_or_district_input')->orderBy('location')->where('mission_list_id', 1)->get();
 
-        //讀取縣市
+        //讀取縣市供select列表使用
         $country_or_city_inputs = DB::table('missions')->orderBy('country_or_city_input')->where('mission_list_id', 1)->distinct()->lists('country_or_city_input','country_or_city_input');
         $country_or_city_inputs = array_add($country_or_city_inputs, '請選擇', '請選擇');
+
 //        $new_country_or_city_inputs=[];
 //        foreach( $country_or_city_inputs as  $country_or_city_input){
 //            $new_country_or_city_inputs[$country_or_city_input] = $country_or_city_input;
 //        }
 //        $new_country_or_city_inputs = array_add($new_country_or_city_inputs, '請選擇', '請選擇');
 
-        ///讀取鄉鎮區
+        ///讀取鄉鎮區供select列表使用
         $new_township_or_district_inputs=[];
         $new_township_or_district_inputs = array_add($new_township_or_district_inputs, '請選擇', '請選擇');
         //讀取任務列表
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
-
+        dd($mission_names);
         /*取得未分配任務之地方指揮官      START*/
         $results = array();
         $queries = DB::table('users')

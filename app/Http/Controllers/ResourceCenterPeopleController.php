@@ -39,15 +39,27 @@ class ResourceCenterPeopleController extends Controller {
 //        dd($emtFreeUsers);
 
 		$mission_support_people = DB::table('mission_support_people')
-			->orderBy('created_at','desc')
+			->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
+			->orderBy('mission_support_people.created_at','desc')
 			->get();
+//		dd($mission_support_people);
 
+
+		//讀取任務列表
+		$mission_names = DB::table('mission_support_people')
+			->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
+			->orderBy('mission_name')
+			->where('mission_support_people.mission_list_id', '>' , 1)
+			->lists('mission_name','mission_name');
+		$mission_names = array_add($mission_names, '-', '-');
+//dd($mission_names);
         return view('manage_pages.people_manage_resource_c')
 			->with('center_support_person_details', $center_support_person_details)
 			->with('center_support_people', $center_support_people)
 			->with('relieverFreeUsers', $relieverFreeUsers)
 			->with('emtFreeUsers', $emtFreeUsers)
-			->with('mission_support_people', $mission_support_people);
+			->with('mission_support_people', $mission_support_people)
+			->with('mission_names', $mission_names);
 	}
 
 	/**

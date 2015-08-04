@@ -87,7 +87,8 @@
                             {!! Form::select('country',$country_or_city_inputs,'請選擇',['onchange' => 'this.form.submit()'] )!!}
                             {!! Form::select('township',$township_or_district_inputs,'請選擇',['onchange' => 'this.form.submit()'])!!}
                             {!! Form::close() !!}
-
+{{--{!! dd($country_or_city_inputs) !!}--}}
+                            {{--{!! Form::select('country',$country_or_city_inputs,'請選擇')!!}--}}
                             {{--{!! Form::select('country',$country_or_city_inputs,'請選擇')!!}--}}
                             {{--{!! Form::select('township',$township_or_district_inputs,'請選擇')!!}--}}
 

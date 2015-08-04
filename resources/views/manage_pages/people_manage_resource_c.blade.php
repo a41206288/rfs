@@ -145,22 +145,22 @@
                                     <td>{!!$emtFreeUser->email!!}</td>
                                     <td>{!!$emtFreeUser->country_or_city_input ." ". $emtFreeUser->township_or_district_input!!}</td>
                                     <td>{!!$emtFreeUser->skill!!}</td>
-                                    <td>{!! Form::select('size', array('L' => '任務1', 'S' => '任務2')) !!}</td></tr>
+                                    <td>{!! Form::select('mission_name', $mission_names, '-') !!}</td></tr>
 
                             @endforeach
                         @endif
 
                         @if(isset($relieverFreeUsers))
                             @foreach($relieverFreeUsers as $relieverFreeUser)
-
-                                <tr><td>脫困組</td>
-                                    <td>{!!$relieverFreeUser->name	!!}</td>
-                                    <td>{!!$relieverFreeUser->phone!!}</td>
-                                    <td>{!!$relieverFreeUser->email!!}</td>
-                                    <td>{!!$relieverFreeUser->country_or_city_input ." ". $relieverFreeUser->township_or_district_input!!}</td>
-                                    <td>{!!$relieverFreeUser->skill!!}</td>
-                                    <td>{!! Form::select('size', array('L' => '任務1', 'S' => '任務2')) !!}</td></tr>
-
+                                @if(isset($mission_support_people))
+                                    <tr><td>脫困組</td>
+                                        <td>{!!$relieverFreeUser->name	!!}</td>
+                                        <td>{!!$relieverFreeUser->phone!!}</td>
+                                        <td>{!!$relieverFreeUser->email!!}</td>
+                                        <td>{!!$relieverFreeUser->country_or_city_input ." ". $relieverFreeUser->township_or_district_input!!}</td>
+                                        <td>{!!$relieverFreeUser->skill!!}</td>
+                                        <td>{!! Form::select('mission_name', $mission_names, '-') !!}</td></tr>
+                                @endif
                             @endforeach
                         @endif
 
@@ -175,13 +175,13 @@
                     <table class="table  table-striped">
                         <thead>
                         <tr><td colspan="7"><h5><b>人員需求列表(中央決定派遣給任務)</b></h5></td></tr>
-                        <tr><th>任務編號</th><th>需求醫療組人數</th><th>需求脫困組人數</th><th>發布日期</th><th>發布時間</th></tr>
+                        <tr><th>任務名稱</th><th>需求醫療組人數</th><th>需求脫困組人數</th><th>發布日期</th><th>發布時間</th></tr>
                         </thead>
                         <tbody>
                         @if(isset($mission_support_people))
                             @foreach($mission_support_people as $mission_support_person)
 
-                                <tr><td>{!!$mission_support_person->mission_support_person_id!!}</td>
+                                <tr><td>{!!$mission_support_person->mission_name!!}</td>
                                     <td>{!!$mission_support_person->local_emt_num!!} 人</td>
                                     <td>{!!$mission_support_person->local_reliever_num!!} 人</td>
                                     <td >{{ (new Carbon\Carbon($mission_support_person->created_at))->formatLocalized('%Y/%m/%d') }}</td>
