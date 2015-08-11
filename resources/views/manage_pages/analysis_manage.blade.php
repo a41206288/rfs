@@ -11,42 +11,37 @@
         @endif
     </table>
     <hr>
-    <div class="col-xs-7 col-sm-6 col-md-5">
+    <div class="col-xs-4 col-sm-4 col-md-4">
 
-        <h5><b>通報地點</b></h5>
-
-        <br><br>
-        <table class="table table-bordered">
+        <table class="table table-striped">
             <thead>
-                <tr><th>分析狀態</th><th>編號</th><th>地址</th><th>內容</th></tr>
+                <tr><th colspan="4"><h5><b>尚未分析通報</b></h5></th></tr>
+                <tr><th width="10%">編號</th><th width="35%">地址</th><th width="35%">內容</th><th width="20%"></th></tr>
             </thead>
 
             <tbody>
             @foreach ($missions as $mission)
 
                 @if (isset($mission) )
-                <tr>
-                    @if ( is_null($mission->complete_time) )
-                        <td>分析未完成</td>
+
+                    @if ( $mission->mission_new_locations_id == 0 )
+                        <tr>
+                        <td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td><td>{!! Form::select('name', array('地點1' => '地點1', '地點2' => '地點2', '地點3' => '地點3'), '地點1') !!}</td>
+                        </tr>
                     @else
-                        {{--<td>分析完成 <br>{!!$mission->complete_time!!}</td>--}}
-                        <td >分析完成<br>日期：{{ (new Carbon\Carbon($mission->complete_time))->formatLocalized('%Y/%m/%d')}} <br>時間：{{(new Carbon\Carbon($mission->complete_time))->formatLocalized('%H:%M:%S') }}</td>
-                        {{--<td >時間:{{ (new Carbon\Carbon($mission->complete_time))->formatLocalized('%H:%M:%S') }}</td>--}}
 
                     @endif
-                    <td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td>
-                </tr>
+
             @endif
 
             @endforeach
 
-
+            <tr><td class="text-right" colspan="4" > {!! Form::submit('將通報歸類至已分析現場', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
             </tbody>
         </table>
     </div>
-    <div class="col-xs-9 col-sm-6 col-md-7" >
-        <h5><b>創建的地點</b></h5>
-        <p class="text-right"><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createLocalBlock">創建地點</button></p>
+    <div class="col-xs-12 col-sm-8 col-md-8" >
+
         <!-- Modal -->
         <div class="modal fade" id="createLocalBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -65,7 +60,7 @@
                             <dt>預估傷亡人數</dt>
                             <dd> {!! Form::number('victim_number', '', ['id' =>  'victim_number', 'class' => 'form-control', 'required','min'=>'0']) !!}</dd> <br>
                             <dt>現場狀況</dt>
-                            <dd> {!! Form::textarea('situation','',['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd><br>
+                            <dd> {!! Form::textarea('situation','',['class' => 'form-control','style'=>'resize: vertical', 'required']) !!}</dd><br>
                             <dt>包含的通報</dt>
                             <dd>
                                 <table class="table table-bordered">
@@ -75,7 +70,7 @@
                                         @if (isset($mission) )
                                             <tr>
 
-                                                @if ( is_null($mission->complete_time) )
+                                                @if ( $mission->mission_new_locations_id == 0 )
                                                     <td>{!!Form::checkbox('calls[]', $mission->mission_id)!!}</td>
                                                     <td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td>
                                                 @endif
@@ -96,8 +91,14 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <table class="table table-bordered">
+        <table class="table table-striped">
             <thead>
+                <tr>
+                    <th colspan="2"><h5><b>創建的地點</b></h5></th>
+                    <th class="text-right" colspan="5"><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createLocalBlock">創建地點</button></th>
+
+                </tr>
+
                 <tr><th>地點</th><th>嚴重程度</th><th>預估受困人數</th><th>現場狀況</th><th>評估日期</th><th>評估時間</th><th>修改</th></tr>
             </thead>
             <tbody>
@@ -143,26 +144,10 @@
                                             <dt>預估傷亡人數</dt>
                                             <dd> {!! Form::number('victim_number', $mission_new_location->victim_number, ['id' =>  'victim_number', 'class' => 'form-control', 'required','min'=>'0']) !!}</dd> <br>
                                             <dt>現場狀況</dt>
-                                            <dd> {!! Form::textarea('situation',$mission_new_location->situation,['class' => 'form-control','style'=>'resize:none', 'required']) !!}</dd>
+                                            <dd> {!! Form::textarea('situation',$mission_new_location->situation,['class' => 'form-control','style'=>'resize: vertical', 'required']) !!}</dd>
                                             <dt>包含的通報</dt>
                                             <dd>
-                                                {{--<table class="table table-bordered">--}}
-                                                    {{--<tr><td></td><td>通報編號</td><td>通報地址</td><td>通報內容</td></tr>--}}
-                                                    {{--@foreach ($missions as $mission)--}}
 
-                                                        {{--@if (isset($mission) )--}}
-                                                            {{--<tr>--}}
-
-                                                                {{--@if ( is_null($mission->complete_time) )--}}
-                                                                    {{--<td>{!!Form::checkbox('calls[]', $mission->mission_id)!!}</td>--}}
-                                                                    {{--<td>{!!$mission->mission_id!!}</td><td>{!!$mission->location!!}</td><td>{!!$mission->mission_content!!}</td>--}}
-                                                                {{--@endif--}}
-
-                                                            {{--</tr>--}}
-                                                        {{--@endif--}}
-
-                                                    {{--@endforeach--}}
-                                                {{--</table>--}}
                                             </dd>
                                         </dl>
                                     </div>

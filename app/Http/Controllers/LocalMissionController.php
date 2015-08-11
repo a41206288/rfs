@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 class LocalMissionController extends Controller {
 
 	/**
@@ -76,7 +77,7 @@ class LocalMissionController extends Controller {
                 ->join('role_user','users.id','=','role_user.user_id')
                 ->join('works_ons','users.id','=','works_ons.id')
                 ->where('role_id','=',5 )
-                ->where('mission_list_id', $mission_list_id)
+                ->where('works_ons.mission_list_id', $mission_list_id)
                 ->get();
 //            dd($relieverNewLocationUsers);
 
@@ -86,7 +87,7 @@ class LocalMissionController extends Controller {
                 ->join('works_ons','users.id','=','works_ons.id')
                 ->select('mission_new_locations_id',DB::raw('count(*) as total'))
                 ->where('role_id','=',5 )
-                ->where('mission_list_id', $mission_list_id)
+                ->where('works_ons.mission_list_id', $mission_list_id)
                 ->groupBy('mission_new_locations_id')
                 ->get();
 //            dd($relieverNewLocationUserAmounts);
@@ -325,9 +326,41 @@ class LocalMissionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request)
 	{
-		//
+        //        $inputs=$request->except('_token');
+//        dd($inputs);
+        $frees=$request->input('free');
+        $missions=$request->input('mission');
+//        dd($missions);
+        $mission_new_locations_id=$request->input('mission_new_locations_id');
+        $mission_list_id=Auth::user()->mission_list_id;
+        if(isset($frees)) {
+            foreach ($frees as $free) {
+                $delete = DB::table('works_ons')->where('id', $free)->get();
+                if (isset($delete)) {
+                    DB::table('works_ons')->where('id', $free)->delete();
+                }
+            }
+        }
+        if(isset($missions)) {
+            foreach ($missions as $mission) {
+                $insert= DB::table('works_ons')->where('id', $mission)->get();
+
+                if($insert == null)
+                {
+
+                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)', array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
+                }
+                else
+                {
+
+                }
+            }
+
+        }
+        DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',$mission_new_locations_id)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
+        return Redirect::to('mission/manage/local');
 	}
 
 	/**
@@ -336,9 +369,29 @@ class LocalMissionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-    public function update()
+    public function update(Request $request)
     {
-        //
+        $inputs=$request->except('_token');
+//        dd($inputs);
+        $emt = 0;
+        $reliever = 1;
+        $support_type =$request->input('support_type');
+        $mission_list_id=Auth::user()->mission_list_id;
+        if($support_type == $emt)
+        {
+            $local_emt_num = $request->input('local_emt_num');
+            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_emt_num' => $local_emt_num]);
+            DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',1)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
+
+
+        }
+        elseif($support_type == $reliever)
+        {
+            $local_reliever_num = $request->input('local_reliever_num');
+            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_reliever_num' => $local_reliever_num]);
+        }
+        return Redirect::to('mission/manage/local');
+
     }
 
 

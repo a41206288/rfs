@@ -34,7 +34,7 @@ class AnalysisAnalysisController extends Controller {
                 ->orderBy('location')
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
-
+//            dd($missions);
             $mission_new_locations =  DB::table('mission_new_locations')
                 ->where('mission_list_id', $mission_list_id)
                 ->orderBy('analysis_time')
@@ -71,9 +71,27 @@ class AnalysisAnalysisController extends Controller {
         $severe_level=$request->get('severe_level');
         $situation=$request->get('situation');
         $victim_number=$request->get('victim_number');
-
+        $calls = $request->get('calls');
+//        dd($calls);
         $mission_list_id=Auth::user()->mission_list_id;
-        DB::insert('insert into mission_new_locations (mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?)', array($mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
+        $mission_new_locations_id=DB::table('mission_new_locations')->select(DB::raw('count(*) as total'))->where('mission_list_id','=',$mission_list_id)->get();
+//        dd($mission_new_locations_id[0]->total);
+        DB::insert('insert into mission_new_locations (mission_new_locations_id,mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?,?)', array($mission_new_locations_id[0]->total+1,$mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
+
+//        $missions_index = DB::table('missions')->select('mission_id')->where('mission_list_id', $mission_list_id)->get();
+//
+//        dd($missions_index);
+//        foreach($missions_index as $mission)
+//        {
+////            dd($mission->mission_id);
+//            if(isset($inputs[$mission->mission_id]) && $inputs[$mission->mission_id]!='請選擇')
+//            {
+//
+//                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_list_id' => $inputs[$mission->mission_id]]);
+//
+//            }
+//        }
+
         return Redirect::to('analysis/manage');
 	}
 
