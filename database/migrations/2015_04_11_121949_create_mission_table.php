@@ -19,6 +19,7 @@ class CreateMissionTable extends Migration {
         {
             $table->increments('mission_list_id');
             $table->text('mission_name');
+            $table->unsignedInteger('id');
             $table->timestamps();
             $table->timestamp('complete_time')->nullable();
         });
@@ -41,6 +42,7 @@ class CreateMissionTable extends Migration {
         {
             $table->increments('works_on_id');
             $table->unsignedInteger('mission_new_locations_id');
+            $table->unsignedInteger('mission_list_id');
             $table->unsignedInteger('id');
             $table->timestamps();
         });
@@ -61,7 +63,8 @@ class CreateMissionTable extends Migration {
             $table->increments('mission_support_product_id');
             $table->unsignedInteger('mission_list_id');
             $table->unsignedInteger('product_total_amount_id');
-            $table->integer('amount');
+            $table->integer('mission_support_product_amount');
+            $table->integer('center_assign_product_amount');
             $table->timestamps();
         });
 

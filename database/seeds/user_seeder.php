@@ -101,7 +101,7 @@ class user_seeder extends Seeder{
         $user->id = 6;
         $user->name = "葉雯情";
         $user->email = "006@yahoo.com.tw";
-        $user->password =Hash::make ('6565erg');
+        $user->password =Hash::make ('1234');
         $user->phone = '0900600606';
         $user->save();
 
@@ -371,7 +371,7 @@ class user_seeder extends Seeder{
         $user->id = 20;
         $user->name = "金南響";
         $user->email = "020@yahoo.com.tw";
-        $user->password =Hash::make ('af987w');
+        $user->password =Hash::make ('1234');
         $user->phone = '0902002020';
         $user->save();
 
@@ -386,7 +386,7 @@ class user_seeder extends Seeder{
         $user->id = 21;
         $user->name = "呂伙棲";
         $user->email = "021@yahoo.com.tw";
-        $user->password =Hash::make ('z3xv5d4');
+        $user->password =Hash::make ('1234');
         $user->phone = '0902102121';
         $user->save();
 
@@ -401,7 +401,7 @@ class user_seeder extends Seeder{
         $user->id = 22;
         $user->name = "江晉玖";
         $user->email = "022@yahoo.com.tw";
-        $user->password =Hash::make ('6qef4zv');
+        $user->password =Hash::make ('1234');
         $user->phone = '0902202222';
         $user->save();
 
@@ -416,7 +416,7 @@ class user_seeder extends Seeder{
         $user->id = 23;
         $user->name = "高吉夙";
         $user->email = "023@yahoo.com.tw";
-        $user->password =Hash::make ('s65dg4');
+        $user->password =Hash::make ('1234');
         $user->phone = '0902302323';
         $user->save();
 
@@ -431,7 +431,7 @@ class user_seeder extends Seeder{
         $user->id = 24;
         $user->name = "柯苛科";
         $user->email = "024@yahoo.com.tw";
-        $user->password =Hash::make ('6s5df4');
+        $user->password =Hash::make ('1234');
         $user->phone = '0902402424';
         $user->save();
 
@@ -893,6 +893,25 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->mission_new_locations_id = 4;
         $Works_on->id = 52;
+        $Works_on->save();
+
+        $user = new App\User; //測試用密碼是1234
+        $user->id = 53;
+        $user->name = "黃織方";
+        $user->email = "053@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905305353';
+        $user->save();
+
+        $user  = User::where('name', '=', '黃織方')->first();
+        $roleAdmin = Permission::where('name', '=', 'Resource')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 3;
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->mission_new_locations_id = 2;
+        $Works_on->id = 53;
         $Works_on->save();
 
     }

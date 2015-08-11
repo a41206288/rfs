@@ -60,7 +60,7 @@ class CenterMissionController extends Controller {
                     $mission_list_charge_Array[$mission_list_charge->mission_list_id."email"] = $mission_list_charge->email;
                     $mission_list_charge_Array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
                 }
-//dd($mission_list_charge_Array);
+dd($mission_list_charge_Array);
 
                 //計算各任務醫療人員人數
                 $emtUsers = DB::table('users')
@@ -213,7 +213,7 @@ class CenterMissionController extends Controller {
             }
 
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['product_total_amount_id'] = $mission_support_product->product_total_amount_id;
-            $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['amount'] = $mission_support_product->amount;
+            $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['amount'] = $mission_support_product->mission_support_product_amount;
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['product_name'] = $mission_support_product->product_name;
             $mission_support_product_Arrays[$mission_support_product->mission_list_id][$i]['unit'] = $mission_support_product->unit;
         }

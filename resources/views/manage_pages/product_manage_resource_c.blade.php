@@ -46,8 +46,17 @@
                         <tr><th width="10%">物資編號</th><th width="10%">名稱</th><th width="10%">目前存量</th><th width="10%">安全存量</th><th width="10%">單位</th></tr>
                         </thead>
                         <tbody>
-
-                        <tr><td>1</td><td>泡麵</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td></tr>
+                        @if (isset($center_amounts))
+                            @foreach ($center_amounts as $center_amount)
+                        <tr>
+                            <td>{!! $center_amount->local_safe_amount_id !!}</td>
+                            <td>{!! $center_amount->product_name !!}</td>
+                            <td class="text-right">{!! $center_amount->amount !!}</td>
+                            <td class="text-right">{!! $center_amount->safe_amount !!}</td>
+                            <td>{!! $center_amount->unit !!}</td>
+                        </tr>
+                            @endforeach
+                        @endif
 
                         </tbody>
                         {{--{!! Form::close() !!}--}}
@@ -92,8 +101,27 @@
                         <tr><th>物資編號</th><th>物資名稱</th><th>需求數量</th><th>已認捐數量</th><th>單位</th><th>修改</th></tr>
                         </thead>
                         <tbody>
-
-                            <tr><td>1</td><td>泡麵</td><td class="text-right">20</td><td class="text-right">10</td><td>包</td><td><button class="btn btn-link btn-sm" data-toggle="modal" data-target="#update">修改</button></td></tr>
+                        @if (isset($center_support_products) )
+                            @foreach ($center_support_products as $center_support_product )
+                                <div style="display: none">
+                                    {!!$n =0!!}
+                                </div>
+                                @foreach ($donates as $donate )
+                                    @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id &&
+                                        $donate->arrived == 0)
+                                        <div style="display: none">
+                                            {!!$n = $n + $donate->donate_amount!!}
+                                        </div>
+                                    @endif
+                                @endforeach
+                            <tr>
+                                <td>{!!$center_support_product->product_total_amount_id!!}</td>
+                                <td>{!!$center_support_product->product_name!!}</td>
+                                <td class="text-right">{!!$center_support_product->center_support_product_amount!!}</td>
+                                <td class="text-right">{!! $n !!}</td>
+                                <td>{!!$center_support_product->unit!!}</td>
+                                <td><button class="btn btn-link btn-sm" data-toggle="modal" data-target="#update">修改</button></td>
+                            </tr>
                             <!-- Modal -->
                             <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -106,12 +134,12 @@
                                             <div class="modal-body">
                                             <dl class="dl-horizontal">
                                                 <dt>物資編號</dt>
-                                                <dd>1</dd><br>
+                                                <dd>{!!$center_support_product->product_total_amount_id!!}</dd><br>
                                                 <dt>物資名稱</dt>
-                                                <dd>泡麵</dd><br>
-                                                {!! Form::hidden('product_id','value') !!}
+                                                <dd>{!!$center_support_product->product_name!!}</dd><br>
+                                                {!! Form::hidden('product_id',$center_support_product->product_total_amount_id) !!}
                                                 <dt>需求數量</dt>
-                                                <dd class="text-right">33</dd><br>
+                                                <dd class="text-right">{!!$center_support_product->center_support_product_amount." ".$center_support_product->unit!!}</dd><br>
                                                 <dt>欲修改需求數量</dt>
                                                 <dd class="text-right">{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right','min'=>'0']) !!}</dd> <br>
 
@@ -125,6 +153,8 @@
                                     {!! Form::close() !!}
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
+                            @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -145,15 +175,31 @@
                         <tr><th>捐贈單編號</th><th>捐贈人姓名</th><th>捐贈人電話</th><th>捐贈人Email</th><th></th></tr>
                         </thead>
                         <tbody>
-
-                        <tr class="header expand" style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td>1</td><td>王小明</td><td>0912312312</td><td>123yahoo.com.tw</td><td><span class="sign"></span></td></tr>
-                        <tr><td></td><th>物資名稱</th><th>捐贈數量</th><th>單位</th><th>點收</th></tr>
-                        <tr><td></td><td>泡麵</td><td class="text-right">100</td><td>包</td><td>{!! Form::number('name', 0 ,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td></td><td>礦泉水</td><td class="text-right">2</td><td>瓶</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td colspan="4"></td><td>{!! Form::submit('點收完成', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
-                        <tr class="header expand"  style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td>1</td><td>王小明</td><td>0912312312</td><td>123yahoo.com.tw</td><td><span class="sign"></span></td></tr>
-                        <tr><td>物資名稱</td><td>捐贈數量</td></tr>
-
+                        @if (isset($donate_names) )
+                            @foreach ($donate_names as $donate_name )
+                                <tr class="header expand" style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
+                                    <td>{!!$donate_name->donate_id!!}</td>
+                                    <td>{!!$donate_name->lname.$donate_name->fname!!}</td>
+                                    <td>{!!$donate_name->phone!!}</td>
+                                    <td>{!!$donate_name->email!!}</td>
+                                    <td><span class="sign"></span></td></tr>
+                                    @if (isset($donates) )
+                                        @foreach ($donates as $donate )
+                                            @if($donate->donate_id == $donate_name->donate_id && $donate->arrived == 0)
+                                            <tr><td></td><th>物資名稱</th><th>捐贈數量</th><th>單位</th><th>點收</th></tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>{!!$donate->product_name!!}</td>
+                                                <td class="text-right">{!!$donate->donate_amount!!}</td>
+                                                <td>{!!$donate->unit!!}</td>
+                                                <td>{!! Form::number('name', 0 ,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td>
+                                            </tr>
+                                            <tr><td colspan="4"></td><td>{!! Form::submit('點收完成', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                            @endforeach
+                        @endif
                         </tbody>
                         {{--{!! Form::close() !!}--}}
                     </table>
@@ -189,26 +235,43 @@
                         {{--{!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}--}}
                         <thead>
                         <tr><td colspan="8"><h5><b>地方物資存量表</b></h5></td></tr>
-                        <tr><th width="10%">任務編號</th><th colspan="2">任務名稱</th><th>負責人</th><th>負責人電話</th><th>負責人Email</th></tr>
+                        <tr><th width="10%">任務編號</th><th colspan="2">任務名稱</th><th>負責人</th><th>負責人電話</th><th>負責人Email</th><th></th><th></th></tr>
                         </thead>
                         <tbody>
-
+                        @if (isset($resourceNewLocationUsers) )
+                            @foreach ($resourceNewLocationUsers as $resourceNewLocationUser )
                             <tr class="header expand"  style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
-                                <td>1</td><td colspan="2">西屯區</td><td>陳芊蓉</td><td>0987654321</td><td>789yahoo.com.tw</td><td>警告:尚未送出物資</td><td><span class="sign"></span></td>
-                            </tr>
-                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">安全存量</th><th width="15%">目前存量</th><th width="5%">單位</th><th width="15%">指揮官分配數量</th><th width="10%">實際點收</th></tr>
-                            <tr><td></td><td>1</td><td>泡麵</td><td class="text-right">345</td><td class="text-right">123</td><td>包</td><td class="text-right">60</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                            <tr><td></td><td>2</td><td>礦泉水</td><td class="text-right">345</td><td class="text-right">123</td><td>瓶</td><td class="text-right">50</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
+                                <td>{!!$resourceNewLocationUser->mission_list_id!!}</td>
+                                <td colspan="2">{!!$resourceNewLocationUser->mission_name!!}</td>
+                                <td>{!!$resourceNewLocationUser->name!!}</td>
+                                <td>{!!$resourceNewLocationUser->phone!!}</td>
+                                <td>{!!$resourceNewLocationUser->email!!}</td>
+                                {{--<td>警告:尚未送出物資</td><td><span class="sign"></span></td>--}}
+                                @if (isset($mission_support_products) )
+                                    @foreach ($mission_support_products as $mission_support_product )
+                                        @if($mission_support_product->center_assign_product_amount == 0)
+                                            <td>警告:尚未送出物資</td><td><span class="sign"></span></td>
+                                        @else
+
+
+                                    </tr>
+                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">安全存量</th><th width="15%">目前存量</th><th width="5%">單位</th><th width="15%">指揮官分配數量</th><th width="10%">實際送出</th></tr>
+                            <tr>
+                                <td></td>
+                                <td>{!!$mission_support_product->product_total_amount_id!!}</td>
+                                <td>{!!$mission_support_product->product_name!!}</td>
+                                <td class="text-right">{!!$mission_support_product->safe_amount!!}</td>
+                                <td class="text-right">{!!$mission_support_product->amount!!}</td>
+                                <td>{!!$mission_support_product->unit!!}</td>
+                                <td class="text-right">{!!$mission_support_product->center_assign_product_amount!!}</td>
+                                <td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
                             <tr><td colspan="3"></td><td class="text-right">{!! Form::submit('修改安全存量', ['class' => 'btn btn-default btn-sm']) !!}</td><td colspan="2"></td><td colspan="2" class="text-right">{!! Form::submit('已送出物資', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
+                            @endif
+                            @endforeach
+                        @endif
 
-                            <tr class="header expand"  style="background-color: #f9f9f9; border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
-                                <td>2</td><td colspan="2">北屯區</td><td>陳芊蓉</td><td>0987654321</td><td>789yahoo.com.tw</td><td></td><td><span class="sign"></span></td>
-                            </tr>
-                            <tr><td width="10%"></td><th width="15%">物資編號</th><th width="15%">物資名稱</th><th width="15%">目前存量</th><th width="15%">安全存量</th><th width="5%">單位</th><th width="15%">中央指揮官分配數量</th><th width="10%"></th></tr>
-                            <tr><td></td><td>1</td><td>泡麵</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td class="text-right">0</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                            <tr><td></td><td>2</td><td>礦泉水</td><td class="text-right">123</td><td class="text-right">345</td><td>瓶</td><td class="text-right">0</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                            <tr><td colspan="3"></td><td class="text-right">{!! Form::submit('修改安全存量', ['class' => 'btn btn-default btn-sm']) !!}</td><td  colspan="2"></td><td colspan="2" class="text-right">{!! Form::submit('已送出物資', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
-
+                            @endforeach
+                        @endif
                         </tbody>
                         {{--{!! Form::close() !!}--}}
                     </table>

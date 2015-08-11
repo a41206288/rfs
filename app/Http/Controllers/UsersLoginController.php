@@ -41,13 +41,13 @@ class UsersLoginController extends Controller {
                 if($user->is('administrator')){
                    // return $this->moderatorPanel();
                    return redirect()->route('administratorPanel');
-                       }else if($user->is('local')){
+                }else if($user->is('local')){
                     return redirect()->route('localPanel');
-                      }else if($user->is('analysis')){
+                }else if($user->is('analysis')){
                     return redirect()->route('analysisPanel');
+                }else if($user->is('emt')){
+                    return redirect()->route('emtPanel');
                 }
-
-
             }
 
             return Redirect::to('login')

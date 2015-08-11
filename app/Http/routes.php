@@ -37,7 +37,6 @@ Route::get('logout', 'UsersLoginController@logout');
 //下面請根據權限放至各Panel下  (此為暫放)
 
 Route::get('analysis/manage', 'AnalysisAnalysisController@index');
-Route::get('report/EMT', 'EmtReportController@index');
 Route::post('report/reliever', 'EmtReportController@create');
 Route::get('report/reliever', 'RelieverReportController@index');
 Route::post('report/reliever', 'RelieverReportController@create');
@@ -122,6 +121,13 @@ Route::group([
         //analysis manage 創建新地點
         Route::post('analysis/manage/createLocation', 'AnalysisAnalysisController@create');
         Route::post('analysis/manage/updateLocation', 'AnalysisAnalysisController@update');
+    });
+
+Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'emt'],
+    function () {
+        Route::get('report/EMT',array('as' => 'emtPanel', 'uses' => 'EmtReportController@index') );
     });
 
 

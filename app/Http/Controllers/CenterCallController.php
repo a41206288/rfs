@@ -131,7 +131,7 @@ class CenterCallController extends Controller {
         //讀取任務列表
         $mission_names = DB::table('mission_lists')->orderBy('mission_name')->where('mission_list_id', '>' , 1)->lists('mission_name','mission_list_id');
         $mission_names = array_add($mission_names, '請選擇', '請選擇');
-        dd($mission_names);
+//        dd($mission_names);
         /*取得未分配任務之地方指揮官      START*/
         $results = array();
         $queries = DB::table('users')

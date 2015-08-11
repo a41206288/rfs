@@ -97,42 +97,48 @@ class mission_seeder extends Seeder{
         $mission_support_person->save();
 
         //物資支援
-        $mission_support_person = new App\Mission_support_product;
-        $mission_support_person->mission_list_id = 2;
-        $mission_support_person->product_total_amount_id = 2;
-        $mission_support_person->amount = 10;
-        $mission_support_person->save();
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 2;
+        $mission_support_product->product_total_amount_id = 2;
+        $mission_support_product->mission_support_product_amount = 10;
+        $mission_support_product->center_assign_product_amount = 10;
+        $mission_support_product->save();
 
-        $mission_support_person = new App\Mission_support_product;
-        $mission_support_person->mission_list_id = 2;
-        $mission_support_person->product_total_amount_id = 3;
-        $mission_support_person->amount = 10;
-        $mission_support_person->save();
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 2;
+        $mission_support_product->product_total_amount_id = 3;
+        $mission_support_product->mission_support_product_amount = 10;
+        $mission_support_product->center_assign_product_amount = 5;
+        $mission_support_product->save();
 
-        $mission_support_person = new App\Mission_support_product;
-        $mission_support_person->mission_list_id = 2;
-        $mission_support_person->product_total_amount_id = 4;
-        $mission_support_person->amount = 10;
-        $mission_support_person->save();
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 2;
+        $mission_support_product->product_total_amount_id = 4;
+        $mission_support_product->mission_support_product_amount = 10;
+        $mission_support_product->center_assign_product_amount = 0;
+        $mission_support_product->save();
 
-        $mission_support_person = new App\Mission_support_product;
-        $mission_support_person->mission_list_id = 3;
-        $mission_support_person->product_total_amount_id = 3;
-        $mission_support_person->amount = 30;
-        $mission_support_person->save();
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 3;
+        $mission_support_product->product_total_amount_id = 3;
+        $mission_support_product->mission_support_product_amount = 30;
+        $mission_support_product->center_assign_product_amount = 10;
+        $mission_support_product->save();
 
-        $mission_support_person = new App\Mission_support_product;
-        $mission_support_person->mission_list_id = 4;
-        $mission_support_person->product_total_amount_id = 4;
-        $mission_support_person->amount = 10;
-        $mission_support_person->save();
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 4;
+        $mission_support_product->product_total_amount_id = 4;
+        $mission_support_product->mission_support_product_amount = 10;
+        $mission_support_product->center_assign_product_amount = 5;
+        $mission_support_product->save();
 
 
-        $mission_support_person = new App\Mission_support_product;
-        $mission_support_person->mission_list_id = 6;
-        $mission_support_person->product_total_amount_id = 5;
-        $mission_support_person->amount = 10;
-        $mission_support_person->save();
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 6;
+        $mission_support_product->product_total_amount_id = 5;
+        $mission_support_product->mission_support_product_amount = 10;
+        $mission_support_product->center_assign_product_amount = 10;
+        $mission_support_product->save();
 
 
 
