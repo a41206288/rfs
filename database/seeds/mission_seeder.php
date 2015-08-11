@@ -738,6 +738,7 @@ class mission_seeder extends Seeder{
         $mission->location = '醫療組';
         $mission->executive_require_people_num = 10;
         $mission->executive_require_reason = "傷患過多，無法及時處理";
+        $mission->id = 24;
         $mission->save();
 
         $mission = new App\Mission_new_location;

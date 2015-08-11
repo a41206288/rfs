@@ -34,6 +34,7 @@ class CreateMissionTable extends Migration {
             $table->integer('victim_number');
             $table->integer('executive_require_people_num');
             $table->text('executive_require_reason');
+            $table->unsignedInteger('id');
             $table->timestamp('analysis_time');
             $table->timestamps();
         });
