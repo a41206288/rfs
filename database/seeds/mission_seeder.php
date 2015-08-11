@@ -32,31 +32,37 @@ class mission_seeder extends Seeder{
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 2;
         $mission_list->mission_name = '西屯區';
+        $mission_list->id = 32;
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 3;
         $mission_list->mission_name = '北屯區';
+        $mission_list->id = 33;
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 4;
         $mission_list->mission_name = '台中市政府周圍';
+        $mission_list->id = 34;
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 5;
         $mission_list->mission_name = '新莊區';
+        $mission_list->id = 35;
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 6;
         $mission_list->mission_name = '高雄市';
+        $mission_list->id = 36;
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 7;
         $mission_list->mission_name = '台北市';
+        $mission_list->id = 37;
         $mission_list->save();
 
         //人員需求
