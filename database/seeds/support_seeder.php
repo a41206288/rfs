@@ -174,13 +174,29 @@ class support_seeder extends Seeder{
         $product_total_amount = new App\Local_safe_amount;
         $product_total_amount->local_safe_amount_id = 11;
         $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 1;
+        $product_total_amount->safe_amount = 6;
+        $product_total_amount->amount = 6;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 12;
+        $product_total_amount->mission_list_id = 2;
         $product_total_amount->product_total_amount_id = 2;
         $product_total_amount->safe_amount = 10;
         $product_total_amount->amount = 15;
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 12;
+        $product_total_amount->local_safe_amount_id = 13;
+        $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 3;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 14;
         $product_total_amount->mission_list_id = 2;
         $product_total_amount->product_total_amount_id = 4;
         $product_total_amount->safe_amount = 5;
@@ -188,7 +204,23 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 13;
+        $product_total_amount->local_safe_amount_id = 15;
+        $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 5;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 16;
+        $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 6;
+        $product_total_amount->safe_amount = 3;
+        $product_total_amount->amount = 3;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 17;
         $product_total_amount->mission_list_id = 2;
         $product_total_amount->product_total_amount_id = 7;
         $product_total_amount->safe_amount = 3;
@@ -196,7 +228,39 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 14;
+        $product_total_amount->local_safe_amount_id = 18;
+        $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 8;
+        $product_total_amount->safe_amount = 3;
+        $product_total_amount->amount = 4;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 19;
+        $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 9;
+        $product_total_amount->safe_amount = 1;
+        $product_total_amount->amount = 1;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 20;
+        $product_total_amount->mission_list_id = 2;
+        $product_total_amount->product_total_amount_id = 10;
+        $product_total_amount->safe_amount = 4;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 21;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 1;
+        $product_total_amount->safe_amount = 9;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 22;
         $product_total_amount->mission_list_id = 3;
         $product_total_amount->product_total_amount_id = 2;
         $product_total_amount->safe_amount = 10;
@@ -204,7 +268,15 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 15;
+        $product_total_amount->local_safe_amount_id = 23;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 3;
+        $product_total_amount->safe_amount = 3;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 24;
         $product_total_amount->mission_list_id = 3;
         $product_total_amount->product_total_amount_id = 4;
         $product_total_amount->safe_amount = 10;
@@ -212,7 +284,63 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 16;
+        $product_total_amount->local_safe_amount_id = 25;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 5;
+        $product_total_amount->safe_amount = 15;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 26;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 6;
+        $product_total_amount->safe_amount = 2;
+        $product_total_amount->amount = 2;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 27;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 7;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 7;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 28;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 8;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 29;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 9;
+        $product_total_amount->safe_amount = 2;
+        $product_total_amount->amount = 3;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 30;
+        $product_total_amount->mission_list_id = 3;
+        $product_total_amount->product_total_amount_id = 10;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 15;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 31;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 1;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 32;
         $product_total_amount->mission_list_id = 4;
         $product_total_amount->product_total_amount_id = 2;
         $product_total_amount->safe_amount = 20;
@@ -220,7 +348,23 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 17;
+        $product_total_amount->local_safe_amount_id = 33;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 3;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 34;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 4;
+        $product_total_amount->safe_amount = 15;
+        $product_total_amount->amount = 7;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 35;
         $product_total_amount->mission_list_id = 4;
         $product_total_amount->product_total_amount_id = 5;
         $product_total_amount->safe_amount = 10;
@@ -228,7 +372,23 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 18;
+        $product_total_amount->local_safe_amount_id = 36;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 6;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 37;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 7;
+        $product_total_amount->safe_amount = 8;
+        $product_total_amount->amount = 3;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 38;
         $product_total_amount->mission_list_id = 4;
         $product_total_amount->product_total_amount_id = 8;
         $product_total_amount->safe_amount = 2;
@@ -236,7 +396,31 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 19;
+        $product_total_amount->local_safe_amount_id = 39;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 9;
+        $product_total_amount->safe_amount = 2;
+        $product_total_amount->amount = 2;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 40;
+        $product_total_amount->mission_list_id = 4;
+        $product_total_amount->product_total_amount_id = 10;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 12;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 41;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 1;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 20;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 42;
         $product_total_amount->mission_list_id = 5;
         $product_total_amount->product_total_amount_id = 2;
         $product_total_amount->safe_amount = 10;
@@ -244,7 +428,15 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 20;
+        $product_total_amount->local_safe_amount_id = 43;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 3;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 44;
         $product_total_amount->mission_list_id = 5;
         $product_total_amount->product_total_amount_id = 4;
         $product_total_amount->safe_amount = 15;
@@ -252,7 +444,63 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 21;
+        $product_total_amount->local_safe_amount_id = 45;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 5;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 46;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 6;
+        $product_total_amount->safe_amount = 9;
+        $product_total_amount->amount = 11;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 47;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 7;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 15;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 48;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 8;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 6;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 49;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 9;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 7;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 50;
+        $product_total_amount->mission_list_id = 5;
+        $product_total_amount->product_total_amount_id = 10;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 9;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 51;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 1;
+        $product_total_amount->safe_amount = 8;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 52;
         $product_total_amount->mission_list_id = 6;
         $product_total_amount->product_total_amount_id = 2;
         $product_total_amount->safe_amount = 15;
@@ -260,7 +508,15 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 22;
+        $product_total_amount->local_safe_amount_id = 53;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 3;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 54;
         $product_total_amount->mission_list_id = 6;
         $product_total_amount->product_total_amount_id = 4;
         $product_total_amount->safe_amount = 10;
@@ -268,7 +524,63 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 23;
+        $product_total_amount->local_safe_amount_id = 55;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 5;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 0;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 56;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 6;
+        $product_total_amount->safe_amount = 15;
+        $product_total_amount->amount = 16;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 57;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 7;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 6;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 58;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 8;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 3;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 59;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 9;
+        $product_total_amount->safe_amount = 3;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 60;
+        $product_total_amount->mission_list_id = 6;
+        $product_total_amount->product_total_amount_id = 10;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 5;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 61;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 1;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 6;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 62;
         $product_total_amount->mission_list_id = 7;
         $product_total_amount->product_total_amount_id = 2;
         $product_total_amount->safe_amount = 5;
@@ -276,7 +588,15 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 24;
+        $product_total_amount->local_safe_amount_id = 63;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 3;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 15;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 64;
         $product_total_amount->mission_list_id = 7;
         $product_total_amount->product_total_amount_id = 4;
         $product_total_amount->safe_amount = 10;
@@ -284,12 +604,55 @@ class support_seeder extends Seeder{
         $product_total_amount->save();
 
         $product_total_amount = new App\Local_safe_amount;
-        $product_total_amount->local_safe_amount_id = 25;
+        $product_total_amount->local_safe_amount_id = 65;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 5;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 66;
         $product_total_amount->mission_list_id = 7;
         $product_total_amount->product_total_amount_id = 6;
         $product_total_amount->safe_amount = 10;
         $product_total_amount->amount = 13;
         $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 67;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 7;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 20;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 68;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 8;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 13;
+        $product_total_amount->save();
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 69;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 9;
+        $product_total_amount->safe_amount = 5;
+        $product_total_amount->amount = 8;
+        $product_total_amount->save();
+
+
+
+        $product_total_amount = new App\Local_safe_amount;
+        $product_total_amount->local_safe_amount_id = 70;
+        $product_total_amount->mission_list_id = 7;
+        $product_total_amount->product_total_amount_id = 10;
+        $product_total_amount->safe_amount = 10;
+        $product_total_amount->amount = 10;
+        $product_total_amount->save();
+
 
 
         /* !!注意!!  email是unique */
