@@ -32,20 +32,21 @@
                     <th width="10%">死亡</th><td width="10%">0</td></tr>
             {!! Form::open(array('url' => 'report/local', 'method' => 'post','class' => 'form-horizontal')) !!}
                 @if($executiveRequireArrays[1][1]['executive_require_people_num'] != 0 &&  $executiveRequireArrays[1][1]['executive_require_reason'] != "")
-                    <tr><td rowspan="2"><b>增援需求</b></td>
+                    <tr class="alert alert-danger"><td rowspan="2"><b>增援需求</b></td>
                         <th>日期</th>
                         <th>時間</th>
-                        <th>欲增援人數</th>
+                        <th colspan="2">向中央要求增援人數</th>
                         <th colspan="4">原因/備註</th>
-                        <td colspan="2">{!! Form::submit('向中央回報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td>
+                        <td colspan="1">{!! Form::submit('向中央回報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td>
                     </tr>
-                    <tr><td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%Y/%m/%d')}}</td>
+                    <tr class="alert alert-danger"><td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%Y/%m/%d')}}</td>
                         <td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%H:%M:%S')}}</td>
                         <td>{!!$executiveRequireArrays[1][1]['executive_require_people_num']!!} 人</td>
-                        <td colspan="6">{!!$executiveRequireArrays[1][1]['executive_require_reason']!!}</td></tr>
+                        <td>{!! Form::number('local_emt_num', $executiveRequireArrays[1][1]['executive_require_people_num'], ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td>
+                        <td colspan="5">{!!$executiveRequireArrays[1][1]['executive_require_reason']!!}</td></tr>
                 @endif
                 {!! Form::hidden('support_type','0') !!}
-                {!! Form::hidden('local_emt_num',$executiveRequireArrays[1][1]['executive_require_people_num']) !!}
+                {{--{!! Form::hidden('local_emt_num',$executiveRequireArrays[1][1]['executive_require_people_num']) !!}--}}
             {!! Form::close() !!}
                 <tr><th colspan="10">最新回報  <span class="sign"></span> </th></tr>
                 <tr><th colspan="2">日期</th><th colspan="2">時間</th><th colspan="6">內容</th></tr>
@@ -130,7 +131,7 @@
             {!! Form::open(array('url' => 'report/local', 'method' => 'post','class' => 'form-horizontal')) !!}
                 <tr><th colspan="10">脫困組</th></tr>
                 <tr><td width="10%"><b>救災地點總數</b></td><td width="10%">2</td><td width="10%"><b>脫困組總人數</b></td><td width="10%">20</td>
-                    <td width="10%"><b>要求支援總人數</b></td><td width="10%">200</td><td width="10%"><b>向中央要求增援人數</b></td><td width="10%">20</td>
+                    <td width="10%"><b>要求支援總人數</b></td><td width="10%">200</td><td width="10%"><b>向中央要求增援數</b></td><td width="10%">20</td>
                     <td width="10%">{!! Form::number('local_reliever_num', 0, ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td width="10%"> {!! Form::submit('向中央回報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td></tr>
                 <tr><th colspan="2" rowspan="2">救災地點</th><th colspan="2" rowspan="2">脫困組人數</th><th colspan="6">最新回報</th></tr>
