@@ -23,16 +23,16 @@
         <table>
             <tr><td colspan="2"><b>個人資料</b></td></tr>
             <tr>
-                <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
+                <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%" colspan="2">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
             </tr>
             <tr>
-                <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control', 'required']) !!}</td>
+                <td>名字</td><td colspan="2">{!! Form::text('fname','',['class' => 'form-control', 'required']) !!}</td>
             </tr>
             <tr>
-                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
+                <td>聯絡電話</td><td colspan="2">{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
             </tr>
             <tr>
-                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
+                <td>E-mail</td><td colspan="2">{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
             </tr>
             <tr>
                 <td>目前所在地點</td>
@@ -45,10 +45,10 @@
             </tr>
 
             <tr>
-                <td colspan="2"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
+                <td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
             </tr>
             <tr>
-                <td colspan="2"><font color="#ff0b11">*</font> 請務必填寫</td>
+                <td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>
             </tr>
 
         </table>
