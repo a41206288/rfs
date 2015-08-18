@@ -180,7 +180,7 @@ class CenterCallController extends Controller {
         $inputs=$request->except('_token');
         $missions_index = DB::table('missions')->select('mission_id')->where('mission_list_id', 1)->get();
 
-        //dd($inputs);
+//        dd($inputs);
         foreach($missions_index as $mission)
         {
 //            dd($mission->mission_id);

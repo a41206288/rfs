@@ -51,10 +51,14 @@ class AnalysisAnalysisController extends Controller {
             $mission_new_locations = null;
         }
 //dd($missions);
+        $mission_new_locations_names = DB::table('mission_new_locations')->orderBy('location')->where('mission_list_id', '=' , $mission_list_id)->where('mission_new_locations_id', '>' , 2)->lists('location','mission_new_locations_id');
+        $mission_new_locations_names = array_add($mission_new_locations_names, '請選擇', '請選擇');
+//        dd($mission_new_locations_names);
         return view('manage_pages.analysis_manage')
             ->with('mission_list_names', $mission_list_names)
             ->with('missions', $missions)
-            ->with('mission_new_locations', $mission_new_locations);
+            ->with('mission_new_locations', $mission_new_locations)
+            ->with('mission_new_locations_names', $mission_new_locations_names);
 	}
 
 	/**
@@ -78,19 +82,11 @@ class AnalysisAnalysisController extends Controller {
 //        dd($mission_new_locations_id[0]->total);
         DB::insert('insert into mission_new_locations (mission_new_locations_id,mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?,?)', array($mission_new_locations_id[0]->total+1,$mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
 
-//        $missions_index = DB::table('missions')->select('mission_id')->where('mission_list_id', $mission_list_id)->get();
-//
-//        dd($missions_index);
-//        foreach($missions_index as $mission)
-//        {
-////            dd($mission->mission_id);
-//            if(isset($inputs[$mission->mission_id]) && $inputs[$mission->mission_id]!='請選擇')
-//            {
-//
-//                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_list_id' => $inputs[$mission->mission_id]]);
-//
-//            }
-//        }
+
+        foreach($calls as $call)
+        {
+            DB::table('missions')->where('mission_id', $call)->update(['mission_new_locations_id'=>$mission_new_locations_id[0]->total+1,'updated_at'=>date('Y-m-d H:i:s')]);
+        }
 
         return Redirect::to('analysis/manage');
 	}
@@ -122,9 +118,23 @@ class AnalysisAnalysisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request)
 	{
-		//
+        $inputs=$request->except('_token');
+//        dd($inputs);
+        $mission_list_id=Auth::user()->mission_list_id;
+        $missions=DB::table('missions')->where('mission_list_id', $mission_list_id)->where('mission_new_locations_id', 0)->get();
+        foreach($missions as $mission)
+        {
+//            dd($mission->mission_id);
+            if(isset($inputs[$mission->mission_id]) && $inputs[$mission->mission_id]!='請選擇')
+            {
+
+                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_new_locations_id' => $inputs[$mission->mission_id],'updated_at'=>date('Y-m-d H:i:s')]);
+
+            }
+        }
+        return Redirect::to('analysis/manage');
 	}
 
 	/**
@@ -143,10 +153,31 @@ class AnalysisAnalysisController extends Controller {
         $severe_level=$request->get('severe_level');
         $situation=$request->get('situation');
         $victim_number=$request->get('victim_number');
-
+        $calls = $request->get('calls');
+//        dd($calls);
+        $mission_list_id=Auth::user()->mission_list_id;
 //        DB::insert('insert into mission_new_locations (mission_list_id, location,severe_level,situation,victim_number,analysis_time) values (?,?,?,?,?,?)', array($mission_list_id, $location,$severe_level,$situation,$victim_number,date('Y-m-d H:i:s')));
 
         DB::table('mission_new_locations')->where('mission_new_locations_id',$mission_new_locations_id)->update(['location' => $location,'severe_level'=>$severe_level,'situation'=>$situation,'victim_number'=>$victim_number]);
+
+        if($calls == null)
+        {
+            $missions=DB::table('missions')->where('mission_list_id', $mission_list_id)->where('mission_new_locations_id', $mission_new_locations_id)->get();
+            foreach($missions as $mission)
+            {
+                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_new_locations_id'=> 0,'updated_at'=>date('Y-m-d H:i:s')]);
+            }
+        }
+        else
+        {
+            $missions=DB::table('missions')->where('mission_list_id', $mission_list_id)->where('mission_new_locations_id', $mission_new_locations_id)
+                        ->whereNotIn('mission_id',$calls)->get();
+            foreach($missions as $mission)
+            {
+                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_new_locations_id'=> 0,'updated_at'=>date('Y-m-d H:i:s')]);
+            }
+        }
+
         return Redirect::to('analysis/manage');
 	}
 
@@ -156,9 +187,20 @@ class AnalysisAnalysisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Request $request)
 	{
-		//
-	}
+        $inputs=$request->except('_token');
+//        dd($inputs);
+        $mission_new_locations_id=$request->get('mission_new_locations_id');
+        $mission_list_id=Auth::user()->mission_list_id;
+        $missions=DB::table('missions')->where('mission_list_id', $mission_list_id)->where('mission_new_locations_id', $mission_new_locations_id)->get();
+        foreach($missions as $mission)
+        {
+            DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_new_locations_id'=> 0,'updated_at'=>date('Y-m-d H:i:s')]);
+        }
+        DB::table('mission_new_locations')->where('mission_list_id', $mission_list_id)->where('mission_new_locations_id',$mission_new_locations_id)->delete();
+        return Redirect::to('analysis/manage');
+    }
+
 
 }

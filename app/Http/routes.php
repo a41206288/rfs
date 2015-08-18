@@ -16,7 +16,7 @@ Route::get('/', 'UsersHomeController@index');
 Route::get('call/input', 'UsersCallController@index');
 Route::post('call/input', 'UsersCallController@create');
 Route::get('donate/input', 'UsersDonateController@index');
-Route::post('donate/input', 'UsersDonateController@show');
+Route::post('donate/input', 'UsersDonateController@store');
 Route::get('guidance', 'UsersGuidanceController@index');
 //Route::get('guidance_map', 'GuidanceController@');
 Route::get('application/input', 'UsersApplicationController@index');
@@ -119,6 +119,8 @@ Route::group([
         //analysis manage 創建新地點
         Route::post('analysis/manage/createLocation', 'AnalysisAnalysisController@create');
         Route::post('analysis/manage/updateLocation', 'AnalysisAnalysisController@update');
+        Route::post('analysis/manage/editLocation', 'AnalysisAnalysisController@edit');
+        Route::post('analysis/manage/deleteLocation', 'AnalysisAnalysisController@destroy');
     });
 
 Route::group([
