@@ -75,6 +75,13 @@ class NewRole extends Migration
             'description' => '一般民眾'
         ]);
 
+        $role = new Role();
+        $roleCresource = $role->create([
+            'name' => 'Cresource',
+            'slug' => 'cresource',
+            'description' => '中央資源監控組'
+        ]);
+
          //Create Permissions
 
         $permission = new Permission();
@@ -168,6 +175,8 @@ class NewRole extends Migration
             'description' => 'manage Resource  permissions'
         ]);
 
+
+
         $permission = new Permission();
         $permMasses = $permission->create([
             'name'        => 'Masses',
@@ -181,6 +190,19 @@ class NewRole extends Migration
             'description' => 'manage Masses  permissions'
         ]);
 
+        $permission = new Permission();
+        $permCresource = $permission->create([
+            'name'        => 'Cresource',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Cresource  permissions'
+        ]);
+
         //Assign Permission(s) to Role
 
         $roleAdmin->assignPermission($permAdmin);
@@ -191,6 +213,7 @@ class NewRole extends Migration
         $roleResource->assignPermission($permResource);
         $roleMasses->assignPermission($permMasses);
         $roleAnalysis->assignPermission($permAnalysis);
+        $roleCresource->assignPermission($permCresource);
         //Assign Role(s) To User
 
 //        $user  = User::where('name', '=', '王小明');
@@ -227,6 +250,7 @@ class NewRole extends Migration
         Role::where('name', '=', 'Resource')->delete();
         Role::where('name', '=', 'Masses')->delete();
         Role::where('name', '=', 'Analysis')->delete();
+        Role::where('name', '=', 'Cresource')->delete();
 
 
     }

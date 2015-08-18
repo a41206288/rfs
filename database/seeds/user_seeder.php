@@ -18,6 +18,7 @@ class user_seeder extends Seeder{
     public function run(){
         DB:: table('users')->delete();
         DB:: table('works_ons')->delete();
+        DB:: table('victim_details')->delete();
 
         $user = new App\User; //測試用密碼是1234
         $user->id = 1;
@@ -25,6 +26,7 @@ class user_seeder extends Seeder{
         $user->email = "123@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0912312312';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '王小明')->first();
@@ -39,6 +41,7 @@ class user_seeder extends Seeder{
         $user->email = "456@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0945645645';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '陳小華')->first();
@@ -52,6 +55,7 @@ class user_seeder extends Seeder{
         $user->email = "789@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0978978978';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '陳芊蓉')->first();
@@ -70,6 +74,7 @@ class user_seeder extends Seeder{
         $user->skill = '無特殊技能';
         $user->country_or_city_input = '苗栗縣';
         $user->township_or_district_input = '公館鄉';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '林麗雯')->first();
@@ -88,6 +93,7 @@ class user_seeder extends Seeder{
         $user->skill = '有醫師執照';
         $user->country_or_city_input = '台中市';
         $user->township_or_district_input = '北屯區';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '韓東霖')->first();
@@ -109,6 +115,7 @@ class user_seeder extends Seeder{
         $roleAdmin = Permission::where('name', '=', 'emt')->first();
         $user->assignRole($roleAdmin);
         $user->mission_list_id = 2;
+        $user->arrived = 1;
         $user->save();
 
         $Works_on = new App\Works_on;
@@ -122,8 +129,9 @@ class user_seeder extends Seeder{
         $user->id = 7;
         $user->name = "王麗芳";
         $user->email = "007@yahoo.com.tw";
-        $user->password =Hash::make ('e6r5g4654rg');
+        $user->password =Hash::make ('1234');
         $user->phone = '0900700707';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '王麗芳')->first();
@@ -144,8 +152,9 @@ class user_seeder extends Seeder{
         $user->id = 8;
         $user->name = "吳番薯";
         $user->email = "008@yahoo.com.tw";
-        $user->password =Hash::make ('xv3z21vz');
+        $user->password =Hash::make ('1234');
         $user->phone = '0900800808';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '吳番薯')->first();
@@ -160,8 +169,9 @@ class user_seeder extends Seeder{
         $user->id = 9;
         $user->name = "葉欣偉";
         $user->email = "009@yahoo.com.tw";
-        $user->password =Hash::make ('wer75qr13');
+        $user->password =Hash::make ('1234');
         $user->phone = '0900900909';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '葉欣偉')->first();
@@ -176,8 +186,9 @@ class user_seeder extends Seeder{
         $user->id = 10;
         $user->name = "楊光冽";
         $user->email = "010@yahoo.com.tw";
-        $user->password =Hash::make ('3we2r1');
+        $user->password =Hash::make ('1234');
         $user->phone = '0901001010';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '楊光冽')->first();
@@ -198,8 +209,9 @@ class user_seeder extends Seeder{
         $user->id = 11;
         $user->name = "簡道鉗";
         $user->email = "011@yahoo.com.tw";
-        $user->password =Hash::make ('w13e54f');
+        $user->password =Hash::make ('1234');
         $user->phone = '0901101111';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '簡道鉗')->first();
@@ -214,8 +226,9 @@ class user_seeder extends Seeder{
         $user->id = 12;
         $user->name = "林語";
         $user->email = "012@yahoo.com.tw";
-        $user->password =Hash::make ('6a5s4d');
+        $user->password =Hash::make ('1234');
         $user->phone = '0901201212';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '林語')->first();
@@ -241,6 +254,7 @@ class user_seeder extends Seeder{
         $user->skill = '無特殊技能';
         $user->country_or_city_input = '新北市';
         $user->township_or_district_input = '萬華區';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '耿夜')->first();
@@ -256,6 +270,7 @@ class user_seeder extends Seeder{
         $user->email = "014@yahoo.com.tw";
         $user->password =Hash::make ('v31s5e4f');
         $user->phone = '0901401414';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '彭士萱')->first();
@@ -278,6 +293,7 @@ class user_seeder extends Seeder{
         $user->email = "015@yahoo.com.tw";
         $user->password =Hash::make ('4wg9e87f');
         $user->phone = '0901501515';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '黃奇偉')->first();
@@ -300,6 +316,7 @@ class user_seeder extends Seeder{
         $user->email = "016@yahoo.com.tw";
         $user->password =Hash::make ('d4q9w8f4');
         $user->phone = '0901601616';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '丁凝')->first();
@@ -322,6 +339,7 @@ class user_seeder extends Seeder{
         $user->email = "017@yahoo.com.tw";
         $user->password =Hash::make ('d46qw7f');
         $user->phone = '0901701717';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '曾家琪')->first();
@@ -344,6 +362,7 @@ class user_seeder extends Seeder{
         $user->email = "018@yahoo.com.tw";
         $user->password =Hash::make ('t6y15mrn');
         $user->phone = '0901801818';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '顧溪中')->first();
@@ -366,6 +385,7 @@ class user_seeder extends Seeder{
         $user->email = "019@yahoo.com.tw";
         $user->password =Hash::make ('q9w87zc213');
         $user->phone = '0901901919';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '鍾渝')->first();
@@ -382,6 +402,7 @@ class user_seeder extends Seeder{
         $user->email = "020@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902002020';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '金南響')->first();
@@ -397,6 +418,7 @@ class user_seeder extends Seeder{
         $user->email = "021@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902102121';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '呂伙棲')->first();
@@ -412,6 +434,7 @@ class user_seeder extends Seeder{
         $user->email = "022@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902202222';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '江晉玖')->first();
@@ -427,6 +450,7 @@ class user_seeder extends Seeder{
         $user->email = "023@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902302323';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '高吉夙')->first();
@@ -442,6 +466,7 @@ class user_seeder extends Seeder{
         $user->email = "024@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902402424';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '柯苛科')->first();
@@ -463,6 +488,7 @@ class user_seeder extends Seeder{
         $user->email = "025@yahoo.com.tw";
         $user->password =Hash::make ('s65df4s5d4v');
         $user->phone = '0902502525';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '白卓逸')->first();
@@ -478,6 +504,7 @@ class user_seeder extends Seeder{
         $user->email = "026@yahoo.com.tw";
         $user->password =Hash::make ('s3dv21');
         $user->phone = '0902602626';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '郭曉建')->first();
@@ -497,6 +524,7 @@ class user_seeder extends Seeder{
         $user->email = "027@yahoo.com.tw";
         $user->password =Hash::make ('s35df44w');
         $user->phone = '0902702727';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '詹絳')->first();
@@ -512,6 +540,7 @@ class user_seeder extends Seeder{
         $user->email = "028@yahoo.com.tw";
         $user->password =Hash::make ('svd97ga');
         $user->phone = '0902802828';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '趙漾刻')->first();
@@ -533,6 +562,7 @@ class user_seeder extends Seeder{
         $user->email = "029@yahoo.com.tw";
         $user->password =Hash::make ('x3v54g');
         $user->phone = '0902902929';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '朱禮姚')->first();
@@ -548,6 +578,7 @@ class user_seeder extends Seeder{
         $user->email = "030@yahoo.com.tw";
         $user->password =Hash::make ('ca6s5f4');
         $user->phone = '0903003030';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '唐臥土')->first();
@@ -563,6 +594,7 @@ class user_seeder extends Seeder{
         $user->email = "031@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0903103131';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '尤燕')->first();
@@ -578,6 +610,7 @@ class user_seeder extends Seeder{
         $user->email = "032@yahoo.com.tw";
         $user->password =Hash::make ('asc65f7');
         $user->phone = '0903203232';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '謝卸')->first();
@@ -593,6 +626,7 @@ class user_seeder extends Seeder{
         $user->email = "033@yahoo.com.tw";
         $user->password =Hash::make ('n98r7b');
         $user->phone = '0903303333';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '莊簿郝')->first();
@@ -608,6 +642,7 @@ class user_seeder extends Seeder{
         $user->email = "034@yahoo.com.tw";
         $user->password =Hash::make ('a6s5v1c4a6f');
         $user->phone = '0903403434';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '鄭織恩')->first();
@@ -623,6 +658,7 @@ class user_seeder extends Seeder{
         $user->email = "035@yahoo.com.tw";
         $user->password =Hash::make ('6d54ca1');
         $user->phone = '0903503535';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '許瑗慈')->first();
@@ -638,6 +674,7 @@ class user_seeder extends Seeder{
         $user->email = "036@yahoo.com.tw";
         $user->password =Hash::make ('ac987sf');
         $user->phone = '0903603636';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '張俞')->first();
@@ -653,6 +690,7 @@ class user_seeder extends Seeder{
         $user->email = "037@yahoo.com.tw";
         $user->password =Hash::make ('a6s54c6f4a');
         $user->phone = '0903703737';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '劉夏萊')->first();
@@ -667,6 +705,7 @@ class user_seeder extends Seeder{
         $user->email = "038@yahoo.com.tw";
         $user->password =Hash::make ('as6ca65s4c');
         $user->phone = '0903803838';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '王月')->first();
@@ -688,6 +727,7 @@ class user_seeder extends Seeder{
         $user->email = "039@yahoo.com.tw";
         $user->password =Hash::make ('cas6c1');
         $user->phone = '0903903939';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '鍾堅植')->first();
@@ -703,6 +743,7 @@ class user_seeder extends Seeder{
         $user->email = "040@yahoo.com.tw";
         $user->password =Hash::make ('a5sc465');
         $user->phone = '0904004040';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '顧赭鴟')->first();
@@ -718,6 +759,7 @@ class user_seeder extends Seeder{
         $user->email = "041@yahoo.com.tw";
         $user->password =Hash::make ('q9w87d4cf1');
         $user->phone = '0904104141';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '簡依舞')->first();
@@ -739,6 +781,7 @@ class user_seeder extends Seeder{
         $user->email = "042@yahoo.com.tw";
         $user->password =Hash::make ('a6c5s4');
         $user->phone = '0904204242';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '曾晉瑋')->first();
@@ -754,6 +797,7 @@ class user_seeder extends Seeder{
         $user->email = "043@yahoo.com.tw";
         $user->password =Hash::make ('6a5c1c');
         $user->phone = '0904304343';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '詹欣束')->first();
@@ -768,6 +812,7 @@ class user_seeder extends Seeder{
         $user->email = "044@yahoo.com.tw";
         $user->password =Hash::make ('a16s5c1');
         $user->phone = '0904404444';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '趙則恩')->first();
@@ -782,6 +827,7 @@ class user_seeder extends Seeder{
         $user->email = "045@yahoo.com.tw";
         $user->password =Hash::make ('c1as65c');
         $user->phone = '0904504545';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '郭編范')->first();
@@ -802,6 +848,7 @@ class user_seeder extends Seeder{
         $user->email = "046@yahoo.com.tw";
         $user->password =Hash::make ('6as5c1');
         $user->phone = '0904604646';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '范聖佩')->first();
@@ -816,6 +863,7 @@ class user_seeder extends Seeder{
         $user->email = "047@yahoo.com.tw";
         $user->password =Hash::make ('as65c1');
         $user->phone = '0904704747';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '江文欣')->first();
@@ -833,9 +881,10 @@ class user_seeder extends Seeder{
         $user = new App\User; //測試用密碼是1234
         $user->id = 48;
         $user->name = "黃織圓";
-        $user->email = "048@yahoo.com.tw";
+        $user->email = "resource2@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0904804848';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '黃織圓')->first();
@@ -856,6 +905,7 @@ class user_seeder extends Seeder{
         $user->email = "049@yahoo.com.tw";
         $user->password =Hash::make ('ae6f84');
         $user->phone = '0904904949';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '高杉政')->first();
@@ -870,6 +920,7 @@ class user_seeder extends Seeder{
         $user->email = "050@yahoo.com.tw";
         $user->password =Hash::make ('e5gfq6f');
         $user->phone = '0905005050';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '魏瑜')->first();
@@ -884,6 +935,7 @@ class user_seeder extends Seeder{
         $user->email = "051@yahoo.com.tw";
         $user->password =Hash::make ('s3dv21');
         $user->phone = '0905105151';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '郭大建')->first();
@@ -898,6 +950,7 @@ class user_seeder extends Seeder{
         $user->email = "052@yahoo.com.tw";
         $user->password =Hash::make ('s3dv21');
         $user->phone = '0905205252';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '郭中建')->first();
@@ -915,9 +968,10 @@ class user_seeder extends Seeder{
         $user = new App\User; //測試用密碼是1234
         $user->id = 53;
         $user->name = "黃織方";
-        $user->email = "053@yahoo.com.tw";
+        $user->email = "resource3@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0905305353';
+        $user->arrived = 1;
         $user->save();
 
         $user  = User::where('name', '=', '黃織方')->first();
@@ -931,6 +985,97 @@ class user_seeder extends Seeder{
         $Works_on->id = 53;
         $Works_on->mission_list_id = 3;
         $Works_on->save();
+
+        $user = new App\User;
+        $user->id = 54;
+        $user->name = "郭一建";
+        $user->email = "054@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905405454';
+        $user->skill = '無特殊技能';
+        $user->country_or_city_input = '苗栗縣';
+        $user->township_or_district_input = '公館鄉';
+        $user->arrived = 0;
+        $user->save();
+
+        $user  = User::where('name', '=', '郭一建')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
+        $user->save();
+
+        $user = new App\User;
+        $user->id = 55;
+        $user->name = "郭二建";
+        $user->email = "055@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905505555';
+        $user->skill = '無特殊技能';
+        $user->country_or_city_input = '新北市';
+        $user->township_or_district_input = '萬華區';
+        $user->arrived = 0;
+        $user->save();
+
+        $user  = User::where('name', '=', '郭二建')->first();
+        $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
+        $user->save();
+
+        $user = new App\User;
+        $user->id = 56;
+        $user->name = "郭三建";
+        $user->email = "056@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905605656';
+        $user->skill = '有醫師執照';
+        $user->country_or_city_input = '台中市';
+        $user->township_or_district_input = '北屯區';
+        $user->arrived = 0;
+        $user->save();
+
+        $user  = User::where('name', '=', '郭三建')->first();
+        $roleAdmin = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 2;
+        $user->save();
+
+        $user = new App\User; //測試用密碼是1234
+        $user->id = 57;
+        $user->name = "黃織角";
+        $user->email = "resource1@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905705757';
+        $user->arrived = 1;
+        $user->save();
+
+        $user  = User::where('name', '=', '黃織角')->first();
+        $roleAdmin = Permission::where('name', '=', 'Cresource')->first();
+        $user->assignRole($roleAdmin);
+        $user->mission_list_id = 1;
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 57;
+        $Works_on->mission_list_id = 1;
+        $Works_on->save();
+
+
+
+
+        $Victim_detail = new App\Victim_detail;
+        $Victim_detail->victim_detail_id = 1;
+        $Victim_detail->fname = "阿";
+        $Victim_detail->lname = "斯馬";
+        $Victim_detail->age = 30;
+        $Victim_detail->person_id = "L123456789";
+        $Victim_detail->phone = "0412345678";
+        $Victim_detail->address = 3;
+        $Victim_detail->damage_level = "重傷";
+        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
+        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
+        $Victim_detail->save();
 
     }
 }

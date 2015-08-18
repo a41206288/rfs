@@ -36,6 +36,7 @@ class CreateMissionTable extends Migration {
             $table->text('executive_require_reason');
             $table->unsignedInteger('id');
             $table->timestamp('analysis_time');
+            $table->timestamp('complete_time')->nullable();
             $table->timestamps();
         });
 
@@ -66,6 +67,7 @@ class CreateMissionTable extends Migration {
             $table->unsignedInteger('product_total_amount_id');
             $table->integer('mission_support_product_amount');
             $table->integer('center_assign_product_amount');
+            $table->integer('resource_assign_product_amount');
             $table->timestamps();
         });
 
@@ -76,7 +78,7 @@ class CreateMissionTable extends Migration {
             $table->text('mission_type');
             $table->text('mission_content');
             $table->timestamps();
-            $table->timestamp('complete_time')->nullable();
+            //$table->timestamp('complete_time')->nullable();
             $table->text('fname')->nullable();
             $table->text('lname');
             $table->text('phone')->nullable();

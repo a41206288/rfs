@@ -13,10 +13,26 @@
     <table class="table table-striped">
         <thead>
             <tr><td colspan="2"><h5><b> 志工人員報到表</b></h5></td></tr>
-            <tr><th>姓名</th><th>電話</th><th>Email</th><th>所在地</th><th></th></tr>
+            <tr><th>姓名</th><th>電話</th><th>Email</th><th>職位</th><th>技能</th><th>所在地</th><th></th></tr>
         </thead>
         <tbody>
-            <tr><td>王小明</td><td>0912312312</td><td>123yahoo.com.tw</td><td>目前地點</td><td><button class="btn btn-default">報到</button></td></tr>
+        @if(isset($relieverFreeUsersArrays))
+            @foreach($relieverFreeUsersArrays as $relieverFreeUsersArray)
+            <tr>
+                <td>{!! $relieverFreeUsersArray['name'] !!}</td>
+                <td>{!! $relieverFreeUsersArray['phone'] !!}</td>
+                <td>{!! $relieverFreeUsersArray['email'] !!}</td>
+                @if($relieverFreeUsersArray['role_id'] == 5)
+                    <td>脫困組</td>
+                @elseif($relieverFreeUsersArray['role_id'] == 6)
+                    <td>醫療組</td>
+                @endif
+                <td>{!! $relieverFreeUsersArray['skill'] !!}</td>
+                <td>{!! $relieverFreeUsersArray['country_or_city_input'] ."". $relieverFreeUsersArray['township_or_district_input'] !!}</td>
+                <td><button class="btn btn-default">報到</button></td>
+            </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
     </div>

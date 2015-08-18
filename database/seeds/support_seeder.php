@@ -19,7 +19,7 @@ class support_seeder extends Seeder{
         DB:: table('product_total_amounts')->delete();
         DB:: table('local_safe_amounts')->delete();
         DB:: table('donates')->delete();
-//        DB:: table('donate_products')->delete();
+        DB:: table('donate_products')->delete();
         DB:: table('center_support_people')->delete();
         DB:: table('center_support_person_details')->delete();
         DB:: table('center_support_products')->delete();
@@ -894,14 +894,12 @@ class support_seeder extends Seeder{
         $center_support_person->center_support_person_id = 1;
         $center_support_person->center_support_person_num = 10;
         $center_support_person->center_support_person_requirement = "需要有醫療背景的人";
-        $center_support_person->arrived = 0;
         $center_support_person->save();
 
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 2;
         $center_support_person->center_support_person_num = 20;
         $center_support_person->center_support_person_requirement = "需要有過救援訓練的人";
-        $center_support_person->arrived = 0;
         $center_support_person->save();
 
         $center_support_person_detail = new App\Center_support_person_detail;

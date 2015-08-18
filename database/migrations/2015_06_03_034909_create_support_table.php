@@ -93,7 +93,6 @@ class CreateSupportTable extends Migration {
             $table->integer('center_support_person_num');
             $table->integer('called_person_num');
             $table->text('center_support_person_requirement');
-            $table->boolean('arrived');
             $table->timestamps();
         });
 
@@ -111,13 +110,26 @@ class CreateSupportTable extends Migration {
         });
 
         Schema::create('center_support_person_modifies', function(Blueprint $table){
-            $table->increments('center_support_person_modify_id');
-            $table->text('center_support_person_requirement');
-            $table->integer('modify_num');
-            $table->integer('old_num');
+        $table->increments('center_support_person_modify_id');
+        $table->text('center_support_person_requirement');
+        $table->integer('modify_num');
+        $table->integer('old_num');
+        $table->timestamps();
+        //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
+    });
+
+        Schema::create('modifies', function(Blueprint $table){
+            $table->increments('modify_id');
+            $table->text('old_value');
+            $table->text('modify_value');
+            $table->string('table_name');
+            $table->string('attribute_name');
+            $table->unsignedInteger('id');
             $table->timestamps();
             //$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
         });
+
+
 	}
 
 
@@ -140,6 +152,7 @@ class CreateSupportTable extends Migration {
         Schema::drop('center_support_people');
         Schema::drop('center_support_person_details');
         Schema::drop('center_support_person_modifies');
+        Schema::drop('modifies');
 //        Schema::drop('interviews');
 //        Schema::drop('interviewers');
 

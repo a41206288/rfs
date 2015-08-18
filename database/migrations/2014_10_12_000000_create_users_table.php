@@ -24,8 +24,25 @@ class CreateUsersTable extends Migration {
 			$table->text('skill');
 			$table->text('country_or_city_input');
 			$table->text('township_or_district_input');
+			$table->boolean('arrived');
 			$table->rememberToken();
 			$table->timestamps();
+		});
+
+		Schema::create('victim_details', function(Blueprint $table){
+			$table->increments('victim_detail_id');
+			$table->string('fname');
+			$table->string('lname');
+			$table->integer('age');
+			$table->string('person_id')->unique();
+			$table->string('phone');
+			$table->string('address');
+			$table->enum('damage_level', ['輕度', '中度','重度','正常']);
+			$table->text('damage_detail');
+			$table->text('now_location');
+			$table->text('disposal');
+			$table->timestamps();
+			//$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
 		});
 
 	}
@@ -38,6 +55,7 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::drop('users');
+		Schema::drop('victim_details');
 	}
 
 }

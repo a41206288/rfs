@@ -37,15 +37,11 @@ Route::get('logout', 'UsersLoginController@logout');
 //下面請根據權限放至各Panel下  (此為暫放)
 
 Route::get('analysis/manage', 'AnalysisAnalysisController@index');
-Route::post('report/reliever', 'EmtReportController@create');
-Route::get('report/reliever', 'RelieverReportController@index');
-Route::post('report/reliever', 'RelieverReportController@create');
+
 Route::get('victim/EMT', 'EmtVictimController@index');
 
-Route::get('resource/manage/product/local', 'ResourceLocalProductController@index');
-Route::get('resource/manage/product/center', 'ResourceCenterProductController@index');
-Route::get('resource/manage/people/local', 'ResourceLocalPeopleController@index');
-Route::get('resource/manage/people/center', 'ResourceCenterPeopleController@index');
+
+
 
 //Route::get('analysis/manage', 'AnalysisController@index');
 
@@ -130,7 +126,32 @@ Route::group([
     'is' => 'emt'],
     function () {
         Route::get('report/EMT',array('as' => 'emtPanel', 'uses' => 'EmtReportController@index') );
+        Route::post('report/reliever', 'EmtReportController@create');
     });
 
+Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'reliever'],
+    function () {
+        Route::get('report/reliever',array('as' => 'relieverPanel', 'uses' => 'RelieverReportController@index') );
+        Route::post('report/reliever', 'RelieverReportController@create');
+    });
+
+Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'resource'],
+    function () {
+        Route::get('resource/manage/product/local',array('as' => 'resourcePanel', 'uses' => 'ResourceLocalProductController@index') );
+        Route::get('resource/manage/people/local', 'ResourceLocalPeopleController@index');
+    });
+
+Route::group([
+    'middleware' => ['auth', 'acl'],
+    'is' => 'cresource'],
+    function () {
+        Route::get('resource/manage/product/center', array('as' => 'cresourcePanel', 'uses' => 'ResourceCenterProductController@index'));
+        Route::get('resource/manage/people/center', 'ResourceCenterPeopleController@index');
+
+    });
 
 

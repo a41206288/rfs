@@ -47,7 +47,14 @@ class UsersLoginController extends Controller {
                     return redirect()->route('analysisPanel');
                 }else if($user->is('emt')){
                     return redirect()->route('emtPanel');
+                }else if($user->is('reliever')){
+                    return redirect()->route('relieverPanel');
+                }else if($user->is('resource')){
+                    return redirect()->route('resourcePanel');
+                }else if($user->is('cresource')){
+                    return redirect()->route('cresourcePanel');
                 }
+
             }
 
             return Redirect::to('login')

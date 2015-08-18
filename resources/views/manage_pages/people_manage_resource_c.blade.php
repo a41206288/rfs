@@ -140,7 +140,7 @@
                             @foreach($emtFreeUsers as $emtFreeUser)
 
                                 <tr><td>醫療組</td>
-                                    <td>{!!$emtFreeUser->name	!!}</td>
+                                    <td>{!!$emtFreeUser->name!!}</td>
                                     <td>{!!$emtFreeUser->phone!!}</td>
                                     <td>{!!$emtFreeUser->email!!}</td>
                                     <td>{!!$emtFreeUser->country_or_city_input ." ". $emtFreeUser->township_or_district_input!!}</td>

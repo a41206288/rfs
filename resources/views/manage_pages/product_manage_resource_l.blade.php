@@ -48,11 +48,20 @@
                         <tr><th width="15%">物資編號</th><th width="15%">名稱</th><th width="15%">目前存量</th><th width="15%">安全存量</th><th width="10%">單位</th><th width="15%">提領數量</th></tr>
                         </thead>
                         <tbody>
+                        @if (isset($local_safe_amounts))
+                            @foreach ($local_safe_amounts as $local_safe_amount)
+                                <tr>
+                                    <td>{!! $local_safe_amount->product_total_amount_id !!}</td>
+                                    <td>{!! $local_safe_amount->product_name !!}</td>
+                                    <td class="text-right">{!! $local_safe_amount->amount !!}</td>
+                                    <td class="text-right">{!! $local_safe_amount->safe_amount !!}</td>
+                                    <td>{!! $local_safe_amount->unit !!}</td>
+                                    <td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>$local_safe_amount->amount])!!}</td>
+                                </tr>
 
-                        <tr><td>1</td><td>泡麵</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td>2</td><td>礦泉水</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td>3</td><td>繃帶</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-
+                                {{--<tr><td>1</td><td>泡麵</td><td class="text-right">123</td><td class="text-right">345</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>--}}
+                           @endforeach
+                        @endif
                         <tr><td colspan="5"></td><td class="text-right">{!! Form::submit('提領', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
                         </tbody>
                         {{--{!! Form::close() !!}--}}
@@ -66,11 +75,20 @@
                         <tr><th>物資編號</th><th>物資名稱</th><th>發放數量</th><th>單位</th><th>實際點收數量</th></tr>
                         </thead>
                         <tbody>
-
-                        <tr><td>1</td><td>泡麵</td><td class="text-right">20</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td>1</td><td>泡麵</td><td class="text-right">20</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td>1</td><td>泡麵</td><td class="text-right">20</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
-                        <tr><td>1</td><td>泡麵</td><td class="text-right">20</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>
+                        @if (isset($mission_support_products))
+                            @foreach ($mission_support_products as $mission_support_product)
+                                @if($mission_support_product->resource_assign_product_amount != 0)
+                                    <tr>
+                                        <td>{!! $mission_support_product->product_total_amount_id !!}</td>
+                                        <td>{!! $mission_support_product->product_name !!}</td>
+                                        <td class="text-right">{!! $mission_support_product->resource_assign_product_amount !!}</td>
+                                        <td>{!! $mission_support_product->unit !!}</td>
+                                        <td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>$mission_support_product->resource_assign_product_amount])!!}</td>
+                                    </tr>
+                                @endif
+                                {{--<tr><td>1</td><td>泡麵</td><td class="text-right">20</td><td>包</td><td>{!! Form::number('name', 0,['class' => 'form-control text-right','min'=>'0','max'=>'100'])!!}</td></tr>--}}
+                                 @endforeach
+                        @endif
                         <tr><td colspan="5" class="text-center">{!! Form::submit('點收完成', ['class' => 'btn btn-default btn-sm']) !!}</td></tr>
 
                         </tbody>

@@ -42,11 +42,15 @@ class CenterMissionController extends Controller {
 
         //dd($mission_contents_array);
                  //取出各任務的負責人資料
-                $mission_list_charges = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->select('mission_list_id','name','email','phone')
-                    ->where('role_user.role_id','=',3)
-                    ->get();
+                    $mission_list_charges = DB::table('mission_lists')
+                        ->join('users','users.id','=','mission_lists.id')
+                        ->get();
+
+//                $mission_list_charges = DB::table('users')
+//                    ->join('role_user','users.id','=','role_user.user_id')
+//                    ->select('mission_list_id','name','email','phone')
+//                    ->where('role_user.role_id','=',3)
+//                    ->get();
 
 //        foreach($mission_list_charges as $mission_list_charge){
 //            $mission_contents_array[$mission_list_charge->mission_list_id."name"] = $mission_list_charge->name;
@@ -55,12 +59,18 @@ class CenterMissionController extends Controller {
 //        }
 //dd($mission_contents_array);
                 $mission_list_charge_Array =[];
-                foreach($mission_list_charges as $mission_list_charge){
-                    $mission_list_charge_Array[$mission_list_charge->mission_list_id."name"] = $mission_list_charge->name;
-                    $mission_list_charge_Array[$mission_list_charge->mission_list_id."email"] = $mission_list_charge->email;
-                    $mission_list_charge_Array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
-                }
-dd($mission_list_charge_Array);
+
+        foreach($mission_list_charges as $mission_list_charge){
+            $mission_list_charge_Array[$mission_list_charge->mission_list_id."name"] = $mission_list_charge->name;
+            $mission_list_charge_Array[$mission_list_charge->mission_list_id."email"] = $mission_list_charge->email;
+            $mission_list_charge_Array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
+        }
+//                foreach($mission_list_charges as $mission_list_charge){
+//                    $mission_list_charge_Array[$mission_list_charge->mission_list_id."name"] = $mission_list_charge->name;
+//                    $mission_list_charge_Array[$mission_list_charge->mission_list_id."email"] = $mission_list_charge->email;
+//                    $mission_list_charge_Array[$mission_list_charge->mission_list_id."phone"] = $mission_list_charge->phone;
+//                }
+//dd($mission_list_charge_Array);
 
                 //計算各任務醫療人員人數
                 $emtUsers = DB::table('users')
@@ -251,31 +261,31 @@ dd($mission_list_charge_Array);
                 }
 //                        dd($mission_total_Arrays);
 
-                //計算已完成通報個數
-                $complete_missions = DB::table('missions')
-                ->select('mission_list_id',DB::raw('count(*) as total'))
-                ->where('mission_list_id','!=',1)
-                ->where('complete_time','!=','NULL')
-                ->groupBy('mission_list_id')
-                ->get();
-
-                //計算各任務達成率
-                $achievement_array = [];
-                foreach($mission_totals as $mission ){
-                    $unfind = false;
-                    foreach($complete_missions as $complete_mission){
-
-                        if($mission->mission_list_id == $complete_mission ->mission_list_id){
-                            $unfind = true;
-                            $achievement_array[$mission->mission_list_id] = 'width: '.round(($complete_mission->total/$mission->total)*100) ."%";
-                            $achievement_array[$mission->mission_list_id."word"] = round(($complete_mission->total/$mission->total)*100) ."%";
-                        }
-                    }
-                if( $unfind == false ){
-                        $achievement_array[$mission->mission_list_id] = 'width: 0%';
-                        $achievement_array[$mission->mission_list_id."word"] = '0%';
-                    }
-                }
+//                //計算已完成通報個數
+//                $complete_missions = DB::table('missions')
+//                ->select('mission_list_id',DB::raw('count(*) as total'))
+//                ->where('mission_list_id','!=',1)
+//                ->where('complete_time','!=','NULL')
+//                ->groupBy('mission_list_id')
+//                ->get();
+//
+//                //計算各任務達成率
+//                $achievement_array = [];
+//                foreach($mission_totals as $mission ){
+//                    $unfind = false;
+//                    foreach($complete_missions as $complete_mission){
+//
+//                        if($mission->mission_list_id == $complete_mission ->mission_list_id){
+//                            $unfind = true;
+//                            $achievement_array[$mission->mission_list_id] = 'width: '.round(($complete_mission->total/$mission->total)*100) ."%";
+//                            $achievement_array[$mission->mission_list_id."word"] = round(($complete_mission->total/$mission->total)*100) ."%";
+//                        }
+//                    }
+//                if( $unfind == false ){
+//                        $achievement_array[$mission->mission_list_id] = 'width: 0%';
+//                        $achievement_array[$mission->mission_list_id."word"] = '0%';
+//                    }
+//                }
 
 
         return view('manage_pages.mission_manage')
@@ -289,7 +299,7 @@ dd($mission_list_charge_Array);
             ->with('emtFreeUsers', $emtFreeUsers)
             ->with('reports_array', $reports_array)
             //->with('mission_list_reports', $mission_list_reports)
-            ->with('achievement_array', $achievement_array)
+            //->with('achievement_array', $achievement_array)
             ->with('mission_list_charge_Array', $mission_list_charge_Array)
             ->with('mission_contents', $mission_contents)
             ->with('mission_contents_array', $mission_contents_array)

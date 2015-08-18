@@ -122,6 +122,23 @@ class mission_seeder extends Seeder{
         $mission_support_product->product_total_amount_id = 4;
         $mission_support_product->mission_support_product_amount = 10;
         $mission_support_product->center_assign_product_amount = 0;
+        $mission_support_product->resource_assign_product_amount = 10;
+        $mission_support_product->save();
+
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 2;
+        $mission_support_product->product_total_amount_id = 6;
+        $mission_support_product->mission_support_product_amount = 20;
+        $mission_support_product->center_assign_product_amount = 0;
+        $mission_support_product->resource_assign_product_amount = 10;
+        $mission_support_product->save();
+
+        $mission_support_product = new App\Mission_support_product;
+        $mission_support_product->mission_list_id = 2;
+        $mission_support_product->product_total_amount_id = 7;
+        $mission_support_product->mission_support_product_amount = 30;
+        $mission_support_product->center_assign_product_amount = 0;
+        $mission_support_product->resource_assign_product_amount = 30;
         $mission_support_product->save();
 
         $mission_support_product = new App\Mission_support_product;
@@ -251,7 +268,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '文華路100號';
         $mission->mission_list_id = 2;
-        $mission->complete_time = date('Y-m-d H:i:s');
+        //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -291,7 +308,7 @@ class mission_seeder extends Seeder{
         $mission->location = '中正路621號';
         $mission->mission_list_id = 5;
         $mission->mission_new_locations_id = 3;
-        $mission->complete_time = date('Y-m-d H:i:s');
+        //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -305,7 +322,7 @@ class mission_seeder extends Seeder{
         $mission->location = '杭州南路一段55號';
         $mission->mission_list_id = 7;
         $mission->mission_new_locations_id = 3;
-        $mission->complete_time = date('Y-m-d H:i:s');
+        //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -332,7 +349,7 @@ class mission_seeder extends Seeder{
         $mission->location = '仁德街';
         $mission->mission_list_id = 6;
         $mission->mission_new_locations_id = 3;
-        $mission->complete_time = date('Y-m-d H:i:s');
+        //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -372,7 +389,7 @@ class mission_seeder extends Seeder{
         $mission->location = '距捷運站5公尺處';
         $mission->mission_list_id = 5;
         $mission->mission_new_locations_id = 4;
-        $mission->complete_time = date('Y-m-d H:i:s');
+        //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -512,7 +529,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '西屯區';
         $mission->location = '文心路二段57號';
         $mission->mission_list_id = 4;
-        $mission->complete_time = date('Y-m-d H:i:s');
+       // $mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -526,7 +543,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '中正區';
         $mission->location = '光華商場';
         $mission->mission_list_id = 7;
-        $mission->complete_time = date('Y-m-d H:i:s');
+        //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -574,6 +591,7 @@ class mission_seeder extends Seeder{
         $mission->situation = '建築物主要出入口皆坍塌, 尚無法確認有多少人受困';
         $mission->location = '資電館';
         $mission->analysis_time = date('Y-m-d H:i:s');
+
         $mission->save();
 
         $mission = new App\Mission_new_location;
@@ -766,6 +784,7 @@ class mission_seeder extends Seeder{
         $mission->analysis_time = date('Y-m-d H:i:s');
         $mission->executive_require_people_num = 20;
         $mission->executive_require_reason = "支援人手不足，濃煙擴散持續增大";
+        $mission->id = 12;
         $mission->save();
 
         $mission = new App\Mission_new_location;
@@ -777,6 +796,7 @@ class mission_seeder extends Seeder{
         $mission->analysis_time = date('Y-m-d H:i:s');
         $mission->executive_require_people_num = 30;
         $mission->executive_require_reason = "支援人手不足，可能會導致更多人員傷亡";
+        $mission->id = 12;
         $mission->save();
 
         $mission = new App\Mission_new_location;
