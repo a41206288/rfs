@@ -44,7 +44,8 @@
                             <td>{!!$center_support_person_detail->country_or_city_input ." ". $center_support_person_detail->township_or_district_input !!}</td>
                             <td>{!!$center_support_person_detail->skill!!}</td>
                             <td>{!!$center_support_person_detail->center_support_person_requirement!!}</td>
-                            <td>{!! Form::select('size', array('L' => '醫療組', 'S' => '脫困組')) !!}</td></tr>
+                            <td>{!! Form::select('size', array('emt' => '醫療組', 'reliever' => '脫困組','請選擇')) !!}讀取所有權限 除中央指揮官</td></tr>
+
                             @endforeach
                         @endif
 
@@ -56,40 +57,41 @@
                     <table class="table  table-striped">
                         {{--{!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}--}}
                         <thead>
-                        <tr><td colspan="4"><h5><b>人員需求列表</b></h5></td>
+                        <tr><td colspan="5"><h5><b>人員需求列表</b></h5></td>
                             <td class="text-right" colspan="2">
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createVolunteerNeedBlock"> 新增新的志工需求單</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="createVolunteerNeedBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel"><b>創建新人員需求列表</b></h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <dl class="dl-horizontal">
+                                                    <dt>需求人數</dt>
+                                                    <dd>{!! Form::number('require_number','',['class' => 'form-control text-right', 'required','min'=>'0']) !!}</dd> <br>
+
+                                                    <dt>需求人員資格內容</dt>
+                                                    <dd> {!! Form::textarea('content', '', ['id' =>  'leader','class' => 'form-control', 'required','style'=>'resize: vertical']) !!}<br>
+
+                                                </dl>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                                {!! Form::submit('招募志工', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                            </div>
+                                            {{--{!! Form::close() !!}--}}
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
                             </td>
                         </tr>
-                        <!-- Modal -->
-                        <div class="modal fade" id="createVolunteerNeedBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <dl class="dl-horizontal">
-                                            <dt>需求人數</dt>
-                                            <dd>{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right', 'required','min'=>'0']) !!}</dd> <br>
 
-                                            <dt>需求人員資格內容</dt>
-                                            <dd> {!! Form::textarea('content', '', ['id' =>  'leader','class' => 'form-control', 'required','style'=>'resize: vertical']) !!}<br>
-
-                                        </dl>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        {!! Form::submit('招募志工', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
-                                    </div>
-                                    {{--{!! Form::close() !!}--}}
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                        <tr><th>編號</th><th>需求人數</th><th>已招募人數</th><th>需求人員資格</th><th>建表日期</th><th>建表時間</th><th>詳細</th></tr>
+                        <tr><th>編號</th><th>需求人數</th><th>已招募人數</th><th>需求人員資格</th><th>建表日期</th><th>時間</th><th>詳細</th></tr>
                         </thead>
                         <tbody>
                         @if(isset($center_support_people))
@@ -103,7 +105,37 @@
                                     <td >{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%Y/%m/%d') }}</td>
                                     <td >{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%H:%M:%S') }}</td>
                                     {{--<td width="100px">2015-07-22 07:49:50</td>--}}
-                                    <td><a>詳細</a></td></tr>
+                                    <td>
+                                        <button class="btn btn-link btn-sm" data-toggle="modal" data-target="#update{!!$center_support_person->center_support_person_id!!}">修改</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="update{!!$center_support_person->center_support_person_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel"><b>修改人員需求列表</b></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <dl class="dl-horizontal">
+                                                        <dt>人員需求列表編號</dt>
+                                                        <dd>{!!$center_support_person->center_support_person_id!!}</dd><br>
+                                                        <dt>需求人數</dt>
+                                                        <dd>{!! Form::number('center_support_person_num', $center_support_person->center_support_person_num, [ 'class' => 'form-control', 'required','min'=>'0']) !!}</dd><br>
+                                                        <dt>需求人員資格</dt>
+                                                        <dd>{!! Form::textarea('center_support_person_requirement',$center_support_person->center_support_person_requirement,['class' => 'form-control','style'=>'resize: vertical', 'required']) !!}</dd><br>
+                                                       </dl>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                                    {!! Form::submit('修改', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                            {!! Form::close() !!}
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                    </td>
+                                </tr>
 
                             @endforeach
                         @endif

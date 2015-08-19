@@ -24,15 +24,15 @@
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li><a href="#productStatus" role="tab" data-toggle="tab"><b>物資存量管理</b></a></li>
+        <li class="active"><a href="#productStatus" role="tab" data-toggle="tab"><b>物資存量管理</b></a></li>
         <li><a href="#donate" role="tab" data-toggle="tab"><b>民眾捐贈單管理</b></a></li>
-        <li class="active"><a href="#assign" role="tab" data-toggle="tab"><b>地方物資存量管理/分配物資</b></a></li>
+        <li><a href="#assign" role="tab" data-toggle="tab"><b>地方物資存量管理/分配物資</b></a></li>
 
     </ul>
     <br><br>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane " id="productStatus">
+        <div class="tab-pane active" id="productStatus">
             {{--<div class="col-xs-16 col-sm-12 col-md-12" >--}}
                 {{--1.看到目前物資存量<br>--}}
                 {{--2.新增修改需求捐贈數量--}}
@@ -66,38 +66,9 @@
                     <table class="table  table-striped">
                         <thead>
                         <tr><td colspan="6"><h5><b>物資需求列表(向民眾募集)</b></h5></td>
-                            {{--<td class="text-right" colspan="2">--}}
-                                {{--<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createVolunteerNeedBlock"> 新增新的志工需求單</button>--}}
-                            {{--</td>--}}
+
                         </tr>
-                        {{--<!-- Modal -->--}}
-                        {{--<div class="modal fade" id="createVolunteerNeedBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
-                            {{--<div class="modal-dialog">--}}
-                                {{--<div class="modal-content">--}}
-                                    {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
-                                    {{--<div class="modal-header">--}}
-                                        {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
-                                        {{--<h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="modal-body">--}}
-                                        {{--<dl class="dl-horizontal">--}}
-                                            {{--<dt>需求人數</dt>--}}
-                                            {{--<dd>{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right', 'required','min'=>'0']) !!}</dd> <br>--}}
 
-                                            {{--<dt>需求人員資格內容</dt>--}}
-                                            {{--<dd> {!! Form::textarea('content', '', ['id' =>  'leader','class' => 'form-control', 'required','style'=>'resize: vertical']) !!}<br>--}}
-
-                                        {{--</dl>--}}
-
-                                    {{--</div>--}}
-                                    {{--<div class="modal-footer">--}}
-                                        {{--<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>--}}
-                                        {{--{!! Form::submit('招募志工', ['class' => 'btn btn-default btn-sm btn-primary']) !!}--}}
-                                    {{--</div>--}}
-                                    {{--{!! Form::close() !!}--}}
-                                {{--</div><!-- /.modal-content -->--}}
-                            {{--</div><!-- /.modal-dialog -->--}}
-                        {{--</div><!-- /.modal -->--}}
                         <tr><th>物資編號</th><th>物資名稱</th><th>需求數量</th><th>已認捐數量</th><th>單位</th><th>修改</th></tr>
                         </thead>
                         <tbody>
@@ -120,39 +91,43 @@
                                 <td class="text-right">{!!$center_support_product->center_support_product_amount!!}</td>
                                 <td class="text-right">{!! $n !!}</td>
                                 <td>{!!$center_support_product->unit!!}</td>
-                                <td><button class="btn btn-link btn-sm" data-toggle="modal" data-target="#update">修改</button></td>
-                            </tr>
-                            <!-- Modal -->
-                            <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel"><b>修改欲募捐數量</b></h4>
-                                            </div>
-                                            <div class="modal-body">
-                                            <dl class="dl-horizontal">
-                                                <dt>物資編號</dt>
-                                                <dd>{!!$center_support_product->product_total_amount_id!!}</dd><br>
-                                                <dt>物資名稱</dt>
-                                                <dd>{!!$center_support_product->product_name!!}</dd><br>
-                                                {!! Form::hidden('product_id',$center_support_product->product_total_amount_id) !!}
-                                                <dt>需求數量</dt>
-                                                <dd class="text-right">{!!$center_support_product->center_support_product_amount." ".$center_support_product->unit!!}</dd><br>
-                                                <dt>欲修改需求數量</dt>
-                                                <dd class="text-right">{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right','min'=>'0']) !!}</dd> <br>
+                                <td>
+                                    <button class="btn btn-link btn-sm" data-toggle="modal" data-target="#update{!!$center_support_product->product_total_amount_id!!}">修改</button>
 
-                                            </dl>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                            {!! Form::submit('修改', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    {!! Form::close() !!}
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="update{!!$center_support_product->product_total_amount_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel"><b>修改欲募捐數量</b></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <dl class="dl-horizontal">
+                                                        <dt>物資編號</dt>
+                                                        <dd>{!!$center_support_product->product_total_amount_id!!}</dd><br>
+                                                        <dt>物資名稱</dt>
+                                                        <dd>{!!$center_support_product->product_name!!}</dd><br>
+                                                        {!! Form::hidden('product_id',$center_support_product->product_total_amount_id) !!}
+                                                        <dt>需求數量</dt>
+                                                        <dd>{!!$center_support_product->center_support_product_amount." ".$center_support_product->unit!!}</dd><br>
+                                                        <dt>欲修改需求數量</dt>
+                                                        <dd class="text-right">{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right','min'=>'0']) !!}</dd> <br>
+
+                                                    </dl>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                                    {!! Form::submit('修改', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                            {!! Form::close() !!}
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                </td>
+                            </tr>
+
                             @endforeach
                         @endif
                         </tbody>
@@ -206,24 +181,11 @@
                         {{--{!! Form::close() !!}--}}
                     </table>
                 </div>
-                {{--<div class="col-xs-4 col-sm-4 col-md-4" >--}}
-                    {{--<table class="table  table-striped">--}}
-                        {{--<thead>--}}
-                        {{--<tr><td colspan="7"><h5><b>人員需求列表(中央決定派遣給任務)</b></h5></td></tr>--}}
-                        {{--<tr><th>任務編號</th><th>需求人數</th><th>需求人員種類</th></tr>--}}
-                        {{--</thead>--}}
-                        {{--<tbody>--}}
 
-                        {{--<tr><td>1</td><td>23</td><td>醫療組</td></tr>--}}
-
-                        {{--</tbody>--}}
-                    {{--</table>--}}
-
-                {{--</div>--}}
             </div>
         </div>
 
-        <div class="tab-pane active" id="assign">
+        <div class="tab-pane" id="assign">
             {{--<div class="col-xs-16 col-sm-12 col-md-12" >--}}
                 {{--4.分配物資(至地方)<br>--}}
                 {{--4.1 看到各地方存量不足<br>--}}
