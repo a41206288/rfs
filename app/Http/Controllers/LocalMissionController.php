@@ -34,6 +34,18 @@ class LocalMissionController extends Controller {
                 ->get();
 //            dd($mission_new_locations);
 
+            //計算總欲增援人數
+            $executive_require_people_num = DB::table('mission_new_locations')
+                ->where('mission_list_id', $mission_list_id)
+                ->sum('executive_require_people_num');
+//            dd($relieverFreeUserAmounts);
+
+            //計算向中央要求總增援數用
+            $mission_support_people = DB::table('mission_support_people')
+                ->where('mission_list_id', $mission_list_id)
+               ->get();
+//            dd($mission_support_people);
+
             //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
             $executiveRequireArrays =[];
             foreach($mission_new_locations as $mission_new_location){
@@ -179,6 +191,35 @@ class LocalMissionController extends Controller {
             }
 //         dd($local_reports_arrays);
 
+            //計算個嚴重程度傷患人數
+            $victim_nums = DB::table('victim_details')
+                ->where('mission_list_id', $mission_list_id)
+                ->select('damage_level',DB::raw('count(*) as total'))
+                ->groupBy('damage_level')
+                ->get();
+//            dd($victim_nums);
+
+            $victim_num_arrays = [];
+
+            for($i=0;$i<5;$i++){
+                $find = 0;
+                foreach($victim_nums as $victim_num){
+                    if($i == $victim_num->damage_level){
+                        $find = 1;
+                        if($find == 1){
+                            $victim_num_arrays[$i]['damage_level'] = $i;
+                            $victim_num_arrays[$i]['total'] = $victim_num->total;
+                        }
+                    }
+                }
+               if($find == 0){
+                   $victim_num_arrays[$i]['damage_level'] = $i;
+                    $victim_num_arrays[$i]['total'] = 0;
+                }
+            }
+
+//            dd($victim_num_arrays);
+
 
 
         }else{
@@ -194,6 +235,10 @@ class LocalMissionController extends Controller {
             $relieverNewLocationUserAmountsArrays = null;
             $relieverFreeUsersArrays = null;
             $local_reports_arrays = null;
+            $executive_require_people_num = null;
+            $mission_support_people = null;
+            $victim_nums = null;
+            $victim_num_arrays = null;
         }
 
 
@@ -280,13 +325,17 @@ class LocalMissionController extends Controller {
         return view('manage_pages.mission_manage_local')
             ->with('mission_new_locations', $mission_new_locations)
             ->with('relieverFreeUserAmounts', $relieverFreeUserAmounts)
+            ->with('executive_require_people_num', $executive_require_people_num)
             ->with('EmtUserAmounts', $EmtUserAmounts)
             ->with('local_reports_arrays', $local_reports_arrays)
             ->with('mission_new_locations', $mission_new_locations)
             ->with('executiveRequireArrays', $executiveRequireArrays)
             ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
             ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
-            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays);
+            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays)
+            ->with('mission_support_people', $mission_support_people)
+            ->with('victim_num_arrays', $victim_num_arrays);
+
 	}
 
 	/**

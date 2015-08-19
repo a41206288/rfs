@@ -31,13 +31,14 @@ class CreateUsersTable extends Migration {
 
 		Schema::create('victim_details', function(Blueprint $table){
 			$table->increments('victim_detail_id');
+			$table->unsignedInteger('mission_list_id');
 			$table->string('fname');
 			$table->string('lname');
 			$table->integer('age');
 			$table->string('person_id')->unique();
 			$table->string('phone');
 			$table->string('address');
-			$table->enum('damage_level', ['輕度', '中度','重度','正常']);
+			$table->enum('damage_level', [0,1,2,3,4]);
 			$table->text('damage_detail');
 			$table->text('now_location');
 			$table->text('disposal');

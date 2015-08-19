@@ -27,9 +27,30 @@
         <table class=" table table-bordered table-striped">
             <thead>
                 <tr><th colspan="6">醫療組</th><td colspan="2"><b>醫療組人數</b></td><td colspan="2">{!!$EmtUserAmounts[0]->total!!}人</td></tr>
-                <tr><th width="10%">正常</th><td width="10%">20</td><th width="10%">輕傷</th><td width="10%">30</td>
-                    <th width="10%">中傷</th><td width="10%">20</td><th width="10%">重傷</th><td width="10%">10</td>
-                    <th width="10%">死亡</th><td width="10%">0</td></tr>
+
+
+
+                    <tr>
+                    @if(isset($victim_num_arrays))
+                        @foreach($victim_num_arrays as $victim_num_array)
+                        <th width="10%">
+                            @if($victim_num_array['damage_level'] == 0)
+                                正常
+                            @elseif($victim_num_array['damage_level'] == 1)
+                                輕傷
+                            @elseif($victim_num_array['damage_level'] == 2)
+                                中傷
+                            @elseif($victim_num_array['damage_level'] == 3)
+                                重傷
+                            @elseif($victim_num_array['damage_level'] == 4)
+                                死亡
+                            @endif
+                        </th><td width="10%">{!! $victim_num_array['total'] !!} 人</td>
+                        @endforeach
+                    @endif
+                    </tr>
+
+
             {!! Form::open(array('url' => 'report/local', 'method' => 'post','class' => 'form-horizontal')) !!}
                 @if($executiveRequireArrays[1][1]['executive_require_people_num'] != 0 &&  $executiveRequireArrays[1][1]['executive_require_reason'] != "")
                     <tr class="alert alert-danger"><td rowspan="2"><b>增援需求</b></td>
@@ -130,8 +151,10 @@
             <thead>
             {!! Form::open(array('url' => 'report/local', 'method' => 'post','class' => 'form-horizontal')) !!}
                 <tr><th colspan="10">脫困組</th></tr>
-                <tr><td width="10%"><b>救災地點總數</b></td><td width="10%">2</td><td width="10%"><b>脫困組總人數</b></td><td width="10%">20</td>
-                    <td width="10%"><b>要求支援總人數</b></td><td width="10%">200</td><td width="10%"><b>向中央要求增援數</b></td><td width="10%">20</td>
+                <tr><td width="10%"><b>救災地點總數</b></td><td width="10%">{!! count($mission_new_locations) !!} 個</td>
+                    <td width="10%"><b>脫困組總人數</b></td><td width="10%">{!! $relieverFreeUserAmounts[0]->total !!} 人</td>
+                    <td width="10%"><b>要求支援總人數</b></td><td width="10%">{!! $executive_require_people_num !!} 人</td>
+                    <td width="10%"><b>欲向中央要求增援數</b></td><td width="10%">{!! $mission_support_people[0]->local_reliever_num !!} 人</td>
                     <td width="10%">{!! Form::number('local_reliever_num', 0, ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td width="10%"> {!! Form::submit('向中央回報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td></tr>
                 <tr><th colspan="2" rowspan="2">救災地點</th><th colspan="2" rowspan="2">脫困組人數</th><th colspan="6">最新回報</th></tr>

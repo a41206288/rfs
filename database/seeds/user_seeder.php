@@ -1065,16 +1065,47 @@ class user_seeder extends Seeder{
 
         $Victim_detail = new App\Victim_detail;
         $Victim_detail->victim_detail_id = 1;
+        $Victim_detail->mission_list_id = 7;
         $Victim_detail->fname = "阿";
         $Victim_detail->lname = "斯馬";
         $Victim_detail->age = 30;
         $Victim_detail->person_id = "L123456789";
         $Victim_detail->phone = "0412345678";
-        $Victim_detail->address = 3;
-        $Victim_detail->damage_level = "重傷";
+        //$Victim_detail->address = 3;
+        $Victim_detail->damage_level = 4;
         $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
         $Victim_detail->now_location = "逢甲大學醫療組診療處";
         $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
+        $Victim_detail->save();
+
+        $Victim_detail = new App\Victim_detail;
+        $Victim_detail->victim_detail_id = 2;
+        $Victim_detail->mission_list_id = 7;
+        $Victim_detail->fname = "王";
+        $Victim_detail->lname = "一明";
+        $Victim_detail->age = 30;
+        $Victim_detail->person_id = "L123456784";
+        $Victim_detail->phone = "0412345678";
+       // $Victim_detail->address = 3;
+        $Victim_detail->damage_level = 2;
+//        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
+//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+//        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
+        $Victim_detail->save();
+
+        $Victim_detail = new App\Victim_detail;
+        $Victim_detail->victim_detail_id = 3;
+        $Victim_detail->mission_list_id = 7;
+        $Victim_detail->fname = "王";
+        $Victim_detail->lname = "二明";
+        $Victim_detail->age = 30;
+        $Victim_detail->person_id = "L123456783";
+        $Victim_detail->phone = "0412345678";
+       // $Victim_detail->address = 3;
+        $Victim_detail->damage_level = 2;
+//        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
+//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+//        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
     }

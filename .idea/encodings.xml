@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="US-ASCII">
+    <file url="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" charset="UTF-8" />
   </component>
 </project>
