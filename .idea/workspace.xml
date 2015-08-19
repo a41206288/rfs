@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/user_seeder.php" afterPath="$PROJECT_DIR$/database/seeds/user_seeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -44,8 +39,8 @@
       <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.456359">
-              <caret line="47" column="81" selection-start-line="47" selection-start-column="81" selection-end-line="47" selection-end-column="81" />
+            <state vertical-scroll-proportion="0.35162094">
+              <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
               <folding>
                 <element signature="e#3574#3595#0#HTML" expanded="true" />
                 <element signature="e#10321#10342#0#HTML" expanded="true" />
@@ -900,7 +895,13 @@
       <option name="project" value="LOCAL" />
       <updated>1439886567766</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="mission/manage/local&#10;醫療 脫困組數量讀取完成&#10;">
+      <created>1439973988786</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1439973988786</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -942,7 +943,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="任務管理 計算脫困與醫療人員數量" />
     <MESSAGE value="地方指揮官 任務回報table" />
     <MESSAGE value="讀取任務詳細資料 通報的救災人數" />
     <MESSAGE value="中央指揮官頁面完成" />
@@ -967,7 +967,8 @@
     <MESSAGE value="mission_lists 新增id(負責人)欄位&#10;works_ons 新增mission_list_id欄位" />
     <MESSAGE value="EMT回報頁面讀取完成&#10;&#10;mission_new_locations 新增id(回報人)欄位" />
     <MESSAGE value="物資資員監控組(resource)頁面修改完成&#10;權限設定完成&#10;物資資員監控組email修改&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="物資資員監控組(resource)頁面修改完成&#10;權限設定完成&#10;物資資員監控組email修改&#10;" />
+    <MESSAGE value="mission/manage/local&#10;醫療 脫困組數量讀取完成&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="mission/manage/local&#10;醫療 脫困組數量讀取完成&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1382,8 +1383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.456359">
-          <caret line="47" column="81" selection-start-line="47" selection-start-column="81" selection-end-line="47" selection-end-column="81" />
+        <state vertical-scroll-proportion="0.35162094">
+          <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
           <folding>
             <element signature="e#3574#3595#0#HTML" expanded="true" />
             <element signature="e#10321#10342#0#HTML" expanded="true" />
