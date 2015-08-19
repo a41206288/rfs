@@ -16,63 +16,61 @@
         }
     </style>
     <h4><b>我要應徵</b></h4><hr>
-    {!! Form::open(array('url' => 'application/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
 
 
-    <div class="col-xs-6 col-sm-4 col-md-4" >
-        <table>
-            <tr><td colspan="2"><b>個人資料</b></td></tr>
-            <tr>
-                <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%" colspan="2">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
-            </tr>
-            <tr>
-                <td>名字</td><td colspan="2">{!! Form::text('fname','',['class' => 'form-control', 'required']) !!}</td>
-            </tr>
-            <tr>
-                <td>聯絡電話</td><td colspan="2">{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
-            </tr>
-            <tr>
-                <td>E-mail</td><td colspan="2">{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
-            </tr>
-            <tr>
-                <td>目前所在地點</td>
-                <td width="50%"><select class="form-control " name="country_or_city" id="country_or_city" onchange="country_onchange()" >
-                        <option value="">請選擇縣/市</option>
-                    </select></td>
-                <td width="50%"><select class="form-control" name="township_or_district" id="township_or_district">
-                        <option value="">請選擇鄉鎮區</option>
-                    </select></td>
-            </tr>
+    <div class="col-xs-12 col-sm-8 col-md-8" >
+        {!! Form::open(array('url' => 'application/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
+        <div class="col-xs-12 col-sm-8 col-md-8" >
+            <table>
+                <tr><td colspan="2"><b>個人資料</b></td></tr>
+                <tr>
+                    <td width="30%"><font color="#ff0b11">*</font>姓名</td><td  width="70%" colspan="2">{!! Form::text('name','',['class' => 'form-control', 'required']) !!}</td>
+                </tr>
 
-            <tr>
-                <td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
-            </tr>
-            <tr>
-                <td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>
-            </tr>
+                <tr>
+                    <td><font color="#ff0b11">※</font>聯絡電話</td><td colspan="2">{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
+                </tr>
+                <tr>
+                    <td><font color="#ff0b11">※</font>E-mail</td><td colspan="2">{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
+                </tr>
+                <tr>
+                    <td width="30%"><font color="#ff0b11">*</font>目前所在地點</td>
+                    <td width="35%"><select class="form-control " name="country_or_city" id="country_or_city" onchange="country_onchange()" >
+                            <option value="">請選擇縣/市</option>
+                        </select></td>
+                    <td width="35%"><select class="form-control" name="township_or_district" id="township_or_district">
+                            <option value="">請選擇鄉鎮區</option>
+                        </select></td>
+                </tr>
+                <tr><td><br></td></tr>
+                <tr>
+                    <td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>
+                </tr>
 
-        </table>
-    </div>
-    <div class="col-xs-6 col-sm-4 col-md-4" >
-        <table>
-            <tr><td colspan="2"><b>特殊技能</b></td></tr>
-            <tr>
-                <td></td><td>{!! Form::text('skill','',['class' => 'form-control', 'id' => 'skill']) !!}</td>
-            </tr>
-            <tr>
-                <td colspan="2"><font color="#ff0b11">※</font> 此欄為選填</td>
-            </tr>
-            <tr><td colspan="2"></td></tr>
-            <tr><td colspan="2"></td></tr>
-            <tr><td colspan="2"><b>您選擇的志工種類</b></td></tr>
-            <tr><td><input type="hidden" value="-1" id="support_id"/></td><td id="choose">尚未選擇</td></tr>
-        </table>
-        <div class="text-center">
-            <br><br><br><br><br>
+            </table>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4" >
+            <table>
+                <tr><td colspan="3"><b>您選擇的志工種類</b></td></tr>
+                <tr><td><input type="hidden" value="-1" id="center_support_person_id" name="center_support_person_id"></td><td colspan="2" id="choose">尚未選擇</td></tr>
+                <tr><td colspan="3"><br></td></tr>
+                <tr><td colspan="3"><b>特殊技能 </b>( 此欄為選填 )</td></tr>
+                <tr>
+                    <td></td><td  colspan="2">{!! Form::textarea('skill','',['class' => 'form-control', 'id' => 'skill','style'=>'resize: vertical']) !!}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-16 col-sm-12 col-md-12 text-center">
+            <hr>
             {!! Form::submit('送出', ['class' => 'btn btn-primary btn-sm']) !!}
         </div >
+        {!! Form::close() !!}
     </div>
-    <div class="col-xs-6 col-sm-4 col-md-4" >
+    <div class="col-xs-4 col-sm-4 col-md-4" >
         <div style="height:400px;width:100%;overflow:auto;">
             <table class="btn-group-vertical">
                 <thead><tr><td colspan="2"><b>應徵志工種類</b>(請在此選擇欲應徵的志工種類)</td></tr></thead>
@@ -82,6 +80,7 @@
                         <tr class="btn btn-block btn-default btn-sm">
                             <td><input type="hidden" value="{!! $center_support_person->center_support_person_id !!}"/></td>
                             <td>{!!$center_support_person->center_support_person_requirement ." ". $center_support_person->center_support_person_num!!} 人</td>
+
                         </tr>
                     @endforeach
                 @endif
@@ -90,7 +89,7 @@
         </div>
     </div>
 
-    {!! Form::close() !!}
+
 @endsection
 
 @section('javascript')
@@ -101,7 +100,7 @@
             var string_index = choose_type.search("的人");
             choose_type = choose_type.slice(0,string_index+2);
             $('#choose').text(choose_type);
-            $('#support_id').attr("value", $('#needed').find('tr').eq(rowIndex).find('td:eq(0)').find('input').attr("value"));
+            $('#center_support_person_id').attr("value", $('#needed').find('tr').eq(rowIndex).find('td:eq(0)').find('input').attr("value"));
         });
         function checkForm()
         {

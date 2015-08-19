@@ -49,21 +49,10 @@ class UsersDonateController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show(Request $request)
+	public function store(Request $request)
 	{
         $input=$request->except('_token');
-//        dd( $input);
+        dd( $input);
         $lname =$request->input('lname');
         $fname =$request->input('fname');
         $phone = $request->input('phone');
@@ -94,6 +83,17 @@ class UsersDonateController extends Controller {
         }
 
         return view('user_pages.submit_success')->with('string',"捐贈物資，請盡快將捐贈之物資寄至「台中市西屯區逢甲路100號」");
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show()
+	{
+
 	}
 
 	/**

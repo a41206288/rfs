@@ -16,121 +16,115 @@
         }
     </style>
     <h4><b>我要捐贈</b></h4><hr>
-    {!! Form::open(array('url' => 'donate/input', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
-    <div class="col-xs-6 col-sm-4 col-md-4" >
-        <table>
-            <tr><td colspan="2"><b>捐贈人資料</b></td></tr>
-            <tr>
-                <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required','id' => 'lname']) !!}</td>
-            </tr>
-            <tr>
-                <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
-            </tr>
-            <tr>
-                <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control','id' => 'phone','placeholder' => '市話 或是 手機']) !!}</td>
-            </tr>
-            <tr>
-                <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email','id' => 'email']) !!}</td>
-            </tr>
 
-            <tr>
-                <td colspan="2"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
-            </tr>
-            <tr>
-                <td colspan="2"><font color="#ff0b11">*</font> 請務必填寫</td>
-            </tr>
+    <div class="col-xs-12 col-sm-8 col-md-8" >
+        {!! Form::open(array('url' => 'donate/input', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
+        <div class="col-xs-8 col-sm-6 col-md-6" >
+            <table>
+                <tr><td colspan="2"><b>捐贈人資料</b></td></tr>
+                <tr>
+                    <td width="20%"><font color="#ff0b11">*</font>姓氏</td><td  width="80%">{!! Form::text('lname','',['class' => 'form-control', 'required','id' => 'lname']) !!}</td>
+                </tr>
+                <tr>
+                    <td>名字</td><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
+                </tr>
+                <tr>
+                    <td>聯絡電話</td><td>{!! Form::text('phone','',['class' => 'form-control','id' => 'phone','placeholder' => '市話 或是 手機']) !!}</td>
+                </tr>
+                <tr>
+                    <td>E-mail</td><td>{!! Form::text('email','',['class' => 'form-control','type'=>'email','id' => 'email']) !!}</td>
+                </tr>
 
-        </table>
+                <tr>
+                    <td colspan="2"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><font color="#ff0b11">*</font> 請務必填寫</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-xs-8 col-sm-6 col-md-6" >
+
+            <table id="donate_table">
+                <thead>
+                <tr><td colspan="2"><b>捐贈物資</b></td></tr>
+                </thead>
+            </table>
+
+
+        </div>
+        <div class="col-xs-16 col-sm-12 col-md-12 text-center">
+            <hr>
+            {!! Form::submit('送出', ['class' => 'btn btn-primary btn-sm']) !!}
+        </div >
+        {!! Form::close() !!}
+
     </div>
-    <div class="col-xs-6 col-sm-4 col-md-4" >
-
-        <table id="donate_table">
-            <thead>
-            <tr><td colspan="2"><b>捐贈物資</b></td></tr>
-            </thead>
-
-
-
-
-
-
-
-
-        </table>
-        <hr/>
-        {{-- 暫時加上submit看要不要換地方 --}}
-        {!! Form::submit('送出', ['class' => 'btn btn-primary btn-sm']) !!}
-
-    </div>
-    {!! Form::close() !!}
-
-    <div class="col-xs-6 col-sm-4 col-md-4" >
+    <div class="col-xs-4 col-sm-4 col-md-4" >
         <div style="height:400px;width:100%;overflow:auto;">
-        <table class="btn-group-vertical">
-            <thead><tr><td colspan="2"><b>需求物資列表</b>(請在此選擇欲捐贈物品)</td></tr></thead>
-            <tbody id="needed">
-            @if (isset($center_support_products) )
-                @foreach ($center_support_products as $center_support_product )
-                <tr class="btn btn-block btn-default btn-sm">
-                    <td>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <div style="display: none">
-                                {!!$n = $center_support_product->center_support_product_amount!!}
-                                </div>
-                                <td width="10">{!!$center_support_product->product_total_amount_id!!}</td>
-                                <td width="150">{!!$center_support_product->product_name!!}</td>
-                                <td width="50">{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td>
-                            </tr>
-                            <div style="display: none">
-                            {!!$hashr = false!!}
-                            </div>
-                            @foreach ($donates as $donate )
-                                @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id &&
-                                    $donate->arrived == 0)
-                                    @if($hashr == false)
-                                        <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
-                                        <div style="display: none">{!!$hashr = true!!}</div>
-                                    @endif
+            <table class="btn-group-vertical">
+                <thead><tr><td colspan="2"><b>需求物資列表</b>(請在此選擇欲捐贈物品)</td></tr></thead>
+                <tbody id="needed">
+                @if (isset($center_support_products) )
+                    @foreach ($center_support_products as $center_support_product )
+                        <tr class="btn btn-block btn-default btn-sm">
+                            <td>
+                                <table>
+                                    <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td>{!!$donate->lname!!} 先生/小姐 已捐贈</td>
-                                        <td>{!!$donate->donate_amount." ".$center_support_product->unit!!}</td>
+                                        <div style="display: none">
+                                            {!!$n = $center_support_product->center_support_product_amount!!}
+                                        </div>
+                                        <td width="10">{!!$center_support_product->product_total_amount_id!!}</td>
+                                        <td width="150">{!!$center_support_product->product_name!!}</td>
+                                        <td width="50">{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td>
                                     </tr>
                                     <div style="display: none">
-                                        {!!$n = $n - $donate->donate_amount!!}
+                                        {!!$hashr = false!!}
                                     </div>
-                                @endif
-                            @endforeach
+                                    @foreach ($donates as $donate )
+                                        @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id &&
+                                            $donate->arrived == 0)
+                                            @if($hashr == false)
+                                                <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
+                                                <div style="display: none">{!!$hashr = true!!}</div>
+                                            @endif
+                                            <tr>
+                                                <td></td>
+                                                <td>{!!$donate->lname!!} 先生/小姐 已捐贈</td>
+                                                <td>{!!$donate->donate_amount." ".$center_support_product->unit!!}</td>
+                                            </tr>
+                                            <div style="display: none">
+                                                {!!$n = $n - $donate->donate_amount!!}
+                                            </div>
+                                        @endif
+                                    @endforeach
 
 
-                            @if ($n != $center_support_product->center_support_product_amount)
-                                <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
-                                <tr>
-                                    <td></td>
-                                    <td>目前尚須</td>
-                                    <td>{!!$n." ".$center_support_product->unit!!}</td>
-                                </tr>
-                            @endif
-                            </tbody>
-                        </table>
-                    </td>
+                                    @if ($n != $center_support_product->center_support_product_amount)
+                                        <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>目前尚須</td>
+                                            <td>{!!$n." ".$center_support_product->unit!!}</td>
+                                        </tr>
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </td>
 
-                </tr>
-                @endforeach
-            @endif
+                        </tr>
+                    @endforeach
+                @endif
 
+                </tbody>
 
-            </tbody>
-
-
-
-
-        </table>
+            </table>
 
         </div>
     </div>
+
 @endsection
 
 @section('javascript')
