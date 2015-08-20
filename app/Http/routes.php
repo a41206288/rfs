@@ -39,6 +39,8 @@ Route::get('logout', 'UsersLoginController@logout');
 Route::get('analysis/manage', 'AnalysisAnalysisController@index');
 
 Route::get('victim/EMT', 'EmtVictimController@index');
+Route::post('victim/EMT/create', 'EmtVictimController@create');
+Route::post('victim/EMT/edit', 'EmtVictimController@edit');
 
 
 

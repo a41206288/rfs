@@ -30,7 +30,7 @@ class UsersApplicationController extends Controller {
      */
     public function create(Request $request)
     {
-        $input=$request->except('_token');
+//        $input=$request->except('_token');
 //        dd( $input);
         $name =$request->input('name');
         $phone = $request->input('phone');

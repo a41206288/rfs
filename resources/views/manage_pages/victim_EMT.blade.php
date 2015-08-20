@@ -23,28 +23,32 @@ EMT災民
                 <div class="modal fade" id="createVictim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog" style="width: 80%">
                         <div class="modal-content">
-                            {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+{{--                            {!! Form::open(array('url' => 'victim/EMT/create', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title" id="myModalLabel"><b>新增災民資料</b></h4>
                             </div>
                             <div class="modal-body">
                                 <table width="100%">
+                                    <tr><th>個人資料</th><th colspan="2">災民狀態</th></tr>
                                     <tr>
                                         <td width="30%">
                                             <table width="100%">
-                                                <tr><td colspan="2"><b>個人資料</b></td></tr>
                                                 <tr>
-                                                    <th width="40%" class="text-right">姓名</th><td  width="60%">{!! Form::text('lname','',['class' => 'form-control', 'required']) !!}</td>
+                                                    <th width="40%" class="text-right">姓名</th><td  width="60%">{!! Form::text('lname','',['class' => 'form-control']) !!}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-right">名字</th><td>{!! Form::text('fname','',['class' => 'form-control']) !!}</td>
                                                 </tr>
                                                 <tr>
+                                                    <th class="text-right">性別</th>
+                                                    <td>{!! Form::select('sex', array('男' => '男', '女' => '女','其他' => '其他','請選擇' => '請選擇'),'請選擇',['class' => 'form-control']) !!}</td>
+                                                </tr>
+                                                <tr>
                                                     <th class="text-right">年齡</th><td> {!! Form::number('age', '', ['id' =>  'age', 'class' => 'form-control', 'min'=>'0']) !!}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="text-right">身分證字號</th><td>{!! Form::text('id','',['class' => 'form-control', 'id' => 'id']) !!}</td>
+                                                    <th class="text-right">身分證字號</th><td>{!! Form::text('person_id','',['class' => 'form-control', 'id' => 'id']) !!}</td>
                                                 </tr>
                                                 <tr>
                                                     <th class="text-right">聯絡電話</th><td>{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone']) !!}</td>
@@ -54,103 +58,50 @@ EMT災民
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td width="70%">
+                                        <td width="5%"></td>
+                                        <td width="30%">
                                             <table width="100%">
-                                                <tr><td colspan="3"><b>災民狀態</b></td></tr>
                                                 <tr>
-                                                    <td width="50%">
-                                                        {{--<table width="100%">--}}
-                                                            {{--<tr>--}}
-                                                                {{--<th width="24%" class="text-right">傷重程度</th>--}}
-
-                                                                {{--<td width="38%"><select class="form-control " name="building" id="building">--}}
-                                                                        {{--<option value="">請選擇</option>--}}
-                                                                        {{--<option value="">重度</option>--}}
-                                                                        {{--<option value="">中度</option>--}}
-                                                                        {{--<option value="">輕度</option>--}}
-                                                                        {{--<option value="">正常</option>--}}
-                                                                    {{--</select></td>--}}
-                                                            {{--</tr>--}}
-
-                                                            {{--<tr>--}}
-                                                                {{--<th class="text-right">詳細診斷</th><td>{!! Form::textarea('remark','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>--}}
-                                                            {{--</tr>--}}
-                                                        {{--</table>--}}
-                                                    </td>
-                                                    <td width="5%"></td>
-                                                    <td width="50%">
-                                                        <table width="100%">
-                                                            <tr>
-                                                                <th>目前所在地</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>{!! Form::text('location','',['class' => 'form-control']) !!}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>處置方式</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>{!! Form::textarea('remark','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
-                                                            </tr>
-
-
-                                                        </table>
-                                                    </td>
+                                                    <th width="24%">傷重程度</th>
+                                                </tr>
+                                                <tr>
+                                                    <td width="38%">{!! Form::select('damage_level', array('請選擇' => '請選擇','4' => '死亡', '3' => '重傷','2' => '中傷','1' => '輕傷','0' => '4'),'重傷',['class' => 'form-control']) !!}</td>                                                   </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>詳細診斷</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{!! Form::textarea('damage_detail','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
                                                 </tr>
                                             </table>
                                         </td>
-                                        {{--<td width="35%">--}}
-                                            {{--<table width="100%">--}}
-                                                {{--<tr><td colspan="2"><b>災民狀態</b></td></tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<th width="24%" class="text-right">傷重程度</th>--}}
-
-                                                    {{--<td width="38%"><select class="form-control " name="building" id="building">--}}
-                                                            {{--<option value="">請選擇</option>--}}
-                                                            {{--<option value="">重度</option>--}}
-                                                            {{--<option value="">中度</option>--}}
-                                                            {{--<option value="">輕度</option>--}}
-                                                            {{--<option value="">正常</option>--}}
-                                                        {{--</select></td>--}}
-                                                {{--</tr>--}}
-
-                                                {{--<tr>--}}
-                                                    {{--<th class="text-right">詳細診斷</th><td>{!! Form::textarea('remark','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>--}}
-                                                {{--</tr>--}}
-                                            {{--</table>--}}
-                                        {{--</td>--}}
-                                        {{--<td width="5%"></td>--}}
-                                        {{--<td width="30%">--}}
-                                            {{--<table width="100%">--}}
-                                                {{--<tr>--}}
-                                                    {{--<th>目前所在地</th>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td>{!! Form::text('location','',['class' => 'form-control']) !!}</td>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<th>處置方式</th>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td>{!! Form::textarea('remark','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>--}}
-                                                {{--</tr>--}}
+                                        <td width="5%"></td>
+                                        <td width="30%">
+                                            <table width="100%">
+                                                <tr>
+                                                    <th>目前所在地</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{!! Form::text('now_location','',['class' => 'form-control']) !!}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>處置方式</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{!! Form::textarea('disposal','',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
+                                                </tr>
 
 
-                                            {{--</table>--}}
-                                        {{--</td>--}}
+                                            </table>
+                                        </td>
                                     </tr>
                                 </table>
-
-
-
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
                                 {!! Form::submit('新增災民資料', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                             </div>
-                            {{--{!! Form::close() !!}--}}
+{{--                            {!! Form::close() !!}--}}
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
@@ -192,31 +143,88 @@ EMT災民
                     <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" style="width: 80%">
                             <div class="modal-content">
-                                {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+                                {{--{!! Form::open(array('url' => 'victim/EMT/edit', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <h4 class="modal-title" id="myModalLabel"><b>修改欲募捐數量</b></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <dl class="dl-horizontal">
-                                        {{--<dt>物資編號</dt>--}}
-                                        {{--<dd>{!!$center_support_product->product_total_amount_id!!}</dd><br>--}}
-                                        {{--<dt>物資名稱</dt>--}}
-                                        {{--<dd>{!!$center_support_product->product_name!!}</dd><br>--}}
-                                        {{--{!! Form::hidden('product_id',$center_support_product->product_total_amount_id) !!}--}}
-                                        {{--<dt>需求數量</dt>--}}
-                                        {{--<dd>{!!$center_support_product->center_support_product_amount." ".$center_support_product->unit!!}</dd><br>--}}
-                                        {{--<dt>欲修改需求數量</dt>--}}
-                                        {{--<dd class="text-right">{!! Form::number('require_number','',['id' =>  'mission_list_name','class' => 'form-control text-right','min'=>'0']) !!}</dd> <br>--}}
+                                    <div class="modal-body">
+                                        <table width="100%">
+                                            <tr><th>個人資料</th><th colspan="2">災民狀態</th></tr>
+                                            <tr>
+                                                <td width="30%">
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <th width="40%" class="text-right">姓名</th><td  width="60%">{!! Form::text('lname','日向寧次',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right">名字</th><td>{!! Form::text('fname','寧次',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right">性別</th>
+                                                            <td>{!! Form::select('sex', array('男' => '男', '女' => '女','其他' => '其他','請選擇' => '請選擇'),'男',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right">年齡</th><td> {!! Form::number('age', '17', ['id' =>  'age', 'class' => 'form-control', 'min'=>'0']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right">身分證字號</th><td>{!! Form::text('person_id','k123456789',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right">聯絡電話</th><td>{!! Form::text('phone','0987654321',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right">住址</th><td>{!! Form::text('address','台中市西屯區',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td width="5%"></td>
+                                                <td width="30%">
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <th width="24%">傷重程度</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="38%">{!! Form::select('damage_level', array('請選擇' => '請選擇','4' => '死亡', '3' => '重傷','2' => '中傷','1' => '輕傷','0' => '4'),'重傷',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>詳細診斷</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>{!! Form::textarea('damage_detail','尖銳物品貫穿身體',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td width="5%"></td>
+                                                <td width="30%">
+                                                    <table width="100%">
+                                                        <tr>
+                                                            <th>目前所在地</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>{!! Form::text('now_location','戰場上',['class' => 'form-control']) !!}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>處置方式</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>{!! Form::textarea('disposal','放棄治療',['class' => 'form-control ','style'=>'resize:none']) !!}</td>
+                                                        </tr>
 
-                                    </dl>
+
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
                                     {!! Form::submit('修改', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                                 </div>
                             </div><!-- /.modal-content -->
-                            {!! Form::close() !!}
+                            {{--{!! Form::close() !!}--}}
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
                 </td>
