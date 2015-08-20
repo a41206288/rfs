@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use App\Modify;
 class LocalMissionController extends Controller {
 
 	/**
@@ -380,6 +381,7 @@ class LocalMissionController extends Controller {
         //        $inputs=$request->except('_token');
 //        dd($inputs);
         $frees=$request->input('free');
+//        dd($frees);
         $missions=$request->input('mission');
 //        dd($missions);
         $mission_new_locations_id=$request->input('mission_new_locations_id');
@@ -389,6 +391,16 @@ class LocalMissionController extends Controller {
                 $delete = DB::table('works_ons')->where('id', $free)->get();
                 if (isset($delete)) {
                     DB::table('works_ons')->where('id', $free)->delete();
+
+                    $modifies = new Modify;
+                    $modifies->old_value = $free;
+                    $modifies->modify_value = 'null';
+                    $modifies->table_name = 'works_ons';
+                    $modifies->attribute_name = 'all';
+                    $modifies->id = Auth::user()->id;
+                    $modifies->save();
+//                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)',
+//                        array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
                 }
             }
         }
@@ -399,7 +411,9 @@ class LocalMissionController extends Controller {
                 if($insert == null)
                 {
 
-                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)', array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
+                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)',
+                        array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
+
                 }
                 else
                 {

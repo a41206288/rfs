@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/user_seeder.php" afterPath="$PROJECT_DIR$/database/seeds/user_seeder.php" />
+    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modify.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -29,51 +26,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.84615386">
+              <caret line="321" column="87" selection-start-line="321" selection-start-column="83" selection-end-line="321" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsersDonateController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersDonateController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.548387">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalMissionController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="23.53616">
+              <caret line="396" column="52" selection-start-line="396" selection-start-column="52" selection-end-line="396" selection-end-column="52" />
+              <folding>
+                <element signature="e#39#61#0#PHP" expanded="true" />
+                <marker date="1440061227790" expanded="true" signature="15977:16086" placeholder="insert into ..." />
+                <marker date="1440061227790" expanded="true" signature="16505:16614" placeholder="insert into ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="people_manage_resource_c.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.4">
-              <caret line="47" column="86" selection-start-line="47" selection-start-column="86" selection-end-line="47" selection-end-column="86" />
+            <state vertical-scroll-proportion="-5.870968">
+              <caret line="134" column="74" selection-start-line="134" selection-start-column="74" selection-end-line="134" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceCenterProductController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.483871">
-              <caret line="32" column="81" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourceCenterPeopleController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ResourceCenterPeopleController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45386535">
-              <caret line="68" column="49" selection-start-line="68" selection-start-column="49" selection-end-line="68" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2014_10_12_000000_create_users_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8">
-              <caret line="37" column="39" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_seeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22580644">
-              <caret line="1103" column="32" selection-start-line="1103" selection-start-column="32" selection-end-line="1103" selection-end-column="32" />
+            <state vertical-scroll-proportion="13.419354">
+              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -90,7 +91,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MissingPosterController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersMissingPosterController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MissionController.php" />
@@ -135,12 +135,13 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_04_13_062206_new_role.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersLoginController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/user_seeder.php" />
+        <option value="$PROJECT_DIR$/app/Modify.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
       </list>
     </option>
   </component>
@@ -803,7 +804,13 @@
       <option name="project" value="LOCAL" />
       <updated>1439974114671</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;">
+      <created>1440058220106</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1440058220106</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -845,7 +852,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="地方指揮官 任務回報table" />
     <MESSAGE value="讀取任務詳細資料 通報的救災人數" />
     <MESSAGE value="中央指揮官頁面完成" />
     <MESSAGE value="創建執行部門reports table" />
@@ -870,7 +876,8 @@
     <MESSAGE value="EMT回報頁面讀取完成&#10;&#10;mission_new_locations 新增id(回報人)欄位" />
     <MESSAGE value="物資資員監控組(resource)頁面修改完成&#10;權限設定完成&#10;物資資員監控組email修改&#10;" />
     <MESSAGE value="mission/manage/local&#10;醫療 脫困組數量讀取完成&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="mission/manage/local&#10;醫療 脫困組數量讀取完成&#10;" />
+    <MESSAGE value="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -891,34 +898,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersApplicationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/analysis_manage_local.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4461539">
-          <caret line="21" column="72" selection-start-line="21" selection-start-column="72" selection-end-line="21" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.015122874">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/post_seeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52307695">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.903226">
@@ -944,13 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.67742">
           <caret line="101" column="75" selection-start-line="101" selection-start-column="53" selection-end-line="101" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersDonateController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.032258">
-          <caret line="33" column="39" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1217,42 +1189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3692307">
-          <caret line="221" column="0" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-          <folding>
-            <marker date="1439973430069" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.855362">
-          <caret line="152" column="50" selection-start-line="152" selection-start-column="50" selection-end-line="152" selection-end-column="50" />
-          <folding>
-            <element signature="e#3574#3595#0#HTML" expanded="true" />
-            <element signature="e#10321#10342#0#HTML" expanded="true" />
-            <element signature="e#13182#13203#0#HTML" expanded="true" />
-            <element signature="e#19963#19984#0#HTML" expanded="true" />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439973589552" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_04_11_121949_create_mission_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.3586207">
@@ -1261,51 +1197,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/mission_seeder.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59770113">
-          <caret line="101" column="51" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="51" />
+        <state vertical-scroll-proportion="1.6735632">
+          <caret line="32" column="81" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8">
+        <state vertical-scroll-proportion="0.45386535">
           <caret line="37" column="39" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1678162">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11954023">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.84615386">
+          <caret line="321" column="87" selection-start-line="321" selection-start-column="83" selection-end-line="321" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22580644">
-          <caret line="1103" column="32" selection-start-line="1103" selection-start-column="32" selection-end-line="1103" selection-end-column="32" />
+        <state vertical-scroll-proportion="-24.096775">
+          <caret line="1078" column="32" selection-start-line="1078" selection-start-column="24" selection-end-line="1078" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php">
+    <entry file="file://$PROJECT_DIR$/app/Report.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.483871">
-          <caret line="32" column="81" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="81" />
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/seeds/mission_seeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.4">
-          <caret line="47" column="86" selection-start-line="47" selection-start-column="86" selection-end-line="47" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.34252873">
+          <caret line="270" column="56" selection-start-line="270" selection-start-column="36" selection-end-line="270" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Center_support_person.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45386535">
-          <caret line="68" column="49" selection-start-line="68" selection-start-column="49" selection-end-line="68" selection-end-column="49" />
+        <state vertical-scroll-proportion="13.419354">
+          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersDonateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.548387">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.870968">
+          <caret line="134" column="74" selection-start-line="134" selection-start-column="74" selection-end-line="134" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="23.53616">
+          <caret line="396" column="52" selection-start-line="396" selection-start-column="52" selection-end-line="396" selection-end-column="52" />
+          <folding>
+            <element signature="e#39#61#0#PHP" expanded="true" />
+            <marker date="1440061227790" expanded="true" signature="15977:16086" placeholder="insert into ..." />
+            <marker date="1440061227790" expanded="true" signature="16505:16614" placeholder="insert into ..." />
+          </folding>
         </state>
       </provider>
     </entry>
