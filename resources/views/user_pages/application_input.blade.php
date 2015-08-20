@@ -18,9 +18,9 @@
     <h4><b>我要應徵</b></h4><hr>
 
 
-    <div class="col-xs-12 col-sm-8 col-md-8" >
+    <div class="col-xs-12 col-sm-9 col-md-9" >
         {!! Form::open(array('url' => 'application/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
-        <div class="col-xs-12 col-sm-8 col-md-8" >
+        <div class="col-xs-10 col-sm-7 col-md-7" >
             <table>
                 <tr><td colspan="2"><b>個人資料</b></td></tr>
                 <tr>
@@ -28,10 +28,10 @@
                 </tr>
 
                 <tr>
-                    <td><font color="#ff0b11">※</font>聯絡電話</td><td colspan="2">{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
+                    <td><font color="#ff0b11">*</font>聯絡電話</td><td colspan="2">{!! Form::text('phone','',['class' => 'form-control', 'id' => 'phone', 'required']) !!}</td>
                 </tr>
                 <tr>
-                    <td><font color="#ff0b11">※</font>E-mail</td><td colspan="2">{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
+                    <td><font color="#ff0b11">*</font>E-mail</td><td colspan="2">{!! Form::text('email','',['class' => 'form-control','type'=>'email', 'id' => 'email', 'required']) !!}</td>
                 </tr>
                 <tr>
                     <td width="30%"><font color="#ff0b11">*</font>目前所在地點</td>
@@ -43,18 +43,18 @@
                         </select></td>
                 </tr>
                 <tr><td><br></td></tr>
-                <tr>
-                    <td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>--}}
+                {{--</tr>--}}
                 <tr>
                     <td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>
                 </tr>
 
             </table>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4" >
+        <div class="col-xs-6 col-sm-5 col-md-5" >
             <table>
-                <tr><td colspan="3"><b>您選擇的志工種類</b></td></tr>
+                <tr><td colspan="3"><font color="#ff0b11">*</font><b>您選擇的志工種類</b></td></tr>
                 <tr><td><input type="hidden" value="-1" id="center_support_person_id" name="center_support_person_id"></td><td colspan="2" id="choose">尚未選擇</td></tr>
                 <tr><td colspan="3"><br></td></tr>
                 <tr><td colspan="3"><b>特殊技能 </b>( 此欄為選填 )</td></tr>
@@ -70,7 +70,7 @@
         </div >
         {!! Form::close() !!}
     </div>
-    <div class="col-xs-4 col-sm-4 col-md-4" >
+    <div class="col-xs-4 col-sm-3 col-md-3" >
         <div style="height:400px;width:100%;overflow:auto;">
             <table class="btn-group-vertical">
                 <thead><tr><td colspan="2"><b>應徵志工種類</b>(請在此選擇欲應徵的志工種類)</td></tr></thead>

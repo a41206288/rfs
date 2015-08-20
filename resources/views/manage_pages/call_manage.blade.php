@@ -27,7 +27,7 @@
         <table class="table table-striped">
             <thead>
                  <tr >
-                    <td colspan="7"><h4>通報管理</h4></td>
+                    <td colspan="8"><h4>通報管理</h4></td>
                     <td >
                         <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
                             創建新任務

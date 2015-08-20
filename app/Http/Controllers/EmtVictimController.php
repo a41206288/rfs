@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
+use App\Victim_detail;
 class EmtVictimController extends Controller {
 
 	/**
@@ -22,9 +22,39 @@ class EmtVictimController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
-		//
+//        $input=$request->except('_token');
+//        dd( $input);
+        $lname =$request->input('lname');
+        $fname =$request->input('fname');
+        $sex =$request->input('sex');
+        $age =$request->input('age');
+        $person_id =$request->input('person_id');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $damage_level = $request->input('damage_level');
+        $damage_detail = $request->input('damage_detail');
+        $now_location = $request->input('now_location');
+        $disposal = $request->input('disposal');
+
+        $victim_details = new Victim_detail();
+        $victim_details->lname = $lname;
+        $victim_details->fname = $fname;
+        $victim_details->sex = $sex;
+        $victim_details->age = $age;
+        $victim_details->person_id = $person_id;
+        $victim_details->phone = $phone;
+        $victim_details->address = $address;
+        $victim_details->damage_level = $damage_level;
+        $victim_details->damage_detail = $damage_detail;
+        $victim_details->now_location = $now_location;
+        $victim_details->disposal = $disposal;
+        $victim_details->created_at = date('Y-m-d H:i:s');
+        $victim_details->updated_at = date('Y-m-d H:i:s');
+        $victim_details->save();
+
+        return Redirect::to('victim/EMT');
 	}
 
 	/**
@@ -54,9 +84,38 @@ class EmtVictimController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request)
 	{
-		//
+        $lname =$request->input('lname');
+        $fname =$request->input('fname');
+        $sex =$request->input('sex');
+        $age =$request->input('age');
+        $person_id =$request->input('person_id');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $damage_level = $request->input('damage_level');
+        $damage_detail = $request->input('damage_detail');
+        $now_location = $request->input('now_location');
+        $disposal = $request->input('disposal');
+        $victim_detail_id = $request->input('victim_detail_id');
+
+
+        $victim_details = User::where('victim_detail_id',$victim_detail_id)->first();
+        $victim_details->lname = $lname;
+        $victim_details->fname = $fname;
+        $victim_details->sex = $sex;
+        $victim_details->age = $age;
+        $victim_details->person_id = $person_id;
+        $victim_details->phone = $phone;
+        $victim_details->address = $address;
+        $victim_details->damage_level = $damage_level;
+        $victim_details->damage_detail = $damage_detail;
+        $victim_details->now_location = $now_location;
+        $victim_details->disposal = $disposal;
+        $victim_details->updated_at = date('Y-m-d H:i:s');
+        $victim_details->save();
+
+        return Redirect::to('victim/EMT');
 	}
 
 	/**
