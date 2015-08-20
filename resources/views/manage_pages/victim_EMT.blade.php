@@ -23,7 +23,7 @@ EMT災民
                 <div class="modal fade" id="createVictim" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog" style="width: 80%">
                         <div class="modal-content">
-{{--                            {!! Form::open(array('url' => 'victim/EMT/create', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+                            {!! Form::open(array('url' => 'victim/EMT/create', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title" id="myModalLabel"><b>新增災民資料</b></h4>
@@ -65,7 +65,7 @@ EMT災民
                                                     <th width="24%">傷重程度</th>
                                                 </tr>
                                                 <tr>
-                                                    <td width="38%">{!! Form::select('damage_level', array('請選擇' => '請選擇','4' => '死亡', '3' => '重傷','2' => '中傷','1' => '輕傷','0' => '4'),'重傷',['class' => 'form-control']) !!}</td>                                                   </td>
+                                                    <td width="38%">{!! Form::select('damage_level', array('請選擇' => '請選擇','0' => '正常','1' => '輕傷','2' => '中傷', '3' => '重傷','4' => '死亡'),'請選擇',['class' => 'form-control']) !!}</td>                                                   </td>
                                                 </tr>
                                                 <tr>
                                                     <th>詳細診斷</th>
@@ -101,7 +101,7 @@ EMT災民
                                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
                                 {!! Form::submit('新增災民資料', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
                             </div>
-{{--                            {!! Form::close() !!}--}}
+                            {!! Form::close() !!}
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
@@ -132,7 +132,7 @@ EMT災民
                 <td>0987654321</td>
                 {{--<td>住址</td>--}}
                 {{--<td>身分證字號</td>--}}
-                <td>重傷</td>
+                <td>死亡</td>
                 <td>戰場上</td>
                 <td>2015/08/19</td>
                 <td>07:37:20</td>
@@ -146,7 +146,8 @@ EMT災民
                                 {{--{!! Form::open(array('url' => 'victim/EMT/edit', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel"><b>修改欲募捐數量</b></h4>
+                                    <h4 class="modal-title" id="myModalLabel"><b>修改災民資料</b></h4>
+                                    {!! Form::hidden('victim_detail_id','日向寧次的編號') !!}
                                 </div>
                                 <div class="modal-body">
                                     <div class="modal-body">
@@ -186,7 +187,7 @@ EMT災民
                                                             <th width="24%">傷重程度</th>
                                                         </tr>
                                                         <tr>
-                                                            <td width="38%">{!! Form::select('damage_level', array('請選擇' => '請選擇','4' => '死亡', '3' => '重傷','2' => '中傷','1' => '輕傷','0' => '4'),'重傷',['class' => 'form-control']) !!}</td>
+                                                            <td width="38%">{!! Form::select('damage_level', array('請選擇' => '請選擇','0' => '正常','1' => '輕傷','2' => '中傷', '3' => '重傷','4' => '死亡'),'4',['class' => 'form-control']) !!}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>詳細診斷</th>

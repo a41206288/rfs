@@ -50,6 +50,8 @@ class UsersApplicationController extends Controller {
         $center_support_person_details->skill = $skill;
         $center_support_person_details->country_or_city_input = $country_or_city;
         $center_support_person_details->township_or_district_input = $township_or_district;
+        $center_support_person_details->created_at = date('Y-m-d H:i:s');
+        $center_support_person_details->updated_at = date('Y-m-d H:i:s');
         $center_support_person_details->save();
 
         return view('user_pages.submit_success')->with('string',"來信應徵，日後將會通知您救災的地點");

@@ -79,6 +79,8 @@ class UsersDonateController extends Controller {
             $donate_product->donate_id = $donate_id->donate_id;
             $donate_product->product_total_amount_id = $product_total_amount_id;
             $donate_product->donate_amount = $donate_amount;
+            $donate_product->updated_at = date('Y-m-d H:i:s');
+            $donate_product->updated_at = date('Y-m-d H:i:s');
             $donate_product->save();
         }
 
