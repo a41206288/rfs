@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modify.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
+    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -810,7 +808,13 @@
       <option name="project" value="LOCAL" />
       <updated>1440058220106</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="test&#10;">
+      <created>1440064047329</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1440064047329</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -852,7 +856,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="讀取任務詳細資料 通報的救災人數" />
     <MESSAGE value="中央指揮官頁面完成" />
     <MESSAGE value="創建執行部門reports table" />
     <MESSAGE value="call right 增加印出資料格式" />
@@ -877,7 +880,8 @@
     <MESSAGE value="物資資員監控組(resource)頁面修改完成&#10;權限設定完成&#10;物資資員監控組email修改&#10;" />
     <MESSAGE value="mission/manage/local&#10;醫療 脫困組數量讀取完成&#10;" />
     <MESSAGE value="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="resource/manage/people/center&#10;錄取志工讀取權限職位&#10;&#10;災民資料加入性別欄位&#10;" />
+    <MESSAGE value="test&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="test&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
