@@ -38,14 +38,16 @@
                         <tbody>
                         @if(isset($center_support_person_details))
                             @foreach($center_support_person_details as $center_support_person_detail)
-                        <tr><td>{!!$center_support_person_detail->center_support_person_detail_name	!!}</td>
-                            <td>{!!$center_support_person_detail->center_support_person_detail_name!!}</td>
-                            <td>{!!$center_support_person_detail->email!!}</td>
-                            <td>{!!$center_support_person_detail->country_or_city_input ." ". $center_support_person_detail->township_or_district_input !!}</td>
-                            <td>{!!$center_support_person_detail->skill!!}</td>
-                            <td>{!!$center_support_person_detail->center_support_person_requirement!!}</td>
-                            <td>{!! Form::select('size', array('emt' => '醫療組', 'reliever' => '脫困組','請選擇')) !!}讀取所有權限 除中央指揮官</td></tr>
+                                <tr><td>{!!$center_support_person_detail->center_support_person_detail_name	!!}</td>
+                                    <td>{!!$center_support_person_detail->center_support_person_detail_name!!}</td>
+                                    <td>{!!$center_support_person_detail->email!!}</td>
+                                    <td>{!!$center_support_person_detail->country_or_city_input ." ". $center_support_person_detail->township_or_district_input !!}</td>
+                                    <td>{!!$center_support_person_detail->skill!!}</td>
+                                    <td>{!!$center_support_person_detail->center_support_person_requirement!!}</td>
 
+                                             <td>{!! Form::select('size', $roles,'請選擇') !!}</td>
+
+                                </tr>
                             @endforeach
                         @endif
 

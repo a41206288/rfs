@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration {
 			$table->string('fname');
 			$table->string('lname');
 			$table->integer('age');
+			$table->enum('sex', ['男','女','其他']);
 			$table->string('person_id')->unique();
 			$table->string('phone');
 			$table->string('address');

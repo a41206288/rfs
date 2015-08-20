@@ -22,7 +22,7 @@ class ResourceCenterPeopleController extends Controller {
 
 		$center_support_people = DB::table('center_support_people')->get();
 
-		//�p�⤤�߫ݩR����x�դH��
+		//計算中心待命的脫困組人數
 		$relieverFreeUsers = DB::table('users')
 			->join('role_user','users.id','=','role_user.user_id')
 			->where('mission_list_id','=',1)
@@ -30,7 +30,7 @@ class ResourceCenterPeopleController extends Controller {
 			->get();
 //        dd($relieverFreeUsers);
 
-		//�p�⤤�߫ݩR�������դH��
+		//計算中心待命的醫療組人數
 		$emtFreeUsers = DB::table('users')
 			->join('role_user','users.id','=','role_user.user_id')
 			->where('mission_list_id','=',1)
@@ -45,7 +45,7 @@ class ResourceCenterPeopleController extends Controller {
 //		dd($mission_support_people);
 
 
-		//Ū�����ȦC��
+		//讀取任務列表
 		$mission_names = DB::table('mission_support_people')
 			->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
 			->orderBy('mission_name')
@@ -53,13 +53,33 @@ class ResourceCenterPeopleController extends Controller {
 			->lists('mission_name','mission_name');
 		$mission_names = array_add($mission_names, '-', '-');
 //dd($mission_names);
+
+		//讀取任務列表
+		$mission_names = DB::table('mission_support_people')
+			->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
+			->orderBy('mission_name')
+			->where('mission_support_people.mission_list_id', '>' , 1)
+			->lists('mission_name','mission_name');
+		$mission_names = array_add($mission_names, '-', '-');
+//dd($mission_names);
+
+		//讀取權限列表
+		$roles = DB::table('roles')
+			->lists('description','name');
+		$roles = array_add($roles, '請選擇', '請選擇');
+		$roles = array_except($roles, array('Administrator', 'to', 'remove'));
+		$roles = array_except($roles, array('Center', 'to', 'remove'));
+		$roles = array_except($roles, array('Masses', 'to', 'remove'));
+//dd($roles);
+
         return view('manage_pages.people_manage_resource_c')
 			->with('center_support_person_details', $center_support_person_details)
 			->with('center_support_people', $center_support_people)
 			->with('relieverFreeUsers', $relieverFreeUsers)
 			->with('emtFreeUsers', $emtFreeUsers)
 			->with('mission_support_people', $mission_support_people)
-			->with('mission_names', $mission_names);
+			->with('mission_names', $mission_names)
+			->with('roles', $roles);
 	}
 
 	/**

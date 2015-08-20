@@ -1069,6 +1069,7 @@ class user_seeder extends Seeder{
         $Victim_detail->fname = "阿";
         $Victim_detail->lname = "斯馬";
         $Victim_detail->age = 30;
+        $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456789";
         $Victim_detail->phone = "0412345678";
         //$Victim_detail->address = 3;
@@ -1084,6 +1085,7 @@ class user_seeder extends Seeder{
         $Victim_detail->fname = "王";
         $Victim_detail->lname = "一明";
         $Victim_detail->age = 30;
+        $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456784";
         $Victim_detail->phone = "0412345678";
        // $Victim_detail->address = 3;
@@ -1099,6 +1101,7 @@ class user_seeder extends Seeder{
         $Victim_detail->fname = "王";
         $Victim_detail->lname = "二明";
         $Victim_detail->age = 30;
+        $Victim_detail->sex = '女';
         $Victim_detail->person_id = "L123456783";
         $Victim_detail->phone = "0412345678";
        // $Victim_detail->address = 3;
