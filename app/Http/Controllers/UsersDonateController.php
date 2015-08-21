@@ -51,8 +51,8 @@ class UsersDonateController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $input=$request->except('_token');
-        dd( $input);
+//        $input=$request->except('_token');
+//        dd( $input);
         $lname =$request->input('lname');
         $fname =$request->input('fname');
         $phone = $request->input('phone');
