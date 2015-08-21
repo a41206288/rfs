@@ -65,7 +65,7 @@ class UsersMissingPosterController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request)
 	{
 		//
 	}

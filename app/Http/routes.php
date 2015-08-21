@@ -21,7 +21,8 @@ Route::get('guidance', 'UsersGuidanceController@index');
 //Route::get('guidance_map', 'GuidanceController@');
 Route::get('application/input', 'UsersApplicationController@index');
 Route::post('application/input', 'UsersApplicationController@create');
-Route::get('missing_poster/input', 'UsersMissingPosterController@index');
+Route::get('missing_poster', 'UsersMissingPosterController@index');
+Route::post('missing_poster', 'UsersMissingPosterController@update');
 
 //登入用route
 Route::get('login', 'UsersLoginController@show');
