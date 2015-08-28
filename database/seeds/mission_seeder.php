@@ -21,13 +21,27 @@ class mission_seeder extends Seeder{
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 1;
-        $mission_list->mission_name = '高雄氣爆';
+        $mission_list->mission_name = '未分配';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 2;
-        $mission_list->mission_name = '蘇迪勒颱風';
-        $mission_list->id = 32;
+        $mission_list->mission_name = '三多路段';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 3;
+        $mission_list->mission_name = '正薪醫院';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 4;
+        $mission_list->mission_name = '忠孝公園';
+        $mission_list->save();
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 5;
+        $mission_list->mission_name = '三民區';
         $mission_list->save();
 
 
@@ -42,7 +56,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '苓雅區';
         $mission->location = '三多一路';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         //$mission->complete_time = date('Y-m-d H:i:s');
         $mission->save();
 
@@ -55,7 +69,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '苓雅區';
         $mission->location = '三信家商前';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->save();
 
         $mission = new App\Mission;
@@ -69,7 +83,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '苓雅區';
         $mission->location = '全聯';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->save();
 
         $mission = new App\Mission;
@@ -82,7 +96,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '前鎮區';
         $mission->location = '一心一路214號';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
@@ -95,7 +109,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '前鎮區';
         $mission->location = '正薪醫院前';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
@@ -107,7 +121,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '前鎮區';
         $mission->location = '廣東三街與一心一路路口';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 3;
         $mission->save();
 
         $mission = new App\Mission;
@@ -119,7 +133,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '新興區';
         $mission->location = '忠孝公園';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -132,7 +146,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '新興區';
         $mission->location = '德智街1號';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -144,7 +158,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '新興區';
         $mission->location = '高雄高商';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -156,7 +170,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '三民區';
         $mission->location = '復興一路200號';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 5;
         $mission->save();
 
         $mission = new App\Mission;
@@ -169,7 +183,7 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '三民區';
         $mission->location = '鐵路新村公車站附近';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 5;
         $mission->save();
 
         $mission = new App\Mission;
@@ -181,26 +195,26 @@ class mission_seeder extends Seeder{
         $mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '三民區';
         $mission->location = '建國二路121號';
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 5;
         $mission->save();
 
 
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 1;
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->location = '醫療組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 2;
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->location = '物資資源組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 3;
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->victim_number = 0;
         $mission->situation = '電線杆仍在燃燒，但不會造成周遭危險';
         $mission->location = '三多一路';
@@ -209,7 +223,7 @@ class mission_seeder extends Seeder{
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 4;
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 2;
         $mission->victim_number = 10;
         $mission->situation = '坍塌處約有半層樓深，已禁止車輛及行人經過此路段';
         $mission->location = '三信家商前';
@@ -218,7 +232,7 @@ class mission_seeder extends Seeder{
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 6;
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 3;
         $mission->victim_number = 5;
         $mission->situation = '水不斷湧出，正在與水利公司聯絡以停止管線供水';
         $mission->location = '正薪醫院前';
@@ -240,7 +254,7 @@ class mission_seeder extends Seeder{
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 3;
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->victim_number = 10;
         $mission->situation = '將部分樹及路燈移至路旁，仍在繼續作業中';
         $mission->location = '忠孝公園';
@@ -249,7 +263,7 @@ class mission_seeder extends Seeder{
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 4;
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->victim_number = 10;
         $mission->situation = '已清除排水孔上的異物，正在觀察排水情況是否良好';
         $mission->location = '德智街1號';
