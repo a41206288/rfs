@@ -17,7 +17,7 @@
     </style>
     <h4><b>我要捐贈</b></h4><hr>
 
-    <div class="col-xs-12 col-sm-8 col-md-8" >
+    <div class="col-xs-9 col-sm-7 col-md-7" >
         {!! Form::open(array('url' => 'donate/input', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
         <div class="col-xs-8 col-sm-6 col-md-6" >
             <table>
@@ -48,7 +48,7 @@
 
             <table id="donate_table">
                 <thead>
-                <tr><td colspan="2"><b>捐贈物資</b></td></tr>
+                <tr><td colspan="4"><b>捐贈物資</b></td></tr>
                 </thead>
             </table>
 
@@ -61,58 +61,41 @@
         {!! Form::close() !!}
 
     </div>
-    <div class="col-xs-4 col-sm-4 col-md-4" >
-        <div style="height:400px;width:100%;overflow:auto;">
-            <table class="btn-group-vertical">
-                <thead><tr><td colspan="2"><b>需求物資列表</b>(請在此選擇欲捐贈物品)</td></tr></thead>
+    <div class="col-xs-7 col-sm-5 col-md-5" >
+
+        {{--<div style="height:400px;width:100%;overflow:auto;">--}}
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr><td colspan="6"><b>需求物資列表</b>(請在此選擇欲捐贈物品)</td></tr>
+                    <tr><td>編號</td><td>物品名稱</td><td>需求數量</td><td>已認捐數</td><td>尚須數量</td><td>認捐</td></tr>
+                </thead>
                 <tbody id="needed">
                 @if (isset($center_support_products) )
                     @foreach ($center_support_products as $center_support_product )
-                        <tr class="btn btn-block btn-default btn-sm">
-                            <td>
-                                <table>
-                                    <tbody>
-                                    <tr>
+                        <div style="display: none">
+                        {!!$n = $center_support_product->center_support_product_amount!!}
+                        </div>
+                            <tr>
+                                <td>{!!$center_support_product->product_total_amount_id!!}</td>
+                                <td>{!!$center_support_product->product_name!!}</td>
+                                <td>{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td>
+
+                                @foreach ($donates as $donate )
+                                    @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id &&
+                                    $donate->arrived == 0)
+                                    {{--<tr>--}}
+                                    {{--<td></td>--}}
+                                    {{--<td>{!!$donate->lname!!} 先生/小姐 已捐贈</td>--}}
+                                    {{--<td>{!!$donate->donate_amount." ".$center_support_product->unit!!}</td>--}}
+                                    {{--</tr>--}}
                                         <div style="display: none">
-                                            {!!$n = $center_support_product->center_support_product_amount!!}
+                                            {!!$n = $n - $donate->donate_amount!!}
                                         </div>
-                                        <td width="10">{!!$center_support_product->product_total_amount_id!!}</td>
-                                        <td width="150">{!!$center_support_product->product_name!!}</td>
-                                        <td width="50">{!!$center_support_product->center_support_product_amount ." ". $center_support_product->unit!!}</td>
-                                    </tr>
-                                    <div style="display: none">
-                                        {!!$hashr = false!!}
-                                    </div>
-                                    @foreach ($donates as $donate )
-                                        @if($donate->product_total_amount_id == $center_support_product->product_total_amount_id &&
-                                            $donate->arrived == 0)
-                                            @if($hashr == false)
-                                                <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
-                                                <div style="display: none">{!!$hashr = true!!}</div>
-                                            @endif
-                                            <tr>
-                                                <td></td>
-                                                <td>{!!$donate->lname!!} 先生/小姐 已捐贈</td>
-                                                <td>{!!$donate->donate_amount." ".$center_support_product->unit!!}</td>
-                                            </tr>
-                                            <div style="display: none">
-                                                {!!$n = $n - $donate->donate_amount!!}
-                                            </div>
-                                        @endif
-                                    @endforeach
-
-
-                                    @if ($n != $center_support_product->center_support_product_amount)
-                                        <tr><td colspan="3"><hr style="margin-top:0px;margin-bottom:0px;"></td></tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>目前尚須</td>
-                                            <td>{!!$n." ".$center_support_product->unit!!}</td>
-                                        </tr>
                                     @endif
-                                    </tbody>
-                                </table>
-                            </td>
+                                @endforeach
+                                <td>{!!$center_support_product->center_support_product_amount-$n." ".$center_support_product->unit!!}</td>
+                                <td>{!!$n." ".$center_support_product->unit!!}</td>
+                                <td><a>詳細</a></td>
 
                         </tr>
                     @endforeach
@@ -122,7 +105,7 @@
 
             </table>
 
-        </div>
+        {{--</div>--}}
     </div>
 
 @endsection
@@ -135,12 +118,12 @@
             has_selected[i] = false;
         }
         /* 需求物資點擊後觸發事件 */
-        $('#needed tr.btn').click(function () {
-            var rowIndex = $('#needed tr.btn').index(this); //取得tr的index
-            var id = $('#needed tr.btn').eq(rowIndex).find('tr').eq(0).find('td:eq(0)').text();
-            var name = $('#needed tr.btn').eq(rowIndex).find('tr').eq(0).find('td:eq(1)').text();
-            var trLength = $('#needed tr.btn').eq(rowIndex).find('tr').length;
-            var amount = $('#needed tr.btn').eq(rowIndex).find('tr').eq(trLength-1).find('td:eq(2)').text();
+        $('#needed tr').click(function () {
+            var rowIndex = $('#needed tr').index(this); //取得tr的index
+            var id = $('#needed tr').eq(rowIndex).find('td:eq(0)').text();
+            var name = $('#needed tr').eq(rowIndex).find('td:eq(1)').text();
+            var trLength = $('#needed tr').eq(rowIndex).find('td').length;
+            var amount = $('#needed tr').eq(rowIndex).find('td:eq(4)').text();
 
             if(has_selected[rowIndex]){
                 alert('您已經選擇了\' ' + name + ' \' ');
@@ -163,7 +146,7 @@
             var tr = document.createElement("tr");
             tr.id = index;  //用在刪除的index
             var td = document.createElement("td");
-            td.width = "20%";
+            td.width = "40%";
             td.innerHTML = name;
             tr.appendChild(td);
 
@@ -172,7 +155,7 @@
             tr.appendChild(td);
 
             var td = document.createElement("td");
-            td.width = "15%";
+            td.width = "40%";
             var select = document.createElement("select");
             select.setAttribute("class", "form-control");
             select.setAttribute("name", "product_name["+id+"]");
@@ -186,11 +169,11 @@
             tr.appendChild(td);
 
             var td = document.createElement("td");
-            td.width = "5%";
+            td.width = "10%";
             var input = document.createElement("input");
-            input.setAttribute("class", "btn");
+            input.setAttribute("class", "btn btn-sm");
             input.setAttribute("type", "button");
-            input.value = "刪除";
+            input.value= "刪除";
             td.appendChild(input);
             tr.appendChild(td);
             obj.appendChild(tr);
