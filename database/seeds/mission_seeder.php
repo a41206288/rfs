@@ -21,7 +21,7 @@ class mission_seeder extends Seeder{
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 1;
-        $mission_list->mission_name = '未分配';
+        $mission_list->mission_name = '未分配任務';
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
@@ -231,7 +231,19 @@ class mission_seeder extends Seeder{
         $mission->save();
 
         $mission = new App\Mission_new_location;
-        $mission->mission_new_locations_id = 6;
+        $mission->mission_new_locations_id = 1;
+        $mission->mission_list_id = 3;
+        $mission->location = '醫療組';
+        $mission->save();
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 2;
+        $mission->mission_list_id = 3;
+        $mission->location = '物資資源組';
+        $mission->save();
+
+        $mission = new App\Mission_new_location;
+        $mission->mission_new_locations_id = 3;
         $mission->mission_list_id = 3;
         $mission->victim_number = 5;
         $mission->situation = '水不斷湧出，正在與水利公司聯絡以停止管線供水';
@@ -239,18 +251,18 @@ class mission_seeder extends Seeder{
         $mission->analysis_time = date('Y-m-d H:i:s');
         $mission->save();
 
-
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 1;
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->location = '醫療組';
         $mission->save();
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 2;
-        $mission->mission_list_id = 2;
+        $mission->mission_list_id = 4;
         $mission->location = '物資資源組';
         $mission->save();
+
 
         $mission = new App\Mission_new_location;
         $mission->mission_new_locations_id = 3;

@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Victim_detail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
 class EmtVictimController extends Controller {
 
 	/**
@@ -14,7 +17,11 @@ class EmtVictimController extends Controller {
 	 */
 	public function index()
 	{
-        return view('manage_pages.victim_EMT');//
+            //讀取victim所有資料
+            $victim_details = DB::table('victim_details')
+                ->get();
+         return view('manage_pages.victim_EMT')
+             ->with('victim_details', $victim_details);
 	}
 
 	/**
@@ -26,8 +33,7 @@ class EmtVictimController extends Controller {
 	{
 //        $input=$request->except('_token');
 //        dd( $input);
-        $lname =$request->input('lname');
-        $fname =$request->input('fname');
+        $name =$request->input('name');
         $sex =$request->input('sex');
         $age =$request->input('age');
         $person_id =$request->input('person_id');
@@ -39,8 +45,7 @@ class EmtVictimController extends Controller {
         $disposal = $request->input('disposal');
 
         $victim_details = new Victim_detail();
-        $victim_details->lname = $lname;
-        $victim_details->fname = $fname;
+        $victim_details->name = $name;
         $victim_details->sex = $sex;
         $victim_details->age = $age;
         $victim_details->person_id = $person_id;
@@ -86,8 +91,7 @@ class EmtVictimController extends Controller {
 	 */
 	public function edit(Request $request)
 	{
-        $lname =$request->input('lname');
-        $fname =$request->input('fname');
+        $name =$request->input('name');
         $sex =$request->input('sex');
         $age =$request->input('age');
         $person_id =$request->input('person_id');
@@ -100,9 +104,9 @@ class EmtVictimController extends Controller {
         $victim_detail_id = $request->input('victim_detail_id');
 
 
-        $victim_details = User::where('victim_detail_id',$victim_detail_id)->first();
-        $victim_details->lname = $lname;
-        $victim_details->fname = $fname;
+        $victim_details = Victim_detail::where('victim_detail_id',$victim_detail_id)->first();
+
+        $victim_details->name = $name;
         $victim_details->sex = $sex;
         $victim_details->age = $age;
         $victim_details->person_id = $person_id;
@@ -113,6 +117,7 @@ class EmtVictimController extends Controller {
         $victim_details->now_location = $now_location;
         $victim_details->disposal = $disposal;
         $victim_details->updated_at = date('Y-m-d H:i:s');
+//            dd($victim_details);
         $victim_details->save();
 
         return Redirect::to('victim/EMT');

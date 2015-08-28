@@ -137,7 +137,6 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '王麗芳')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_id = 5;
         $user->mission_list_id = 2;
         $user->save();
 
@@ -160,7 +159,6 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '吳番薯')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_id = 3;
         $user->mission_list_id = 3;
         $user->save();
 
@@ -177,7 +175,6 @@ class user_seeder extends Seeder{
         $user  = User::where('name', '=', '葉欣偉')->first();
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
-        $user->mission_id = 4;
         $user->mission_list_id = 4;
         $user->save();
 
@@ -195,7 +192,7 @@ class user_seeder extends Seeder{
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
         $user->mission_id = 11;
-        $user->mission_list_id = 5;
+        $user->mission_list_id = 2;
         $user->save();
 
         $Works_on = new App\Works_on;
@@ -218,7 +215,7 @@ class user_seeder extends Seeder{
         $roleAdmin = Permission::where('name', '=', 'Reliever')->first();
         $user->assignRole($roleAdmin);
         $user->mission_id = 14;
-        $user->mission_list_id = 6;
+        $user->mission_list_id = 2;
         $user->save();
 
 
@@ -1066,8 +1063,7 @@ class user_seeder extends Seeder{
         $Victim_detail = new App\Victim_detail;
         $Victim_detail->victim_detail_id = 1;
         $Victim_detail->mission_list_id = 7;
-        $Victim_detail->fname = "阿";
-        $Victim_detail->lname = "斯馬";
+        $Victim_detail->name = "阿斯馬";
         $Victim_detail->age = 30;
         $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456789";
@@ -1082,8 +1078,7 @@ class user_seeder extends Seeder{
         $Victim_detail = new App\Victim_detail;
         $Victim_detail->victim_detail_id = 2;
         $Victim_detail->mission_list_id = 7;
-        $Victim_detail->fname = "王";
-        $Victim_detail->lname = "一明";
+        $Victim_detail->name = "王一明";
         $Victim_detail->age = 30;
         $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456784";
@@ -1098,8 +1093,7 @@ class user_seeder extends Seeder{
         $Victim_detail = new App\Victim_detail;
         $Victim_detail->victim_detail_id = 3;
         $Victim_detail->mission_list_id = 7;
-        $Victim_detail->fname = "王";
-        $Victim_detail->lname = "二明";
+        $Victim_detail->name = "王二明";
         $Victim_detail->age = 30;
         $Victim_detail->sex = '女';
         $Victim_detail->person_id = "L123456783";

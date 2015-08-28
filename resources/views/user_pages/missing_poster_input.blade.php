@@ -29,26 +29,38 @@
 
             </thead>
             <tbody>
-            <tr>
-                {{--<td>1</td>--}}
-                <td>日向寧次</td>
-                <td>男</td>
-                <td>17</td>
-                <td>0987654321</td>
-                {{--<td>住址</td>--}}
-                {{--<td>身分證字號</td>--}}
-                <td>死亡</td>
-                <td>戰場上</td>
-                <td>2015/08/19</td>
-                <td>07:37:20</td>
-            </tr>
-
+            @if(isset($victim_details))
+                @foreach($victim_details as $victim_detail)
+                    <tr>
+                        <td>{!! $victim_detail->name !!}</td>
+                        <td>{!! $victim_detail->sex !!}</td>
+                        <td>{!! $victim_detail->age !!}</td>
+                        <td>{!! $victim_detail->phone !!}</td>
+                        {{--<td>住址</td>--}}
+                        {{--<td>身分證字號</td>--}}
+                        @if($victim_detail->damage_level == 0)
+                            <td>正常</td>
+                        @elseif($victim_detail->damage_level == 1)
+                            <td>輕傷</td>
+                        @elseif($victim_detail->damage_level == 2)
+                            <td>中傷</td>
+                        @elseif($victim_detail->damage_level == 3)
+                            <td>重傷</td>
+                        @elseif($victim_detail->damage_level == 4)
+                            <td>死亡</td>
+                        @endif
+                        <td>{!! $victim_detail->now_location !!}</td>
+                        <td >{{ (new Carbon\Carbon($victim_detail->updated_at))->formatLocalized('%Y/%m/%d') }}</td>
+                        <td >{{ (new Carbon\Carbon($victim_detail->updated_at))->formatLocalized('%H:%M:%S') }}</td>
+                     </tr>
+                @endforeach
+            @endif
             </tbody>
         </table>
     </div>
     <div class="col-xs-6 col-sm-3 col-md-3" >
         <table class="table">
-            {{--{!! Form::open(array('url' => 'missing_poster', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+            {!! Form::open(array('url' => 'missing_poster', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
             <thead>
                 <tr><td colspan="9"><h5><b>&nbsp;</b></h5></td></tr>
                 <tr>
@@ -61,7 +73,7 @@
                 </tr>
                 <tr>
                     <th class="text-right">性別</th>
-                    <td>{!! Form::select('sex', array('男' => '男', '女' => '女','其他' => '其他','請選擇' => '請選擇'),'男',['class' => 'form-control']) !!}</td>
+                    <td>{!! Form::select('sex', array('男' => '男', '女' => '女','其他' => '其他','' => '請選擇'),'',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
                     <th class="text-right">年齡</th><td> {!! Form::number('age', '', ['id' =>  'age', 'class' => 'form-control', 'min'=>'0']) !!}</td>
@@ -77,7 +89,7 @@
                 </tr>
                 <tr><td colspan="2" class="text-right"> {!! Form::submit('查詢', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td></tr>
             </tbody>
-            {{--{!! Form::close() !!}--}}
+            {!! Form::close() !!}
         </table>
     </div>
 

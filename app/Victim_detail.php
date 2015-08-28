@@ -2,6 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class victim_detail extends Eloquent{
-
+class Victim_detail extends Eloquent{
+public $primaryKey = 'victim_detail_id';
 }

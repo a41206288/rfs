@@ -32,14 +32,16 @@
 
 
             <table class="table table-bordered">
-                <tr><th width="5%">任務編號</th><th width="10%">名稱</th><th colspan="2" width="15%">負責人</th>
+                <tr><th width="5%">任務編號</th><th width="10%">名稱</th>
+                    {{--<th colspan="2" width="15%">負責人</th>--}}
                     <th  colspan="2" width="30%">通報</th><th  colspan="4" width="30%">最新回報</th></tr>
                 @if (isset($mission_lists) )
                 @foreach ($mission_lists as $mission_list )
                     @if ($mission_list->mission_name != "未分配任務")
                 <tr class="header expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd"><td rowspan="2">{!!$mission_list->mission_list_id!!}</td>
-                    <td rowspan="2">{!!$mission_list->mission_name!!}</td><td rowspan="2" width="5%">姓名 <span class="sign"></span></td>
-                    <td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td>
+                    <td rowspan="2">{!!$mission_list->mission_name!!}</td>
+                    {{--<td rowspan="2" width="5%">姓名 <span class="sign"></span></td>--}}
+                    {{--<td rowspan="2" width="10%">{!!$mission_list_charge_Array[$mission_list->mission_list_id."name"]!!}</td>--}}
                     <th>編號</th><th>內容 <span class="sign"></span></th><th>通報日期</th><th>通報時間</th>
                     <th>內容 <span class="sign"></span></th><th width="10%">增援需求</th></tr>
                   <div style="display: none">
@@ -57,9 +59,11 @@
                                 <tr>
                                 @if($i==1)
                                     @elseif($i==2)
-                                <td colspan="2"></td><td>電話</td><td>{!!$mission_list_charge_Array[$mission_list->mission_list_id."phone"]!!}</td>
+                                        <td colspan="2"></td>
+                                {{--<td colspan="2"></td><td>電話</td><td>{!!$mission_list_charge_Array[$mission_list->mission_list_id."phone"]!!}</td>--}}
                                 @elseif($i==3)
-                                    <td colspan="2"></td><td>Email</td><td> {!!$mission_list_charge_Array[$mission_list->mission_list_id."email"]!!}</td>
+                                        <td colspan="2"></td>
+                                    {{--<td colspan="2"></td><td>Email</td><td> {!!$mission_list_charge_Array[$mission_list->mission_list_id."email"]!!}</td>--}}
                                     @else
                                         <td colspan="4"></td>
                                 @endif

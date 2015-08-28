@@ -32,8 +32,7 @@ class CreateUsersTable extends Migration {
 		Schema::create('victim_details', function(Blueprint $table){
 			$table->increments('victim_detail_id');
 			$table->unsignedInteger('mission_list_id');
-			$table->string('fname');
-			$table->string('lname');
+			$table->string('name');
 			$table->integer('age');
 			$table->enum('sex', ['男','女','其他']);
 			$table->string('person_id')->unique();
