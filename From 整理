@@ -9,7 +9,7 @@ same name
    name: name[]
 
 text
-    {!! Form::text('name','default',[set input]) !!}
+    {!! Form::text('name','default',['class' => 'form-control']) !!}
 
 textarea
     {!! Form::textarea('name','default',[set input]) !!}
