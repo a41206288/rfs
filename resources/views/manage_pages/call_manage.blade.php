@@ -19,7 +19,7 @@
     content:"▲";
     }
 @endsection
-@section('content_c9')
+@section('content_c7')
 
     <div class="table-responsive">
 
@@ -27,44 +27,44 @@
         <table class="table table-striped">
             <thead>
                  <tr >
-                    <td colspan="8"><h4>通報管理</h4></td>
-                    <td >
-                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
-                            創建新任務
-                        </button>
+                    <td colspan="8"><h4>通報列表</h4></td>
+                    {{--<td >--}}
+                        {{--<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">--}}
+                            {{--創建新任務--}}
+                        {{--</button>--}}
 
-                    </td>
+                    {{--</td>--}}
                 </tr>
-                <!-- Modal -->
-                <div class="modal fade" id="createMissionBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>
-                            </div>
-                            <div class="modal-body">
-                                <dl class="dl-horizontal">
-                                    <dt>任務名稱</dt>
-                                    <dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>
-                                    <dt>負責人</dt>
-                                    <dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>
+                {{--<!-- Modal -->--}}
+                {{--<div class="modal fade" id="createMissionBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--{!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}--}}
+                            {{--<div class="modal-header">--}}
+                                {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+                                {{--<h4 class="modal-title" id="myModalLabel"><b>創建新任務</b></h4>--}}
+                            {{--</div>--}}
+                            {{--<div class="modal-body">--}}
+                                {{--<dl class="dl-horizontal">--}}
+                                    {{--<dt>任務名稱</dt>--}}
+                                    {{--<dd>{!! Form::text('mission_list_name','',['id' =>  'mission_list_name','class' => 'form-control', 'required']) !!}</dd> <br>--}}
+                                    {{--<dt>負責人</dt>--}}
+                                    {{--<dd> {!! Form::text('leader', '', ['id' =>  'leader', 'placeholder' =>  'Enter name','class' => 'form-control', 'required']) !!}<br>--}}
                                     {{--<dt>脫困組人數</dt>--}}
                                     {{--<dd> {!! Form::text('Reliever_num', '', ['id' =>  'Reliever_num', 'class' => 'form-control', 'required']) !!}</dd> <br>--}}
                                     {{--<dt>醫療組人數</dt>--}}
                                     {{--<dd>{!! Form::text('Emt_num', '', ['id' =>  'Emt_num','class' => 'form-control', 'required']) !!}</dd>--}}
-                                </dl>
+                                {{--</dl>--}}
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                {!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
-                            </div>
-                            {!! Form::close() !!}
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+                            {{--</div>--}}
+                            {{--<div class="modal-footer">--}}
+                                {{--<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>--}}
+                                {{--{!! Form::submit('創建任務', ['class' => 'btn btn-default btn-sm btn-primary']) !!}--}}
+                            {{--</div>--}}
+                            {{--{!! Form::close() !!}--}}
+                        {{--</div><!-- /.modal-content -->--}}
+                    {{--</div><!-- /.modal-dialog -->--}}
+                {{--</div><!-- /.modal -->--}}
 
 
 
@@ -95,15 +95,16 @@
                         @endif
                     </th>
                     {{--@endforeach--}}
-                    <th width="7%">通報日期</th>
-                    <th width="7%">通報時間</th>
-                    <th width="10%">通報人</th>
-                    <th width="10%">通報人電話</th>
-                    <th width="10%">通報人信箱 </th>
+                    {{--<th width="7%">通報日期</th>--}}
+                    {{--<th width="7%">通報時間</th>--}}
+                    {{--<th width="10%">通報人</th>--}}
+                    {{--<th width="10%">通報人電話</th>--}}
+                    {{--<th width="10%">通報人信箱 </th>--}}
                     <th width="10%" class="text-right">
                         {!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}
                         {!! Form::submit('將通報分配至現有的任務', ['class' => 'btn btn-default btn-sm']) !!}
                     </th>
+                    <th></th>
                 </tr>
 
             </thead>
@@ -115,15 +116,22 @@
                             @if (isset($mission) )
 
                                 <td width="10%">{!! $mission->mission_id!!}</td>
-                                <td width="20%">{!! $mission->mission_content!!}</td>
-                                <td width="20%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>
+                                <td width="25%">{!! $mission->mission_content!!}</td>
+                                {{--<td width="25%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>--}}
+                                <td width="30%">{!!$mission->township_or_district_input." ".$mission->location!!}</td>
                                 {{--<td width="14%">{!! $mission->created_at!!}</td>--}}
-                                <td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>
-                                <td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>
-                                <td width="10%">{!! $mission->lname.$mission->fname!!}</td>
-                                <td width="10%">{!! $mission->phone!!}</td>
-                                <td width="10%">{!! $mission->email!!}</td>
-                                <td width="10%">{!! Form::select($mission->mission_id,$mission_names, '請選擇') !!}</td>
+                                {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>--}}
+                                {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>--}}
+                                {{--<td width="10%">{!! $mission->lname.$mission->fname!!}</td>--}}
+                                {{--<td width="10%">{!! $mission->phone!!}</td>--}}
+                                {{--<td width="10%">{!! $mission->email!!}</td>--}}
+                                <td width="25%">{!! Form::select($mission->mission_id,$mission_names, '請選擇',['class' => 'form-control']) !!}</td>
+                                <td  width="10%">
+                                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
+                                        創建新任務
+                                    </button>
+
+                                </td>
                             @endif
                             {{--@if (isset($mission_names) && !isset($mission->mission_list_id) )--}}
                                 {{----}}
@@ -144,51 +152,71 @@
 
 @endsection
 
-@section('content_c3')
-    <h5><b>現有救災任務</b></h5>
-    <hr>
+@section('content_c5')
+    {{--<h5><b>現有救災任務</b></h5>--}}
+    {{--<hr>--}}
     <table class="table">
         <thead>
+            <tr>
+                <td colspan="8"><h4>現有救災任務</h4></td>
+            </tr>
             <tr >
+
                 <th width="15%">編號</th>
-                <th width="25%">任務名稱</th>
-                <th width="20%">通報數</th>
-                <th width="20%">脫困組</th>
-                <th width="20%">醫療組</th>
+                <th width="25%">任務地點</th>
+                {{--<th width="20%">通報數</th>--}}
+                {{--<th width="20%">脫困組</th>--}}
+                {{--<th width="20%">醫療組</th>--}}
+                <th colspan="4"></th>
             </tr>
 
             @if (isset($mission_lists) )
             @foreach ($mission_lists as $mission_list )
             @if ($mission_list->mission_name != "未分配任務")
 
-            <tr class="header_no_next expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd">
+            <tr class="header_no_next expand" style="border-top-width:3px; border-top-style:solid; border-top-color: #dddddd;">
             <td >{!!$mission_list->mission_list_id!!}</td>
             <td >{!!$mission_list->mission_name!!}</td>
 
             @if (isset($mission_counts_array) )
-                <td>{!!$mission_counts_array[$mission_list->mission_list_id]!!} 則 <span class="sign"></span></td>
+                {{--<td colspan="4" class="text-right">{!!$mission_counts_array[$mission_list->mission_list_id]!!} 則 <span class="sign"></span></td>--}}
+                <td colspan="4" class="text-right"><span class="sign"></span></td>
             @endif
 
-            @if (isset($relieverUsersArray) )
-            <td>{!!$relieverUsersArray[$mission_list->mission_list_id]!!} 人</td>
-            @endif
+            {{--@if (isset($relieverUsersArray) )--}}
+            {{--<td>{!!$relieverUsersArray[$mission_list->mission_list_id]!!} 人</td>--}}
+            {{--@endif--}}
 
-            @if (isset($emtUsersArray) )
-            <td>{!!$emtUsersArray[$mission_list->mission_list_id]!!} 人 </td>
-            @endif
-            <tr><td><b>編號</b></td><td colspan="2"><b>地址</b></td><td colspan="2"><b>內容</b></td></tr>
+            {{--@if (isset($emtUsersArray) )--}}
+            {{--<td>{!!$emtUsersArray[$mission_list->mission_list_id]!!} 人 </td>--}}
+            {{--@endif--}}
+            <tr>
+                <td colspan="6" width="10%" class="text-right">
+                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
+                        移除任務
+                    </button>
+
+                </td>
+            </tr>
+            <tr><td><b>編號</b></td><td colspan="2"><b>地址</b></td><td colspan="2"><b>內容</b></td><td></td></tr>
             @if(isset($mission_contents_array[$mission_list->mission_list_id]))
                 @for($j=1;$j<=count($mission_contents_array[$mission_list->mission_list_id]);$j++)
 
-
-
-                    <tr><td>{!!$mission_contents_array[$mission_list->mission_list_id][$j]['id']!!}</td>
+                    <tr>
+                        <td>{!!$mission_contents_array[$mission_list->mission_list_id][$j]['id']!!}</td>
                         <td colspan="2">
-                            {!!$mission_contents_array[$mission_list->mission_list_id][$j]['country_or_city_input']!!}
+                            {{--{!!$mission_contents_array[$mission_list->mission_list_id][$j]['country_or_city_input']!!}--}}
                             {!!$mission_contents_array[$mission_list->mission_list_id][$j]['township_or_district_input']!!}
-                            <br>
+                            {{--<br>--}}
                             {!!$mission_contents_array[$mission_list->mission_list_id][$j]['location']!!}</td>
-                        <td colspan="2">{!!$mission_contents_array[$mission_list->mission_list_id][$j]['content']!!}</td></tr>
+                        <td colspan="2">{!!$mission_contents_array[$mission_list->mission_list_id][$j]['content']!!}</td>
+                        <td  width="10%">
+                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
+                                移除通報
+                            </button>
+
+                        </td>
+                    </tr>
 
                 @endfor
             @else

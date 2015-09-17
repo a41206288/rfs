@@ -65,11 +65,11 @@
         <div class="col-xs-16 col-sm-12 col-md-12" >
             @yield('content')
         </div>
-        <div class="col-xs-14 col-sm-6 col-md-9" >
-            @yield('content_c9')
+        <div class="col-xs-10 col-sm-7 col-md-7" >
+            @yield('content_c7')
         </div>
-        <div class="col-xs-2 col-sm-6 col-md-3">
-            @yield('content_c3')
+        <div class="col-xs-6 col-sm-5 col-md-5">
+            @yield('content_c5')
         </div>
 
 
@@ -82,10 +82,12 @@
     <!-- Placed at the end of the document so the pages load faster -->
     @yield('script')
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    {{--<script src="../../dist/js/bootstrap.min.js"></script>--}}
     <link href="/css/jquery-ui.css" rel="stylesheet">
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+    <script src="/js/holder.js"></script>
+    <script src="/js/application.js"></script>
     @yield('javascript')
 
   </body>
