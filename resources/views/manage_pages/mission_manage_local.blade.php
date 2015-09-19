@@ -30,30 +30,41 @@
 
     <div class="col-xs-10 col-sm-8 col-md-8" >
         <h4><b>任務管理</b></h4>
-        <table class=" table table-bordered table-striped">
+        <table class="table table-bordered">
             <thead>
-                <tr><th colspan="10">救災人員數 (單位: 人)</th></tr>
+
+            </thead>
+            <tbody>
+                <tr><th colspan="15">救災人員數 (單位: 人)</th></tr>
                 <tr>
-                    <th width="10%">脫困</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
-                    <th width="10%">救火</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
-                    <th width="10%">清潔</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
-                    <th width="10%">道路修復</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
-                    <th width="10%">醫療</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
+                    <th width="12%" class="success">脫困</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
+                    <th width="12%" class="success">救火</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
+                    <th width="12%"  class="danger">清潔</th><td class="text-right danger" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
+                    <th width="12%" class="danger">道路修復</th><td class="text-right danger" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
+
                 </tr>
                 <tr>
-                    <th width="10%">管線修復</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
-                    <th width="10%">警戒</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>
+                    <th width="12%" class="success">醫療</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
+                    <th width="12%" class="success">管線修復</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
+                    <th width="12%" class="danger">警戒</th><td class="text-right danger" width="6%">123</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
                     {{--<th width="10%">清潔</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>--}}
                     {{--<th width="10%">道路修復</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>--}}
                     {{--<th width="10%">醫療</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>--}}
                 </tr>
                 {{--<tr><th>醫療組</th><td colspan="2"><b>醫療組人數 (單位: 人)</b></td><td class="text-right" colspan="2">{!!$EmtUserAmounts[0]->total!!}</td></tr>--}}
+            </tbody>
 
+        </table>
+        <br>
+        <table class=" table table-bordered">
+            <thead>
+                <tr><th colspan="15">災民人數 (單位: 人)</th></tr>
 
-                <tr><th colspan="10">災民人數 (單位: 人)</th></tr>
-                    <tr>
-                    @if(isset($victim_num_arrays))
-                        @foreach($victim_num_arrays as $victim_num_array)
+            </thead>
+            <tbody>
+            <tr>
+                @if(isset($victim_num_arrays))
+                    @foreach($victim_num_arrays as $victim_num_array)
                         <th width="10%">
                             @if($victim_num_array['damage_level'] == 0)
                                 正常
@@ -66,34 +77,34 @@
                             @elseif($victim_num_array['damage_level'] == 4)
                                 死亡
                             @endif
-                        </th><td width="10%" class="text-right">{!! $victim_num_array['total'] !!} </td>
-                        @endforeach
-                    @endif
-                    </tr>
+                        </th><td colspan="2" class="text-right">{!! $victim_num_array['total'] !!} </td>
+                    @endforeach
+                @endif
+            </tr>
 
 
             {!! Form::open(array('url' => 'report/local', 'method' => 'post','class' => 'form-horizontal')) !!}
-                @if($executiveRequireArrays[1][1]['executive_require_people_num'] != 0 &&  $executiveRequireArrays[1][1]['executive_require_reason'] != "")
-                    <tr class="alert alert-danger"><td rowspan="2"><b>增援需求</b></td>
-                        <th>日期</th>
-                        <th>時間</th>
-                        <th colspan="2">向中央要求增援人數</th>
-                        <th colspan="4">原因/備註</th>
-                        <td colspan="1">{!! Form::submit('向中央回報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td>
-                    </tr>
-                    <tr class="alert alert-danger"><td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%Y/%m/%d')}}</td>
-                        <td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%H:%M:%S')}}</td>
-                        <td>{!!$executiveRequireArrays[1][1]['executive_require_people_num']!!} 人</td>
-                        <td>{!! Form::number('local_emt_num', $executiveRequireArrays[1][1]['executive_require_people_num'], ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td>
-                        <td colspan="5">{!!$executiveRequireArrays[1][1]['executive_require_reason']!!}</td></tr>
-                @endif
-                {!! Form::hidden('support_type','0') !!}
-                {!! Form::hidden('local_emt_num',$executiveRequireArrays[1][1]['executive_require_people_num']) !!}
+            @if($executiveRequireArrays[1][1]['executive_require_people_num'] != 0 &&  $executiveRequireArrays[1][1]['executive_require_reason'] != "")
+                <tr class="alert alert-danger"><td rowspan="2"><b>增援需求</b></td>
+                    <th>日期</th>
+                    <th>時間</th>
+                    <th colspan="2">向中央要求增援人數</th>
+                    <th colspan="4">原因/備註</th>
+                    <td colspan="1">{!! Form::submit('向中央回報', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</td>
+                </tr>
+                <tr class="alert alert-danger"><td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%Y/%m/%d')}}</td>
+                    <td>{{ (new Carbon\Carbon($executiveRequireArrays[1][1]['updated_at']))->formatLocalized('%H:%M:%S')}}</td>
+                    <td>{!!$executiveRequireArrays[1][1]['executive_require_people_num']!!} 人</td>
+                    <td>{!! Form::number('local_emt_num', $executiveRequireArrays[1][1]['executive_require_people_num'], ['id' =>  'reliever', 'class' => 'form-control text-right','min'=>'0']) !!}</td>
+                    <td colspan="5">{!!$executiveRequireArrays[1][1]['executive_require_reason']!!}</td></tr>
+            @endif
+            {!! Form::hidden('support_type','0') !!}
+            {!! Form::hidden('local_emt_num',$executiveRequireArrays[1][1]['executive_require_people_num']) !!}
             {!! Form::close() !!}
-                {{--<tr><th colspan="10">最新回報  <span class="sign"></span> </th></tr>--}}
-                {{--<tr><th colspan="2">日期</th><th colspan="2">時間</th><th colspan="6">內容</th></tr>--}}
-            </thead>
-            <tbody>
+            {{--<tr><th colspan="10">最新回報  <span class="sign"></span> </th></tr>--}}
+            {{--<tr><th colspan="2">日期</th><th colspan="2">時間</th><th colspan="6">內容</th></tr>--}}
+
+            {{--舊版--}}
                 {{--<div style="display: none">--}}
                     {{--@if(isset($local_reports_arrays[1]))--}}
                         {{--{!!$n=count($local_reports_arrays[1])!!}--}}
@@ -155,65 +166,68 @@
             {{--@endif--}}
             {{--</tr>--}}
 
-            </table>
-
-        <table class="table table-bordered ">
+        </table>
+        <br>
+        <table class="table table-bordered">
             <thead>
-                <tr><th colspan="5">增援列表</th></tr>
-                <tr><th width="13%">增援進度</th><th width="12%">人員種類</th><th width="15%">欲增援人數</th><th width="15%">實際增援人數</th><th width="45%">備註</th></tr>
-                <tr><td>未處理</td><td>醫療</td><td>10</td><td>0</td><td></td></tr>
-                <tr><td>人員派送中</td><td>清潔</td><td>10</td><td>5</td><td>目前中心人員不足</td></tr>
-                <tr><td>拒絕增援</td><td>道路修復</td><td>10</td><td>0</td><td>目前中心人員不足</td></tr>
+                <tr><th colspan="6">增援列表  (單位: 人)</th></tr>
+                <tr><th width="12%">人員種類</th><th width="15%">欲增援人數</th><th width="15%">已招募人數</th><th colspan="3" width="45%">備註</th></tr>
+            </thead>
+            <tbody>
+                <tr><td  rowspan="3">醫療</td><td  rowspan="3" class="text-right success">10</td><td  rowspan="3" class="text-right success">9</td><td>四維路段</td><td class="text-right">3</td><td>已到達</td></tr>
+                <tr><td>五福路段</td><td class="text-right" class="text-right">3</td><td>已到達</td></tr>
+                <tr><td>六合路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
+                <tr><td  rowspan="2">清潔</td><td  rowspan="2" class="text-right warning">10</td><td  rowspan="2" class="text-right warning">6</td><td>四維路段</td><td class="text-right">3</td><td>已到達</td></tr>
+                <tr><td>六合路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
+                <tr><td>道路修復</td><td class="text-right danger">10</td><td class="text-right danger">0</td><td></td><td class="text-right"></td><td></td></tr>
+            </tbody>
+        </table>
+        <br>
+        <table class="table table-bordered">
+            <thead>
 
             </thead>
             <tbody>
-                <tr class="header expand"><th colspan="5">增援表單<span class="sign"></span></th></tr>
-                <tr><th colspan="5">增援人員數量表 (單位: 人)</th></tr>
-                <tr><th colspan="2">人員種類</th><th>目前人員數</th><th>欲增援人數</th><th>欲增援原因</th></tr>
+                <tr class="header expand"><th colspan="3">增援表單<span class="sign"></span></th></tr>
+                <tr><th colspan="3">增援人員數量表 (單位: 人)</th></tr>
+                <tr><th width="15%">人員種類</th><th width="15%">欲修改增援人數</th><th width="70%">欲增援原因</th></tr>
                 <tr>
-                    <td colspan="2">脫困</td>
-                    <td class="text-right">4</td>
+                    <td>脫困</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">救火</td>
-                    <td class="text-right">4</td>
+                    <td>救火</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">清潔</td>
-                    <td class="text-right">4</td>
+                    <td>清潔</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">道路修復</td>
-                    <td class="text-right">4</td>
+                    <td>道路修復</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">醫療</td>
-                    <td class="text-right">4</td>
+                    <td>醫療</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">管線修復</td>
-                    <td class="text-right">4</td>
+                    <td>管線修復</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
                 <tr>
-                    <td colspan="2">警戒</td>
-                    <td class="text-right">4</td>
+                    <td>警戒</td>
                     <td>{!! Form::number('name', '0', ['class' => 'form-control text-right','min'=>'0']) !!}</td>
                     <td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                 </tr>
 
-                <tr><th colspan="5" class="text-right">{!! Form::submit('送出增援表單', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</th></tr>
+                <tr><th colspan="3" class="text-right">{!! Form::submit('送出增援表單', ['class' => 'btn btn-default btn-sm btn-primary']) !!}</th></tr>
             </tbody>
         </table>
         {{--舊版--}}

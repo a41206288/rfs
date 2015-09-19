@@ -41,13 +41,20 @@
                 {{--<th>需求增援</th>--}}
                 {{--<th>可增援</th>--}}
                 <th>負責人</th>
-                <th>進度</th>
+                <th>
+                    <table class="table" width="100%">
+                        <tr>
+                            <td width="40%">進度</td><td width="60%">完成時間</td>
+                        </tr>
+                    </table>
+                </th>
+
             </tr>
             <tr>
                 <td>1</td>
                 <td>三多路段</td>
                 <td>
-                    <table class="table " width="100%">
+                    <table class="table" width="100%">
                         <tr>
                             <td>醫療組</td><td class="text-right">3</td>
                         </tr>
@@ -79,7 +86,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-lg-9">
+                                        <div class="col-lg-10">
                                             <div class="input-group">
                                                 <span class="input-group-addon">負責人</span>
                                                 <input type="text" class="form-control" placeholder="Username">
@@ -95,51 +102,64 @@
                                                 </ul>
                                             </div>
                                             <br><br>
+                                            {{--<table class="table">--}}
+                                                {{--<tr>--}}
+                                                    {{--<td>綠色:閒置</td>--}}
+                                                    {{--<td>橘色:任務完成返回中</td>--}}
+                                                    {{--<td>紅色:任務執行中</td>--}}
+                                                {{--</tr>--}}
+                                            {{--</table>--}}
+                                            <pre>綠色:閒置&nbsp;&nbsp;&nbsp;&nbsp;橘色:任務完成返回中&nbsp;&nbsp;&nbsp;&nbsp; 紅色:任務執行中</pre>
                                             <table class="table table-striped table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <td>專長</td>
                                                         <td>姓名</td>
-                                                        <td>帶隊次數(次)</td>
-                                                        <td>最大帶隊人數(人)</td>
+                                                        <td colspan="2">最近任務完成時間</td>
+                                                        <td>目前所在地</td>
+
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr  data-toggle="popover" data-container="body"  data-placement="right"  data-content="2015/09/17 擔任逢甲大學任務指揮官 事件規模: B級 隊員人數:30人 ">
+                                                    <tr class="success" data-toggle="popover" data-container="body"  data-placement="right"  data-content="2015/09/17 擔任逢甲大學任務指揮官 事件規模: B級 隊員人數:30人 ">
                                                         {{--<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">--}}
                                                         {{--Popover on left--}}
                                                         {{--</button>--}}
                                                         <td>消防</td>
                                                         <td>謝卸</td>
-                                                        <td class="text-right">5</td>
-                                                        <td class="text-right">25</td>
-
+                                                        <td>2015/09/15</td><td>07:14:35</td>
+                                                        <td>中央</td>
                                                     </tr>
-                                                    <tr data-toggle="tooltip" data-placement="right" title="Tooltip on left">
-                                                        {{--<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>--}}
+                                                    <tr class="success">
                                                         <td>消防</td>
                                                         <td>謝卸</td>
-                                                        <td class="text-right">5</td>
-                                                        <td class="text-right">25</td>
+                                                        <td>2015/09/15</td><td>07:14:35</td>
+                                                        <td>中央</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr class="success">
                                                         <td>消防</td>
                                                         <td>謝卸</td>
-                                                        <td class="text-right">5</td>
-                                                        <td class="text-right">25</td>
+                                                        <td>2015/09/15</td><td>07:14:35</td>
+                                                        <td>中央</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr class="success">
                                                         <td>消防</td>
                                                         <td>謝卸</td>
-                                                        <td class="text-right">5</td>
-                                                        <td class="text-right">25</td>
+                                                        <td>2015/09/15</td><td>07:14:35</td>
+                                                        <td>中央</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr class="warning">
                                                         <td>消防</td>
                                                         <td>謝卸</td>
-                                                        <td class="text-right">5</td>
-                                                        <td class="text-right">25</td>
+                                                        <td>2015/09/15</td><td>07:14:35</td>
+                                                        <td>三多路段</td>
+                                                    </tr>
+                                                    <tr class="danger">
+                                                        <td>消防</td>
+                                                        <td>謝卸</td>
+                                                        <td>2015/09/15</td><td>07:14:35</td>
+                                                        <td>四德路段</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -154,13 +174,25 @@
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
                 </td>
-                <td>調派人員中</td>
+                <td colspan="2">
+                    <table class="table" width="100%">
+                        <tr>
+                            <td width="40%">調派人員</td><td width="30%">2015/09/15</td><td width="30%">07:14:35</td>
+                        </tr>
+                        <tr>
+                            <td>任務執行</td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>任務完成</td><td></td><td></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>四德路段</td>
                 <td>
-                    <table class="table " width="100%">
+                    <table class="table" width="100%">
                         <tr>
                             <td>醫療組</td><td class="text-right">3</td>
                         </tr>
@@ -217,35 +249,30 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
+                                                <tr class="success">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="success">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="success">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="warning">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="danger">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -260,13 +287,25 @@
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
                 </td>
-                <td>任務執行中<br>到達時間: 2015/09/15 07:14:35</td>
+                <td>
+                    <table class="table" width="100%">
+                        <tr>
+                            <td width="40%">調派人員</td><td width="30%">2015/09/15</td><td width="30%">07:14:35</td>
+                        </tr>
+                        <tr>
+                            <td>任務執行</td><td>2015/09/15</td><td>07:14:35</td>
+                        </tr>
+                        <tr>
+                            <td>任務完成</td><td></td><td></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>五福路段</td>
                 <td>
-                    <table class="table " width="100%">
+                    <table class="table" width="100%">
                         <tr>
                             <td>醫療組</td><td class="text-right">3</td>
                         </tr>
@@ -323,36 +362,30 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
+                                                <tr class="success">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
-
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="success">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="success">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="warning">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
-                                                <tr>
+                                                <tr class="danger">
                                                     <td>消防</td>
                                                     <td>謝卸</td>
-                                                    <td class="text-right">5</td>
-                                                    <td class="text-right">25</td>
+                                                    <td>2015/09/15</td><td>07:14:35</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -367,17 +400,28 @@
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
                 </td>
-                <td>任務完成<br>完成時間: 2015/09/15 07:14:35</td>
-            </tr>
+               <td>
+                   <table class="table" width="100%">
+                       <tr>
+                           <td width="40%">調派人員</td><td width="30%">2015/09/15</td><td width="30%">07:14:35</td>
+                       </tr>
+                       <tr>
+                           <td>任務執行</td><td>2015/09/15</td><td>07:14:35</td>
+                       </tr>
+                       <tr>
+                           <td>任務完成</td><td>2015/09/15</td><td>07:14:35</td>
+                       </tr>
+                   </table>
+                </td>
             <tr>
                 <td>4</td>
                 <td>六合路段</td>
                 <td>
-                    <table class="table " width="100%">
-                        <tr>
+                    <table class="table" width="100%">
+                        <tr style="border-bottom: 1px solid;border-bottom-color: #dddddd">
                             <td>醫療組</td><td class="text-right">3</td>
                         </tr>
-                        <tr>
+                        <tr style="border-bottom: 1px solid;border-bottom-color: #dddddd">
                             <td>醫療組</td><td class="text-right">3</td>
                         </tr>
                     </table>
@@ -387,7 +431,19 @@
                 {{--<td>0人</td>--}}
                 {{--<td>15人</td>--}}
                 <td>謝卸</td>
-                <td>調派人員中</td>
+                <td>
+                    <table class="table" width="100%">
+                        <tr >
+                            <td width="40%">調派人員</td><td width="30%">2015/09/15</td><td width="30%">07:14:35</td>
+                        </tr>
+                        <tr >
+                            <td>任務執行</td><td>2015/09/15</td><td>07:14:35</td>
+                        </tr>
+                        <tr >
+                            <td>任務完成</td><td></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
     </div>

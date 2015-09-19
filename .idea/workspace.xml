@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/application.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/holder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/From 整理" afterPath="$PROJECT_DIR$/From 整理" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -34,12 +33,12 @@
       <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6093458" vertical-offset="2790" max-vertical-offset="11495">
-              <caret line="164" column="60" selection-start-line="164" selection-start-column="60" selection-end-line="164" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.22674419" vertical-offset="985" max-vertical-offset="11761">
+              <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
               <folding>
-                <element signature="e#33483#33531#0#HTML" expanded="true" />
-                <element signature="e#33902#33950#0#HTML" expanded="true" />
-                <element signature="e#34116#34138#0#HTML" expanded="true" />
+                <element signature="e#34873#34921#0#HTML" expanded="true" />
+                <element signature="e#35292#35340#0#HTML" expanded="true" />
+                <element signature="e#35506#35528#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,12 +47,14 @@
       <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.0" vertical-offset="9303" max-vertical-offset="12350">
-              <caret line="511" column="155" selection-start-line="511" selection-start-column="129" selection-end-line="511" selection-end-column="155" />
+            <state vertical-scroll-proportion="66.43104" vertical-offset="6912" max-vertical-offset="13414">
+              <caret line="161" column="64" selection-start-line="161" selection-start-column="64" selection-end-line="161" selection-end-column="64" />
               <folding>
-                <element signature="e#21825#21873#0#HTML" expanded="true" />
-                <element signature="e#22244#22292#0#HTML" expanded="true" />
-                <element signature="e#22458#22480#0#HTML" expanded="true" />
+                <element signature="e#22878#22939#0#HTML" expanded="true" />
+                <element signature="e#23069#23130#0#HTML" expanded="true" />
+                <element signature="e#24404#24452#0#HTML" expanded="true" />
+                <element signature="e#24823#24871#0#HTML" expanded="true" />
+                <element signature="e#25037#25059#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,8 +63,8 @@
       <file leaf-file-name="From 整理" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/From 整理">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.7419353" vertical-offset="0" max-vertical-offset="684">
-              <caret line="11" column="68" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="68" />
+            <state vertical-scroll-proportion="-10.580646" vertical-offset="128" max-vertical-offset="684">
+              <caret line="24" column="100" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -75,8 +76,8 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.233333" vertical-offset="23867" max-vertical-offset="120517">
-              <caret line="1266" column="34" selection-start-line="1266" selection-start-column="32" selection-end-line="1266" selection-end-column="34" />
+            <state vertical-scroll-proportion="-10.466666" vertical-offset="40156" max-vertical-offset="120631">
+              <caret line="2130" column="27" selection-start-line="2130" selection-start-column="27" selection-end-line="2130" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -150,9 +151,9 @@
         <option value="$PROJECT_DIR$/resources/views/user_pages/donate_input.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
+        <option value="$PROJECT_DIR$/From 整理" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
-        <option value="$PROJECT_DIR$/From 整理" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
       </list>
     </option>
@@ -167,10 +168,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="1" />
+    <option name="y" value="2" />
+    <option name="width" value="1364" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -764,11 +765,17 @@
       <option name="project" value="LOCAL" />
       <updated>1442474690574</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="中央指派人數 改為由指定事件負責人 界面更新 (地方指揮官)">
+      <created>1442491182697</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1442491182697</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1" y="2" width="1364" height="725" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -779,7 +786,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27306002" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27670622" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14488189" sideWeight="0.49926794" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.04566929" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
@@ -832,7 +839,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="misssion manage html 格式" />
     <MESSAGE value="misssion manage html 格式 增加link" />
     <MESSAGE value="現場分析組 頁面 +mission manage 初始關閉" />
     <MESSAGE value="地方指揮官 任務管理頁面需要javascript" />
@@ -857,7 +863,8 @@
     <MESSAGE value="EMT victim save finish" />
     <MESSAGE value="donate input change design" />
     <MESSAGE value="中央指派人數 改為由指定事件負責人 界面更新 (中央指揮官)" />
-    <option name="LAST_COMMIT_MESSAGE" value="中央指派人數 改為由指定事件負責人 界面更新 (中央指揮官)" />
+    <MESSAGE value="中央指派人數 改為由指定事件負責人 界面更新 (地方指揮官)" />
+    <option name="LAST_COMMIT_MESSAGE" value="中央指派人數 改為由指定事件負責人 界面更新 (地方指揮官)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1213,25 +1220,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.233333" vertical-offset="23867" max-vertical-offset="120517">
-          <caret line="1266" column="34" selection-start-line="1266" selection-start-column="32" selection-end-line="1266" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/From 整理">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.7419353" vertical-offset="0" max-vertical-offset="684">
-          <caret line="11" column="68" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-24.714285" vertical-offset="980" max-vertical-offset="1900">
@@ -1240,26 +1228,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/From 整理">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.580646" vertical-offset="128" max-vertical-offset="684">
+          <caret line="24" column="100" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.466666" vertical-offset="40156" max-vertical-offset="120631">
+          <caret line="2130" column="27" selection-start-line="2130" selection-start-column="27" selection-end-line="2130" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0" vertical-offset="9303" max-vertical-offset="12350">
-          <caret line="511" column="155" selection-start-line="511" selection-start-column="129" selection-end-line="511" selection-end-column="155" />
+        <state vertical-scroll-proportion="66.43104" vertical-offset="6912" max-vertical-offset="13414">
+          <caret line="161" column="64" selection-start-line="161" selection-start-column="64" selection-end-line="161" selection-end-column="64" />
           <folding>
-            <element signature="e#21825#21873#0#HTML" expanded="true" />
-            <element signature="e#22244#22292#0#HTML" expanded="true" />
-            <element signature="e#22458#22480#0#HTML" expanded="true" />
+            <element signature="e#22878#22939#0#HTML" expanded="true" />
+            <element signature="e#23069#23130#0#HTML" expanded="true" />
+            <element signature="e#24404#24452#0#HTML" expanded="true" />
+            <element signature="e#24823#24871#0#HTML" expanded="true" />
+            <element signature="e#25037#25059#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6093458" vertical-offset="2790" max-vertical-offset="11495">
-          <caret line="164" column="60" selection-start-line="164" selection-start-column="60" selection-end-line="164" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.22674419" vertical-offset="985" max-vertical-offset="11761">
+          <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
           <folding>
-            <element signature="e#33483#33531#0#HTML" expanded="true" />
-            <element signature="e#33902#33950#0#HTML" expanded="true" />
-            <element signature="e#34116#34138#0#HTML" expanded="true" />
+            <element signature="e#34873#34921#0#HTML" expanded="true" />
+            <element signature="e#35292#35340#0#HTML" expanded="true" />
+            <element signature="e#35506#35528#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

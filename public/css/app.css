@@ -2074,7 +2074,12 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
+}
+.table_b {
+    width: 100%;
+    max-width: 100%;
+    /*margin-bottom: 20px;*/
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -2087,6 +2092,7 @@ th {
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }
+
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #dddddd;
@@ -2114,7 +2120,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #dddddd;
+  border: 1px solid #9d9d9d;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2122,7 +2128,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #dddddd;
+  border: 1px solid #9d9d9d;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
