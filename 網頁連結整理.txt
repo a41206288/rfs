@@ -19,3 +19,5 @@ github
 
 範例網站
 	黑客社 https://github.com/HackerSir/HackerWebSite/tree/master/resources/views/member 
+
+    chat room https://www.youtube.com/watch?v=SXDVmAwmux8

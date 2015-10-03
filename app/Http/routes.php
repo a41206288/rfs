@@ -71,19 +71,19 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'administrator'],
     function () {
-        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CenterCallController@index'));
-        //call manage 動態印出通報用
-        Route::post('call/manage', 'CenterCallController@update');
-        Route::post('call/manage/save', 'CenterCallController@store');
-
-        //call manage 創建新任務
-        Route::post('call/manage/createMission', 'CenterMissionController@create');
+//        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CenterCallController@index'));
+//        //call manage 動態印出通報用
+//        Route::post('call/manage', 'CenterCallController@update');
+//        Route::post('call/manage/save', 'CenterCallController@store');
+//
+//        //call manage 創建新任務
+//        Route::post('call/manage/createMission', 'CenterMissionController@create');
         //Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
 
         //mission manage()
         //中央指揮官
-
-        Route::get('mission/manage', 'CenterMissionController@index');
+        Route::get('mission/manage',array('as' => 'administratorPanel', 'uses' => 'CenterMissionController@index'));
+//        Route::get('mission/manage', 'CenterMissionController@index');
         Route::post('mission/manage/support', 'CenterMissionController@store');
 
 //        Route::post('mission/manage/supportPeople', 'CenterMissionController@store');

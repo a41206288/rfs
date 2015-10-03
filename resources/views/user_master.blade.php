@@ -39,10 +39,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" id="nav_change">
                     <li class="@yield('home_active')">{!! link_to('/', '首頁') !!}</li>
-                    <li class="@yield('guidance_active')">{!! link_to('guidance', '防災宣導') !!}</li>
-                    <li class="@yield('guidance_map_active')">{!! link_to('#', '防災地圖') !!}</li>
+                    {{--<li class="@yield('guidance_active')">{!! link_to('guidance', '防災宣導') !!}</li>--}}
+                    {{--<li class="@yield('guidance_map_active')">{!! link_to('#', '防災地圖') !!}</li>--}}
                     <li class="@yield('call_input_active')">{!! link_to('call/input', '我要通報') !!}</li>
-                    <li class="@yield('donate_input_active')">{!! link_to('donate/input', '我要捐贈') !!}</li>
+                    {{--<li class="@yield('donate_input_active')">{!! link_to('donate/input', '我要捐贈') !!}</li>--}}
                     <li class="@yield('application_active')">{!! link_to('application/input', '我要應徵人員') !!}</li>
                     <li class="@yield('missing_poster_input_active')">{!! link_to('missing_poster', '我要尋人') !!}</li>
                    
@@ -52,25 +52,25 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>{!! link_to('login', '我要登入') !!}</li>
 
-                    <li class="navbar-form"> 
-                        <form action="search/" role="search">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Search" type="text" name="q" value="">
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" name="type">
-                                    <option value="">所有</option>
-                                    <option value="blog.BlogPost">新聞</option>
+                    {{--<li class="navbar-form"> --}}
+                        {{--<form action="search/" role="search">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<input class="form-control" placeholder="Search" type="text" name="q" value="">--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<select class="form-control" name="type">--}}
+                                    {{--<option value="">所有</option>--}}
+                                    {{--<option value="blog.BlogPost">新聞</option>--}}
 
-                                    <option value="pages.Page">留言</option>
+                                    {{--<option value="pages.Page">留言</option>--}}
 
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </form>
-                    </li>
+                                {{--</select>--}}
+                            {{--</div>--}}
+                            {{--<button type="submit" class="btn btn-default">--}}
+                                {{--<span class="glyphicon glyphicon-search"></span>--}}
+                            {{--</button>--}}
+                        {{--</form>--}}
+                    {{--</li>--}}
                    
                 </ul>
             </div><!--/.nav-collapse -->
@@ -81,12 +81,20 @@
     <div class="col-md-offset-1 col-md-10 middle" >
 	    @yield('content')
     </div>
+    <div class="col-xs-16 col-sm-12 col-md-12" >
+        @yield('content_12')
+    </div>
     <!-- Bootstrap core JavaScript
        ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     @yield('script')
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    {{--<script src="../../dist/js/bootstrap.min.js"></script>--}}
+    <link href="/css/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+    <script src="/js/holder.js"></script>
+    <script src="/js/application.js"></script>
     @yield('javascript')
 
 </body>

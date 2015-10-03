@@ -22,7 +22,7 @@ number
         'max'=>''
 
 select
-    {!! Form::select('name', array('輕度' => '輕度', '中度' => '中度', '重度' => '重度'), '輕度', [set input]) !!}
+    {!! Form::select('name', array('請選擇' => '請選擇', '請選擇' => '請選擇', '請選擇' => '請選擇'), '請選擇', [set input]) !!}
 
 check box
     {!! Form::checkbox('name', 'value')!!}

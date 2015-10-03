@@ -5,16 +5,24 @@
 @section('donate_input_active')
     active
 @endsection
-@section('content')
-    <style>
-        table, td, th {
-            border: 0px solid black;
-        }
+@section('css')
+    table, td, th {
+    border: 0px solid black;
+    }
 
-        td {
-            padding: 5px;
-        }
-    </style>
+    td {
+    padding: 5px;
+    }
+@endsection
+@section('content')
+    {{--<a href="#" data-toggle="tooltip" title="first tooltip">Hover over me</a>--}}
+    {{--<div class="tooltip">--}}
+         {{--<div class="tooltip-inner">--}}
+                {{--Tooltip!--}}
+              {{--</div>--}}
+        {{--<div class="tooltip-arrow"></div>--}}
+
+    {{--</div>--}}
     <h4><b>我要捐贈</b></h4><hr>
 
     <div class="col-xs-9 col-sm-7 col-md-7" >
@@ -247,5 +255,7 @@
                 return true;
             }
         }
+
+        $('#example').tooltip(options);
     </script>
 @endsection

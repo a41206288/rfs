@@ -26,10 +26,18 @@
     {{--<div class="col-xs-10 col-sm-8 col-md-8" >--}}
     {{--</div>--}}
 {{--@endsection--}}
+{{--脫困--}}
+{{--救火--}}
+{{--清潔--}}
+{{--道路修復--}}
+{{--醫療--}}
+{{--管線修復--}}
+{{--警戒--}}
 @section('content')
 
-    <div class="col-xs-10 col-sm-8 col-md-8" >
+    <div class="col-xs-9 col-sm-7 col-md-7" >
         <h4><b>任務管理</b></h4>
+        <pre>綠色:完成任務，閒置&nbsp;&nbsp;&nbsp;&nbsp;橘色:任務執行中&nbsp;&nbsp;&nbsp;&nbsp; 紅色:任務執行中且要求增援</pre>
         <table class="table table-bordered">
             <thead>
 
@@ -40,16 +48,19 @@
                     <th width="12%" class="success">脫困</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
                     <th width="12%" class="success">救火</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
                     <th width="12%"  class="danger">清潔</th><td class="text-right danger" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
-                    <th width="12%" class="danger">道路修復</th><td class="text-right danger" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
+
 
                 </tr>
                 <tr>
-                    <th width="12%" class="success">醫療</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
+                    <th width="12%" class="danger">醫療</th><td class="text-right danger" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
                     <th width="12%" class="success">管線修復</th><td class="text-right success" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="success">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '已完成', []) !!}</td>
-                    <th width="12%" class="danger">警戒</th><td class="text-right danger" width="6%">123</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
+                    <th width="12%" class="warning">警戒</th><td class="text-right warning" width="6%">123</td><td width="7%" class="warning">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
                     {{--<th width="10%">清潔</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>--}}
                     {{--<th width="10%">道路修復</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>--}}
                     {{--<th width="10%">醫療</th><td class="text-right" width="10%">{!!$EmtUserAmounts[0]->total!!}</td>--}}
+                </tr>
+                <tr>
+                    <th width="12%" class="danger">道路修復</th><td class="text-right danger" width="6%">{!!$EmtUserAmounts[0]->total!!}</td><td width="7%" class="danger">{!! Form::select('name', array('執行中' => '執行中', '已完成' => '已完成'), '執行中', []) !!}</td>
                 </tr>
                 {{--<tr><th>醫療組</th><td colspan="2"><b>醫療組人數 (單位: 人)</b></td><td class="text-right" colspan="2">{!!$EmtUserAmounts[0]->total!!}</td></tr>--}}
             </tbody>
@@ -168,16 +179,17 @@
 
         </table>
         <br>
+        <pre>綠色:招募人員 50 % 以上&nbsp;&nbsp;&nbsp;&nbsp;橘色:招募人員 50 % 以下&nbsp;&nbsp;&nbsp;&nbsp; 紅色:尚未招募到人員</pre>
         <table class="table table-bordered">
             <thead>
                 <tr><th colspan="6">增援列表  (單位: 人)</th></tr>
-                <tr><th width="12%">人員種類</th><th width="15%">欲增援人數</th><th width="15%">已招募人數</th><th colspan="3" width="45%">備註</th></tr>
+                <tr><th width="12%">人員種類</th><th width="15%">欲增援人數</th><th width="15%">缺額</th><th colspan="3" width="45%">已招募人員報到</th></tr>
             </thead>
             <tbody>
-                <tr><td  rowspan="3">醫療</td><td  rowspan="3" class="text-right success">10</td><td  rowspan="3" class="text-right success">9</td><td>四維路段</td><td class="text-right">3</td><td>已到達</td></tr>
-                <tr><td>五福路段</td><td class="text-right" class="text-right">3</td><td>已到達</td></tr>
-                <tr><td>六合路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
-                <tr><td  rowspan="2">清潔</td><td  rowspan="2" class="text-right warning">10</td><td  rowspan="2" class="text-right warning">6</td><td>四維路段</td><td class="text-right">3</td><td>已到達</td></tr>
+                <tr><td  rowspan="1">醫療</td><td  rowspan="1" class="text-right success">10</td><td  rowspan="1" class="text-right success">1</td><td>四維路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
+                {{--<tr><td>五福路段</td><td class="text-right" class="text-right">3</td><td>已到達</td></tr>--}}
+                {{--<tr><td>六合路段</td><td class="text-right">3</td><td></td></tr>--}}
+                <tr><td  rowspan="2">清潔</td><td  rowspan="2" class="text-right warning">10</td><td  rowspan="2" class="text-right warning">6</td><td>四維路段</td><td class="text-right">1</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
                 <tr><td>六合路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
                 <tr><td>道路修復</td><td class="text-right danger">10</td><td class="text-right danger">0</td><td></td><td class="text-right"></td><td></td></tr>
             </tbody>
@@ -469,22 +481,119 @@
         {{--!!舊版!!--}}
 
     </div>
-    <div class="col-xs-6 col-sm-4 col-md-4" >
+    <div class="col-xs-7 col-sm-5 col-md-5" >
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab">公告</a></li>
-            <li><a href="#profile" data-toggle="tab">現場</a></li>
+            <li class="active"><a href="#home" data-toggle="tab">任務列表</a></li>
+            <li><a href="#profile" data-toggle="tab">中央</a></li>
 
         </ul>
-
+        <br>
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane active" id="home" style="border: 1px solid #dddddd;height: 400px;">
-                <p><b>三多路段 : </b> 向中央請求增援: 10人 增援原因: 火勢無法控制</p>
-                <p><b>四德路段 : </b> 向中央請求增援: 20人 增援原因:火勢無法控制</p>
-                <p><b>中央 : </b> 從中心向三多路段派送支援人數 10人</p>
-                <p><b>中央 : </b>  從中心向四德路段派送支援人數 20人</p>
-                <p><b>六合路段 : </b> 向中央請求增援: 10人 增援原因: 火勢無法控制</p>
+            <div class="tab-pane active" id="home" >
+                {{--style="border: 1px solid #dddddd;height: 400px;"--}}
+                {{--<p><b>三多路段 : </b> 向中央請求增援: 10人 增援原因: 火勢無法控制</p>--}}
+                {{--<p><b>四德路段 : </b> 向中央請求增援: 20人 增援原因:火勢無法控制</p>--}}
+                {{--<p><b>中央 : </b> 從中心向三多路段派送支援人數 10人</p>--}}
+                {{--<p><b>中央 : </b>  從中心向四德路段派送支援人數 20人</p>--}}
+                {{--<p><b>六合路段 : </b> 向中央請求增援: 10人 增援原因: 火勢無法控制</p>--}}
 
+                {{--版1--}}
+                {{--<table class="table table-bordered">--}}
+                    {{--<thead>--}}
+                        {{--<tr><td colspan="2">任務列表</td></tr>--}}
+                        {{--<tr><td>任務地點</td><td>任務狀態</td></tr>--}}
+                    {{--</thead>--}}
+                    {{--<tbody>--}}
+                        {{--<tr><td  class="warning">四維路段</td><td class="warning">任務執行中</td></tr>--}}
+                        {{--<tr data-toggle="modal" data-target="#myModal"><td  class="danger">五福路段</td><td  class="danger">要求增援</td></tr>--}}
+                        {{--<tr><td class="success">六和路段</td><td class="success">任務完成返回中</td></tr>--}}
+                    {{--</tbody>--}}
+                {{--</table>--}}
+
+                {{--<!-- Modal -->--}}
+                {{--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
+                    {{--<div class="modal-dialog">--}}
+                        {{--<div class="modal-content">--}}
+                            {{--<div class="modal-header">--}}
+                                {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+                                {{--<h4 class="modal-title" id="myModalLabel">要求增援總表</h4>--}}
+                            {{--</div>--}}
+                            {{--<div class="modal-body">--}}
+                                {{--<table>--}}
+                                    {{--<tr></tr>--}}
+                                {{--</table>--}}
+                            {{--</div>--}}
+                            {{--<div class="modal-footer">--}}
+                                {{--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>--}}
+                                {{--<button type="button" class="btn btn-primary">增援確定</button>--}}
+                            {{--</div>--}}
+                        {{--</div><!-- /.modal-content -->--}}
+                    {{--</div><!-- /.modal-dialog -->--}}
+                {{--</div><!-- /.modal -->--}}
+                {{--!!版1!!--}}
+                {{--版2--}}
+                <pre>綠色:完成任務，返回中&nbsp;&nbsp;&nbsp;&nbsp;橘色:任務執行中&nbsp;&nbsp;&nbsp;&nbsp; 紅色:任務執行中且要求增援</pre>
+                    <table width="100%" class="table table-bordered">
+                        <thead>
+                            <tr><td colspan="8">各地方人員增援列表  (單位: 人)</td></tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td></td>
+                            <td>脫困</td>
+                            <td>救火</td>
+                            <td>清潔</td>
+                            <td>道路修復</td>
+                            <td>醫療</td>
+                            <td>管線修復</td>
+                            <td>警戒</td>
+                        </tr>
+                        <tr class="danger">
+                            <td>四維路段</td>
+                            <td class="text-right">2</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right">1</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                        </tr>
+                        <tr class="danger">
+                            <td>五福路段</td>
+                            <td class="text-right">3</td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right">2</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>六合路段</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="success">
+                            <td>七賢路段</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                {{--!!版2!!--}}
             </div>
             <div class="tab-pane" id="profile" style="border: 1px solid #dddddd;height: 400px;">
                 {!! Form::select('name', array('三多路段' => '三多路段', '四德路段' => '四德路段', '五福路段' => '五福路段'), '五福路段', ['class' => 'form-control']) !!}
