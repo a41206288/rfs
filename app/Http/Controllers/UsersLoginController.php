@@ -39,8 +39,9 @@ class UsersLoginController extends Controller {
             if ($attempt) {
                 $user = Auth::user();
                 if($user->is('administrator')){
-                   // return $this->moderatorPanel();
-                   return redirect()->route('administratorPanel');
+                    return redirect()->route('administratorPanel');
+                }else  if($user->is('center')){
+                   return redirect()->route('centerPanel');
                 }else if($user->is('local')){
                     return redirect()->route('localPanel');
                 }else if($user->is('analysis')){
@@ -51,8 +52,6 @@ class UsersLoginController extends Controller {
                     return redirect()->route('relieverPanel');
                 }else if($user->is('resource')){
                     return redirect()->route('resourcePanel');
-                }else if($user->is('cresource')){
-                    return redirect()->route('cresourcePanel');
                 }
 
             }

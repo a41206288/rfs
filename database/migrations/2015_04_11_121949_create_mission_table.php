@@ -21,31 +21,34 @@ class CreateMissionTable extends Migration {
             $table->text('mission_name');
             $table->unsignedInteger('id');
             $table->timestamps();
-            $table->timestamp('complete_time')->nullable();
+            $table->timestamp('assign_people_finish_time')->nullable();
+            $table->timestamp('arrive_location_time')->nullable();
+            $table->timestamp('mission_complete_time')->nullable();
         });
 
-        Schema::create('mission_new_locations', function(Blueprint $table)
-        {
-            $table->unsignedInteger('mission_new_locations_id');
-            $table->unsignedInteger('mission_list_id');
-            $table->string('location');
-            $table->enum('severe_level', ['輕度', '中度','重度']);
-            $table->text('situation');
-            $table->integer('victim_number');
-            $table->integer('executive_require_people_num');
-            $table->text('executive_require_reason');
-            $table->unsignedInteger('id');
-            $table->timestamp('analysis_time');
-            $table->timestamp('complete_time')->nullable();
-            $table->timestamps();
-        });
+//        Schema::create('mission_new_locations', function(Blueprint $table)
+//        {
+//            $table->unsignedInteger('mission_new_locations_id');
+//            $table->unsignedInteger('mission_list_id');
+//            $table->string('location');
+//            $table->enum('severe_level', ['輕度', '中度','重度']);
+//            $table->text('situation');
+//            $table->integer('victim_number');
+//            $table->integer('executive_require_people_num');
+//            $table->text('executive_require_reason');
+//            $table->unsignedInteger('id');
+//            $table->timestamp('analysis_time');
+//            $table->timestamp('complete_time')->nullable();
+//            $table->timestamps();
+//        });
 
         Schema::create('works_ons', function(Blueprint $table)
         {
             $table->increments('works_on_id');
-            $table->unsignedInteger('mission_new_locations_id');
+//            $table->unsignedInteger('mission_new_locations_id');
             $table->unsignedInteger('mission_list_id');
             $table->unsignedInteger('id');
+            $table->enum('status', ['執行中','支援', '已完成']);
             $table->timestamps();
         });
 
@@ -60,39 +63,42 @@ class CreateMissionTable extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('mission_support_products', function(Blueprint $table)
-        {
-            $table->increments('mission_support_product_id');
-            $table->unsignedInteger('mission_list_id');
-            $table->unsignedInteger('product_total_amount_id');
-            $table->integer('mission_support_product_amount');
-            $table->integer('center_assign_product_amount');
-            $table->integer('resource_assign_product_amount');
-            $table->timestamps();
-        });
+//        Schema::create('mission_support_products', function(Blueprint $table)
+//        {
+//            $table->increments('mission_support_product_id');
+//            $table->unsignedInteger('mission_list_id');
+//            $table->unsignedInteger('product_total_amount_id');
+//            $table->integer('mission_support_product_amount');
+//            $table->integer('center_assign_product_amount');
+//            $table->integer('resource_assign_product_amount');
+//            $table->timestamps();
+//        });
 
 
         Schema::create('missions', function(Blueprint $table)
         {
             $table->increments('mission_id');
-            $table->text('mission_type');
+//            $table->text('mission_type');
             $table->text('mission_content');
             $table->timestamps();
             //$table->timestamp('complete_time')->nullable();
             $table->text('fname')->nullable();
             $table->text('lname');
             $table->text('phone')->nullable();
-            $table->text('mission_comment')->nullable();
+//            $table->text('mission_comment')->nullable();
             $table->text('email')->nullable();
-            $table->text('country_or_city_input');
+//            $table->text('country_or_city_input');
             //$table->enum('country_or_city', ['縣', '市']);
             $table->text('township_or_district_input');
             //$table->enum('township_or_district', ['鄉', '鎮','區']);
+            $table->text('rd_or_st_1');
+            $table->text('rd_or_st_2');
+            //道路或街道名稱
             $table->text('location');
-            $table->boolean('notice');
+//            $table->boolean('notice');
             $table->unsignedInteger('mission_list_id');
-            $table->unsignedInteger('mission_new_locations_id');
-            $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
+//            $table->unsignedInteger('mission_new_locations_id');
+//            $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
         });
 
         Schema::create('reports', function(Blueprint $table)
@@ -129,8 +135,8 @@ class CreateMissionTable extends Migration {
         Schema::drop('reports');
         Schema::drop('local_reports');
         Schema::drop('mission_support_people');
-        Schema::drop('mission_support_products');
-        Schema::drop('mission_new_locations');
+//        Schema::drop('mission_support_products');
+//        Schema::drop('mission_new_locations');
         Schema::drop('works_ons');
     }
 

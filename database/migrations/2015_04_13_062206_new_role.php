@@ -40,12 +40,12 @@ class NewRole extends Migration
             'description' => '地方指揮官'
         ]);
 
-        $role = new Role();
-        $roleAnalysis = $role->create([
-            'name' => 'Analysis',
-            'slug' => 'analysis',
-            'description' => '現場分析組'
-        ]);
+//        $role = new Role();
+//        $roleAnalysis = $role->create([
+//            'name' => 'Analysis',
+//            'slug' => 'analysis',
+//            'description' => '現場分析組'
+//        ]);
 
         $role = new Role();
         $roleReliever = $role->create([
@@ -61,26 +61,63 @@ class NewRole extends Migration
             'description' => '醫療組'
         ]);
 
+//        $role = new Role();
+//        $roleResource = $role->create([
+//            'name' => 'Resource',
+//            'slug' => 'resource',
+//            'description' => '資源監控組'
+//        ]);
+
+//        $role = new Role();
+//        $roleMasses = $role->create([
+//            'name' => 'Masses',
+//            'slug' => 'masses',
+//            'description' => '一般民眾'
+//        ]);
+
         $role = new Role();
         $roleResource = $role->create([
             'name' => 'Resource',
             'slug' => 'resource',
-            'description' => '資源監控組'
+            'description' => '後勤部門'
         ]);
 
         $role = new Role();
-        $roleMasses = $role->create([
-            'name' => 'Masses',
-            'slug' => 'masses',
-            'description' => '一般民眾'
+        $roleFire = $role->create([
+            'name' => 'Fire',
+            'slug' => 'fire',
+            'description' => '救火組'
         ]);
 
         $role = new Role();
-        $roleCresource = $role->create([
-            'name' => 'Cresource',
-            'slug' => 'cresource',
-            'description' => '中央資源監控組'
+        $roleClean = $role->create([
+            'name' => 'Clean',
+            'slug' => 'clean',
+            'description' => '清潔組'
         ]);
+
+        $role = new Role();
+        $roleRoad = $role->create([
+            'name' => 'Road',
+            'slug' => 'road',
+            'description' => '道路修復組'
+        ]);
+
+        $role = new Role();
+        $rolePipe = $role->create([
+            'name' => 'Pipe',
+            'slug' => 'pipe',
+            'description' => '管線修復組'
+        ]);
+
+        $role = new Role();
+        $rolePolice = $role->create([
+            'name' => 'Police',
+            'slug' => 'police',
+            'description' => '警戒組'
+        ]);
+
+
 
          //Create Permissions
 
@@ -123,18 +160,18 @@ class NewRole extends Migration
             'description' => 'manage LocalCommander  permissions'
         ]);
 
-        $permission = new Permission();
-        $permAnalysis = $permission->create([
-            'name'        => 'Analysis',
-            'slug'        => [          // pass an array of permissions.
-                'create'     => true,
-                'view'       => true,
-                'update'     => true,
-                'delete'     => true,
-                'view.phone' => true
-            ],
-            'description' => 'analysis  permissions'
-        ]);
+//        $permission = new Permission();
+//        $permAnalysis = $permission->create([
+//            'name'        => 'Analysis',
+//            'slug'        => [          // pass an array of permissions.
+//                'create'     => true,
+//                'view'       => true,
+//                'update'     => true,
+//                'delete'     => true,
+//                'view.phone' => true
+//            ],
+//            'description' => 'analysis  permissions'
+//        ]);
 
         $permission = new Permission();
         $permReliever = $permission->create([
@@ -177,9 +214,23 @@ class NewRole extends Migration
 
 
 
+//        $permission = new Permission();
+//        $permMasses = $permission->create([
+//            'name'        => 'Masses',
+//            'slug'        => [          // pass an array of permissions.
+//                'create'     => true,
+//                'view'       => true,
+//                'update'     => true,
+//                'delete'     => true,
+//                'view.phone' => true
+//            ],
+//            'description' => 'manage Masses  permissions'
+//        ]);
+
+
         $permission = new Permission();
-        $permMasses = $permission->create([
-            'name'        => 'Masses',
+        $permFire = $permission->create([
+            'name'        => 'Fire',
             'slug'        => [          // pass an array of permissions.
                 'create'     => true,
                 'view'       => true,
@@ -187,12 +238,12 @@ class NewRole extends Migration
                 'delete'     => true,
                 'view.phone' => true
             ],
-            'description' => 'manage Masses  permissions'
+            'description' => 'manage Fire  permissions'
         ]);
 
         $permission = new Permission();
-        $permCresource = $permission->create([
-            'name'        => 'Cresource',
+        $permClean = $permission->create([
+            'name'        => 'Clean',
             'slug'        => [          // pass an array of permissions.
                 'create'     => true,
                 'view'       => true,
@@ -200,7 +251,43 @@ class NewRole extends Migration
                 'delete'     => true,
                 'view.phone' => true
             ],
-            'description' => 'manage Cresource  permissions'
+            'description' => 'manage Clean  permissions'
+        ]);
+        $permission = new Permission();
+        $permRoad = $permission->create([
+            'name'        => 'Road',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Road  permissions'
+        ]);
+        $permission = new Permission();
+        $permPipe = $permission->create([
+            'name'        => 'Pipe',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Pipe  permissions'
+        ]);
+        $permission = new Permission();
+        $permPolice = $permission->create([
+            'name'        => 'Police',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Police  permissions'
         ]);
 
         //Assign Permission(s) to Role
@@ -208,19 +295,18 @@ class NewRole extends Migration
         $roleAdmin->assignPermission($permAdmin);
         $roleCenter->assignPermission($permCenter);
         $roleLocal->assignPermission($permLocal);
-        $roleReliever->assignPermission($permReliever);
-        $roleEMT->assignPermission($permEMT);
         $roleResource->assignPermission($permResource);
-        $roleMasses->assignPermission($permMasses);
-        $roleAnalysis->assignPermission($permAnalysis);
-        $roleCresource->assignPermission($permCresource);
+        $roleEMT->assignPermission($permEMT);
+        $roleReliever->assignPermission($permReliever);
+//        $roleMasses->assignPermission($permMasses);
+//        $roleAnalysis->assignPermission($permAnalysis);
+        $roleFire->assignPermission($permFire);
+        $roleClean->assignPermission($permClean);
+        $roleRoad->assignPermission($permRoad);
+        $rolePipe->assignPermission($permPipe);
+        $rolePolice->assignPermission($permPolice);
         //Assign Role(s) To User
 
-//        $user  = User::where('name', '=', '王小明');
-//        $user->assignRole($roleAdmin);
-//
-//        $user  = User::where('name', '=', '陳小華');
-//        $user->assignRole($roleModerator);
     }
 
 
@@ -242,15 +328,20 @@ class NewRole extends Migration
 //        $roleModerator->revokeAllPermissions();
 
         // delete Role
-        Role::where('name', '=', 'Administrator')->delete();
-        Role::where('name', '=', 'CenterCommander')->delete();
-        Role::where('name', '=', 'LocalCommander')->delete();
-        Role::where('name', '=', 'Reliever')->delete();
-        Role::where('name', '=', 'EMT')->delete();
-        Role::where('name', '=', 'Resource')->delete();
-        Role::where('name', '=', 'Masses')->delete();
-        Role::where('name', '=', 'Analysis')->delete();
-        Role::where('name', '=', 'Cresource')->delete();
+//        Role::where('name', '=', 'Administrator')->delete();
+//        Role::where('name', '=', 'CenterCommander')->delete();
+//        Role::where('name', '=', 'LocalCommander')->delete();
+//        Role::where('name', '=', 'Reliever')->delete();
+//        Role::where('name', '=', 'EMT')->delete();
+//        Role::where('name', '=', 'Resource')->delete();
+//        Role::where('name', '=', 'Masses')->delete();
+//        Role::where('name', '=', 'Analysis')->delete();
+//        Role::where('name', '=', 'Cresource')->delete();
+//        Role::where('name', '=', 'Fire')->delete();
+//        Role::where('name', '=', 'Clean')->delete();
+//        Role::where('name', '=', 'Road')->delete();
+//        Role::where('name', '=', 'Pipe')->delete();
+//        Role::where('name', '=', 'Police')->delete();
 
 
     }

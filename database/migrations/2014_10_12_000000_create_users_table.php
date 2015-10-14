@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration {
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->string('password', 60);
-            $table->unsignedInteger('mission_id');
-            $table->unsignedInteger('mission_list_id');
+//            $table->unsignedInteger('mission_id');
+//            $table->unsignedInteger('mission_list_id');
             $table->string('phone');
 			$table->text('skill');
 			$table->text('country_or_city_input');

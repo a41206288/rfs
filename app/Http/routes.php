@@ -39,9 +39,6 @@ Route::get('logout', 'UsersLoginController@logout');
 
 Route::get('analysis/manage', 'AnalysisAnalysisController@index');
 
-Route::get('victim/EMT', 'EmtVictimController@index');
-Route::post('victim/EMT/create', 'EmtVictimController@create');
-Route::post('victim/EMT/edit', 'EmtVictimController@edit');
 
 
 
@@ -66,10 +63,39 @@ Route::post('victim/EMT/edit', 'EmtVictimController@edit');
 //}
 //
 //);
+
+
+//Route::group([
+//    'middleware' => ['auth', 'acl'],
+//    'is' => 'administrator'],
+//    function () {
+//
+//        //中央指揮官
+//        Route::get('mission/manage',array('as' => 'administratorPanel','uses' => 'CenterMissionController@index'));
+//        Route::post('mission/manage/support', 'CenterMissionController@store');
+
+//        //地方指揮官
+//        Route::get('mission/manage/local', 'LocalMissionController@index');
+//        Route::post('mission/manage/local', 'LocalMissionController@edit');
+//        Route::post('report/local', 'LocalMissionController@update');
+//        Route::get('analysis/manage/local', 'LocalAnalysisController@index');
+//        Route::post('analysis/manage/local', 'LocalAnalysisController@edit');
+//
+//        //醫療組
+//        Route::get('victim/EMT','EmtVictimController@index' );
+//        Route::post('victim/EMT/create', 'EmtVictimController@create');
+//        Route::post('victim/EMT/edit', 'EmtVictimController@edit');
+//
+//        //後勤部門
+//        Route::get('resource/manage/product/center', 'ResourceCenterProductController@index');
+//        Route::get('resource/manage/people/center', 'ResourceCenterPeopleController@index');
+//    });
+
+
 Route::group([
    // 'namespace' => 'administratorPanel',
     'middleware' => ['auth', 'acl'],
-    'is' => 'administrator'],
+    'is' => 'center'],
     function () {
 //        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CenterCallController@index'));
 //        //call manage 動態印出通報用
@@ -82,7 +108,7 @@ Route::group([
 
         //mission manage()
         //中央指揮官
-        Route::get('mission/manage',array('as' => 'administratorPanel', 'uses' => 'CenterMissionController@index'));
+        Route::get('mission/manage',array('as' => 'centerPanel', 'uses' => 'CenterMissionController@index'));
 //        Route::get('mission/manage', 'CenterMissionController@index');
         Route::post('mission/manage/support', 'CenterMissionController@store');
 
@@ -114,24 +140,29 @@ Route::group([
         Route::post('analysis/manage/local', 'LocalAnalysisController@edit');
     });
 
-Route::group([
-    'middleware' => ['auth', 'acl'],
-    'is' => 'analysis'],
-    function () {
-        Route::get('analysis/manage', array('as' => 'analysisPanel', 'uses' => 'AnalysisAnalysisController@index'));
-        //analysis manage 創建新地點
-        Route::post('analysis/manage/createLocation', 'AnalysisAnalysisController@create');
-        Route::post('analysis/manage/updateLocation', 'AnalysisAnalysisController@update');
-        Route::post('analysis/manage/editLocation', 'AnalysisAnalysisController@edit');
-        Route::post('analysis/manage/deleteLocation', 'AnalysisAnalysisController@destroy');
-    });
+//Route::group([
+//    'middleware' => ['auth', 'acl'],
+//    'is' => 'analysis'],
+//    function () {
+//        Route::get('analysis/manage', array('as' => 'analysisPanel', 'uses' => 'AnalysisAnalysisController@index'));
+//        //analysis manage 創建新地點
+//        Route::post('analysis/manage/createLocation', 'AnalysisAnalysisController@create');
+//        Route::post('analysis/manage/updateLocation', 'AnalysisAnalysisController@update');
+//        Route::post('analysis/manage/editLocation', 'AnalysisAnalysisController@edit');
+//        Route::post('analysis/manage/deleteLocation', 'AnalysisAnalysisController@destroy');
+//    });
 
 Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'emt'],
     function () {
-        Route::get('report/EMT',array('as' => 'emtPanel', 'uses' => 'EmtReportController@index') );
+        Route::get('victim/EMT',array('as' => 'emtPanel', 'uses' => 'EmtVictimController@index') );
+        Route::post('victim/EMT/create', 'EmtVictimController@create');
+        Route::post('victim/EMT/edit', 'EmtVictimController@edit');
+
+        Route::get('report/EMT', 'EmtReportController@index');
         Route::post('report/reliever', 'EmtReportController@create');
+
     });
 
 Route::group([
@@ -142,19 +173,19 @@ Route::group([
         Route::post('report/reliever', 'RelieverReportController@create');
     });
 
+//Route::group([
+//    'middleware' => ['auth', 'acl'],
+//    'is' => 'resource'],
+//    function () {
+//        Route::get('resource/manage/product/local',array('as' => 'resourcePanel', 'uses' => 'ResourceLocalProductController@index') );
+//        Route::get('resource/manage/people/local', 'ResourceLocalPeopleController@index');
+//    });
+
 Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'resource'],
     function () {
-        Route::get('resource/manage/product/local',array('as' => 'resourcePanel', 'uses' => 'ResourceLocalProductController@index') );
-        Route::get('resource/manage/people/local', 'ResourceLocalPeopleController@index');
-    });
-
-Route::group([
-    'middleware' => ['auth', 'acl'],
-    'is' => 'cresource'],
-    function () {
-        Route::get('resource/manage/product/center', array('as' => 'cresourcePanel', 'uses' => 'ResourceCenterProductController@index'));
+        Route::get('resource/manage/product/center', array('as' => 'resourcePanel', 'uses' => 'ResourceCenterProductController@index'));
         Route::get('resource/manage/people/center', 'ResourceCenterPeopleController@index');
 
     });

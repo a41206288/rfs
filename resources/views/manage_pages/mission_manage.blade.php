@@ -70,56 +70,107 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>
-                        <td>五福國民中學正門前</td>
-                        <td>
-                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-                                指派負責人
-                            </button>
-                        </td>
-                        <td colspan="6">
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>
-                        <td>三多民權交叉路口</td>
-                        <td>謝卸</td>
-                        <td colspan="6">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
-                                    <p class="text-right">2015/09/30 07:30 &nbsp;&nbsp;</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-right warning">2</td>
-                        <td></td>
-                        <td class="text-right danger">2</td>
-                        <td class="text-right danger">3</td>
-                        <td></td>
-                        <td class="text-right success">1</td>
-                        <td class="text-right warning">2</td>
-                    </tr>
-                    <tr>
-                        <td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>
-                        <td>四維林森交叉路口</td>
-                        <td>謝卸</td>
-                        <td  colspan="6">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                    <p class="text-right">2015/09/30 07:30 &nbsp;&nbsp;</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-right success">2</td>
-                        <td class="text-right success">2</td>
-                        <td class="text-right warning">2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @if (isset($mission_lists) )
+                        @foreach ($mission_lists as $mission_list )
+                            @if ($mission_list->mission_name != "未分配任務")
+                            <tr>
+                                {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>--}}
+                                {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>--}}
+                                <td>{{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%Y/%m/%d') }}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%H:%M') }}</td>
+                                <td>{!! $mission_list->mission_name!!}</td>
+                                <td>
+                                        @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
+                                            {{--{!! dd($mission_list_charge_Array['name'] ) !!}}--}}
+                                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                                                指派負責人
+                                            </button>
+                                        @else
+                                            {!! $mission_list_charge_Arrays[$mission_list->mission_list_id]['name']  !!}
+                                        @endif
+                                </td>
+                                <td colspan="6">
+                                    @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
+
+                                    @elseif(isset($mission_list->mission_complete_time))
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-success" role="progressbar"
+                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%Y/%m/%d') }}
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%H:%M') }}
+                                                    &nbsp;&nbsp;</p>
+                                            </div>
+                                        </div>
+
+                                    @elseif(isset($mission_list->arrive_location_time))
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar"
+                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
+                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%Y/%m/%d') }}
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%H:%M') }}
+                                                    &nbsp;&nbsp;</p>
+                                            </div>
+                                        </div>
+
+                                    @elseif(isset($mission_list->assign_people_finish_time))
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar"
+                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%Y/%m/%d') }}
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    {{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%H:%M') }}
+                                                    &nbsp;&nbsp;</p>
+                                            </div>
+                                        </div>
+
+                                    @endif
+                                </td>
+                            </tr>
+                            @endif
+                      @endforeach
+                    @endif
+                    {{--<tr>--}}
+                        {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>--}}
+                        {{--<td>三多民權交叉路口</td>--}}
+                        {{--<td>謝卸</td>--}}
+                        {{--<td colspan="6">--}}
+                            {{--<div class="progress">--}}
+                                {{--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 66%">--}}
+                                    {{--<p class="text-right">2015/09/30 07:30 &nbsp;&nbsp;</p>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</td>--}}
+                        {{--<td class="text-right warning">2</td>--}}
+                        {{--<td></td>--}}
+                        {{--<td class="text-right danger">2</td>--}}
+                        {{--<td class="text-right danger">3</td>--}}
+                        {{--<td></td>--}}
+                        {{--<td class="text-right success">1</td>--}}
+                        {{--<td class="text-right warning">2</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>--}}
+                        {{--<td>四維林森交叉路口</td>--}}
+                        {{--<td>謝卸</td>--}}
+                        {{--<td  colspan="6">--}}
+                            {{--<div class="progress">--}}
+                                {{--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">--}}
+                                    {{--<p class="text-right">2015/09/30 07:30 &nbsp;&nbsp;</p>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</td>--}}
+                        {{--<td class="text-right success">2</td>--}}
+                        {{--<td class="text-right success">2</td>--}}
+                        {{--<td class="text-right warning">2</td>--}}
+                        {{--<td></td>--}}
+                        {{--<td></td>--}}
+                        {{--<td></td>--}}
+                        {{--<td></td>--}}
+                    {{--</tr>--}}
 
                     </tbody>
 
