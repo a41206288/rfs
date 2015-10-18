@@ -23,7 +23,7 @@ class NewRole extends Migration
         $roleAdmin = $role->create([
             'name' => 'Administrator',
             'slug' => 'administrator',
-            'description' => 'manage administration privileges'
+            'description' => '系統管理者'
         ]);
 
         $role = new Role();
@@ -46,6 +46,15 @@ class NewRole extends Migration
 //            'slug' => 'analysis',
 //            'description' => '現場分析組'
 //        ]);
+
+
+        $role = new Role();
+        $roleResource = $role->create([
+            'name' => 'Resource',
+            'slug' => 'resource',
+            'description' => '後勤部門'
+        ]);
+
 
         $role = new Role();
         $roleReliever = $role->create([
@@ -74,13 +83,6 @@ class NewRole extends Migration
 //            'slug' => 'masses',
 //            'description' => '一般民眾'
 //        ]);
-
-        $role = new Role();
-        $roleResource = $role->create([
-            'name' => 'Resource',
-            'slug' => 'resource',
-            'description' => '後勤部門'
-        ]);
 
         $role = new Role();
         $roleFire = $role->create([
@@ -174,6 +176,19 @@ class NewRole extends Migration
 //        ]);
 
         $permission = new Permission();
+        $permResource = $permission->create([
+            'name'        => 'Resource',
+            'slug'        => [          // pass an array of permissions.
+                'create'     => true,
+                'view'       => true,
+                'update'     => true,
+                'delete'     => true,
+                'view.phone' => true
+            ],
+            'description' => 'manage Resource  permissions'
+        ]);
+
+        $permission = new Permission();
         $permReliever = $permission->create([
             'name'        => 'Reliever',
             'slug'        => [          // pass an array of permissions.
@@ -199,18 +214,7 @@ class NewRole extends Migration
             'description' => 'manage EMT  permissions'
         ]);
 
-        $permission = new Permission();
-        $permResource = $permission->create([
-            'name'        => 'Resource',
-            'slug'        => [          // pass an array of permissions.
-                'create'     => true,
-                'view'       => true,
-                'update'     => true,
-                'delete'     => true,
-                'view.phone' => true
-            ],
-            'description' => 'manage Resource  permissions'
-        ]);
+
 
 
 

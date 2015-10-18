@@ -23,23 +23,25 @@ class LocalMissionController extends Controller {
 
             //讀取mission所有資料
             $missions = DB::table('missions')
-                ->orderBy('country_or_city_input')
-                ->orderBy('township_or_district_input')
+//                ->orderBy('country_or_city_input')
+//                ->orderBy('township_or_district_input')
                 ->orderBy('location')
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
 
-            $mission_new_locations =  DB::table('mission_new_locations')
-                ->where('mission_list_id', $mission_list_id)
-                ->orderBy('analysis_time')
-                ->get();
-//            dd($mission_new_locations);
+            $mission_lists = DB::table('mission_lists')->get();
 
-            //計算總欲增援人數
-            $executive_require_people_num = DB::table('mission_new_locations')
-                ->where('mission_list_id', $mission_list_id)
-                ->sum('executive_require_people_num');
-//            dd($relieverFreeUserAmounts);
+//            $mission_new_locations =  DB::table('mission_new_locations')
+//                ->where('mission_list_id', $mission_list_id)
+//                ->orderBy('analysis_time')
+//                ->get();
+////            dd($mission_new_locations);
+//
+//            //計算總欲增援人數
+//            $executive_require_people_num = DB::table('mission_new_locations')
+//                ->where('mission_list_id', $mission_list_id)
+//                ->sum('executive_require_people_num');
+////            dd($relieverFreeUserAmounts);
 
             //計算向中央要求總增援數用
             $mission_support_people = DB::table('mission_support_people')
@@ -47,150 +49,154 @@ class LocalMissionController extends Controller {
                ->get();
 //            dd($mission_support_people);
 
-            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
-            $executiveRequireArrays =[];
-            foreach($mission_new_locations as $mission_new_location){
-
-                //如果$executiveRequireArrays 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
-                if(!isset($executiveRequireArrays[$mission_new_location->mission_new_locations_id]))
-                {
-                    $i=1;
-                }
-                else
-                {
-                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
-                    $i=count($executiveRequireArrays[$mission_new_location->mission_new_locations_id])+1;
-                }
-                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_people_num'] = $mission_new_location->executive_require_people_num;
-                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_reason'] = $mission_new_location->executive_require_reason;
-                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['updated_at'] = $mission_new_location->updated_at;
-            }
-//            dd($executiveRequireArrays);
 
 
-            //取出該任務所有脫困組人員
-            $relieverFreeUsers = DB::table('role_user')
-                ->join('users','users.id','=','role_user.user_id')
-                ->where('role_id','=',5 )
-                ->where('mission_list_id', $mission_list_id)
-                ->get();
-//            dd($relieverFreeUsers);
-
-            //取出該任務所有脫困組人員個數
-            $relieverFreeUserAmounts = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
-                ->select(DB::raw('count(*) as total'))
-                ->where('role_id','=',5 )
-                ->where('mission_list_id', $mission_list_id)
-                ->get();
-//            dd($relieverFreeUserAmounts);
-
-            //取出個地點的脫困組人員
-            $relieverNewLocationUsers = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
-                ->join('works_ons','users.id','=','works_ons.id')
-                ->where('role_id','=',5 )
-                ->where('works_ons.mission_list_id', $mission_list_id)
-                ->get();
-//            dd($relieverNewLocationUsers);
-
-            //取出個地點的脫困組人員個數
-            $relieverNewLocationUserAmounts = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
-                ->join('works_ons','users.id','=','works_ons.id')
-                ->select('mission_new_locations_id',DB::raw('count(*) as total'))
-                ->where('role_id','=',5 )
-                ->where('works_ons.mission_list_id', $mission_list_id)
-                ->groupBy('mission_new_locations_id')
-                ->get();
-//            dd($relieverNewLocationUserAmounts);
-
-            $relieverNewLocationUserAmountsArrays =[];
 
 
-            foreach($mission_new_locations as $mission_new_location){
-                $unfind = false;
-                foreach($relieverNewLocationUserAmounts as $relieverNewLocationUserAmount){
-                    if($relieverNewLocationUserAmount->mission_new_locations_id == $mission_new_location->mission_new_locations_id) {
-                        $unfind = true;
-                        $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = $relieverNewLocationUserAmount->total;
-                    }
-                }
-                if( $unfind == false ) {
-                    $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = 0;
-                }
-            }
-//                dd($relieverNewLocationUserAmountsArrays);
-
-
-            //將個地點的脫困組人員依地點分類
-            $relieverNewLocationUsersArrays =[];
-            foreach($relieverNewLocationUsers as $relieverNewLocationUser){
-
-                //如果$local_reports_array 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
-                if(!isset($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id]))
-                {
-                    $i=1;
-                }
-                else
-                {
-                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
-                    $i=count($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id])+1;
-                }
-                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['id'] = $relieverNewLocationUser->id;
-                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['name'] = $relieverNewLocationUser->name;
-            }
-//            dd($relieverNewLocationUsersArrays);
-
-            //取出該任務的閒置脫困組人員
-            $relieverFreeUsersArrays =[];
-            foreach($relieverFreeUsers as $relieverFreeUser){
-                $unfind = false;
-                foreach($relieverNewLocationUsers as $relieverNewLocationUser){
-                    if($relieverFreeUser->user_id == $relieverNewLocationUser->user_id) {
-                        $unfind = true;
-                    }
-                }
-                if( $unfind == false ) {
-                    $relieverFreeUsersArrays[$relieverFreeUser->id]['name'] = $relieverFreeUser->name;
-                    $relieverFreeUsersArrays[$relieverFreeUser->id]['id'] = $relieverFreeUser->id;
-                }
-            }
-//            dd($relieverFreeUsersArrays);
-
-            //取出該任務的醫療組人員個數
-            $EmtUserAmounts = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
-                ->select(DB::raw('count(*) as total'))
-                ->where('role_id','=',6 )
-                ->where('mission_list_id', $mission_list_id)
-                ->get();
-//            dd($EmtUserAmounts);
-
-            $local_reports = DB::table('local_reports')
-                ->orderBy('local_reports.created_at')
-                ->where('mission_list_id', $mission_list_id)
-                ->get();
-//  dd($local_reports);
-
-            $local_reports_arrays =[];
-            foreach($local_reports as $local_report){
-
-                //如果$local_reports_array 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
-                if(!isset($local_reports_arrays[$local_report->mission_new_locations_id]))
-                {
-                    $i=1;
-                }
-                else
-                {
-                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
-                    $i=count($local_reports_arrays[$local_report->mission_new_locations_id])+1;
-                }
-
-                $local_reports_arrays[$local_report->mission_new_locations_id][$i]['content'] = $local_report->local_report_content;
-                $local_reports_arrays[$local_report->mission_new_locations_id][$i]['time'] = $local_report->created_at;
-            }
-//         dd($local_reports_arrays);
+//            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
+//            $executiveRequireArrays =[];
+//            foreach($mission_new_locations as $mission_new_location){
+//
+//                //如果$executiveRequireArrays 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+//                if(!isset($executiveRequireArrays[$mission_new_location->mission_new_locations_id]))
+//                {
+//                    $i=1;
+//                }
+//                else
+//                {
+//                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+//                    $i=count($executiveRequireArrays[$mission_new_location->mission_new_locations_id])+1;
+//                }
+//                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_people_num'] = $mission_new_location->executive_require_people_num;
+//                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['executive_require_reason'] = $mission_new_location->executive_require_reason;
+//                $executiveRequireArrays[$mission_new_location->mission_new_locations_id][$i]['updated_at'] = $mission_new_location->updated_at;
+//            }
+////            dd($executiveRequireArrays);
+//
+//
+//            //取出該任務所有脫困組人員
+//            $relieverFreeUsers = DB::table('role_user')
+//                ->join('users','users.id','=','role_user.user_id')
+//                ->where('role_id','=',5 )
+//                ->where('mission_list_id', $mission_list_id)
+//                ->get();
+////            dd($relieverFreeUsers);
+//
+//            //取出該任務所有脫困組人員個數
+//            $relieverFreeUserAmounts = DB::table('users')
+//                ->join('role_user','users.id','=','role_user.user_id')
+//                ->select(DB::raw('count(*) as total'))
+//                ->where('role_id','=',5 )
+//                ->where('mission_list_id', $mission_list_id)
+//                ->get();
+////            dd($relieverFreeUserAmounts);
+//
+//            //取出個地點的脫困組人員
+//            $relieverNewLocationUsers = DB::table('users')
+//                ->join('role_user','users.id','=','role_user.user_id')
+//                ->join('works_ons','users.id','=','works_ons.id')
+//                ->where('role_id','=',5 )
+//                ->where('works_ons.mission_list_id', $mission_list_id)
+//                ->get();
+////            dd($relieverNewLocationUsers);
+//
+//            //取出個地點的脫困組人員個數
+//            $relieverNewLocationUserAmounts = DB::table('users')
+//                ->join('role_user','users.id','=','role_user.user_id')
+//                ->join('works_ons','users.id','=','works_ons.id')
+//                ->select('mission_new_locations_id',DB::raw('count(*) as total'))
+//                ->where('role_id','=',5 )
+//                ->where('works_ons.mission_list_id', $mission_list_id)
+//                ->groupBy('mission_new_locations_id')
+//                ->get();
+////            dd($relieverNewLocationUserAmounts);
+//
+//            $relieverNewLocationUserAmountsArrays =[];
+//
+//
+//            foreach($mission_new_locations as $mission_new_location){
+//                $unfind = false;
+//                foreach($relieverNewLocationUserAmounts as $relieverNewLocationUserAmount){
+//                    if($relieverNewLocationUserAmount->mission_new_locations_id == $mission_new_location->mission_new_locations_id) {
+//                        $unfind = true;
+//                        $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = $relieverNewLocationUserAmount->total;
+//                    }
+//                }
+//                if( $unfind == false ) {
+//                    $relieverNewLocationUserAmountsArrays[$mission_new_location->mission_new_locations_id]['total'] = 0;
+//                }
+//            }
+////                dd($relieverNewLocationUserAmountsArrays);
+//
+//
+//            //將個地點的脫困組人員依地點分類
+//            $relieverNewLocationUsersArrays =[];
+//            foreach($relieverNewLocationUsers as $relieverNewLocationUser){
+//
+//                //如果$local_reports_array 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+//                if(!isset($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id]))
+//                {
+//                    $i=1;
+//                }
+//                else
+//                {
+//                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+//                    $i=count($relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id])+1;
+//                }
+//                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['id'] = $relieverNewLocationUser->id;
+//                $relieverNewLocationUsersArrays[$relieverNewLocationUser->mission_new_locations_id][$i]['name'] = $relieverNewLocationUser->name;
+//            }
+////            dd($relieverNewLocationUsersArrays);
+//
+//            //取出該任務的閒置脫困組人員
+//            $relieverFreeUsersArrays =[];
+//            foreach($relieverFreeUsers as $relieverFreeUser){
+//                $unfind = false;
+//                foreach($relieverNewLocationUsers as $relieverNewLocationUser){
+//                    if($relieverFreeUser->user_id == $relieverNewLocationUser->user_id) {
+//                        $unfind = true;
+//                    }
+//                }
+//                if( $unfind == false ) {
+//                    $relieverFreeUsersArrays[$relieverFreeUser->id]['name'] = $relieverFreeUser->name;
+//                    $relieverFreeUsersArrays[$relieverFreeUser->id]['id'] = $relieverFreeUser->id;
+//                }
+//            }
+////            dd($relieverFreeUsersArrays);
+//
+//            //取出該任務的醫療組人員個數
+//            $EmtUserAmounts = DB::table('users')
+//                ->join('role_user','users.id','=','role_user.user_id')
+//                ->select(DB::raw('count(*) as total'))
+//                ->where('role_id','=',6 )
+//                ->where('mission_list_id', $mission_list_id)
+//                ->get();
+////            dd($EmtUserAmounts);
+//
+//            $local_reports = DB::table('local_reports')
+//                ->orderBy('local_reports.created_at')
+//                ->where('mission_list_id', $mission_list_id)
+//                ->get();
+////  dd($local_reports);
+//
+//            $local_reports_arrays =[];
+//            foreach($local_reports as $local_report){
+//
+//                //如果$local_reports_array 為空 設定第一筆讀到的mission_new_locations_id的第一筆回報的數量為1
+//                if(!isset($local_reports_arrays[$local_report->mission_new_locations_id]))
+//                {
+//                    $i=1;
+//                }
+//                else
+//                {
+//                    // 設定第二次以上讀到的mission_new_locations_id的接下來的回報數量+1
+//                    $i=count($local_reports_arrays[$local_report->mission_new_locations_id])+1;
+//                }
+//
+//                $local_reports_arrays[$local_report->mission_new_locations_id][$i]['content'] = $local_report->local_report_content;
+//                $local_reports_arrays[$local_report->mission_new_locations_id][$i]['time'] = $local_report->created_at;
+//            }
+////         dd($local_reports_arrays);
 
             //計算個嚴重程度傷患人數
             $victim_nums = DB::table('victim_details')
@@ -244,7 +250,7 @@ class LocalMissionController extends Controller {
 
 
 
-
+//這裡是最久以前註解的東西
 
 
 //      //dd(Auth::user()->mission_list_id);
@@ -324,18 +330,19 @@ class LocalMissionController extends Controller {
 //dd($relieverMissionUsersArray);
         //dd($country_or_city_inputs);
         return view('manage_pages.mission_manage_local')
-            ->with('mission_new_locations', $mission_new_locations)
-            ->with('relieverFreeUserAmounts', $relieverFreeUserAmounts)
-            ->with('executive_require_people_num', $executive_require_people_num)
-            ->with('EmtUserAmounts', $EmtUserAmounts)
-            ->with('local_reports_arrays', $local_reports_arrays)
-            ->with('mission_new_locations', $mission_new_locations)
-            ->with('executiveRequireArrays', $executiveRequireArrays)
-            ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
-            ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
-            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays)
-            ->with('mission_support_people', $mission_support_people)
-            ->with('victim_num_arrays', $victim_num_arrays);
+//            ->with('mission_new_locations', $mission_new_locations)
+//            ->with('relieverFreeUserAmounts', $relieverFreeUserAmounts)
+//            ->with('executive_require_people_num', $executive_require_people_num)
+//            ->with('EmtUserAmounts', $EmtUserAmounts)
+//            ->with('local_reports_arrays', $local_reports_arrays)
+//            ->with('mission_new_locations', $mission_new_locations)
+//            ->with('executiveRequireArrays', $executiveRequireArrays)
+//            ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
+//            ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
+//            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays)
+//            ->with('mission_support_people', $mission_support_people)
+//            ->with('victim_num_arrays', $victim_num_arrays)
+            ;
 
 	}
 
@@ -378,51 +385,52 @@ class LocalMissionController extends Controller {
 	 */
 	public function edit(Request $request)
 	{
-        //        $inputs=$request->except('_token');
-//        dd($inputs);
-        $frees=$request->input('free');
-//        dd($frees);
-        $missions=$request->input('mission');
-//        dd($missions);
-        $mission_new_locations_id=$request->input('mission_new_locations_id');
-        $mission_list_id=Auth::user()->mission_list_id;
-        if(isset($frees)) {
-            foreach ($frees as $free) {
-                $delete = DB::table('works_ons')->where('id', $free)->get();
-                if (isset($delete)) {
-                    DB::table('works_ons')->where('id', $free)->delete();
-
-                    $modifies = new Modify;
-                    $modifies->old_value = $free;
-                    $modifies->modify_value = 'null';
-                    $modifies->table_name = 'works_ons';
-                    $modifies->attribute_name = 'all';
-                    $modifies->id = Auth::user()->id;
-                    $modifies->save();
+//        //        $inputs=$request->except('_token');
+////        dd($inputs);
+//        $frees=$request->input('free');
+////        dd($frees);
+//        $missions=$request->input('mission');
+////        dd($missions);
+//        $mission_new_locations_id=$request->input('mission_new_locations_id');
+//        $mission_list_id=Auth::user()->mission_list_id;
+//        if(isset($frees)) {
+//            foreach ($frees as $free) {
+//                $delete = DB::table('works_ons')->where('id', $free)->get();
+//                if (isset($delete)) {
+//                    DB::table('works_ons')->where('id', $free)->delete();
+//
+//                    $modifies = new Modify;
+//                    $modifies->old_value = $free;
+//                    $modifies->modify_value = 'null';
+//                    $modifies->table_name = 'works_ons';
+//                    $modifies->attribute_name = 'all';
+//                    $modifies->id = Auth::user()->id;
+//                    $modifies->save();
+////                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)',
+////                        array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
+//                }
+//            }
+//        }
+//        if(isset($missions)) {
+//            foreach ($missions as $mission) {
+//                $insert= DB::table('works_ons')->where('id', $mission)->get();
+//
+//                if($insert == null)
+//                {
+//
 //                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)',
 //                        array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
-                }
-            }
-        }
-        if(isset($missions)) {
-            foreach ($missions as $mission) {
-                $insert= DB::table('works_ons')->where('id', $mission)->get();
-
-                if($insert == null)
-                {
-
-                    DB::insert('insert into works_ons (mission_list_id,mission_new_locations_id, id,created_at,updated_at) values (?,?,?,?,?)',
-                        array($mission_list_id,$mission_new_locations_id, $mission, date('Y-m-d H:i:s'), date('Y-m-d H:i:s')));
-
-                }
-                else
-                {
-
-                }
-            }
-
-        }
-        DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',$mission_new_locations_id)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
+//
+//                }
+//                else
+//                {
+//
+//                }
+//            }
+//
+//        }
+//        DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',$mission_new_locations_id)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
+//
         return Redirect::to('mission/manage/local');
 	}
 
@@ -434,25 +442,25 @@ class LocalMissionController extends Controller {
 	 */
     public function update(Request $request)
     {
-        $inputs=$request->except('_token');
-//        dd($inputs);
-        $emt = 0;
-        $reliever = 1;
-        $support_type =$request->input('support_type');
-        $mission_list_id=Auth::user()->mission_list_id;
-        if($support_type == $emt)
-        {
-            $local_emt_num = $request->input('local_emt_num');
-            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_emt_num' => $local_emt_num]);
-            DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',1)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
-
-
-        }
-        elseif($support_type == $reliever)
-        {
-            $local_reliever_num = $request->input('local_reliever_num');
-            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_reliever_num' => $local_reliever_num]);
-        }
+//        $inputs=$request->except('_token');
+////        dd($inputs);
+//        $emt = 0;
+//        $reliever = 1;
+//        $support_type =$request->input('support_type');
+//        $mission_list_id=Auth::user()->mission_list_id;
+//        if($support_type == $emt)
+//        {
+//            $local_emt_num = $request->input('local_emt_num');
+//            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_emt_num' => $local_emt_num]);
+//            DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',1)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
+//
+//
+//        }
+//        elseif($support_type == $reliever)
+//        {
+//            $local_reliever_num = $request->input('local_reliever_num');
+//            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_reliever_num' => $local_reliever_num]);
+//        }
         return Redirect::to('mission/manage/local');
 
     }

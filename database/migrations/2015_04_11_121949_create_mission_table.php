@@ -48,7 +48,7 @@ class CreateMissionTable extends Migration {
 //            $table->unsignedInteger('mission_new_locations_id');
             $table->unsignedInteger('mission_list_id');
             $table->unsignedInteger('id');
-            $table->enum('status', ['執行中','支援', '已完成']);
+            $table->enum('status', ['執行中', '已完成']);
             $table->timestamps();
         });
 
@@ -56,10 +56,13 @@ class CreateMissionTable extends Migration {
         {
             $table->increments('mission_support_person_id');
             $table->unsignedInteger('mission_list_id');
-            $table->integer('local_emt_num');
-            $table->integer('local_reliever_num');
-            $table->integer('center_assign_emt_num')->default(0);
-            $table->integer('center_assign_reliever_num')->default(0);
+            $table->unsignedInteger('id'); //roles
+            $table->integer('mission_support_people_num');
+            $table->string('mission_support_people_reason');
+//            $table->integer('local_emt_num');
+//            $table->integer('local_reliever_num');
+//            $table->integer('center_assign_emt_num')->default(0);
+//            $table->integer('center_assign_reliever_num')->default(0);
             $table->timestamps();
         });
 
@@ -84,6 +87,7 @@ class CreateMissionTable extends Migration {
             //$table->timestamp('complete_time')->nullable();
             $table->text('fname')->nullable();
             $table->text('lname');
+            $table->enum('sex',['男', '女']);
             $table->text('phone')->nullable();
 //            $table->text('mission_comment')->nullable();
             $table->text('email')->nullable();
@@ -91,10 +95,10 @@ class CreateMissionTable extends Migration {
             //$table->enum('country_or_city', ['縣', '市']);
             $table->text('township_or_district_input');
             //$table->enum('township_or_district', ['鄉', '鎮','區']);
-            $table->text('rd_or_st_1');
-            $table->text('rd_or_st_2');
+            $table->text('rd_or_st_1')->nullable();
+            $table->text('rd_or_st_2')->nullable();
             //道路或街道名稱
-            $table->text('location');
+            $table->text('location')->nullable();
 //            $table->boolean('notice');
             $table->unsignedInteger('mission_list_id');
 //            $table->unsignedInteger('mission_new_locations_id');

@@ -19,13 +19,40 @@ class CenterMissionController extends Controller {
 	 */
 	public function index()
 	{
-                $mission_lists = DB::table('mission_lists')->get();
+                //取出mission_list 按照 未分配任務->分配人員->執行中->任務完成 排序
+                $mission_lists = DB::table('mission_lists')
 
-                //取出各任務的通報內容
+                    ->orderBy('assign_people_finish_time')
+                    ->orderBy('arrive_location_time')
+                    ->orderBy('mission_complete_time')
+
+                    ->get();
+//dd($mission_lists);
+
+                //取出未分配任務
+                 $unsigned_missions = DB::table('missions')
+                    ->where('mission_list_id',1)
+                     ->orderBy('created_at')
+                     ->get();
+//        dd($unsigned_missions);
+
+                //取出各任務的通報內容 時間 負責人
                 $mission_contents = DB::table('missions')
                 ->get();
 //dd($mission_contents);
 
+//        $mission_contents_array =[];
+//        foreach($mission_contents as $mission_content){
+//
+//            $mission_contents_array[$mission_content->mission_list_id]['id'] = $mission_content->mission_id;
+//            $mission_contents_array[$mission_content->mission_list_id]['content'] = $mission_content->mission_content;
+//            $mission_contents_array[$mission_content->mission_list_id]['created_at'] = $mission_content->created_at;
+//            $mission_contents_array[$mission_content->mission_list_id]['fname'] = $mission_content->fname;
+//            $mission_contents_array[$mission_content->mission_list_id]['lname'] = $mission_content->lname;
+//            $mission_contents_array[$mission_content->mission_list_id]['sex'] = $mission_content->sex;
+//        }
+
+        //
         $mission_contents_array =[];
         foreach($mission_contents as $mission_content){
                 if(!isset($mission_contents_array[$mission_content->mission_list_id]))
@@ -38,9 +65,18 @@ class CenterMissionController extends Controller {
             }
             $mission_contents_array[$mission_content->mission_list_id][ $i]['id'] = $mission_content->mission_id;
             $mission_contents_array[$mission_content->mission_list_id][ $i]['content'] = $mission_content->mission_content;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['created_at'] = $mission_content->created_at;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['fname'] = $mission_content->fname;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['lname'] = $mission_content->lname;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['sex'] = $mission_content->sex;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['township_or_district_input'] = $mission_content->township_or_district_input;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['r1'] = $mission_content->rd_or_st_1;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['r2'] = $mission_content->rd_or_st_1;
+            $mission_contents_array[$mission_content->mission_list_id][ $i]['location'] = $mission_content->location;
         }
 
-        //dd($mission_contents_array);
+//        dd($mission_contents_array);
+
                  //取出各任務的負責人資料
                     $mission_list_charges = DB::table('mission_lists')
                         ->join('users','users.id','=','mission_lists.id')
@@ -106,138 +142,246 @@ class CenterMissionController extends Controller {
             ->join('roles','roles.id','=','role_user.role_id')
             ->join('works_ons','works_ons.id','=','role_user.user_id')
             ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-            ->where('role_user.role_id','=',4)
+            ->where('role_user.role_id','=',5)
             ->groupBy('mission_list_id')
             ->get();
 //        dd($relieverUsers);
 
-        $relieverUsersArrays =[];
-        foreach($relieverUsers as $relieverUser){
-            $relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
-            $missionUserArrays[$relieverUser->mission_list_id][$relieverUser->slug] = $relieverUser->total;
+        $relieverUsersArrays = [];
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($relieverUsers as $relieverUser){
+
+                if($mission_list->mission_list_id == $relieverUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
+                    $missionUserArrays[$relieverUser->mission_list_id][$relieverUser->slug] = $relieverUser->total;
+                }
+                if($unfind == false){
+                    $slug = $relieverUser->slug;
+                }
+            }
+            if( $unfind == false ){
+                $relieverUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
         }
+
+
+//        $relieverUsersArrays =[];
+//        foreach($relieverUsers as $relieverUser){
+//            $relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
+//            $missionUserArrays[$relieverUser->mission_list_id][$relieverUser->slug] = $relieverUser->total;
+//        }
 //        dd($relieverUsersArrays);
 //        dd($missionUserArrays);
 
-                //計算各任務醫療人員人數
-                $emtUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',5)
-                    ->groupBy('mission_list_id')
-                    ->get();
+        //計算各任務醫療人員人數
+        $emtUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('roles','roles.id','=','role_user.role_id')
+            ->join('works_ons','works_ons.id','=','role_user.user_id')
+            ->select('mission_list_id','slug',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',6)
+            ->groupBy('mission_list_id')
+            ->get();
 //                dd($emtUsers);
 
-                $emtUsersArrays =[];
-                foreach($emtUsers as $emtUser){
-                    $emtUsersArrays[$emtUser->mission_list_id] = $emtUser->total;
+        $emtUsersArrays =[];
+
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($emtUsers as $emtUser){
+
+                if($mission_list->mission_list_id == $emtUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$emtUser->mission_list_id] = $emtUser->total;
                     $missionUserArrays[$emtUser->mission_list_id][$emtUser->slug] = $emtUser->total;
                 }
-                //dd($emtUsersArrays);
-
-                //計算各任務後勤人員人數
-                $resourceUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',6)
-                    ->groupBy('mission_list_id')
-                    ->get();
-
-                $resourceUsersArrays =[];
-                foreach($resourceUsers as $resourceUser){
-                    $resourceUsersArrays[$resourceUser->mission_list_id] = $resourceUser->total;
-                    $missionUserArrays[$resourceUser->mission_list_id][$resourceUser->slug] = $resourceUser->total;
+                if($unfind == false){
+                    $slug = $emtUser->slug;
                 }
-                //dd($resourceUsersArrays);
+            }
+            if( $unfind == false ){
+                $emtUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
+        }
 
-                //計算各任務救火人員人數
-                $fireUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',7)
-                    ->groupBy('mission_list_id')
-                    ->get();
+        //dd($emtUsersArrays);
+        //dd($missionUserArrays);
 
-                $fireUsersArrays =[];
-                foreach($fireUsers as $fireUser){
-                    $fireUsersArrays[$fireUser->mission_list_id] = $fireUser->total;
+
+        //計算各任務救火人員人數
+        $fireUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('roles','roles.id','=','role_user.role_id')
+            ->join('works_ons','works_ons.id','=','role_user.user_id')
+            ->select('mission_list_id','slug',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',7)
+            ->groupBy('mission_list_id')
+            ->get();
+
+        $fireUsersArrays =[];
+
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($fireUsers as $fireUser){
+
+                if($mission_list->mission_list_id == $fireUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$fireUser->mission_list_id] = $fireUser->total;
                     $missionUserArrays[$fireUser->mission_list_id][$fireUser->slug] = $fireUser->total;
                 }
-                //dd($fireUsersArrays);
+                if($unfind == false){
+                    $slug = $fireUser->slug;
+                }
+            }
+            if( $unfind == false ){
+                $fireUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
+        }
 
-                //計算各任務清潔人員人數
-                $cleanUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',8)
-                    ->groupBy('mission_list_id')
-                    ->get();
+        //dd($fireUsersArrays);
 
-                $cleanUsersArrays =[];
-                foreach($cleanUsers as $cleanUser){
-                    $cleanUsersArrays[$cleanUser->mission_list_id] = $cleanUser->total;
+        //計算各任務清潔人員人數
+        $cleanUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('roles','roles.id','=','role_user.role_id')
+            ->join('works_ons','works_ons.id','=','role_user.user_id')
+            ->select('mission_list_id','slug',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',8)
+            ->groupBy('mission_list_id')
+            ->get();
+
+        $cleanUsersArrays =[];
+
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($cleanUsers as $cleanUser){
+
+                if($mission_list->mission_list_id == $cleanUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$cleanUser->mission_list_id] = $cleanUser->total;
                     $missionUserArrays[$cleanUser->mission_list_id][$cleanUser->slug] = $cleanUser->total;
                 }
-                //dd($cleanUsersArrays);
+                if($unfind == false){
+                    $slug = $cleanUser->slug;
+                }
+            }
+            if( $unfind == false ){
+                $cleanUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
+        }
 
-                //計算各任務道路修復人員人數
-                $roadUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',9)
-                    ->groupBy('mission_list_id')
-                    ->get();
+//        dd($missionUserArrays);
 
-                $roadUsersArrays =[];
-                foreach($roadUsers as $roadUser){
-                    $roadUsersArrays[$roadUser->mission_list_id] = $roadUser->total;
+        //計算各任務道路修復人員人數
+        $roadUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('roles','roles.id','=','role_user.role_id')
+            ->join('works_ons','works_ons.id','=','role_user.user_id')
+            ->select('mission_list_id','slug',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',9)
+            ->groupBy('mission_list_id')
+            ->get();
+
+        $roadUsersArrays =[];
+
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($roadUsers as $roadUser){
+
+                if($mission_list->mission_list_id == $roadUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$roadUser->mission_list_id] = $roadUser->total;
                     $missionUserArrays[$roadUser->mission_list_id][$roadUser->slug] = $roadUser->total;
                 }
-                //dd($roadUsersArrays);
+                if($unfind == false){
+                    $slug = $roadUser->slug;
+                }
+            }
+            if( $unfind == false ){
+                $roadUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
+        }
 
-                //計算各任務管線修復人員人數
-                $pipeUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',10)
-                    ->groupBy('mission_list_id')
-                    ->get();
+//        dd($missionUserArrays);
 
-                $pipeUsersArrays =[];
-                foreach($pipeUsers as $pipeUser){
-                    $pipeUsersArrays[$pipeUser->mission_list_id] = $pipeUser->total;
+        //計算各任務管線修復人員人數
+        $pipeUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('roles','roles.id','=','role_user.role_id')
+            ->join('works_ons','works_ons.id','=','role_user.user_id')
+            ->select('mission_list_id','slug',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',10)
+            ->groupBy('mission_list_id')
+            ->get();
+
+        $pipeUsersArrays =[];
+
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($pipeUsers as $pipeUser){
+
+                if($mission_list->mission_list_id == $pipeUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$pipeUser->mission_list_id] = $pipeUser->total;
                     $missionUserArrays[$pipeUser->mission_list_id][$pipeUser->slug] = $pipeUser->total;
                 }
-                //dd($pipeUsersArrays);
+                if($unfind == false){
+                    $slug = $pipeUser->slug;
+                }
+            }
+            if( $unfind == false ){
+                $pipeUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
+        }
 
-                //計算各任務警戒人員人數
-                $policeUsers = DB::table('users')
-                    ->join('role_user','users.id','=','role_user.user_id')
-                    ->join('roles','roles.id','=','role_user.role_id')
-                    ->join('works_ons','works_ons.id','=','role_user.user_id')
-                    ->select('mission_list_id','slug',DB::raw('count(*) as total'))
-                    ->where('role_user.role_id','=',11)
-                    ->groupBy('mission_list_id')
-                    ->get();
+//        dd($missionUserArrays);
 
-                $policeUsersArrays =[];
-                foreach($policeUsers as $policeUser){
-                    $policeUsersArrays[$policeUser->mission_list_id] = $policeUser->total;
+        //計算各任務警戒人員人數
+        $policeUsers = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('roles','roles.id','=','role_user.role_id')
+            ->join('works_ons','works_ons.id','=','role_user.user_id')
+            ->select('mission_list_id','slug',DB::raw('count(*) as total'))
+            ->where('role_user.role_id','=',11)
+            ->groupBy('mission_list_id')
+            ->get();
+
+        $policeUsersArrays =[];
+
+        foreach($mission_lists as $mission_list ){
+            $unfind = false;
+            $slug = "";
+            foreach($policeUsers as $policeUser){
+
+                if($mission_list->mission_list_id == $policeUser ->mission_list_id){
+                    $unfind = true;
+                    $relieverUsersArrays[$policeUser->mission_list_id] = $policeUser->total;
                     $missionUserArrays[$policeUser->mission_list_id][$policeUser->slug] = $policeUser->total;
                 }
-                //dd($policeUsersArrays);
+                if($unfind == false){
+                    $slug = $policeUser->slug;
+                }
+            }
+            if( $unfind == false ){
+                $policeUsersArrays[$mission_list->mission_list_id] = 0;
+                $missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+            }
+        }
+        //dd($policeUsersArrays);
 
 //        dd($missionUserArrays);
 
@@ -462,11 +606,14 @@ class CenterMissionController extends Controller {
             //->with('mission_list_reports', $mission_list_reports)
             //->with('achievement_array', $achievement_array)
             ->with('mission_list_charge_Arrays', $mission_list_charge_Arrays)
-            ->with('mission_contents', $mission_contents)
+//            ->with('mission_contents', $mission_contents)
             ->with('mission_contents_array', $mission_contents_array)
 //            ->with('mission_support_people_Array', $mission_support_people_Array)
 //            ->with('mission_support_product_Arrays', $mission_support_product_Arrays)
 //            ->with('center_amounts_arrays', $center_amounts_arrays)
+            ->with('roles', $roles)
+            ->with('missionUserArrays', $missionUserArrays)
+        ->with('unsigned_missions', $unsigned_missions)
             ;
 
 	}

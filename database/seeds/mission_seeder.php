@@ -42,6 +42,7 @@ class mission_seeder extends Seeder{
         $mission_list->id = 4;
         $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
         $mission_list->arrive_location_time = date('Y-m-d H:i:s');
+        $mission_list->mission_complete_time =  date('Y-m-d H:i:s');
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
@@ -50,7 +51,7 @@ class mission_seeder extends Seeder{
         $mission_list->id = 5;
         $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
         $mission_list->arrive_location_time = date('Y-m-d H:i:s');
-        $mission_list->mission_complete_time =  date('Y-m-d H:i:s');
+
         $mission_list->save();
 
 //        $mission_list = new App\Mission_list;
@@ -66,6 +67,7 @@ class mission_seeder extends Seeder{
         $mission->mission_content = '電線杆倒塌起火';
         $mission->fname = '一文';
         $mission->lname = '柯';
+        $mission->sex = '男';
         $mission->phone = '0902020101';
         //$mission->country_or_city_input = '高雄市';
         $mission->township_or_district_input = '苓雅區';
@@ -81,6 +83,7 @@ class mission_seeder extends Seeder{
 //        $mission->mission_type = '道路斷裂';
         $mission->mission_content = '道路多處地方斷裂且變形';
         $mission->lname = '紀';
+        $mission->sex = '女';
         $mission->email = 'yui@yahoo.com.tw';
         $mission->rd_or_st_1 = '三多一路';
          $mission->location = '283巷二弄';
@@ -93,13 +96,14 @@ class mission_seeder extends Seeder{
         $mission->mission_content = '多處房子出入處已坍塌, 尚有12人受困';
         $mission->fname = '耀恩';
         $mission->lname = '林';
+        $mission->sex = '男';
         $mission->phone = '0918181818';
         $mission->email = 'qrqweqwe@yahoo.com.tw';
         $mission->township_or_district_input = '苓雅區';
         $mission->rd_or_st_1 = '三多一路';
         $mission->rd_or_st_2 = '武慶三路';
 //        $mission->location = '全聯';
-        $mission->mission_list_id = 3;
+        $mission->mission_list_id = 4;
         $mission->save();
 
         $mission = new App\Mission;
@@ -107,6 +111,7 @@ class mission_seeder extends Seeder{
 //        $mission->mission_type = '建築物起火';
         $mission->mission_content = '強風吹斷高壓電線';
         $mission->lname = '蔣';
+        $mission->sex = '女';
         $mission->phone = '0919191919';
         $mission->email = 'wwwwwe@yahoo.com.tw';
         $mission->township_or_district_input = '橋頭區';
@@ -121,6 +126,7 @@ class mission_seeder extends Seeder{
         $mission->mission_content = '爆炸將地下水管管線炸斷，路上積水';
         $mission->fname = '鑫';
         $mission->lname = '李';
+        $mission->sex = '女';
         $mission->phone = '0967812345';
         $mission->rd_or_st_1 = '苓雅區';
         $mission->location = '三多二路（福德三路至凱旋路口）';
@@ -132,6 +138,7 @@ class mission_seeder extends Seeder{
 //        $mission->mission_type = '道路斷裂';
         $mission->mission_content = '道路因爆炸塌陷';
         $mission->lname = '李';
+        $mission->sex = '男';
         $mission->phone = '0978123456';
         $mission->township_or_district_input = '前鎮區';
         $mission->rd_or_st_1 = '廣東三街';
@@ -144,6 +151,7 @@ class mission_seeder extends Seeder{
 //        $mission->mission_type = '建築物倒塌';
         $mission->mission_content = '多處的路燈及樹已倒塌';
         $mission->lname = '黃';
+        $mission->sex = '男';
         $mission->email = 'uio@yahoo.com.tw';
         $mission->township_or_district_input = '新興區';
         $mission->location = '忠孝公園';
@@ -156,6 +164,7 @@ class mission_seeder extends Seeder{
         $mission->mission_content = '此處排水孔遭堵塞無法排水';
         $mission->fname = '伊富';
         $mission->lname = '葉';
+        $mission->sex = '男';
         $mission->phone = '0987654321';
         $mission->township_or_district_input = '新興區';
         $mission->location = '德智街1號';
@@ -168,6 +177,7 @@ class mission_seeder extends Seeder{
         $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
         $mission->fname = '恩五';
         $mission->lname = '陳';
+        $mission->sex = '男';
         $mission->township_or_district_input = '新興區';
         $mission->location = '高雄高商';
         $mission->mission_list_id = 1;

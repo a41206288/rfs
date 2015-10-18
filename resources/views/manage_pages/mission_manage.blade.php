@@ -60,13 +60,13 @@
                         <th colspan="2">調派人員結束時間</th>
                         <th colspan="2">到達任務現場時間</th>
                         <th colspan="2">任務執行完成時間</th>
-                        <th>脫困</th>
-                        <th>救火</th>
-                        <th>清潔</th>
-                        <th>道路修復</th>
-                        <th>醫療</th>
-                        <th>管線修復</th>
-                        <th>警戒</th>
+                        @if(isset($roles))
+                            @foreach($roles as $role)
+                                @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+                                    <th>{!! $role->description  !!}</th>
+                                @endif
+                            @endforeach
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -74,64 +74,76 @@
                     @if (isset($mission_lists) )
                         @foreach ($mission_lists as $mission_list )
                             @if ($mission_list->mission_name != "未分配任務")
-                            <tr>
-                                {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>--}}
-                                {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>--}}
-                                <td>{{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%Y/%m/%d') }}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%H:%M') }}</td>
-                                <td>{!! $mission_list->mission_name!!}</td>
-                                <td>
+                                <tr>
+                                    {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>--}}
+                                    {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>--}}
+                                    <td>{{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%Y/%m/%d') }}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%H:%M') }}</td>
+                                    <td>{!! $mission_list->mission_name!!}</td>
+                                    <td>
+                                            @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
+                                                {{--{!! dd($mission_list_charge_Array['name'] ) !!}}--}}
+                                                <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                                                    指派負責人
+                                                </button>
+                                            @else
+                                                {!! $mission_list_charge_Arrays[$mission_list->mission_list_id]['name']  !!}
+                                            @endif
+                                    </td>
+                                    <td colspan="6">
                                         @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
-                                            {{--{!! dd($mission_list_charge_Array['name'] ) !!}}--}}
-                                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-                                                指派負責人
-                                            </button>
-                                        @else
-                                            {!! $mission_list_charge_Arrays[$mission_list->mission_list_id]['name']  !!}
+
+                                        @elseif(isset($mission_list->mission_complete_time))
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar"
+                                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                    <p class="text-right">{{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%Y/%m/%d') }}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        {{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%H:%M') }}
+                                                        &nbsp;&nbsp;</p>
+                                                </div>
+                                            </div>
+
+                                        @elseif(isset($mission_list->arrive_location_time))
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar"
+                                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
+                                                    <p class="text-right">{{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%Y/%m/%d') }}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        {{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%H:%M') }}
+                                                        &nbsp;&nbsp;</p>
+                                                </div>
+                                            </div>
+
+                                        @elseif(isset($mission_list->assign_people_finish_time))
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar"
+                                                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+                                                    <p class="text-right">{{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%Y/%m/%d') }}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        {{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%H:%M') }}
+                                                        &nbsp;&nbsp;</p>
+                                                </div>
+                                            </div>
                                         @endif
-                                </td>
-                                <td colspan="6">
-                                    @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
+                                    </td>
+                                        @if(isset($roles))
+                                            @foreach($roles as $role)
+                                                @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
 
-                                    @elseif(isset($mission_list->mission_complete_time))
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar"
-                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%Y/%m/%d') }}
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%H:%M') }}
-                                                    &nbsp;&nbsp;</p>
-                                            </div>
-                                        </div>
+                                                    @if (isset($missionUserArrays) )
+                                                        <td class="text-right ">{!! $missionUserArrays[$mission_list->mission_list_id][$role->slug] !!}</td>
+                                                    @endif
 
-                                    @elseif(isset($mission_list->arrive_location_time))
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar"
-                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
-                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%Y/%m/%d') }}
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%H:%M') }}
-                                                    &nbsp;&nbsp;</p>
-                                            </div>
-                                        </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
 
-                                    @elseif(isset($mission_list->assign_people_finish_time))
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-danger" role="progressbar"
-                                                 aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
-                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%Y/%m/%d') }}
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%H:%M') }}
-                                                    &nbsp;&nbsp;</p>
-                                            </div>
-                                        </div>
 
-                                    @endif
-                                </td>
-                            </tr>
+                                </tr>
                             @endif
-                      @endforeach
+                        @endforeach
                     @endif
                     {{--<tr>--}}
                         {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>--}}
@@ -237,7 +249,7 @@
 
             {{--</div>--}}
             <div class="tab-pane" id="call">
-                <div class="col-xs-10 col-sm-8 col-md-8" >
+                <div class="col-xs-8 col-sm-6 col-md-6" >
 
                 <table class="table table-bordered">
                     <thead>
@@ -258,49 +270,106 @@
                             {!! Form::select('name', array('請選擇' => '請選擇'), '請選擇', []) !!}
                         </th>
                         <th></th>
-                        <th>日期</th>
-                        <th>時間</th>
+                        {{--<th>日期</th>--}}
+                        {{--<th>時間</th>--}}
                         <th>內容</th>
                         <th>通報人</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
-                        <td>150929073202</td>
-                        <td>三多民權交叉路口</td>
-                        <td>謝卸</td>
-                        <td>2015/09/29</td><td>08:14</td>
-                        <td>變電箱起火</td><td>陳先生</td>
+                    @if (isset($mission_lists) )
+                        @foreach ($mission_lists as $mission_list )
+                            @if ($mission_list->mission_name != "未分配任務")
+                                    @if (isset($mission_contents_array[$mission_list->mission_list_id]) )
+                                        <div style="display: none">
+                                            {!! $n = count($mission_contents_array[$mission_list->mission_list_id])+1 !!}
+                                        </div>
+                                            <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
+                                                <td>{{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%y%m%d%H%M') }}{!! $mission_list->mission_list_id !!}</td>
+                                                <td>{!! $mission_list->mission_name  !!}</td>
+                                                @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
+                                                    <td><button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                                                            指派負責人
+                                                        </button></td>
+                                                @else
+                                                    <td>{!! $mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] !!}</td>
+                                                @endif
+                                                {{--第一行任務--}}
+                                                {{--<td>{{ (new Carbon\Carbon($mission_contents_array[$mission_list->mission_list_id][1]['created_at']))->formatLocalized('%Y/%m/%d') }}</td>--}}
 
-                    </tr>
-                    <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
-                        <td>150929073201</td>
-                        <td>四維林森交叉路口</td>
-                        <td>謝卸</td>
-                        <td>2015/09/29</td><td>08:14</td>
-                        <td>路樹倒塌</td><td>吳小姐</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>2015/09/29</td><td>08:14</td>
-                        <td>路樹倒塌</td><td>吳小姐</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>2015/09/29</td><td>08:14</td>
-                        <td>路樹倒塌</td><td>吳小姐</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>2015/09/29</td><td>08:14</td>
-                        <td>路樹倒塌</td><td>吳小姐</td>
-                    </tr>
+                                                {{--<td>{{ (new Carbon\Carbon($mission_contents_array[$mission_list->mission_list_id][1]['created_at']))->formatLocalized('%H:%M') }}</td>--}}
+                                                <td>{!! $mission_contents_array[$mission_list->mission_list_id][1]['content']  !!}</td>
+
+                                                @if($mission_contents_array[$mission_list->mission_list_id][1]['sex'] == '男')
+
+                                                    <td>{!! $mission_contents_array[$mission_list->mission_list_id][1]['lname'].$mission_contents_array[$mission_list->mission_list_id][1]['fname'] !!} 先生</td>
+                                                @elseif($mission_contents_array[$mission_list->mission_list_id][1]['sex'] == '女')
+                                                    <td>{!! $mission_contents_array[$mission_list->mission_list_id][1]['lname'].$mission_contents_array[$mission_list->mission_list_id][1]['fname'] !!} 小姐</td>
+                                                @endif
+
+
+                                            </tr>
+
+                                        {{--剩餘任務--}}
+                                        @for($i=2;$i<$n;$i++)
+
+                                            <tr>
+                                            <td colspan="3"></td>
+                                            {{--<td>{{ (new Carbon\Carbon($mission_contents_array[$mission_list->mission_list_id][$i]['created_at']))->formatLocalized('%Y/%m/%d') }}</td>--}}
+
+                                            {{--<td>{{ (new Carbon\Carbon($mission_contents_array[$mission_list->mission_list_id][$i]['created_at']))->formatLocalized('%H:%M') }}</td>--}}
+                                            <td>{!! $mission_contents_array[$mission_list->mission_list_id][$i]['content']  !!}</td>
+
+                                            @if($mission_contents_array[$mission_list->mission_list_id][$i]['sex'] == '男')
+
+                                                <td>{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!} 先生</td>
+                                            @elseif($mission_contents_array[$mission_list->mission_list_id][$i]['sex'] == '女')
+                                                <td>{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!} 小姐</td>
+                                            @endif
+                                        @endfor
+                                            </tr>
+                                    @else
+                                        <tr><td colspan="7"></td></tr>
+
+                                    @endif
+                                    {{--<td>150929073202</td>--}}
+                                    {{--<td>三多民權交叉路口</td>--}}
+                                    {{--<td>謝卸</td>--}}
+                                    {{--<td>2015/09/29</td><td>08:14</td>--}}
+                                    {{--<td>變電箱起火</td><td>陳先生</td>--}}
+
+
+                            @endif
+                        @endforeach
+                    @endif
+                    {{--<tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">--}}
+                        {{--<td>150929073201</td>--}}
+                        {{--<td>四維林森交叉路口</td>--}}
+                        {{--<td>謝卸</td>--}}
+                        {{--<td>2015/09/29</td><td>08:14</td>--}}
+                        {{--<td>路樹倒塌</td><td>吳小姐</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<td colspan="3"></td>--}}
+                        {{--<td>2015/09/29</td><td>08:14</td>--}}
+                        {{--<td>路樹倒塌</td><td>吳小姐</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<td colspan="3"></td>--}}
+                        {{--<td>2015/09/29</td><td>08:14</td>--}}
+                        {{--<td>路樹倒塌</td><td>吳小姐</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<td colspan="3"></td>--}}
+                        {{--<td>2015/09/29</td><td>08:14</td>--}}
+                        {{--<td>路樹倒塌</td><td>吳小姐</td>--}}
+                    {{--</tr>--}}
                     
                     </tbody>
 
                 </table>
                 </div>
-                <div class="col-xs-6 col-sm-4 col-md-4" >
+                <div class="col-xs-8 col-sm-6 col-md-6" >
                 <table class="table table-bordered">
                     <thead>
 
@@ -347,32 +416,36 @@
                         </th>
                     </tr>
 
+
                     </thead>
                     <tbody>
-                    @if (isset($missions))
+                    @if (isset($unsigned_missions))
 
-                        @foreach ($missions as $mission )
+                        @foreach ($unsigned_missions as $unsigned_mission )
                             <tr>
-                                @if (isset($mission) )
-
-                                    <td width="10%">{!! $mission->mission_id!!}</td>
-                                    <td width="25%">{!! $mission->mission_content!!}</td>
+                                    <td>{{ (new Carbon\Carbon($unsigned_mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>
+                                    @if(isset($unsigned_mission->rd_or_st_1) && isset($unsigned_mission->rd_or_st_2))
+                                        <td >{!!$unsigned_mission->township_or_district_input." ".$unsigned_mission->rd_or_st_1.$unsigned_mission->rd_or_st_2."交叉口"!!}</td>
+                                    @else
+                                        <td >{!!$unsigned_mission->township_or_district_input." ".$unsigned_mission->rd_or_st_1.$unsigned_mission->location!!}</td>
+                                    @endif
+                                    <td width="25%">{!! $unsigned_mission->mission_content!!}</td>
                                     {{--<td width="25%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>--}}
-                                    <td width="30%">{!!$mission->township_or_district_input." ".$mission->location!!}</td>
+
                                     {{--<td width="14%">{!! $mission->created_at!!}</td>--}}
                                     {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>--}}
                                     {{--<td width="14%">{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M:%S') }}</td>--}}
                                     {{--<td width="10%">{!! $mission->lname.$mission->fname!!}</td>--}}
                                     {{--<td width="10%">{!! $mission->phone!!}</td>--}}
                                     {{--<td width="10%">{!! $mission->email!!}</td>--}}
-                                    <td width="25%">{!! Form::select($mission->mission_id,$mission_names, '請選擇',['class' => 'form-control']) !!}</td>
-                                    <td  width="10%">
-                                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">
-                                            創建新任務
-                                        </button>
+                                    {{--<td width="25%">{!! Form::select($unsigned_mission->mission_id,$mission_lists, '0',['class' => 'form-control']) !!}</td>--}}
+                                    {{--<td  width="10%">--}}
+                                        {{--<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">--}}
+                                            {{--創建新任務--}}
+                                        {{--</button>--}}
 
-                                    </td>
-                                @endif
+                                    {{--</td>--}}
+
                                 {{--@if (isset($mission_names) && !isset($mission->mission_list_id) )--}}
                                 {{----}}
                                 {{--@endif--}}

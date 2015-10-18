@@ -953,6 +953,16 @@ class support_seeder extends Seeder{
 //        $center_support_person_detail->skill = "修車";
 //        $center_support_person_detail->save();
 
+        //地方愈增援人員
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_support_person_id = 1;
+        $mission_support_person->mission_list_id = 2;
+        $mission_support_person->id = 6;
+        $mission_support_person->mission_support_people_num = 3;
+        $mission_support_person->mission_support_people_reason = "需要有處理簡單傷口能力的醫療人員";
+        $mission_support_person->save();
+
 
 
 
