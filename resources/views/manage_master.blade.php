@@ -60,7 +60,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <br><br><br><br>
+    <br><br><br>
     <div>
         <div class="col-xs-16 col-sm-12 col-md-12" >
             @yield('content')
