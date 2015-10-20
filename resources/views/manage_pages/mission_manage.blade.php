@@ -374,8 +374,8 @@
                     <thead>
 
                     <tr>
-                        <th width="20%">通報時間</th>
-                        <th width="40%">通報地址<br>
+                        <th >通報日期/時間</th>
+                        <th >通報地址<br>
                             {{--@foreach ($country_or_cities as $country_or_city)--}}
 
                             {{--<td>{!! $country_or_city!!}</td>--}}
@@ -397,19 +397,22 @@
 
                             @endif
                         </th>
-                        <th width="40%">通報內容</th>
-
+                        <th >通報內容</th>
+                        <th >將通報分配至現有任務</th>
                     </tr>
                     <tr>
                         <th>
                             {!! Form::select('name', array('日期' => '日期'), '日期', []) !!}
+                            {!! Form::select('name', array('時間' => '時間'), '時間', []) !!}
                             {{--                                {!! Form::select('name', array('時間' => '時間'), '時間', []) !!}--}}
                         </th>
+
                         <th>
                             {{--{!! Form::select('name', array('地點種類' => '地點種類'), '地點種類', []) !!}--}}
                             {!! Form::select('name', array('請選擇' => '請選擇'), '請選擇', []) !!}
                             {!! Form::select('name', array('請選擇' => '請選擇'), '請選擇', []) !!}
                         </th>
+                        <th></th>
                         <th>
                             {!! Form::open(array('url' => 'call/manage/save', 'method' => 'post')) !!}
                             {!! Form::submit('分配至現有任務', ['class' => 'btn btn-default btn-sm']) !!}
@@ -423,13 +426,15 @@
 
                         @foreach ($unsigned_missions as $unsigned_mission )
                             <tr>
-                                    <td>{{ (new Carbon\Carbon($unsigned_mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>
+                                    <td>{{ (new Carbon\Carbon($unsigned_mission->created_at))->formatLocalized('%Y/%m/%d') }} <br>
+                                        {{ (new Carbon\Carbon($unsigned_mission->created_at))->formatLocalized('%H:%M') }}</td>
+
                                     @if(isset($unsigned_mission->rd_or_st_1) && isset($unsigned_mission->rd_or_st_2))
-                                        <td >{!!$unsigned_mission->township_or_district_input." ".$unsigned_mission->rd_or_st_1.$unsigned_mission->rd_or_st_2."交叉口"!!}</td>
+                                        <td >{!!$unsigned_mission->township_or_district_input." ".$unsigned_mission->rd_or_st_1."與".$unsigned_mission->rd_or_st_2."交叉口"!!}</td>
                                     @else
                                         <td >{!!$unsigned_mission->township_or_district_input." ".$unsigned_mission->rd_or_st_1.$unsigned_mission->location!!}</td>
                                     @endif
-                                    <td width="25%">{!! $unsigned_mission->mission_content!!}</td>
+                                    <td >{!! $unsigned_mission->mission_content!!}</td>
                                     {{--<td width="25%">{!! $mission->country_or_city_input." ".$mission->township_or_district_input." ".$mission->location!!}</td>--}}
 
                                     {{--<td width="14%">{!! $mission->created_at!!}</td>--}}
@@ -438,7 +443,7 @@
                                     {{--<td width="10%">{!! $mission->lname.$mission->fname!!}</td>--}}
                                     {{--<td width="10%">{!! $mission->phone!!}</td>--}}
                                     {{--<td width="10%">{!! $mission->email!!}</td>--}}
-                                    {{--<td width="25%">{!! Form::select($unsigned_mission->mission_id,$mission_lists, '0',['class' => 'form-control']) !!}</td>--}}
+                                    <td >{!! Form::select($unsigned_mission->mission_id,$mission_list_names, '請選擇',['class' => 'form-control']) !!}</td>
                                     {{--<td  width="10%">--}}
                                         {{--<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#createMissionBlock">--}}
                                             {{--創建新任務--}}

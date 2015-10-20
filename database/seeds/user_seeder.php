@@ -238,6 +238,51 @@ class user_seeder extends Seeder{
         $Works_on->mission_list_id = 4;
         $Works_on->save();
 
+        $user = new App\User;
+        $user->id = 54;
+        $user->name = "郭一建";
+        $user->email = "emt4_2@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905405454';
+        $user->skill = '無特殊技能';
+        $user->country_or_city_input = '苗栗縣';
+        $user->township_or_district_input = '公館鄉';
+        $user->arrived = 1;
+        $user->save();
+
+        $user  = User::where('name', '=', '郭一建')->first();
+        $role = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($role);
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 54;
+        $Works_on->mission_list_id = 4;
+        $Works_on->save();
+
+        $user = new App\User;
+        $user->id = 55;
+        $user->name = "郭二建";
+        $user->email = "emt4_3@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905505555';
+        $user->skill = '無特殊技能';
+        $user->country_or_city_input = '新北市';
+        $user->township_or_district_input = '萬華區';
+        $user->arrived = 1;
+        $user->save();
+
+        $user  = User::where('name', '=', '郭二建')->first();
+        $role = Permission::where('name', '=', 'emt')->first();
+        $user->assignRole($role);
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 55;
+        $Works_on->mission_list_id = 4;
+        $Works_on->save();
+
+
         //醫療組閒置
 
         $user = new App\User;
@@ -1073,40 +1118,7 @@ class user_seeder extends Seeder{
         $Works_on->mission_list_id = 1;
         $Works_on->save();
 
-//        $user = new App\User;
-//        $user->id = 54;
-//        $user->name = "郭一建";
-//        $user->email = "054@yahoo.com.tw";
-//        $user->password =Hash::make ('1234');
-//        $user->phone = '0905405454';
-//        $user->skill = '無特殊技能';
-//        $user->country_or_city_input = '苗栗縣';
-//        $user->township_or_district_input = '公館鄉';
-//        $user->arrived = 0;
-//        $user->save();
-//
-//        $user  = User::where('name', '=', '郭一建')->first();
-//        $role = Permission::where('name', '=', 'Reliever')->first();
-//        $user->assignRole($role);
-//        $user->save();
-//
-//        $user = new App\User;
-//        $user->id = 55;
-//        $user->name = "郭二建";
-//        $user->email = "055@yahoo.com.tw";
-//        $user->password =Hash::make ('1234');
-//        $user->phone = '0905505555';
-//        $user->skill = '無特殊技能';
-//        $user->country_or_city_input = '新北市';
-//        $user->township_or_district_input = '萬華區';
-//        $user->arrived = 0;
-//        $user->save();
-//
-//        $user  = User::where('name', '=', '郭二建')->first();
-//        $role = Permission::where('name', '=', 'Reliever')->first();
-//        $user->assignRole($role);
-//        $user->save();
-//
+        //
 //        $user = new App\User;
 //        $user->id = 56;
 //        $user->name = "郭三建";
@@ -1123,6 +1135,7 @@ class user_seeder extends Seeder{
 //        $role = Permission::where('name', '=', 'emt')->first();
 //        $user->assignRole($role);
 //        $user->save();
+
 //
 //        $user = new App\User; //測試用密碼是1234
 //        $user->id = 57;

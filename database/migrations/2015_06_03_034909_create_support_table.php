@@ -88,6 +88,29 @@ class CreateSupportTable extends Migration {
 //            //$table->foreign('donate_id')->references('donate_id')->on('donates');
 //        });
 
+        Schema::create('mission_support_people', function(Blueprint $table)
+        {
+            $table->increments('mission_support_person_id');
+            $table->unsignedInteger('mission_list_id');
+            $table->unsignedInteger('id'); //roles
+            $table->integer('mission_support_people_num');
+            $table->string('mission_support_people_reason');
+//            $table->integer('local_emt_num');
+//            $table->integer('local_reliever_num');
+//            $table->integer('center_assign_emt_num')->default(0);
+//            $table->integer('center_assign_reliever_num')->default(0);
+            $table->timestamps();
+        });
+
+        Schema::create('mission_help_others', function(Blueprint $table)
+        {
+            $table->increments('mission_help_other_id');
+            $table->unsignedInteger('mission_support_person_id');
+            $table->unsignedInteger('mission_list_id');
+            $table->integer('mission_help_other_num');
+            $table->timestamps();
+        });
+
         Schema::create('center_support_people', function(Blueprint $table){
             $table->increments('center_support_person_id');
             $table->integer('center_support_person_num');
@@ -153,6 +176,8 @@ class CreateSupportTable extends Migration {
         Schema::drop('center_support_person_details');
         Schema::drop('center_support_person_modifies');
         Schema::drop('modifies');
+        Schema::drop('mission_support_people');
+        Schema::drop('mission_help_others');
 //        Schema::drop('interviews');
 //        Schema::drop('interviewers');
 

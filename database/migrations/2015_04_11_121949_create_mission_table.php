@@ -52,19 +52,7 @@ class CreateMissionTable extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('mission_support_people', function(Blueprint $table)
-        {
-            $table->increments('mission_support_person_id');
-            $table->unsignedInteger('mission_list_id');
-            $table->unsignedInteger('id'); //roles
-            $table->integer('mission_support_people_num');
-            $table->string('mission_support_people_reason');
-//            $table->integer('local_emt_num');
-//            $table->integer('local_reliever_num');
-//            $table->integer('center_assign_emt_num')->default(0);
-//            $table->integer('center_assign_reliever_num')->default(0);
-            $table->timestamps();
-        });
+
 
 //        Schema::create('mission_support_products', function(Blueprint $table)
 //        {
@@ -138,7 +126,7 @@ class CreateMissionTable extends Migration {
         Schema::drop('mission_lists');
         Schema::drop('reports');
         Schema::drop('local_reports');
-        Schema::drop('mission_support_people');
+
 //        Schema::drop('mission_support_products');
 //        Schema::drop('mission_new_locations');
         Schema::drop('works_ons');

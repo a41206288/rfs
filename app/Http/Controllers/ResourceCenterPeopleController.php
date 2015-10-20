@@ -25,6 +25,7 @@ class ResourceCenterPeopleController extends Controller {
 		//計算中心待命的脫困組人數
 		$relieverFreeUsers = DB::table('users')
 			->join('role_user','users.id','=','role_user.user_id')
+			->join('works_ons','works_ons.id','=','role_user.user_id')
 			->where('mission_list_id','=',1)
 			->where('role_user.role_id','=',5)
 			->get();
@@ -33,6 +34,7 @@ class ResourceCenterPeopleController extends Controller {
 		//計算中心待命的醫療組人數
 		$emtFreeUsers = DB::table('users')
 			->join('role_user','users.id','=','role_user.user_id')
+			->join('works_ons','works_ons.id','=','role_user.user_id')
 			->where('mission_list_id','=',1)
 			->where('role_user.role_id','=',6)
 			->get();

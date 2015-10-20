@@ -22,6 +22,8 @@ class support_seeder extends Seeder{
 //        DB:: table('donate_products')->delete();
         DB:: table('center_support_people')->delete();
         DB:: table('center_support_person_details')->delete();
+        DB:: table('mission_support_people')->delete();
+        DB:: table('mission_help_others')->delete();
 //        DB:: table('center_support_products')->delete();
 //        DB:: table('buys')->delete();
 //        DB:: table('companies')->delete();
@@ -960,8 +962,40 @@ class support_seeder extends Seeder{
         $mission_support_person->mission_list_id = 2;
         $mission_support_person->id = 6;
         $mission_support_person->mission_support_people_num = 3;
-        $mission_support_person->mission_support_people_reason = "需要有處理簡單傷口能力的醫療人員";
+        $mission_support_person->mission_support_people_reason = "目前醫療人手不足，需要更多增援";
         $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_support_person_id = 2;
+        $mission_support_person->mission_list_id = 2;
+        $mission_support_person->id = 7;
+        $mission_support_person->mission_support_people_num = 2;
+        $mission_support_person->mission_support_people_reason = "火勢太大無法控制，需要增援";
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_support_person_id = 3;
+        $mission_support_person->mission_list_id = 4;
+        $mission_support_person->id = 9;
+        $mission_support_person->mission_support_people_num = 4;
+        $mission_support_person->mission_support_people_reason = "目前道路修復上遇到障礙缺乏人手，需要支援";
+        $mission_support_person->save();
+
+        //愈支援其他地方
+
+        $mission_help_other = new App\Mission_help_other;
+        $mission_help_other->mission_help_other_id = 1;
+        $mission_help_other->mission_support_person_id = 1;
+        $mission_help_other->mission_list_id = 1;
+        $mission_help_other->mission_help_other_num = 1;
+        $mission_help_other->save();
+
+        $mission_help_other = new App\Mission_help_other;
+        $mission_help_other->mission_help_other_id = 1;
+        $mission_help_other->mission_support_person_id = 1;
+        $mission_help_other->mission_list_id = 4;
+        $mission_help_other->mission_help_other_num = 1;
+        $mission_help_other->save();
 
 
 

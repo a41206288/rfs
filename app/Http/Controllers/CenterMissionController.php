@@ -29,6 +29,12 @@ class CenterMissionController extends Controller {
                     ->get();
 //dd($mission_lists);
 
+                $mission_list_names = DB::table('mission_lists')
+                    ->where('mission_name','!=','未分配任務')
+                    ->lists('mission_name','mission_list_id');
+        $mission_list_names  = array_add($mission_list_names, '請選擇', '請選擇');
+//dd($mission_list_names);
+
                 //取出未分配任務
                  $unsigned_missions = DB::table('missions')
                     ->where('mission_list_id',1)
@@ -614,6 +620,7 @@ class CenterMissionController extends Controller {
             ->with('roles', $roles)
             ->with('missionUserArrays', $missionUserArrays)
         ->with('unsigned_missions', $unsigned_missions)
+        ->with('mission_list_names', $mission_list_names)
             ;
 
 	}

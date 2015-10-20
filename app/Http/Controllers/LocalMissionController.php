@@ -16,8 +16,13 @@ class LocalMissionController extends Controller {
 	 */
 	public function index()
 	{
-        $mission_list_id=Auth::user()->mission_list_id;
-//        dd(Auth::user());
+        $id=Auth::user()->id;
+        $works_ons = DB::table('works_ons')
+            ->where('id', $id)
+            ->select('mission_list_id')
+            ->get();
+        $mission_list_id = $works_ons[0]->mission_list_id;
+//        dd($mission_list_id);
         if($mission_list_id != 1) {
 
 
@@ -28,6 +33,9 @@ class LocalMissionController extends Controller {
                 ->orderBy('location')
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
+//            dd($missions);
+
+
 
             $mission_lists = DB::table('mission_lists')->get();
 
@@ -43,13 +51,36 @@ class LocalMissionController extends Controller {
 //                ->sum('executive_require_people_num');
 ////            dd($relieverFreeUserAmounts);
 
+
+
             //計算向中央要求總增援數用
             $mission_support_people = DB::table('mission_support_people')
-                ->where('mission_list_id', $mission_list_id)
+//                ->where('mission_list_id', $mission_list_id)
                ->get();
-//            dd($mission_support_people);
+
+            $mission_support_people_array =[];
+            foreach($mission_support_people as $mission_support_person){
+                if(!isset($mission_support_people_array[$mission_support_person->mission_list_id]))
+                {
+                    $i=1;
+                }
+                else
+                {
+                    $i=count($mission_support_people_array[$mission_support_person->mission_list_id])+1;
+                }
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['id'] = $mission_support_person->id;
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
+
+            }
+//            dd($mission_support_people_array);
 
 
+            $mission_help_other = DB::table('mission_help_others')
+//                ->join('mission_support_people','mission_support_people.mission_support_people_id','=','mission_help_others.mission_support_people_id')
+//                ->where('', ) 依照 mission_support_person_id 排
+                ->get();
+//dd($mission_help_other);
 
 
 
@@ -244,6 +275,7 @@ class LocalMissionController extends Controller {
             $local_reports_arrays = null;
             $executive_require_people_num = null;
             $mission_support_people = null;
+            $mission_support_people_array = null;
             $victim_nums = null;
             $victim_num_arrays = null;
         }
@@ -341,7 +373,8 @@ class LocalMissionController extends Controller {
 //            ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
 //            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays)
 //            ->with('mission_support_people', $mission_support_people)
-//            ->with('victim_num_arrays', $victim_num_arrays)
+                ->with('victim_num_arrays', $victim_num_arrays)
+                ->with('mission_support_people_array', $mission_support_people_array)
             ;
 
 	}
