@@ -221,12 +221,113 @@
                         <tr><th width="15%">人員種類</th><th width="20%">欲增援人數</th><th width="20%">缺額</th><th colspan="3" width="45%">已招募人員報到</th></tr>
                         </thead>
                         <tbody>
-                        <tr><td  rowspan="1">醫療</td><td  rowspan="1" class="text-right success">10</td><td  rowspan="1" class="text-right success">1</td><td>四維路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
-                        {{--<tr><td>五福路段</td><td class="text-right" class="text-right">3</td><td>已到達</td></tr>--}}
-                        {{--<tr><td>六合路段</td><td class="text-right">3</td><td></td></tr>--}}
-                        <tr><td  rowspan="2">清潔</td><td  rowspan="2" class="text-right warning">10</td><td  rowspan="2" class="text-right warning">6</td><td>四維路段</td><td class="text-right">1</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
-                        <tr><td>六合路段</td><td class="text-right">3</td><td><button class="btn btn-default btn-sm">已到達</button></td></tr>
-                        <tr><td>道路修復</td><td class="text-right danger">10</td><td class="text-right danger">0</td><td></td><td class="text-right"></td><td></td></tr>
+
+                        @if(isset($mission_support_people_array[$mission_list_id]))
+                            <div style="display: none">
+                                {!!
+                                $mission_support_people_count = count($mission_support_people_array[$mission_list_id])+1
+                                 !!}
+
+                            </div>
+                            {{--{!! dd($mission_support_people_count) !!}--}}
+
+                            <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
+                            @for($i=1;$i<$mission_support_people_count;$i++)
+                                @if(isset($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']]))
+                                    <div style="display: none">
+                                        {!! $mission_help_other_count = count($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']])+1 !!}
+                                        {!! $mission_help_other_num_total = 0 !!}
+                                        {{--{!! dd($mission_help_other_count) !!}--}}
+                                        @for($j=1;$j<$mission_help_other_count;$j++)
+                                            {!! $mission_help_other_num_total = $mission_help_other_num_total + $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$j]['mission_help_other_num'] !!}
+                                       @endfor
+                                    </div>
+                                @else
+                                    {{--{!! dd($i) !!}--}}
+                                    <div style="display: none">
+                                        {!! $mission_help_other_count = 1  !!}
+                                        {!! $mission_help_other_num_total = 0 !!}
+                                    </div>
+                                @endif
+                        <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
+                        <tr>
+                            <td  rowspan="{!! $mission_help_other_count !!}">{!! $mission_support_people_array[$mission_list_id][$i]['role'] !!}</td>
+                            @if($mission_help_other_num_total / $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] > 0.5)
+                                <td  rowspan="{!! $mission_help_other_count !!}" class="text-right success">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
+                                <td  rowspan="{!! $mission_help_other_count !!}" class="text-right success">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+                            @elseif($mission_help_other_num_total / $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] == 0)
+                                <td  rowspan="{!! $mission_help_other_count !!}" class="text-right danger">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
+                                <td  rowspan="{!! $mission_help_other_count !!}" class="text-right danger">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+                            @else
+                                <td  rowspan="{!! $mission_help_other_count !!}" class="text-right warning">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
+                                <td  rowspan="{!! $mission_help_other_count !!}" class="text-right warning">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+
+                            @endif
+                            @if($mission_help_other_count == 1)
+                                <td colspan="3"></td>
+                            @endif
+                        </tr>
+
+                        @for($k=1;$k<$mission_help_other_count;$k++)
+                            {{--{!! dd($mission_help_other_count) !!}--}}
+                            <tr>
+                                @if($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name'] == "未分配任務")
+                                    <td>中央</td>
+                                @else
+                                    <td>{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name']  !!}</td>
+                                @endif
+                                <td class="text-right">{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_num']  !!}</td>
+                                <td><button class="btn btn-default btn-sm">已到達</button></td>
+                            </tr>
+                        @endfor
+
+                        {{--<tr>--}}
+                            {{--<td>六合路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
+                        {{--</tr>--}}
+
+                            @endfor
+                        @endif
+                        {{--<tr>--}}
+                            {{--<td  rowspan="1">醫療</td>--}}
+                            {{--<td  rowspan="1" class="text-right success">10</td>--}}
+                            {{--<td  rowspan="1" class="text-right success">1</td>--}}
+                            {{--<td>四維路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
+                        {{--</tr>--}}
+
+                        {{--<tr>--}}
+                            {{--<td  rowspan="4">清潔</td>--}}
+                            {{--<td  rowspan="4" class="text-right warning">10</td>--}}
+                            {{--<td  rowspan="4" class="text-right warning">6</td>--}}
+
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td>六合路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td>六合路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td>六合路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
+                        {{--</tr>--}}
+
+                        {{--<tr>--}}
+                            {{--<td>道路修復</td>--}}
+                            {{--<td class="text-right danger">10</td>--}}
+                            {{--<td class="text-right danger">0</td>--}}
+                            {{--<td></td>--}}
+                            {{--<td class="text-right"></td>--}}
+                            {{--<td></td>--}}
+                        {{--</tr>--}}
                         </tbody>
                     </table>
                 </div>

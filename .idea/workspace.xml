@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Mission_help_other.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_04_11_121949_create_mission_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_04_11_121949_create_mission_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/blade.xml" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/support_seeder.php" afterPath="$PROJECT_DIR$/database/seeds/support_seeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/user_seeder.php" afterPath="$PROJECT_DIR$/database/seeds/user_seeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -35,31 +28,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LocalMissionController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LocalMissionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5626168">
-              <caret line="75" column="42" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
+            <state vertical-scroll-proportion="-8.903226">
+              <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="44.580647">
-              <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
+            <state vertical-scroll-proportion="12.460378">
+              <caret line="254" column="145" selection-start-line="254" selection-start-column="145" selection-end-line="254" selection-end-column="145" />
               <folding>
                 <element signature="e#1017#1042#0#HTML" expanded="true" />
                 <element signature="e#1572#1613#0#HTML" expanded="true" />
                 <element signature="e#2821#2846#0#HTML" expanded="true" />
+                <element signature="e#5204#5245#0#HTML" expanded="true" />
                 <element signature="e#7277#7302#0#HTML" expanded="true" />
                 <element signature="e#10604#10629#0#HTML" expanded="true" />
                 <element signature="e#12182#12223#0#HTML" expanded="true" />
-                <element signature="e#13990#14015#0#HTML" expanded="true" />
-                <element signature="e#15016#15041#0#HTML" expanded="true" />
-                <element signature="e#16585#16626#0#HTML" expanded="true" />
+                <element signature="e#13009#13088#0#HTML" expanded="true" />
+                <element signature="e#13360#13381#0#HTML" expanded="true" />
+                <element signature="e#14311#14332#0#HTML" expanded="true" />
+                <element signature="e#14605#14684#0#HTML" expanded="true" />
+                <element signature="e#20684#20709#0#HTML" expanded="true" />
+                <element signature="e#21710#21735#0#HTML" expanded="true" />
+                <element signature="e#23279#23320#0#HTML" expanded="true" />
+                <marker date="1445406272304" expanded="true" signature="12703:12858" placeholder="..." />
+                <marker date="1445406272304" expanded="true" signature="13876:14079" placeholder="..." />
+                <marker date="1445406272304" expanded="true" signature="16808:16882" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2015_06_03_034909_create_support_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.870968">
+              <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="support_seeder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/seeds/support_seeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="4.709677">
+              <caret line="984" column="61" selection-start-line="984" selection-start-column="61" selection-end-line="984" selection-end-column="61" />
+              <folding>
+                <element signature="e#6#40#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,18 +138,18 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersLoginController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_13_062206_new_role.php" />
-        <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/mission_seeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_04_11_121949_create_mission_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" />
         <option value="$PROJECT_DIR$/app/Mission_help_other.php" />
         <option value="$PROJECT_DIR$/database/seeds/user_seeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/support_seeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" />
+        <option value="$PROJECT_DIR$/database/seeds/support_seeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
+        <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
       </list>
     </option>
   </component>
@@ -613,12 +636,6 @@
       <option name="number" value="Default" />
       <updated>1428751848408</updated>
     </task>
-    <task id="LOCAL-00002" summary="設定mission的timestamps">
-      <created>1430814001597</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1430814001597</updated>
-    </task>
     <task id="LOCAL-00003" summary="更改資料庫table名稱&#10;mission-&gt;missions&#10;mission_list-&gt;mission_lists">
       <created>1431068209645</created>
       <option name="number" value="00003" />
@@ -907,7 +924,13 @@
       <option name="project" value="LOCAL" />
       <updated>1445149060772</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="resource 頁面登入修改">
+      <created>1445322119574</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1445322119577</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -921,7 +944,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14488189" sideWeight="0.49926794" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.044657096" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.05263158" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -949,7 +972,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mission manage center 新增按鈕即model" />
     <MESSAGE value="analysis_manage 第一筆地點修改 submit 無法正常印出" />
     <MESSAGE value="call manage ，mission manage table 線加粗 &#10;call manage  現有救災任務 新增內含通報資料 樣式&#10;" />
     <MESSAGE value="analysis manage local 修改 分配人員model 新增" />
@@ -974,7 +996,8 @@
     <MESSAGE value="中央指派人數 改為由指定事件負責人 界面更新 (民眾) v.上色版2" />
     <MESSAGE value="seeder重設 roles增加職位 刪除通報,任務,user不必要欄位 刪除物資部分" />
     <MESSAGE value="中央指揮官頁面讀取完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="中央指揮官頁面讀取完成" />
+    <MESSAGE value="resource 頁面登入修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="resource 頁面登入修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1158,13 +1181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.178572">
-          <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5900178">
@@ -1285,28 +1301,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/support_seeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.290322">
-          <caret line="992" column="57" selection-start-line="992" selection-start-column="57" selection-end-line="992" selection-end-column="57" />
-          <folding>
-            <element signature="e#6#40#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Mission_help_other.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19439252">
           <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-72.67742">
-          <caret line="181" column="39" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1343,22 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41916168">
-          <caret line="432" column="132" selection-start-line="432" selection-start-column="132" selection-end-line="432" selection-end-column="132" />
-          <folding>
-            <element signature="e#15488#15509#0#HTML" expanded="true" />
-            <element signature="e#15728#15807#0#HTML" expanded="true" />
-            <marker date="1445319492378" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1445319492378" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1445319492378" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1445319492378" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1445319492378" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterProductController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.6307693">
@@ -1375,29 +1357,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="44.580647">
-          <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
+        <state vertical-scroll-proportion="1.5065421">
+          <caret line="283" column="0" selection-start-line="283" selection-start-column="0" selection-end-line="286" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/support_seeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.709677">
+          <caret line="984" column="61" selection-start-line="984" selection-start-column="61" selection-end-line="984" selection-end-column="61" />
           <folding>
-            <element signature="e#1017#1042#0#HTML" expanded="true" />
-            <element signature="e#1572#1613#0#HTML" expanded="true" />
-            <element signature="e#2821#2846#0#HTML" expanded="true" />
-            <element signature="e#7277#7302#0#HTML" expanded="true" />
-            <element signature="e#10604#10629#0#HTML" expanded="true" />
-            <element signature="e#12182#12223#0#HTML" expanded="true" />
-            <element signature="e#13990#14015#0#HTML" expanded="true" />
-            <element signature="e#15016#15041#0#HTML" expanded="true" />
-            <element signature="e#16585#16626#0#HTML" expanded="true" />
+            <element signature="e#6#40#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.870968">
+          <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5626168">
-          <caret line="75" column="42" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
+        <state vertical-scroll-proportion="-8.903226">
+          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29433963">
+          <caret line="31" column="9" selection-start-line="27" selection-start-column="4" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.460378">
+          <caret line="254" column="145" selection-start-line="254" selection-start-column="145" selection-end-line="254" selection-end-column="145" />
+          <folding>
+            <element signature="e#1017#1042#0#HTML" expanded="true" />
+            <element signature="e#1572#1613#0#HTML" expanded="true" />
+            <element signature="e#2821#2846#0#HTML" expanded="true" />
+            <element signature="e#5204#5245#0#HTML" expanded="true" />
+            <element signature="e#7277#7302#0#HTML" expanded="true" />
+            <element signature="e#10604#10629#0#HTML" expanded="true" />
+            <element signature="e#12182#12223#0#HTML" expanded="true" />
+            <element signature="e#13009#13088#0#HTML" expanded="true" />
+            <element signature="e#13360#13381#0#HTML" expanded="true" />
+            <element signature="e#14311#14332#0#HTML" expanded="true" />
+            <element signature="e#14605#14684#0#HTML" expanded="true" />
+            <element signature="e#20684#20709#0#HTML" expanded="true" />
+            <element signature="e#21710#21735#0#HTML" expanded="true" />
+            <element signature="e#23279#23320#0#HTML" expanded="true" />
+            <marker date="1445406272304" expanded="true" signature="12703:12858" placeholder="..." />
+            <marker date="1445406272304" expanded="true" signature="13876:14079" placeholder="..." />
+            <marker date="1445406272304" expanded="true" signature="16808:16882" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

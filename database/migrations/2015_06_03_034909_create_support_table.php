@@ -108,6 +108,7 @@ class CreateSupportTable extends Migration {
             $table->unsignedInteger('mission_support_person_id');
             $table->unsignedInteger('mission_list_id');
             $table->integer('mission_help_other_num');
+            $table->boolean('arrived');
             $table->timestamps();
         });
 

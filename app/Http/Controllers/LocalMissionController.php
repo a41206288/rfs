@@ -55,7 +55,9 @@ class LocalMissionController extends Controller {
 
             //計算向中央要求總增援數用
             $mission_support_people = DB::table('mission_support_people')
+                ->join('roles','roles.id','=','mission_support_people.id')
 //                ->where('mission_list_id', $mission_list_id)
+
                ->get();
 
             $mission_support_people_array =[];
@@ -68,20 +70,34 @@ class LocalMissionController extends Controller {
                 {
                     $i=count($mission_support_people_array[$mission_support_person->mission_list_id])+1;
                 }
-                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['id'] = $mission_support_person->id;
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_person_id'] = $mission_support_person->mission_support_person_id;
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['role'] = $mission_support_person->description;
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
-                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
+//                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
 
             }
 //            dd($mission_support_people_array);
 
 
-            $mission_help_other = DB::table('mission_help_others')
-//                ->join('mission_support_people','mission_support_people.mission_support_people_id','=','mission_help_others.mission_support_people_id')
+            $mission_help_others = DB::table('mission_help_others')
+                ->join('mission_lists','mission_lists.mission_list_id','=','mission_help_others.mission_list_id')
 //                ->where('', ) 依照 mission_support_person_id 排
                 ->get();
-//dd($mission_help_other);
-
+//dd($mission_help_others);
+            $mission_help_other_array =[];
+            foreach($mission_help_others as $mission_help_other){
+                if(!isset($mission_help_other_array[$mission_help_other->mission_support_person_id]))
+                {
+                    $i=1;
+                }
+                else
+                {
+                    $i=count($mission_help_other_array[$mission_help_other->mission_support_person_id])+1;
+                }
+                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_name'] = $mission_help_other->mission_name;
+                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
+            }
+//            dd($mission_help_other_array);
 
 
 //            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
@@ -375,6 +391,8 @@ class LocalMissionController extends Controller {
 //            ->with('mission_support_people', $mission_support_people)
                 ->with('victim_num_arrays', $victim_num_arrays)
                 ->with('mission_support_people_array', $mission_support_people_array)
+                ->with('mission_help_other_array', $mission_help_other_array)
+                ->with('mission_list_id', $mission_list_id)
             ;
 
 	}
