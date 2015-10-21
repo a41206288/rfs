@@ -117,6 +117,7 @@ class CreateSupportTable extends Migration {
             $table->integer('center_support_person_num');
             $table->integer('called_person_num');
             $table->text('center_support_person_requirement');
+            $table->text('center_support_person_introduction');
             $table->timestamps();
         });
 

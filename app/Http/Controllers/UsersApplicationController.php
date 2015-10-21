@@ -18,9 +18,13 @@ class UsersApplicationController extends Controller {
     public function index()
     {
         $center_support_people = DB::table('center_support_people')->get();
+        $skill = DB::table('skills')->get();
+        $skill_support_people = DB::table('skill_support_people')->get();
 
         return view('user_pages.application_input')
-            ->with('center_support_people', $center_support_people);
+            ->with('center_support_people', $center_support_people)
+            ->with('skills', $skill)
+            ->with('skill_support_people', $skill_support_people);
     }
 
     /**
@@ -38,8 +42,9 @@ class UsersApplicationController extends Controller {
         $country_or_city = $request->input('country_or_city');
         $township_or_district = $request->input('township_or_district');
         $center_support_person_id = $request->input('center_support_person_id');
-        $skill = $request->input('skill');
+        $skills = $request->input('submitskill');
 
+//dd($skill);
 
 
         $center_support_person_details = new Center_support_person_detail();
@@ -47,7 +52,7 @@ class UsersApplicationController extends Controller {
         $center_support_person_details->phone = $phone;
         $center_support_person_details->email = $email;
         $center_support_person_details->center_support_person_id = $center_support_person_id;
-        $center_support_person_details->skill = $skill;
+        $center_support_person_details->skill = $skills;
         $center_support_person_details->country_or_city_input = $country_or_city;
         $center_support_person_details->township_or_district_input = $township_or_district;
         $center_support_person_details->created_at = date('Y-m-d H:i:s');

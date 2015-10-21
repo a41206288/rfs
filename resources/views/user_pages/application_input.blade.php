@@ -10,16 +10,45 @@
         table, td, th {
             border: 0px solid black;
         }
-
         td {
             padding: 5px;
         }
+        .nav-tabs {
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            min-height: 46px;
+        }
+        .nav-tabs > li {
+            float: none;
+            display: inline-block;
+        }
+        .well{
+            height: 300px;
+        }
     </style>
-    <h4><b>我要應徵</b></h4><hr>
+    <h4><b>我要應徵</b></h4>
+    {{--<hr>--}}
+    <ul class="nav nav-tabs">
+        @foreach($center_support_people as $center_support_person)
+            <li><a href="#tab{!! $center_support_person->center_support_person_id !!}" data-toggle="tab" id="{!! $center_support_person->center_support_person_id !!}">{!! $center_support_person->center_support_person_requirement !!}</a></li>
+        @endforeach
+    </ul>
 
-
-    <div class="col-xs-12 col-sm-9 col-md-9" >
+    <div class="tab-content">
+        @foreach($center_support_people as $center_support_person)
+            <div class="tab-pane" id="tab{!! $center_support_person->center_support_person_id !!}">
+                {{--<h3><b>醫療組-醫生</b></h3>--}}
+                <h4><b>&nbsp;&nbsp;工作內容: </b></h4>
+                <div class="col-xs-4 col-sm-3 col-md-3" >
+                    <div class="well">{!! $center_support_person->center_support_person_introduction !!}</div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <div class="col-xs-12 col-sm-9 col-md-9" style="display:none" id="profile">
         {!! Form::open(array('url' => 'application/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
+
         <div class="col-xs-10 col-sm-7 col-md-7" >
             <table>
                 <tr><td colspan="2"><b>個人資料</b></td></tr>
@@ -35,72 +64,77 @@
                 </tr>
                 <tr>
                     <td width="30%"><font color="#ff0b11">*</font>目前所在地點</td>
-                    <td width="35%"><select class="form-control " name="country_or_city" id="country_or_city" onchange="country_onchange()" >
+                    <td width="35%">
+                        <select class="form-control " name="country_or_city" id="country_or_city" onchange="country_onchange()" >
                             <option value="">請選擇縣/市</option>
-                        </select></td>
-                    <td width="35%"><select class="form-control" name="township_or_district" id="township_or_district">
+                        </select>
+                    </td>
+                    <td width="35%">
+                        <select class="form-control" name="township_or_district" id="township_or_district">
                             <option value="">請選擇鄉鎮區</option>
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
-                <tr><td><br></td></tr>
+                <tr><td><input type="text" hidden="hidden" name="center_support_person_id" id="center_support_person_id"/><br></td></tr>
                 {{--<tr>--}}
                     {{--<td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>--}}
                 {{--</tr>--}}
-                <tr>
-                    <td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>--}}
+                {{--</tr>--}}
 
             </table>
         </div>
         <div class="col-xs-6 col-sm-5 col-md-5" >
             <table>
-                <tr><td colspan="3"><font color="#ff0b11">*</font><b>您選擇的志工種類</b></td></tr>
-                <tr><td><input type="hidden" value="-1" id="center_support_person_id" name="center_support_person_id"></td><td colspan="2" id="choose">尚未選擇</td></tr>
-                <tr><td colspan="3"><br></td></tr>
-                <tr><td colspan="3"><b>特殊技能 </b>( 此欄為選填 )</td></tr>
+                <tr><td colspan="3"><b>特殊技能 </b>( 已勾選為必須技能 )</td></tr>
                 <tr>
-                    <td></td><td  colspan="2">{!! Form::textarea('skill','',['class' => 'form-control', 'id' => 'skill','style'=>'resize: vertical']) !!}</td>
+                    <td></td>
+                    <td  colspan="2" id="skill">
+                        @foreach($skills as $skill)
+                            <?php $hasbox = false; ?>
+                            @foreach($skill_support_people as $skill_support_person)
+                                @if($skill_support_person->skill_id == $skill->skill_id)
+                                    {!! Form::checkbox('options[]', $skill->skill_name,null,['id'=>'check'.$skill_support_person->support_people_id]) !!}
+                                    {!! Form::label("",$skill->skill_name) !!}<br>
+                                    <?php $hasbox = true; ?>
+                                @endif
+                            @endforeach
+                            @if($hasbox==false)
+                                {!! Form::checkbox('options[]', $skill->skill_name) !!}
+                                {!! Form::label("",$skill->skill_name) !!}<br>
+                            @endif
+
+                        @endforeach
+                            <input type="text" name="submitskill" id="submitskill" hidden="hidden" />
+                    </td>
                 </tr>
             </table>
         </div>
 
+
         <div class="col-xs-16 col-sm-12 col-md-12 text-center">
-            <hr>
+            {{--<hr>--}}
             {!! Form::submit('送出', ['class' => 'btn btn-primary btn-sm']) !!}
         </div >
         {!! Form::close() !!}
     </div>
-    <div class="col-xs-4 col-sm-3 col-md-3" >
-        <div style="height:400px;width:100%;overflow:auto;">
-            <table class="btn-group-vertical">
-                <thead><tr><td colspan="2"><b>應徵志工種類</b>(請在此選擇欲應徵的志工種類)</td></tr></thead>
-                <tbody id="needed">
-                @if(isset($center_support_people))
-                    @foreach($center_support_people as $center_support_person)
-                        <tr class="btn btn-block btn-default btn-sm">
-                            <td><input type="hidden" value="{!! $center_support_person->center_support_person_id !!}"/></td>
-                            <td>{!!$center_support_person->center_support_person_requirement ." ". $center_support_person->center_support_person_num!!} 人</td>
-
-                        </tr>
-                    @endforeach
-                @endif
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 
 @endsection
 
 @section('javascript')
     <script>
-        $('#needed tr').click(function () {
-            var rowIndex = $('#needed tr').index(this); //取得tr的index
-            var choose_type = $('#needed').find('tr').eq(rowIndex).find('td:eq(1)').text();
-            var string_index = choose_type.search("的人");
-            choose_type = choose_type.slice(0,string_index+2);
-            $('#choose').text(choose_type);
-            $('#center_support_person_id').attr("value", $('#needed').find('tr').eq(rowIndex).find('td:eq(0)').find('input').attr("value"));
+        $('a').one("click", function () {
+            $('#profile').css('display','block');
+        });
+        $('a').click(function () {
+            $('#center_support_person_id').val($(this).attr('id'));
+
+            var checkboxid = '#check' + $(this).attr('id');
+            $('#skill').find('input').prop('disabled',false);
+            $('#skill').find('input').prop('checked',false);
+            $(checkboxid).prop('disabled',true);
+            $(checkboxid).prop('checked',true);
         });
         function checkForm()
         {
@@ -114,11 +148,22 @@
                 $('#email').focus();
                 return false;
             }
-            if($('#choose').text() == "尚未選擇")
-        {
-            alert("請在右方的志工種類中，選擇您要應徵的類型");
-            return false;
-        }
+            if($('#country_or_city :selected').text()=="請選擇縣市"){
+                $('#country_or_city').focus();
+                alert("請選擇您的目前所在");
+                return false;
+            }
+            var string = "";
+            for(var i=0; i<$('#skill').find('input').length;i++){
+                if($('#skill').find('input').eq(i).prop('checked')==true){
+                    if(string == ""){
+                        string = string + $('#skill').find('input').eq(i).val();
+                    }else{
+                        string = string + "," + $('#skill').find('input').eq(i).val();
+                    }
+                }
+            }
+            $('#submitskill').val(string);
             return true;
         }
 
