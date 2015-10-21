@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class UsersMissingPosterController extends Controller {
 
@@ -15,7 +16,7 @@ class UsersMissingPosterController extends Controller {
 	 */
 	public function index()
 	{
-		//Åª¨úvictim©Ò¦³¸ê®Æ
+		//Åªï¿½ï¿½victimï¿½Ò¦ï¿½ï¿½ï¿½ï¿½
 		$victim_details = DB::table('victim_details')
 			->orderBy('created_at')
 			->get();
@@ -49,9 +50,9 @@ class UsersMissingPosterController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
+		return 'nice work!!';
 	}
 
 	/**
@@ -71,7 +72,7 @@ class UsersMissingPosterController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request)
+	public function update()
 	{
 
 
@@ -79,14 +80,14 @@ class UsersMissingPosterController extends Controller {
 //		        $inputs=$request->except('_token');
 //
 //        dd($inputs);
-		$name =$request->input('name');
-		$sex =$request->input('sex');
-		$age =$request->input('age');
-		$person_id =$request->input('person_id');
-		$phone=$request->input('phone');
-		$address =$request->input('address');
+        $name =Input::get( 'name' );
+        $sex =Input::get( 'sex' );
+        $age =Input::get( 'age' );
+        $person_id =Input::get( 'person_id' );
+        $phone =Input::get( 'phone' );
+        $address =Input::get( 'address' );
 
-		//Åª¨úvictim©Ò¦³¸ê®Æ
+		//Åªï¿½ï¿½victimï¿½Ò¦ï¿½ï¿½ï¿½ï¿½
 		$victim_details = DB::table('victim_details');
 
 			if($name != ""){
@@ -117,9 +118,9 @@ class UsersMissingPosterController extends Controller {
 		$victim_details = $victim_details->get();
 //		dd($victim_details);
 
-		return view('user_pages.missing_poster_input')
-			->with('victim_details', $victim_details);
-			}
+
+        return response()->json($victim_details);
+    }
 
 	/**
 	 * Remove the specified resource from storage.

@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\App;
 //民眾用頁面route
 Route::get('/', 'UsersHomeController@index');
+Route::post('update', 'UsersHomeController@update');
 Route::get('call/input', 'UsersCallController@index');
 Route::post('call/input', 'UsersCallController@create');
 Route::get('donate/input', 'UsersDonateController@index');
@@ -22,7 +23,8 @@ Route::get('guidance', 'UsersGuidanceController@index');
 Route::get('application/input', 'UsersApplicationController@index');
 Route::post('application/input', 'UsersApplicationController@create');
 Route::get('missing_poster', 'UsersMissingPosterController@index');
-Route::post('missing_poster', 'UsersMissingPosterController@update');
+Route::post('missing_poster/update', 'UsersMissingPosterController@update');//使用Ajax更新
+//Route::post('missing_poster', 'UsersMissingPosterController@update');//一般送出表單更新
 
 //登入用route
 Route::get('login', 'UsersLoginController@show');
