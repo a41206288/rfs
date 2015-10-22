@@ -1,0 +1,72 @@
+<div class="panel panel-default" >
+    <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+        <div class="navbar-sm-header">{{--標題--}}
+            <a class="navbar-sm-brand" href="#">表格名稱</a>
+        </div>
+
+        <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
+            <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
+                <!-- 範例按鈕 -->
+                <!-- select -->
+                {!! Form::select('name', array('全部' => '全部', '醫療' => '醫療', '脫困' => '脫困'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                <!-- button -->
+                <button type="button" class="btn btn-sm btn-default navbar-sm-btn">執行任務</button>
+                <!-- dropdown -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-default navbar-sm-btn dropdown-toggle" data-toggle="dropdown">
+                        支援其他任務 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">四維</a></li>
+                        <li><a href="#">五福</a></li>
+                    </ul>
+                </div>
+
+
+                <!-- 說明按鈕 -->
+                 <a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body"
+                    title="人員顏色說明"
+                    data-content="
+                        {{--綠色:完成任務，閒置<br />橘色:任務執行中<br />紅色:受傷<br />"--}}
+                        <p class=&quot;bg-success&quot;>綠色:完成任務，閒置</p>
+                        <p class=&quot;bg-warning&quot;>橘色:任務執行中</p>
+                        <p class=&quot;bg-danger&quot;>紅色:受傷</p>"
+                    data-html="true" role="button">人員顏色說明
+                 </a>
+            </ul>
+            <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
+
+            </ul>
+        </div>
+    </nav>
+    <div style="height: 200px;overflow-y: scroll;">{{--固定高度表格--}}
+        <table class="table table-hover table-bordered">
+            <thead> <!-- 表格上方欄位標題 -->
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody> <!-- 表格上方欄位內容 -->
+                <tr>
+                    <th>{!! Form::checkbox('name', 'value')!!}</th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{--表格尾端--}}
+    <!-- 一般 -->
+    {{--<div class="panel-footer">綠色:完成任務，閒置&nbsp;&nbsp;&nbsp;&nbsp;橘色:任務執行中&nbsp;&nbsp;&nbsp;&nbsp; 紅色:受傷</div>--}}
+    <!-- 輸入欄位 -->
+    <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+        <div class="collapse navbar-sm-collapse" >
+            <ul class="nav navbar-sm-nav navbar-sm-right">
+                <!-- number -->
+                {!! Form::number('name', 0, ['min'=>'0','class' => 'text-right','style'=>'width:50px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}&nbsp;&nbsp;人&nbsp;&nbsp;
+                <!-- text -->
+                {!! Form::text('name','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
+            </ul>
+        </div>
+    </nav>
+</div>

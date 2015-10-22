@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 
+
     <div class="col-xs-8 col-sm-6 col-md-6" >
         定時回報
         <table class="table table-bordered">

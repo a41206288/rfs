@@ -17,7 +17,7 @@ class EmtVictimController extends Controller {
 	 */
 	public function index()
 	{
-            //Åª¨úvictim©Ò¦³¸ê®Æ
+            //Åªï¿½ï¿½victimï¿½Ò¦ï¿½ï¿½ï¿½ï¿½
             $victim_details = DB::table('victim_details')
                 ->get();
          return view('manage_pages.victim_EMT')
@@ -129,9 +129,51 @@ class EmtVictimController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+        //$inputs=$request->except('_token');
+        //
+//         dd($inputs);
+//        $name =Input::get( 'name' );
+        $sex =Input::get( 'sex' );
+//        $age =Input::get( 'age' );
+//        $person_id =Input::get( 'person_id' );
+//        $phone =Input::get( 'phone' );
+//        $address =Input::get( 'address' );
+
+
+        $victim_details = DB::table('victim_details');
+
+//        if($name != ""){
+//            $victim_details = $victim_details->where('name','like','%'.$name.'%');
+//            //$victim_details = $victim_details->get();
+//
+//        }
+//        if($age != ""){
+//            $victim_details = $victim_details->where('age',$age);
+//            //$victim_details = $victim_details->get();
+//        }
+        if($sex != ""){
+            $victim_details = $victim_details->where('sex',$sex);
+            //$victim_details = $victim_details->get();
+        }
+//        if($person_id != ""){
+//            $victim_details = $victim_details->where('person_id',$person_id);
+//            //$victim_details = $victim_details->get();
+//        }
+//        if($phone != ""){
+//            $victim_details = $victim_details->where('phone',$phone);
+//            //$victim_details = $victim_details->get();
+//        }
+//        if($address != ""){
+//            $victim_details = $victim_details->where('address',$address);
+//            //$victim_details = $victim_details->get();
+//        }
+        $victim_details = $victim_details->get();
+        //dd($victim_details);
+
+
+        return response()->json($victim_details);
 	}
 
 	/**

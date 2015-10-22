@@ -124,7 +124,7 @@
 //            alert($('#name').val());
             if( checkForm() ){
                 $.ajax({
-                    url: 'http://localhost:8000/missing_poster/update',
+                    url: 'missing_poster/update',
                     type: 'POST',
                     headers: {
                         'X-CSRF-Token': "{{ Session::token() }}"

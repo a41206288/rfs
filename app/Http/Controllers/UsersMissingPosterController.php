@@ -74,12 +74,9 @@ class UsersMissingPosterController extends Controller {
 	 */
 	public function update()
 	{
-
-
-
-//		        $inputs=$request->except('_token');
-//
-//        dd($inputs);
+        //$inputs=$request->except('_token');
+        //
+        // dd($inputs);
         $name =Input::get( 'name' );
         $sex =Input::get( 'sex' );
         $age =Input::get( 'age' );
@@ -87,7 +84,7 @@ class UsersMissingPosterController extends Controller {
         $phone =Input::get( 'phone' );
         $address =Input::get( 'address' );
 
-		//Ū��victim�Ҧ����
+
 		$victim_details = DB::table('victim_details');
 
 			if($name != ""){

@@ -19,7 +19,7 @@
     content:"▲";
     }
 @endsection
-@section('content_c7')
+@section('content')
 
     <div class="table-responsive">
 

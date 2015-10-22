@@ -161,6 +161,7 @@ Route::group([
         Route::get('victim/EMT',array('as' => 'emtPanel', 'uses' => 'EmtVictimController@index') );
         Route::post('victim/EMT/create', 'EmtVictimController@create');
         Route::post('victim/EMT/edit', 'EmtVictimController@edit');
+        Route::post('victim/EMT/update', 'EmtVictimController@update');
 
         Route::get('report/EMT', 'EmtReportController@index');
         Route::post('report/reliever', 'EmtReportController@create');
@@ -187,8 +188,8 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'resource'],
     function () {
-        Route::get('resource/manage/product/center', array('as' => 'resourcePanel', 'uses' => 'ResourceCenterProductController@index'));
-        Route::get('resource/manage/people/center', 'ResourceCenterPeopleController@index');
+        Route::get('resource/manage/people/center', array('as' => 'resourcePanel', 'uses' => 'ResourceCenterPeopleController@index'));
+        Route::get('resource/manage/product/center', 'ResourceCenterProductController@index');
 
     });
 
