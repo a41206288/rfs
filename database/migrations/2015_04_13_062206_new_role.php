@@ -60,14 +60,14 @@ class NewRole extends Migration
         $roleReliever = $role->create([
             'name' => 'Reliever',
             'slug' => 'reliever',
-            'description' => '脫困組'
+            'description' => '脫困'
         ]);
 
         $role = new Role();
         $roleEMT = $role->create([
             'name' => 'emt',
             'slug' => 'emt',
-            'description' => '醫療組'
+            'description' => '醫療'
         ]);
 
 //        $role = new Role();
@@ -88,35 +88,35 @@ class NewRole extends Migration
         $roleFire = $role->create([
             'name' => 'Fire',
             'slug' => 'fire',
-            'description' => '救火組'
+            'description' => '救火'
         ]);
 
         $role = new Role();
         $roleClean = $role->create([
             'name' => 'Clean',
             'slug' => 'clean',
-            'description' => '清潔組'
+            'description' => '清潔'
         ]);
 
         $role = new Role();
         $roleRoad = $role->create([
             'name' => 'Road',
             'slug' => 'road',
-            'description' => '道路修復組'
+            'description' => '道路修復'
         ]);
 
         $role = new Role();
         $rolePipe = $role->create([
             'name' => 'Pipe',
             'slug' => 'pipe',
-            'description' => '管線修復組'
+            'description' => '管線修復'
         ]);
 
         $role = new Role();
         $rolePolice = $role->create([
             'name' => 'Police',
             'slug' => 'police',
-            'description' => '警戒組'
+            'description' => '警戒'
         ]);
 
 

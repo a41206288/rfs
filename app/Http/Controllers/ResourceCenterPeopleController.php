@@ -15,12 +15,32 @@ class ResourceCenterPeopleController extends Controller {
 	 */
 	public function index()
 	{
+		//應徵志工人員資料
 		$center_support_person_details = DB::table('center_support_person_details')
 			->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id')
+			->join('roles','roles.id','=','center_support_people.id')
 			->get();
 //		dd($center_support_person_details);
 
-		$center_support_people = DB::table('center_support_people')->get();
+
+//		$center_support_person_details = DB::table('center_support_person_details')
+//			->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id')
+//			->join('roles','roles.id','=','center_support_people.id')
+//			->distinct()
+//			->lists('description','center_support_person_detail_id');
+
+		//取出每個向民眾招募人員需求表有多少人應徵了 頁面地方會進行計算
+		$center_support_person_details_array =[];
+        foreach($center_support_person_details as $center_support_person_detail){
+			$center_support_person_details_array[$center_support_person_detail->center_support_person_id][$center_support_person_detail->center_support_person_detail_id] = $center_support_person_detail->center_support_person_detail_name;
+	  }
+//	 dd($center_support_person_details_array);
+
+		//向民眾招募人員需求表
+		$center_support_people = DB::table('center_support_people')
+			->join('roles','roles.id','=','center_support_people.id')
+			->get();
+//				dd($center_support_people);
 
 		//計算中心待命的脫困組人數
 		$relieverFreeUsers = DB::table('users')
@@ -81,7 +101,9 @@ class ResourceCenterPeopleController extends Controller {
 			->with('emtFreeUsers', $emtFreeUsers)
 			->with('mission_support_people', $mission_support_people)
 			->with('mission_names', $mission_names)
-			->with('roles', $roles);
+			->with('roles', $roles)
+			->with('center_support_person_details_array', $center_support_person_details_array)
+			;
 	}
 
 	/**

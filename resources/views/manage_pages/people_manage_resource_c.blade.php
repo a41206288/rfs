@@ -73,13 +73,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                {{--應徵志工人員資料--}}
                                 @if(isset($center_support_person_details))
                                     @foreach($center_support_person_details as $center_support_person_detail)
                                         <tr>
 
                                             <td>{!! Form::checkbox('name', 'value')!!}</td>
-                                            <td>醫療組</td>
-                                            <td>{!!$center_support_person_detail->center_support_person_detail_name	!!}</td>
+                                            <td>{!!$center_support_person_detail->description!!}</td>
+                                            <td>{!!$center_support_person_detail->center_support_person_detail_name!!}</td>
                                             <td>{!!$center_support_person_detail->phone!!}</td>
                                             {{--<td>{!!$center_support_person_detail->email!!}</td>--}}
                                             <td>{!!$center_support_person_detail->country_or_city_input ." ". $center_support_person_detail->township_or_district_input !!}</td>
@@ -149,26 +151,28 @@
                                     <th width="10%">時間</th>
                                     {{--<th>編號</th>--}}
                                     <th width="15%">人員種類</th>
-                                    <th width="25%">技能</th>
+                                    {{--<th width="25%">技能</th>--}}
                                     <th width="27%">需求人數</th>
                                     <th width="18%">尚需人數</th>
                                 <tr>
                                 </thead>
                                 <tbody>
+
+                                {{--向民眾招募人員需求表--}}
                                 @if(isset($center_support_people))
                                     @foreach($center_support_people as $center_support_person)
                                         <tr>
                                             <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%Y/%m/%d') }}</td>
-                                            <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%H:%M:%S') }}</td>
-                                            <td>醫療組<span class="sign"></span></td>
-                                            <td>具有醫師執照</td>
-                                            {{--<td>{!!$center_support_person->center_support_person_id	!!}</td>--}}
+                                            <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%H:%M') }}</td>
+                                            <td>{!!$center_support_person->description  !!}</td>
                                             <td>
                                                 {!! Form::number('center_support_person_num', $center_support_person->center_support_person_num, ['min'=>'0','class' => 'form-control text-right']) !!}
-
-                                                {{--{!!$center_support_person->center_support_person_num	!!} --}}
                                             </td>
-                                            <td class="text-right">{!!$center_support_person->called_person_num	!!} </td>
+                                            @if(isset($center_support_person_details_array[$center_support_person->center_support_person_id]))
+                                                <td class="text-right">{!! $center_support_person->center_support_person_num - count($center_support_person_details_array[$center_support_person->center_support_person_id])!!} </td>
+                                            @else
+                                                <td class="text-right">{!! $center_support_person->center_support_person_num !!} </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 @endif
@@ -246,7 +250,7 @@
                                     {{--<td></td>--}}
                                     <td>醫療組</td>
                                     {{--<td>未報到</td>--}}
-                                    <td>{!!$emtFreeUser->name!!}</td>
+                                    <td>{!!$emtFreeUser->user_name!!}</td>
                                     <td>{!!$emtFreeUser->phone!!}</td>
                                     {{--<td>{!!$emtFreeUser->email!!}</td>--}}
                                     {{--<td>{!!$emtFreeUser->country_or_city_input ." ". $emtFreeUser->township_or_district_input!!}</td>--}}
@@ -265,7 +269,7 @@
                                         {{--<td></td>--}}
                                         <td>脫困組</td>
                                         {{--<td>已報到</td>--}}
-                                        <td>{!!$relieverFreeUser->name	!!}</td>
+                                        <td>{!!$relieverFreeUser->user_name!!}</td>
                                         <td>{!!$relieverFreeUser->phone!!}</td>
                                         {{--<td>{!!$relieverFreeUser->email!!}</td>--}}
                                         {{--<td>{!!$relieverFreeUser->country_or_city_input ." ". $relieverFreeUser->township_or_district_input!!}</td>--}}

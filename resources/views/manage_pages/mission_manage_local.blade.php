@@ -34,7 +34,6 @@
 {{--管線修復--}}
 {{--警戒--}}
 @section('content')
-
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
         <div class="col-xs-9 col-sm-7 col-md-7" >
@@ -58,14 +57,37 @@
                             <th width="6%">編號</th>
                             <th width="25%">通報地址<br>
                             <th width="15%">通報內容</th>
-
+                            <th width="15%">完成日期</th>
+                            <th width="15%">完成時間</th>
                         </thead>
                         <tbody>
-                        <tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>
-                        <tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>
-                        <tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>
-                        <tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>
-                        <tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>
+                       @if(isset($missions))
+                            @foreach($missions as $mission)
+                                <tr>
+                                    @if(!isset($mission->mission_complete_time))
+                                        <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    <td>C{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%y%m%d%H%M') }}{!! $mission->mission_id !!}</td>
+                                    @if(isset($mission->rd_or_st_1) && isset($mission->rd_or_st_2))
+                                        <td >{!!$mission->township_or_district_input." ".$mission->rd_or_st_1."與".$mission->rd_or_st_2."交叉口"!!}</td>
+                                    @else
+                                        <td >{!!$mission->township_or_district_input." ".$mission->rd_or_st_1.$mission->location!!}</td>
+                                    @endif
+                                    <td >{!! $mission->mission_content!!}</td>
+                                        @if(isset($mission->mission_complete_time))
+                                            <td>{{ (new Carbon\Carbon($mission->mission_complete_time))->formatLocalized('%Y/%m/%d') }}</td>
+                                            <td>{{ (new Carbon\Carbon($mission->mission_complete_time))->formatLocalized('%H:%M') }}</td>
+                                        @endif
+
+                                </tr>
+                            @endforeach
+                        @endif
+                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
+                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
+                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
+                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
                         </tbody>
                     </table>
                 </div>
@@ -79,7 +101,7 @@
                     <div class="collapse navbar-sm-collapse" >
                         <ul class="nav navbar-sm-nav">
                             <!-- Single button -->
-                            {!! Form::select('name', array('全部' => '全部 (11人)', '醫療' => '醫療 (5人)', '脫困' => '脫困 (6人)'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                            {!! Form::select('name',$mission_roles, '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
                         </ul>
 
                         <ul class="nav navbar-sm-nav navbar-sm-right">
@@ -121,14 +143,58 @@
 
                         </thead>
                         <tbody>
-                        <tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>醫療</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td><button class="btn btn-sm btn-default">報到</button></td></tr>
-                        <tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>醫療</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td></td></tr>
-                        <tr class="danger"><td> {!! Form::checkbox('name', 'value')!!}</td><td>救火</td><td>受傷</td><td>遊鑫</td><td>0987654321</td><td></td></tr>
-                        <tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>救火</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td></td></tr>
-                        <tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>
-                        <tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>
-                        <tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>
-                        </tbody>
+                        @if(isset($missionUsers))
+                            @foreach($missionUsers as $missionUser)
+                                @if($missionUser->description != '地方指揮官')
+
+                                    @if($missionUser->arrived == 0)
+                                        <tr>
+                                            <td></td>
+                                            <td>{!! $missionUser->description !!}</td>
+                                            <td>尚未報到</td>
+                                            <td>{!! $missionUser->user_name !!}</td>
+                                            <td>{!! $missionUser->phone !!}</td>
+                                            <td><button class="btn btn-sm btn-default">報到</button></td>
+                                        </tr>
+                                    @elseif($missionUser->status == "執行任務")
+                                        <tr class="warning">
+
+                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! $missionUser->description !!}</td>
+                                            <td>{!! $missionUser->status !!}</td>
+                                            <td>{!! $missionUser->user_name !!}</td>
+                                            <td>{!! $missionUser->phone !!}</td>
+                                            <td></td>
+                                        </tr>
+                                    @elseif($missionUser->status == "閒置")
+                                        <tr class="success">
+                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! $missionUser->description !!}</td>
+                                            <td>{!! $missionUser->status !!}</td>
+                                            <td>{!! $missionUser->user_name !!}</td>
+                                            <td>{!! $missionUser->phone !!}</td>
+                                            <td></td>
+                                        </tr>
+                                    @elseif($missionUser->status == "負傷")
+                                        <tr class="danger">
+                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! $missionUser->description !!}</td>
+                                            <td>{!! $missionUser->status !!}</td>
+                                            <td>{!! $missionUser->user_name !!}</td>
+                                            <td>{!! $missionUser->phone !!}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
+                        {{--<tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>醫療</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td></td></tr>--}}
+                        {{--<tr class="danger"><td> {!! Form::checkbox('name', 'value')!!}</td><td>救火</td><td>受傷</td><td>遊鑫</td><td>0987654321</td><td></td></tr>--}}
+                        {{--<tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>救火</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td></td></tr>--}}
+                        {{--<tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>--}}
+                        {{--<tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>--}}
+                        {{--<tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>--}}
+                        {{--</tbody>--}}
                     </table>
                 </div>
                 {{--<div class="panel-footer">綠色:完成任務，閒置&nbsp;&nbsp;&nbsp;&nbsp;橘色:任務執行中&nbsp;&nbsp;&nbsp;&nbsp; 紅色:受傷</div>--}}
@@ -379,54 +445,139 @@
 
                         <tr>
                             <td></td>
-                            <td>脫困</td>
-                            <td>救火</td>
-                            <td>清潔</td>
-                            <td>道路修復</td>
-                            <td>醫療</td>
-                            <td>管線修復</td>
-                            <td>警戒</td>
+                            @if(isset($roles))
+                                @foreach($roles as $role)
+                                    @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+
+                                            <td>{!! $role->description  !!}</td>
+
+                                    @endif
+                                @endforeach
+                            @endif
                         </tr>
-                        <tr class="danger">
-                            <td>四維路段</td>
-                            <td class="text-right">2</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">1</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                        </tr>
-                        <tr class="danger">
-                            <td>五福路段</td>
-                            <td class="text-right">3</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right">2</td>
-                        </tr>
-                        <tr class="warning">
-                            <td>六合路段</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr class="success">
-                            <td>七賢路段</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+
+                            @if(isset($mission_support_people_lists))
+                                @foreach($mission_support_people_lists as $mission_support_people_list)
+                                    @if( $mission_support_people_list->mission_list_id != $mission_list_id )
+                                        {{--&& $mission_list->mission_list_id != $mission_list_id--}}
+                                        <tr class="danger">
+                                            <td width="124px">{!! $mission_support_people_list->mission_name !!}</td>
+                                            @if(isset($roles))
+                                                <div style="display: none">
+                                                    {!! $roles_count = count($roles)-4 !!}
+                                                </div>
+                                            {{--{!! dd($roles_count) !!}--}}
+                                            {{--@for($i=1;$i<$roles_count;$i++)--}}
+                                                {{--@if(!isset($mission_support_people_array[$mission_list->mission_list_id][$i]))--}}
+                                                    {{--<td colspan="6"></td>--}}
+                                                {{--@endif--}}
+                                            {{--@endfor--}}
+                                                @foreach($roles as $role)
+                                                    @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+
+                                                        @if (isset($mission_support_people_array) )
+                                                            @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id]))
+                                                                <div style="display: none">
+                                                                    {!! $mission_support_people_array_count = count($mission_support_people_array[$mission_support_people_list->mission_list_id])+1 !!}
+                                                                </div>
+                                                                {{--@for($i=1;$i<$roles_count;$i++)--}}
+                                                                <td class="text-right ">
+                                                                    @for($j=1;$j<$mission_support_people_array_count;$j++)
+                                                                        @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]))
+                                                                            @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description)
+                                                                               {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] !!}
+                                                                            @else
+
+                                                                            @endif
+                                                                        {{--@else--}}
+                                                                        @endif
+                                                                    @endfor
+
+                                                                {{--@endfor--}}
+                                                            @else
+                                                                <td></td>
+                                                            @endif
+
+                                                        @endif
+
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                            @if(isset($mission_no_support_work_people_lists))
+                                @foreach($mission_no_support_work_people_lists as  $key => $value)
+                                    <tr class="warning">
+                                        <td >{!! $value !!}</td>
+                                        <td colspan="{!! $roles_count !!}"></td>
+                                    <tr>
+                                @endforeach
+                            @endif
+
+                        @if(isset($mission_no_support_finish_people_lists))
+                            @foreach($mission_no_support_finish_people_lists as  $key => $value)
+                                <tr class="success">
+                                    <td>{!! $value !!}</td>
+                                    <td colspan="{!! $roles_count !!}"></td>
+                                <tr>
+                            @endforeach
+                        @endif
+
+                        {{--<tr>--}}
+                            {{--<td></td>--}}
+                            {{--<td>脫困</td>--}}
+                            {{--<td>救火</td>--}}
+                            {{--<td>清潔</td>--}}
+                            {{--<td>道路修復</td>--}}
+                            {{--<td>醫療</td>--}}
+                            {{--<td>管線修復</td>--}}
+                            {{--<td>警戒</td>--}}
+                        {{--</tr>--}}
+                        {{--<tr class="danger">--}}
+                            {{--<td>四維路段</td>--}}
+                            {{--<td class="text-right">2</td>--}}
+                            {{--<td class="text-right"></td>--}}
+                            {{--<td class="text-right"></td>--}}
+                            {{--<td class="text-right">1</td>--}}
+                            {{--<td class="text-right"></td>--}}
+                            {{--<td class="text-right"></td>--}}
+                            {{--<td class="text-right"></td>--}}
+                        {{--</tr>--}}
+
+
+                        {{--<tr class="danger">--}}
+                            {{--<td>五福路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td class="text-right">1</td>--}}
+                            {{--<td class="text-right">1</td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td class="text-right">2</td>--}}
+                        {{--</tr>--}}
+                        {{--<tr class="warning">--}}
+                            {{--<td>六合路段</td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                        {{--</tr>--}}
+                        {{--<tr class="success">--}}
+                            {{--<td>七賢路段</td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                        {{--</tr>--}}
 
                         </tbody>
                     </table>

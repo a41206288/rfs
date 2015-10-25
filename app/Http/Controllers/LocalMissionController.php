@@ -30,14 +30,17 @@ class LocalMissionController extends Controller {
             $missions = DB::table('missions')
 //                ->orderBy('country_or_city_input')
 //                ->orderBy('township_or_district_input')
-                ->orderBy('location')
+                ->orderBy('created_at')
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
 //            dd($missions);
 
 
 
-            $mission_lists = DB::table('mission_lists')->get();
+            $mission_lists = DB::table('mission_lists')
+//                ->join('mission_support_people','mission_support_people.mission_list_id','=','mission_lists.mission_list_id')
+                ->get();
+//            dd($mission_lists);
 
 //            $mission_new_locations =  DB::table('mission_new_locations')
 //                ->where('mission_list_id', $mission_list_id)
@@ -52,6 +55,47 @@ class LocalMissionController extends Controller {
 ////            dd($relieverFreeUserAmounts);
 
 
+//取出擁有增援列表的任務編號和名稱
+            $mission_support_people_lists = DB::table('mission_support_people')
+//                ->groupBy('mission_list_id')
+                ->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
+                ->select('mission_support_people.mission_list_id','mission_name')
+//                ->where('mission_list_id', $mission_list_id)
+                ->distinct()
+                ->get();
+//            dd($mission_support_people_lists);
+
+//取出無增援列表任務編號和名稱
+            $mission_no_support_people_lists = DB::table('mission_lists')
+//                ->where('mission_complete_time', NULL )
+                ->lists('mission_name','mission_list_id');
+            foreach($mission_support_people_lists as $mission_support_people_list){
+                $mission_no_support_people_lists = array_except($mission_no_support_people_lists, array($mission_support_people_list->mission_list_id, 'to', 'remove'));
+            }
+//移除未分配任務
+            $mission_no_support_people_lists = array_except($mission_no_support_people_lists, array(1, 'to', 'remove'));
+//            dd($mission_no_support_people_lists);
+
+//取出無增援列表並正在執行中的任務編號和名稱
+            $mission_no_support_work_people_lists = DB::table('mission_lists')
+                ->where('mission_complete_time', NULL )
+                ->lists('mission_name','mission_list_id');
+            foreach($mission_support_people_lists as $mission_support_people_list){
+                $mission_no_support_work_people_lists = array_except($mission_no_support_work_people_lists, array($mission_support_people_list->mission_list_id, 'to', 'remove'));
+            }
+//移除未分配任務
+            $mission_no_support_work_people_lists = array_except($mission_no_support_work_people_lists, array(1, 'to', 'remove'));
+//            dd($mission_no_support_work_people_lists);
+
+
+            $mission_no_support_finish_people_lists = $mission_no_support_people_lists;
+            foreach($mission_no_support_work_people_lists as $key => $value){
+                $mission_no_support_finish_people_lists = array_except($mission_no_support_finish_people_lists, array($key, 'to', 'remove'));
+            }
+//            dd($mission_no_support_finish_people_lists);
+
+
+
 
             //計算向中央要求總增援數用
             $mission_support_people = DB::table('mission_support_people')
@@ -59,6 +103,10 @@ class LocalMissionController extends Controller {
 //                ->where('mission_list_id', $mission_list_id)
 
                ->get();
+
+            //取出所有人員種類
+            $roles = DB::table('roles')->get();
+//        dd($roles);
 
             $mission_support_people_array =[];
             foreach($mission_support_people as $mission_support_person){
@@ -70,6 +118,7 @@ class LocalMissionController extends Controller {
                 {
                     $i=count($mission_support_people_array[$mission_support_person->mission_list_id])+1;
                 }
+
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_person_id'] = $mission_support_person->mission_support_person_id;
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['role'] = $mission_support_person->description;
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
@@ -77,6 +126,39 @@ class LocalMissionController extends Controller {
 
             }
 //            dd($mission_support_people_array);
+
+//外圈補零
+//            $mission_support_people_array =[];
+//            foreach($mission_lists as $mission_list){
+//                $ab = false;
+//                foreach($mission_support_people as $mission_support_person){
+//                    if($mission_list->mission_list_id == $mission_support_person->mission_list_id ){
+//                        $ab = true;
+//                        if(!isset($mission_support_people_array[$mission_support_person->mission_list_id]))
+//                        {
+//                            $i=1;
+//                        }
+//                        else
+//                        {
+//                            $i=count($mission_support_people_array[$mission_support_person->mission_list_id])+1;
+//                        }
+//                        $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_person_id'] = $mission_support_person->mission_support_person_id;
+//                        $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['role'] = $mission_support_person->description;
+//                        $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
+////                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
+//
+//                    }else{
+//
+//                    }
+//
+//                }
+//                if($ab == false){
+//                    $mission_support_people_array[$mission_list->mission_list_id][ 0]['mission_support_person_id'] = 0;
+//                    $mission_support_people_array[$mission_list->mission_list_id][ 0]['role'] = "";
+//                    $mission_support_people_array[$mission_list->mission_list_id][ 0]['mission_support_people_num'] = 0;
+//
+//                }
+//            }
 
 
             $mission_help_others = DB::table('mission_help_others')
@@ -98,6 +180,108 @@ class LocalMissionController extends Controller {
                 $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
             }
 //            dd($mission_help_other_array);
+
+
+
+            //取出本任務有的救災人員種類
+            $mission_roles =DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('roles','roles.id','=','role_user.role_id')
+                ->join('works_ons','works_ons.id','=','role_user.user_id')
+                ->lists('description','role_id');
+            $mission_roles  = array_add($mission_roles, '請選擇', '請選擇');
+            $mission_roles = array_except($mission_roles, array(3, 'to', 'remove'));
+//        dd($mission_roles);
+
+
+
+            //取出本任務所有救災人員
+            $missionUsers = DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('roles','roles.id','=','role_user.role_id')
+                ->join('works_ons','works_ons.id','=','role_user.user_id')
+                ->where('mission_list_id','=',$mission_list_id)
+                ->orderBy('role_id')
+                ->get();
+//        dd($missionUsers);
+
+            //計算各嚴重程度傷患人數
+            $victim_nums = DB::table('victim_details')
+                ->where('mission_list_id', $mission_list_id)
+                ->select('damage_level',DB::raw('count(*) as total'))
+                ->groupBy('damage_level')
+                ->get();
+//            dd($victim_nums);
+
+            $victim_num_arrays = [];
+
+            for($i=0;$i<5;$i++){
+                $find = 0;
+                foreach($victim_nums as $victim_num){
+                    if($i == $victim_num->damage_level){
+                        $find = 1;
+                        if($find == 1){
+                            $victim_num_arrays[$i]['damage_level'] = $i;
+                            $victim_num_arrays[$i]['total'] = $victim_num->total;
+                        }
+                    }
+                }
+               if($find == 0){
+                   $victim_num_arrays[$i]['damage_level'] = $i;
+                    $victim_num_arrays[$i]['total'] = 0;
+                }
+            }
+
+//            dd($victim_num_arrays);
+
+
+
+
+
+        }else{
+            $mission_list_names = null;
+            $missions = null;
+            $mission_new_locations = null;
+            $executiveRequireArrays = null;
+            $relieverFreeUsers = null;
+            $EmtUserAmounts = null;
+            $relieverFreeUserAmounts = null;
+            $relieverNewLocationUsers = null;
+            $relieverNewLocationUsersArrays = null;
+            $relieverNewLocationUserAmountsArrays = null;
+            $relieverFreeUsersArrays = null;
+            $local_reports_arrays = null;
+            $executive_require_people_num = null;
+            $mission_support_people = null;
+            $mission_support_people_array = null;
+            $victim_nums = null;
+            $victim_num_arrays = null;
+            $missionUsers = null;
+            $mission_roles = null;
+            $mission_help_other_array = null;
+            $roles = null;
+            $mission_lists  = null;
+            $mission_support_people_lists = null;
+            $mission_no_support_people_lists = null;
+            $mission_no_support_work_people_lists = null;
+            $mission_no_support_finish_people_lists = null;
+        }
+
+        return view('manage_pages.mission_manage_local')
+                ->with('victim_num_arrays', $victim_num_arrays)
+                ->with('mission_support_people_array', $mission_support_people_array)
+                ->with('mission_help_other_array', $mission_help_other_array)
+                ->with('mission_list_id', $mission_list_id)
+                ->with('missions', $missions)
+                ->with('missionUsers', $missionUsers)
+                ->with('mission_roles', $mission_roles)
+                ->with('roles', $roles)
+                ->with('mission_lists', $mission_lists)
+                ->with('mission_support_people_lists', $mission_support_people_lists)
+                ->with('mission_no_support_people_lists', $mission_no_support_people_lists)
+                ->with('mission_no_support_work_people_lists', $mission_no_support_work_people_lists)
+                ->with('mission_no_support_finish_people_lists', $mission_no_support_finish_people_lists)
+            ;
 
 
 //            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
@@ -244,156 +428,6 @@ class LocalMissionController extends Controller {
 //                $local_reports_arrays[$local_report->mission_new_locations_id][$i]['time'] = $local_report->created_at;
 //            }
 ////         dd($local_reports_arrays);
-
-            //計算個嚴重程度傷患人數
-            $victim_nums = DB::table('victim_details')
-                ->where('mission_list_id', $mission_list_id)
-                ->select('damage_level',DB::raw('count(*) as total'))
-                ->groupBy('damage_level')
-                ->get();
-//            dd($victim_nums);
-
-            $victim_num_arrays = [];
-
-            for($i=0;$i<5;$i++){
-                $find = 0;
-                foreach($victim_nums as $victim_num){
-                    if($i == $victim_num->damage_level){
-                        $find = 1;
-                        if($find == 1){
-                            $victim_num_arrays[$i]['damage_level'] = $i;
-                            $victim_num_arrays[$i]['total'] = $victim_num->total;
-                        }
-                    }
-                }
-               if($find == 0){
-                   $victim_num_arrays[$i]['damage_level'] = $i;
-                    $victim_num_arrays[$i]['total'] = 0;
-                }
-            }
-
-//            dd($victim_num_arrays);
-
-
-
-        }else{
-            $mission_list_names = null;
-            $missions = null;
-            $mission_new_locations = null;
-            $executiveRequireArrays = null;
-            $relieverFreeUsers = null;
-            $EmtUserAmounts = null;
-            $relieverFreeUserAmounts = null;
-            $relieverNewLocationUsers = null;
-            $relieverNewLocationUsersArrays = null;
-            $relieverNewLocationUserAmountsArrays = null;
-            $relieverFreeUsersArrays = null;
-            $local_reports_arrays = null;
-            $executive_require_people_num = null;
-            $mission_support_people = null;
-            $mission_support_people_array = null;
-            $victim_nums = null;
-            $victim_num_arrays = null;
-        }
-
-
-
-//這裡是最久以前註解的東西
-
-
-//      //dd(Auth::user()->mission_list_id);
-//        $missions_list_id=Auth::user()->mission_list_id;
-//        dd(Auth::user());
-//        if($missions_list_id != 1){
-//        //讀取mission所有資料
-//        $missions = DB::table('missions')
-//            ->orderBy('country_or_city_input')
-//            ->orderBy('township_or_district_input')
-//            ->orderBy('location')
-//            ->where('mission_list_id', $missions_list_id)
-//            ->get();
-////dd($missions);
-//        //讀取縣市
-//        $country_or_city_inputs = DB::table('missions')
-//            ->orderBy('country_or_city_input')
-//            ->where('mission_list_id', $missions_list_id)
-//            ->distinct()
-//            ->lists('country_or_city_input','country_or_city_input');
-//        $country_or_city_inputs = array_add($country_or_city_inputs, '請選擇', '請選擇');
-////        $new_country_or_city_inputs=[];
-////        foreach( $country_or_city_inputs as  $country_or_city_input){
-////            $new_country_or_city_inputs[$country_or_city_input] = $country_or_city_input;
-////        }
-////        $new_country_or_city_inputs = array_add($new_country_or_city_inputs, '請選擇', '請選擇');
-//
-//        ///讀取鄉鎮區
-//        $new_township_or_district_inputs=[];
-//        $new_township_or_district_inputs = array_add($new_township_or_district_inputs, '請選擇', '請選擇');
-//
-//        //讀取通報 local_reports
-//        $local_reports = DB::table('local_reports')
-//
-//            ->get();
-//       // dd($local_reports);
-//        //dd($local_reports->$local_report_content);
-//        $local_reports_array =[];
-//        foreach($local_reports as $local_report){
-//
-//            $local_reports_array[$local_report->mission_id][$local_report->local_report_id]['content'] = $local_report->local_report_content;
-//            $local_reports_array[$local_report->mission_id][$local_report->local_report_id]['time'] = $local_report->created_at;
-//        }
-//      //  dd($local_reports_array);
-//
-//        //取出各任務的脫困組人員個數
-//        $relieverMissionUsers = DB::table('users')
-//            ->join('role_user','users.id','=','role_user.user_id')
-//            ->select('mission_id',DB::raw('count(*) as total'))
-//            ->where('role_id','=',4 )
-//            ->where('mission_list_id', $missions_list_id)
-//            ->groupBy('mission_id')
-//            ->get();
-//
-//        $relieverMissionUsersArray =[];
-//        foreach($missions as $mission){
-//            $unfind = false;
-//            foreach($relieverMissionUsers as $relieverMissionUser){
-//                if($mission->mission_id == $relieverMissionUser->mission_id) {
-//                    $unfind = true;
-//                    $relieverMissionUsersArray[$mission->mission_id] = $relieverMissionUser->total;
-//                }
-//            }
-//            if( $unfind == false ) {
-//                $relieverMissionUsersArray[$mission->mission_id] = 0;
-//            }
-//        }
-//        }else{
-//            $missions = null;
-//            $country_or_city_inputs = null;
-//            $new_township_or_district_inputs = null;
-//            $local_reports_array = null;
-//            $relieverMissionUsersArray = null;
-//
-//        }
-
-//dd($relieverMissionUsersArray);
-        //dd($country_or_city_inputs);
-        return view('manage_pages.mission_manage_local')
-//            ->with('mission_new_locations', $mission_new_locations)
-//            ->with('relieverFreeUserAmounts', $relieverFreeUserAmounts)
-//            ->with('executive_require_people_num', $executive_require_people_num)
-//            ->with('EmtUserAmounts', $EmtUserAmounts)
-//            ->with('local_reports_arrays', $local_reports_arrays)
-//            ->with('mission_new_locations', $mission_new_locations)
-//            ->with('executiveRequireArrays', $executiveRequireArrays)
-//            ->with('relieverNewLocationUsersArrays', $relieverNewLocationUsersArrays)
-//            ->with('relieverFreeUsersArrays', $relieverFreeUsersArrays)
-//            ->with('relieverNewLocationUserAmountsArrays', $relieverNewLocationUserAmountsArrays)
-//            ->with('mission_support_people', $mission_support_people)
-                ->with('victim_num_arrays', $victim_num_arrays)
-                ->with('mission_support_people_array', $mission_support_people_array)
-                ->with('mission_help_other_array', $mission_help_other_array)
-                ->with('mission_list_id', $mission_list_id)
-            ;
 
 	}
 

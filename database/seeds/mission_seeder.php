@@ -38,11 +38,10 @@ class mission_seeder extends Seeder{
 
         $mission_list = new App\Mission_list;
         $mission_list->mission_list_id = 4;
-        $mission_list->mission_name = '三多一路與武慶三路路口';
+        $mission_list->mission_name = '三多一路與武慶三路交叉口';
         $mission_list->id = 4;
         $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
         $mission_list->arrive_location_time = date('Y-m-d H:i:s');
-        $mission_list->mission_complete_time =  date('Y-m-d H:i:s');
         $mission_list->save();
 
         $mission_list = new App\Mission_list;
@@ -51,13 +50,25 @@ class mission_seeder extends Seeder{
         $mission_list->id = 5;
         $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
         $mission_list->arrive_location_time = date('Y-m-d H:i:s');
-
         $mission_list->save();
 
-//        $mission_list = new App\Mission_list;
-//        $mission_list->mission_list_id = 5;
-//        $mission_list->mission_name = '三民區';
-//        $mission_list->save();
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 6;
+        $mission_list->mission_name = '廣東三街與一心一路交叉口';
+        $mission_list->id = 6;
+        $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
+        $mission_list->arrive_location_time = date('Y-m-d H:i:s');
+        $mission_list->mission_complete_time =  date('Y-m-d H:i:s');
+        $mission_list->save();
+
+
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 7;
+        $mission_list->mission_name = '忠孝公園';
+        $mission_list->id = 7;
+        $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
+        $mission_list->arrive_location_time = date('Y-m-d H:i:s');
+        $mission_list->save();
 
 
 
@@ -85,9 +96,11 @@ class mission_seeder extends Seeder{
         $mission->lname = '紀';
         $mission->sex = '女';
         $mission->email = 'yui@yahoo.com.tw';
+        $mission->township_or_district_input = '苓雅區';
         $mission->rd_or_st_1 = '三多一路';
          $mission->location = '283巷二弄';
         $mission->mission_list_id = 2;
+        $mission->mission_complete_time =  date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -128,8 +141,9 @@ class mission_seeder extends Seeder{
         $mission->lname = '李';
         $mission->sex = '女';
         $mission->phone = '0967812345';
-        $mission->rd_or_st_1 = '苓雅區';
-        $mission->location = '三多二路（福德三路至凱旋路口）';
+        $mission->township_or_district_input = '苓雅區';
+        $mission->rd_or_st_1 = '三多二路';
+        $mission->location = '（福德三路至凱旋路口）';
         $mission->mission_list_id = 3;
         $mission->save();
 
@@ -143,7 +157,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '前鎮區';
         $mission->rd_or_st_1 = '廣東三街';
         $mission->rd_or_st_2 = '一心一路';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 6;
         $mission->save();
 
         $mission = new App\Mission;
@@ -155,7 +169,7 @@ class mission_seeder extends Seeder{
         $mission->email = 'uio@yahoo.com.tw';
         $mission->township_or_district_input = '新興區';
         $mission->location = '忠孝公園';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 7;
         $mission->save();
 
         $mission = new App\Mission;

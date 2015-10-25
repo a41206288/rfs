@@ -48,7 +48,7 @@ class CreateMissionTable extends Migration {
 //            $table->unsignedInteger('mission_new_locations_id');
             $table->unsignedInteger('mission_list_id');
             $table->unsignedInteger('id');
-            $table->enum('status', ['執行中', '已完成']);
+            $table->enum('status', ['執行任務', '閒置','負傷']);
             $table->timestamps();
         });
 
@@ -89,6 +89,7 @@ class CreateMissionTable extends Migration {
             $table->text('location')->nullable();
 //            $table->boolean('notice');
             $table->unsignedInteger('mission_list_id');
+            $table->timestamp('mission_complete_time')->nullable();
 //            $table->unsignedInteger('mission_new_locations_id');
 //            $table->foreign('mission_list_id')->references('mission_list_id')->on('mission_lists');
         });

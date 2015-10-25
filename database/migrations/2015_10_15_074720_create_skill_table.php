@@ -19,17 +19,24 @@ class CreateSkillTable extends Migration {
 
         });
 
-        Schema::create('skill_support_people', function(Blueprint $table){
-            $table->increments('id');
-            $table->integer('support_people_id');
-            $table->integer('skill_id');
+        Schema::create('center_support_people_skills', function(Blueprint $table){
+            $table->increments('center_support_people_skill_id');
+            $table->unsignedInteger('center_support_person_id');
+            $table->unsignedInteger('skill_id');
             $table->timestamps();
         });
 
-        Schema::create('skill_users', function(Blueprint $table){
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('skill_id');
+        Schema::create('center_support_person_detail_skills', function(Blueprint $table){
+            $table->increments('center_support_person_detail_skill_id');
+            $table->unsignedInteger('center_support_person_detail_id');
+            $table->unsignedInteger('skill_id');
+            $table->timestamps();
+        });
+
+        Schema::create('user_skills', function(Blueprint $table){
+            $table->increments('user_skill_id');
+            $table->unsignedInteger('id');
+            $table->unsignedInteger('skill_id');
             $table->timestamps();
         });
 	}
@@ -42,8 +49,9 @@ class CreateSkillTable extends Migration {
 	public function down()
 	{
         Schema::drop('skills');
-        Schema::drop('skill_support_people');
-        Schema::drop('skill_users');
+        Schema::drop('center_support_people_skills');
+        Schema::drop('center_support_person_detail_skills');
+        Schema::drop('user_skills');
 	}
 
 }

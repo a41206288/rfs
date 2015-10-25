@@ -33,7 +33,7 @@ class CenterMissionController extends Controller {
                     ->where('mission_name','!=','未分配任務')
                     ->lists('mission_name','mission_list_id');
         $mission_list_names  = array_add($mission_list_names, '請選擇', '請選擇');
-//dd($mission_list_names);
+//        dd($mission_list_names);
 
                 //取出未分配任務
                  $unsigned_missions = DB::table('missions')
@@ -110,7 +110,7 @@ class CenterMissionController extends Controller {
 
                 if($mission_list_charge->mission_list_id == $mission_list ->mission_list_id){
                     $unfind = true;
-                    $mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] = $mission_list_charge->name;
+                    $mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] = $mission_list_charge->user_name;
 
                 }
             }

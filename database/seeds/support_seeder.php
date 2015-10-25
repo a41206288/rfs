@@ -28,8 +28,9 @@ class support_seeder extends Seeder{
         DB:: table('mission_support_people')->delete();
         DB:: table('mission_help_others')->delete();
         DB:: table('skills')->delete();
-        DB:: table('skill_support_people')->delete();
-        DB:: table('skill_users')->delete();
+        DB:: table('center_support_people_skills')->delete();
+        DB:: table('center_support_person_detail_skills')->delete();
+        DB:: table('user_skills')->delete();
 //        DB:: table('center_support_products')->delete();
 //        DB:: table('buys')->delete();
 //        DB:: table('companies')->delete();
@@ -901,22 +902,25 @@ class support_seeder extends Seeder{
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 1;
         $center_support_person->center_support_person_num = 10;
-        $center_support_person->center_support_person_requirement = "醫療組-醫生";
-        $center_support_person->center_support_person_introduction = "對受困民眾進行傷勢的診斷及處理";
+        $center_support_person->id = 6; //醫療
+        $center_support_person->center_support_person_requirement = "醫療組";
+        $center_support_person->center_support_person_introduction = "";
         $center_support_person->save();
 
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 2;
         $center_support_person->center_support_person_num = 20;
-        $center_support_person->center_support_person_requirement = "醫療組-護士";
-        $center_support_person->center_support_person_introduction = "協助醫師治療傷患，並看護傷患";
+        $center_support_person->id = 7; //脫困
+        $center_support_person->center_support_person_requirement = "脫困組";
+        $center_support_person->center_support_person_introduction = "";
         $center_support_person->save();
 
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 3;
         $center_support_person->center_support_person_num = 5;
-        $center_support_person->center_support_person_requirement = "脫困組-水電人員";
-        $center_support_person->center_support_person_introduction = "維修災難中損壞的水管管線以及電力線路";
+        $center_support_person->id = 10;//管線
+        $center_support_person->center_support_person_requirement = "管線修復組";
+        $center_support_person->center_support_person_introduction = "";
         $center_support_person->save();
 
         $center_support_person_detail = new App\Center_support_person_detail;
@@ -953,54 +957,84 @@ class support_seeder extends Seeder{
         $center_support_person_detail->save();
 
 
-        $skill = new App\Skill;
+        $skill = new App\skill;
         $skill->skill_id = 1;
         $skill->skill_name = "外傷治療";
         $skill->save();
 
-        $skill = new App\Skill;
+        $skill = new App\skill;
         $skill->skill_id = 2;
         $skill->skill_name = "傷患照料";
         $skill->save();
 
-        $skill = new App\Skill;
+        $skill = new App\skill;
         $skill->skill_id = 3;
         $skill->skill_name = "水電管線維修";
         $skill->save();
 
-        $skill = new App\Skill;
+        $skill = new App\skill;
         $skill->skill_id = 4;
         $skill->skill_name = "交通指揮";
         $skill->save();
 
-        $skill = new App\Skill;
+        $skill = new App\skill;
         $skill->skill_id = 5;
         $skill->skill_name = "協助脫困";
         $skill->save();
 
-        $skill = new App\Skill;
+        $skill = new App\skill;
         $skill->skill_id = 6;
         $skill->skill_name = "滅火";
         $skill->save();
 
+        //向民眾招募人員需求表的技能
 
-        $skill_support_people = new App\Skill_support_person;
-        $skill_support_people->id = 1;
-        $skill_support_people->support_people_id = 1;
-        $skill_support_people->skill_id = 1;
-        $skill_support_people->save();
+        $center_support_people_skill = new App\Center_support_people_skill;
+        $center_support_people_skill->center_support_people_skill_id = 1;
+        $center_support_people_skill->center_support_person_id = 1;
+        $center_support_people_skill->skill_id = 1;
+        $center_support_people_skill->save();
 
-        $skill_support_people = new App\Skill_support_person;
-        $skill_support_people->id = 2;
-        $skill_support_people->support_people_id = 2;
-        $skill_support_people->skill_id = 2;
-        $skill_support_people->save();
+        $center_support_people_skill = new App\Center_support_people_skill;
+        $center_support_people_skill->center_support_people_skill_id = 2;
+        $center_support_people_skill->center_support_person_id = 2;
+        $center_support_people_skill->skill_id = 2;
+        $center_support_people_skill->save();
 
-        $skill_support_people = new App\Skill_support_person;
-        $skill_support_people->id = 3;
-        $skill_support_people->support_people_id = 3;
-        $skill_support_people->skill_id = 3;
-        $skill_support_people->save();
+        $center_support_people_skill = new App\Center_support_people_skill;
+        $center_support_people_skill->center_support_people_skill_id = 3;
+        $center_support_people_skill->center_support_person_id = 3;
+        $center_support_people_skill->skill_id = 3;
+        $center_support_people_skill->save();
+
+        //應徵志工人員的技能
+
+        $center_support_person_detail = new App\Center_support_person_detail_skill;
+        $center_support_person_detail->center_support_person_detail_skill_id = 1;
+        $center_support_person_detail->center_support_person_detail_id = 1;
+        $center_support_person_detail->skill_id = 1;
+        $center_support_person_detail->save();
+
+        $center_support_person_detail = new App\Center_support_person_detail_skill;
+        $center_support_person_detail->center_support_person_detail_skill_id = 2;
+        $center_support_person_detail->center_support_person_detail_id = 1;
+        $center_support_person_detail->skill_id = 2;
+        $center_support_person_detail->save();
+
+        $center_support_person_detail = new App\Center_support_person_detail_skill;
+        $center_support_person_detail->center_support_person_detail_skill_id = 3;
+        $center_support_person_detail->center_support_person_detail_id = 2;
+        $center_support_person_detail->skill_id = 2;
+        $center_support_person_detail->save();
+
+        $center_support_person_detail = new App\Center_support_person_detail_skill;
+        $center_support_person_detail->center_support_person_detail_skill_id = 4;
+        $center_support_person_detail->center_support_person_detail_id = 3;
+        $center_support_person_detail->skill_id = 3;
+        $center_support_person_detail->save();
+
+
+
 //
 //        $center_support_person_detail = new App\Center_support_person_detail;
 //        $center_support_person_detail->center_support_person_detail_id = 4;
@@ -1049,9 +1083,17 @@ class support_seeder extends Seeder{
         $mission_support_person = new App\Mission_support_person;
         $mission_support_person->mission_support_person_id = 4;
         $mission_support_person->mission_list_id = 4;
-        $mission_support_person->id = 9;
-        $mission_support_person->mission_support_people_num = 4;
-        $mission_support_person->mission_support_people_reason = "目前道路修復上遇到障礙缺乏人手，需要支援";
+        $mission_support_person->id = 10;
+        $mission_support_person->mission_support_people_num = 3;
+        $mission_support_person->mission_support_people_reason = "目前高壓電線修復上遇到障礙缺乏人手，需要支援";
+        $mission_support_person->save();
+
+        $mission_support_person = new App\Mission_support_person;
+        $mission_support_person->mission_support_person_id = 5;
+        $mission_support_person->mission_list_id = 5;
+        $mission_support_person->id = 10;
+        $mission_support_person->mission_support_people_num = 2;
+        $mission_support_person->mission_support_people_reason = "目前水管管線修復上遇到障礙缺乏人手，需要支援";
         $mission_support_person->save();
 
 
@@ -1078,6 +1120,14 @@ class support_seeder extends Seeder{
         $mission_help_other->mission_help_other_id = 3;
         $mission_help_other->mission_support_person_id = 1;
         $mission_help_other->mission_list_id = 4;
+        $mission_help_other->mission_help_other_num = 1;
+        $mission_help_other->arrived = 0;
+        $mission_help_other->save();
+
+        $mission_help_other = new App\Mission_help_other;
+        $mission_help_other->mission_help_other_id = 4;
+        $mission_help_other->mission_support_person_id = 4;
+        $mission_help_other->mission_list_id = 2;
         $mission_help_other->mission_help_other_num = 1;
         $mission_help_other->arrived = 0;
         $mission_help_other->save();
