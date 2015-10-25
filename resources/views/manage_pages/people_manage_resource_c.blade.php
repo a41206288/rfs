@@ -44,7 +44,7 @@
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                                 <ul class="nav navbar-sm-nav t">{{--上面按鈕欄內容 靠右對齊--}}
-                                    {!! Form::select('name', array('全部' => '全部種類', '醫療' => '醫療', '脫困' => '脫困'), '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::select('name', $center_support_person_detail_roles, '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
                                 </ul>
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
@@ -197,7 +197,7 @@
                         <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠右對齊--}}
                             <!-- select -->
                             {!! Form::select('name', array( '已報到' => '已報到', '未報到' => '未報到'), '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
-                            {!! Form::select('name', array('全部' => '全部種類', '醫療' => '醫療', '脫困' => '脫困'), '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                            {!! Form::select('name', $centerFreeUserRoles, '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
                             {{--{!! Form::text('name','',['placeholder'=>'名字或電話','style'=>'width:130px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
                             {{--<button type="submit" class="btn btn-default navbar-sm-btn btn-sm">--}}
                                 {{--<span class="glyphicon glyphicon-search"></span>--}}
@@ -212,8 +212,14 @@
                                     將志工分配至現有任務 <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">四維</a></li>
-                                    <li><a href="#">五福</a></li>
+
+                                    @if(isset($mission_lists))
+                                        @foreach($mission_lists as $mission_list)
+                                            @if($mission_list->mission_name != '未分配任務')
+                                                <li><a href="#">{!! $mission_list->mission_name !!}</a></li>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
@@ -243,42 +249,38 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(isset($emtFreeUsers))
-                            @foreach($emtFreeUsers as $emtFreeUser)
-                                <tr>
-                                    <td>{!! Form::checkbox('name', 'value')!!}</td>
-                                    {{--<td></td>--}}
-                                    <td>醫療組</td>
-                                    {{--<td>未報到</td>--}}
-                                    <td>{!!$emtFreeUser->user_name!!}</td>
-                                    <td>{!!$emtFreeUser->phone!!}</td>
-                                    {{--<td>{!!$emtFreeUser->email!!}</td>--}}
-                                    {{--<td>{!!$emtFreeUser->country_or_city_input ." ". $emtFreeUser->township_or_district_input!!}</td>--}}
-                                    {{--<td>{!!$emtFreeUser->skill!!}</td>--}}
-                                    {{-- <td>{!! Form::select('mission_name', $mission_names, '-') !!}</td>--}}
-                                </tr>
-
-                            @endforeach
-                        @endif
-
-                        @if(isset($relieverFreeUsers))
-                            @foreach($relieverFreeUsers as $relieverFreeUser)
-                                @if(isset($mission_support_people))
+                        @if(isset($centerFreeUsers))
+                            @foreach($centerFreeUsers as $centerFreeUser)
+                                @if($centerFreeUser->description != '地方指揮官')
                                     <tr>
                                         <td>{!! Form::checkbox('name', 'value')!!}</td>
                                         {{--<td></td>--}}
-                                        <td>脫困組</td>
-                                        {{--<td>已報到</td>--}}
-                                        <td>{!!$relieverFreeUser->user_name!!}</td>
-                                        <td>{!!$relieverFreeUser->phone!!}</td>
-                                        {{--<td>{!!$relieverFreeUser->email!!}</td>--}}
-                                        {{--<td>{!!$relieverFreeUser->country_or_city_input ." ". $relieverFreeUser->township_or_district_input!!}</td>--}}
-                                        {{-- <td>{!!$relieverFreeUser->skill!!}</td>--}}
-                                        {{-- <td>{!! Form::select('mission_name', $mission_names, '-') !!}</td>--}}
+                                        <td>{!!$centerFreeUser->description!!}</td>
+                                        <td>{!!$centerFreeUser->user_name!!}</td>
+                                        <td>{!!$centerFreeUser->phone!!}</td>
                                     </tr>
                                 @endif
                             @endforeach
                         @endif
+
+                        {{--@if(isset($relieverFreeUsers))--}}
+                            {{--@foreach($relieverFreeUsers as $relieverFreeUser)--}}
+                                {{--@if(isset($mission_support_people))--}}
+                                    {{--<tr>--}}
+                                        {{--<td>{!! Form::checkbox('name', 'value')!!}</td>--}}
+                                        {{--<td></td>--}}
+                                        {{--<td>脫困組</td>--}}
+                                        {{--<td>已報到</td>--}}
+                                        {{--<td>{!!$relieverFreeUser->user_name!!}</td>--}}
+                                        {{--<td>{!!$relieverFreeUser->phone!!}</td>--}}
+                                        {{--<td>{!!$relieverFreeUser->email!!}</td>--}}
+                                        {{--<td>{!!$relieverFreeUser->country_or_city_input ." ". $relieverFreeUser->township_or_district_input!!}</td>--}}
+                                        {{-- <td>{!!$relieverFreeUser->skill!!}</td>--}}
+                                        {{-- <td>{!! Form::select('mission_name', $mission_names, '-') !!}</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endif--}}
+                            {{--@endforeach--}}
+                        {{--@endif--}}
 
 
 
@@ -316,36 +318,68 @@
 
                         <tr>
                             <td></td>
-                            <td>脫困</td>
-                            <td>救火</td>
-                            <td>清潔</td>
-                            <td>道路修復</td>
-                            <td>醫療</td>
-                            <td>管線修復</td>
-                            <td>警戒</td>
+                            @if(isset($roles))
+                                @foreach($roles as $role)
+                                    @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+
+                                        <td>{!! $role->description  !!}</td>
+
+                                    @endif
+                                @endforeach
+                            @endif
                         </tr>
                         {{--<tr>--}}
-                        <tr class="danger">
-                            <td>四維路段</td>
-                            <td class="text-right">2</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">1</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                        </tr>
-                        {{--<tr>--}}
-                        <tr class="danger">
-                            <td>五福路段</td>
-                            <td class="text-right">3</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right">2</td>
-                        </tr>
+                        @if(isset($mission_support_people_lists))
+                            @foreach($mission_support_people_lists as $mission_support_people_list)
+
+                                    {{--&& $mission_list->mission_list_id != $mission_list_id--}}
+                                    <tr>
+                                        <td width="124px">{!! $mission_support_people_list->mission_name !!}</td>
+                                        @if(isset($roles))
+                                            <div style="display: none">
+                                                {!! $roles_count = count($roles)-4 !!}
+                                            </div>
+                                            {{--{!! dd($roles_count) !!}--}}
+                                            {{--@for($i=1;$i<$roles_count;$i++)--}}
+                                            {{--@if(!isset($mission_support_people_array[$mission_list->mission_list_id][$i]))--}}
+                                            {{--<td colspan="6"></td>--}}
+                                            {{--@endif--}}
+                                            {{--@endfor--}}
+                                            @foreach($roles as $role)
+                                                @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+
+                                                    @if (isset($mission_support_people_array) )
+                                                        @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id]))
+                                                            <div style="display: none">
+                                                                {!! $mission_support_people_array_count = count($mission_support_people_array[$mission_support_people_list->mission_list_id])+1 !!}
+                                                            </div>
+                                                            {{--@for($i=1;$i<$roles_count;$i++)--}}
+                                                            <td class="text-right ">
+                                                                @for($j=1;$j<$mission_support_people_array_count;$j++)
+                                                                    @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]))
+                                                                        @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description)
+                                                                            {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] !!}
+                                                                        @else
+
+                                                                        @endif
+                                                                        {{--@else--}}
+                                                                    @endif
+                                                                @endfor
+                                                            </td>
+                                                            {{--@endfor--}}
+                                                        @else
+                                                            <td></td>
+                                                        @endif
+
+                                                    @endif
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </tr>
+
+                            @endforeach
+                        @endif
 
                         </tbody>
                     </table>
@@ -376,36 +410,52 @@
 
                         <tr>
                             <td></td>
-                            <td>脫困</td>
-                            <td>救火</td>
-                            <td>清潔</td>
-                            <td>道路修復</td>
-                            <td>醫療</td>
-                            <td>管線修復</td>
-                            <td>警戒</td>
+                            @if(isset($roles))
+                                @foreach($roles as $role)
+                                    @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+
+                                        <td>{!! $role->description  !!}</td>
+
+                                    @endif
+                                @endforeach
+                            @endif
                         </tr>
                         {{--<tr>--}}
-                        <tr class="danger">
-                            <td>四維路段</td>
-                            <td class="text-right">2</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">1</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                        </tr>
+
+                            @if (isset($mission_lists) )
+                                @foreach ($mission_lists as $mission_list )
+                                    @if ($mission_list->mission_name != "未分配任務")
+                                        <tr>
+                                            <td>{!! $mission_list->mission_name !!}</td>
+                                            @if(isset($roles))
+                                                @foreach($roles as $role)
+                                                    @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
+
+                                                        @if (isset($missionUserArrays[$mission_list->mission_list_id][$role->slug]) )
+                                                            <td class="text-right success" >{!! $missionUserArrays[$mission_list->mission_list_id][$role->slug] !!}</td>
+                                                        @else
+                                                            <td class="text-right "></td>
+                                                        @endif
+
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
+
                         {{--<tr>--}}
-                        <tr class="danger">
-                            <td>五福路段</td>
-                            <td class="text-right">3</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">1</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right">2</td>
-                        </tr>
+                        {{--<tr class="danger">--}}
+                            {{--<td>五福路段</td>--}}
+                            {{--<td class="text-right">3</td>--}}
+                            {{--<td class="text-right">1</td>--}}
+                            {{--<td class="text-right">1</td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td></td>--}}
+                            {{--<td class="text-right">2</td>--}}
+                        {{--</tr>--}}
 
                         </tbody>
                     </table>

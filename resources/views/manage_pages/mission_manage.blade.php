@@ -420,12 +420,12 @@
                                                             <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!}</td>
                                                             <td style="border-left: none;">小姐</td>
                                                         @endif
-                                                        @endfor
+                                                @endfor
                                                     </tr>
-                                                    @else
-                                                        <tr><td colspan="7"></td></tr>
+                                            @else
+                                                <tr><td colspan="7"></td></tr>
 
-                                                    @endif
+                                            @endif
                                                     {{--<td>150929073202</td>--}}
                                                     {{--<td>三多民權交叉路口</td>--}}
                                                     {{--<td>謝卸</td>--}}
@@ -433,9 +433,9 @@
                                                     {{--<td>變電箱起火</td><td>陳先生</td>--}}
 
 
-                                                    @endif
-                                                    @endforeach
-                                                    @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                                                     {{--<tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">--}}
                                                     {{--<td>150929073201</td>--}}
                                                     {{--<td>四維林森交叉路口</td>--}}

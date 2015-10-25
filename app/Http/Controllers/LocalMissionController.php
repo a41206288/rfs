@@ -65,6 +65,7 @@ class LocalMissionController extends Controller {
                 ->get();
 //            dd($mission_support_people_lists);
 
+
 //取出無增援列表任務編號和名稱
             $mission_no_support_people_lists = DB::table('mission_lists')
 //                ->where('mission_complete_time', NULL )
@@ -281,7 +282,7 @@ class LocalMissionController extends Controller {
                 ->with('mission_no_support_people_lists', $mission_no_support_people_lists)
                 ->with('mission_no_support_work_people_lists', $mission_no_support_work_people_lists)
                 ->with('mission_no_support_finish_people_lists', $mission_no_support_finish_people_lists)
-            ;
+    ;
 
 
 //            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類

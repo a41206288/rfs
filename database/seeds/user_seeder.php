@@ -348,7 +348,7 @@ class user_seeder extends Seeder{
         $user->email = "015@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0901501515';
-        $user->arrived = 1;
+        $user->arrived = 0;
         $user->save();
 
         $user  = User::where('user_name', '=', '黃奇偉')->first();
@@ -472,7 +472,7 @@ class user_seeder extends Seeder{
         $user->email = "021@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902102121';
-        $user->arrived = 1;
+        $user->arrived = 0;
         $user->save();
 
         $user  = User::where('user_name', '=', '呂伙棲')->first();
@@ -590,7 +590,7 @@ class user_seeder extends Seeder{
         $user->email = "027@yahoo.com.tw";
         $user->password =Hash::make ('1234');
         $user->phone = '0902702727';
-        $user->arrived = 1;
+        $user->arrived = 0;
         $user->save();
 
         $user  = User::where('user_name', '=', '詹絳')->first();

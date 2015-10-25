@@ -114,8 +114,12 @@
                                     支援其他任務 <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">四維</a></li>
-                                    <li><a href="#">五福</a></li>
+
+                                    @if(isset($mission_support_people_lists))
+                                        @foreach($mission_support_people_lists as $mission_support_people_list)
+                                            <li><a href="#">{!! $mission_support_people_list->mission_name !!}</a></li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             <a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body" title="人員顏色說明"
