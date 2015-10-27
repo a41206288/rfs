@@ -136,7 +136,7 @@ class ResourceCenterPeopleController extends Controller {
 		//儲存各任務救災人員人數
 		$missionUserArrays =[];
 		$missionUsers = [];
-		//計算各任務脫困組人數
+
 
 		foreach($roles as $role ){
 			$missionUsers[$role->id] = DB::table('users')
@@ -152,85 +152,51 @@ class ResourceCenterPeopleController extends Controller {
 //dd($missionUsers);
 
 		foreach($mission_lists as $mission_list ){
-			$unfind = false;
-			$slug = "";
-//			if(isset($relieverUsers)){
 			foreach($roles as $role){
 				foreach($missionUsers[$role->id] as $missionUser){
-
 					if($mission_list->mission_list_id == $missionUser ->mission_list_id){
-						$unfind = true;
 						$missionUserArrays[$missionUser->mission_list_id][$missionUser->slug] = $missionUser->total;
 					}
-					if($unfind == false){
-						$slug = $missionUser->slug;
-
-					}
 				}
-				if( $unfind == false ){
-//					$missionUserArrays[$mission_list->mission_list_id][$role->slug] = 0;
-				}
-//			}
-//			else{
-//				$relieverUsersArrays[$mission_list->mission_list_id] = 0;
-//				$missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
-//			}
 			}
-
-
 		}
 
 //		dd($missionUserArrays);
 
 
 
+//		//計算各任務脫困組人數
+//		$relieverUsers = DB::table('users')
+//			->join('role_user','users.id','=','role_user.user_id')
+//			->join('roles','roles.id','=','role_user.role_id')
+//			->join('works_ons','works_ons.id','=','role_user.user_id')
 //			->select('mission_list_id','slug',DB::raw('count(*) as total'))
 //			->where('role_user.role_id','=',5)
 //			->where('status','=','閒置')
 //			->groupBy('mission_list_id')
 //			->get();
+////        dd($relieverUsers);
 
-
-
-		//計算各任務脫困組人數
-		$relieverUsers = DB::table('users')
-			->join('role_user','users.id','=','role_user.user_id')
-			->join('roles','roles.id','=','role_user.role_id')
-			->join('works_ons','works_ons.id','=','role_user.user_id')
-			->select('mission_list_id','slug',DB::raw('count(*) as total'))
-			->where('role_user.role_id','=',5)
-			->where('status','=','閒置')
-			->groupBy('mission_list_id')
-			->get();
-//        dd($relieverUsers);
-
-		$relieverUsersArrays = [];
-		foreach($mission_lists as $mission_list ){
-			$unfind = false;
-			$slug = "";
-//			if(isset($relieverUsers)){
-				foreach($relieverUsers as $relieverUser){
-
-					if($mission_list->mission_list_id == $relieverUser ->mission_list_id){
-						$unfind = true;
-						$relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
-						$missionUserArrays[$relieverUser->mission_list_id][$relieverUser->slug] = $relieverUser->total;
-					}
-					if($unfind == false){
-						$slug = $relieverUser->slug;
-					}
-				}
-				if( $unfind == false ){
-					$relieverUsersArrays[$mission_list->mission_list_id] = 0;
-					$missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
-				}
-//			}
-//			else{
-//				$relieverUsersArrays[$mission_list->mission_list_id] = 0;
-//				$missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
-//			}
-
-		}
+//		$relieverUsersArrays = [];
+//		foreach($mission_lists as $mission_list ){
+//			$unfind = false;
+//			$slug = "";
+//				foreach($relieverUsers as $relieverUser){
+//
+//					if($mission_list->mission_list_id == $relieverUser ->mission_list_id){
+//						$unfind = true;
+//						$relieverUsersArrays[$relieverUser->mission_list_id] = $relieverUser->total;
+//						$missionUserArrays[$relieverUser->mission_list_id][$relieverUser->slug] = $relieverUser->total;
+//					}
+//					if($unfind == false){
+//						$slug = $relieverUser->slug;
+//					}
+//				}
+//				if( $unfind == false ){
+//					$relieverUsersArrays[$mission_list->mission_list_id] = 0;
+//					$missionUserArrays[$mission_list->mission_list_id][$slug] = 0;
+//				}
+//		}
 
 
 //        $relieverUsersArrays =[];
