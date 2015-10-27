@@ -70,6 +70,15 @@ class mission_seeder extends Seeder{
         $mission_list->arrive_location_time = date('Y-m-d H:i:s');
         $mission_list->save();
 
+        $mission_list = new App\Mission_list;
+        $mission_list->mission_list_id = 8;
+        $mission_list->mission_name = '德智街1號';
+        $mission_list->id = 8;
+        $mission_list->assign_people_finish_time = date('Y-m-d H:i:s');
+        $mission_list->arrive_location_time = date('Y-m-d H:i:s');
+        $mission_list->mission_complete_time =  date('Y-m-d H:i:s');
+        $mission_list->save();
+
 
 
         $mission = new App\Mission;
@@ -182,7 +191,7 @@ class mission_seeder extends Seeder{
         $mission->phone = '0987654321';
         $mission->township_or_district_input = '新興區';
         $mission->location = '德智街1號';
-        $mission->mission_list_id = 1;
+        $mission->mission_list_id = 8;
         $mission->save();
 
         $mission = new App\Mission;

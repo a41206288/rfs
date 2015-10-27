@@ -42,6 +42,7 @@ class CreateUsersTable extends Migration {
 			$table->text('damage_detail');
 			$table->text('now_location');
 			$table->text('disposal');
+			$table->timestamp('disposal_finish_time')->nullable();;
 			$table->timestamps();
 			//$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');
 		});

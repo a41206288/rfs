@@ -72,6 +72,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 3;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User; //測試用密碼是1234
@@ -91,6 +92,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 4;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -114,6 +116,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 5;
         $Works_on->mission_list_id = 5;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -134,6 +137,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 6;
         $Works_on->mission_list_id = 6;
+        $Works_on->status = '閒置';
         $Works_on->save();
 
 
@@ -155,6 +159,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 7;
         $Works_on->mission_list_id = 7;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         //地方指揮官閒置
@@ -177,6 +182,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 8;
         $Works_on->mission_list_id = 1;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         //後勤
@@ -214,6 +220,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 10;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -234,6 +241,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 11;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -256,6 +264,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 54;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -278,6 +287,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 55;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -380,6 +390,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 16;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -400,6 +411,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 17;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -504,6 +516,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 22;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -523,6 +536,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 23;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -542,6 +556,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 24;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         //救火組閒置
@@ -622,6 +637,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 28;
         $Works_on->mission_list_id = 5;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -642,6 +658,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 29;
         $Works_on->mission_list_id = 5;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -662,6 +679,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 30;
         $Works_on->mission_list_id = 6;
+        $Works_on->status = '閒置';
         $Works_on->save();
 
 
@@ -682,6 +700,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 31;
         $Works_on->mission_list_id = 7;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         //清潔組閒置
@@ -750,6 +769,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 34;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -769,6 +789,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 35;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -788,6 +809,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 36;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -821,6 +843,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 38;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -840,6 +863,29 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 39;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
+        $Works_on->save();
+
+        $user = new App\User;
+        $user->id = 56;
+        $user->user_name = "郭三建";
+        $user->email = "056@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905605656';
+        $user->country_or_city_input = '台中市';
+        $user->township_or_district_input = '北屯區';
+        $user->arrived = 1;
+        $user->save();
+
+        $user  = User::where('user_name', '=', '郭三建')->first();
+        $role = Permission::where('name', '=', 'road')->first();
+        $user->assignRole($role);
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 56;
+        $Works_on->mission_list_id = 6;
+        $Works_on->status = '閒置';
         $Works_on->save();
 
         //道路修復組閒置
@@ -903,6 +949,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 42;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -923,6 +970,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 43;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -943,6 +991,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 44;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
 
@@ -963,6 +1012,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 45;
         $Works_on->mission_list_id = 5;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -982,6 +1032,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 46;
         $Works_on->mission_list_id = 5;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         //管線修復組閒置
@@ -1005,6 +1056,27 @@ class user_seeder extends Seeder{
         $Works_on->mission_list_id = 1;
         $Works_on->save();
 
+        $user = new App\User;
+        $user->id = 58;
+        $user->user_name = "江文溪";
+        $user->email = "058@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905805858';
+        $user->arrived = 0;
+        $user->save();
+
+        $user  = User::where('user_name', '=', '江文溪')->first();
+        $role = Permission::where('name', '=', 'Pipe')->first();
+        $user->assignRole($role);
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 58;
+        $Works_on->mission_list_id = 1;
+        $Works_on->status = '執行任務';
+        $Works_on->save();
+
+
         //警界組
 
         $user = new App\User; //測試用密碼是1234
@@ -1024,6 +1096,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 48;
         $Works_on->mission_list_id = 2;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -1043,6 +1116,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 49;
         $Works_on->mission_list_id = 4;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         $user = new App\User;
@@ -1062,6 +1136,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 50;
         $Works_on->mission_list_id = 5;
+        $Works_on->status = '執行任務';
         $Works_on->save();
 
         //警界組閒置
@@ -1124,22 +1199,7 @@ class user_seeder extends Seeder{
         $Works_on->save();
 
         //
-//        $user = new App\User;
-//        $user->id = 56;
-//        $user->user_name = "郭三建";
-//        $user->email = "056@yahoo.com.tw";
-//        $user->password =Hash::make ('1234');
-//        $user->phone = '0905605656';
-//        $user->skill = '有醫師執照';
-//        $user->country_or_city_input = '台中市';
-//        $user->township_or_district_input = '北屯區';
-//        $user->arrived = 0;
-//        $user->save();
-//
-//        $user  = User::where('user_name', '=', '郭三建')->first();
-//        $role = Permission::where('name', '=', 'emt')->first();
-//        $user->assignRole($role);
-//        $user->save();
+
 
 //
 //        $user = new App\User; //測試用密碼是1234

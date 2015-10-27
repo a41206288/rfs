@@ -25,7 +25,7 @@ class CenterMissionController extends Controller {
                     ->orderBy('assign_people_finish_time')
                     ->orderBy('arrive_location_time')
                     ->orderBy('mission_complete_time')
-
+                    ->orderBy('mission_name')
                     ->get();
 //dd($mission_lists);
 
