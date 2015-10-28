@@ -175,7 +175,26 @@
                                     @endif
                                 @endforeach
                             @endif
-
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 80%">
+                                    <div class="modal-content">
+                                        {!! Form::open(array('url' => 'victim/EMT/create', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
+                                        <div class="modal-header ">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel"><b>新增災民資料</b></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            {!! Form::text('now_location','',['class' => 'form-control']) !!}
+                                            {!! Form::label('writein','',['class' => 'form-control','disabled' => 'disabled']) !!}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
                             </tbody>
 
                         </table>
@@ -464,6 +483,7 @@
                         </div>
                         {{--表格尾端--}}
 
+
                     </div>
 
 
@@ -478,7 +498,30 @@
 
 
 @section('javascript')
+    <script>
+        var local_data = {!! json_encode($local) !!}; //controller傳來的陣列轉乘javascript陣列
+        var localUserName = Array();
+        for(var i=0;i<local_data.length;i++){
+            localUserName[i] = {value:local_data[i]['user_name'],label:local_data[i]['user_name']};
+        }
 
+        for(var i=0; i<$('div .modal').length; i++){
+            var div = "#" + $('div .modal').eq(i).attr('id');
+            $(div).find("input[name='now_location']").autocomplete({
+                source: localUserName,
+                appendTo: div,
+                minLength: 0,
+                select: function(event,ui){
+                    $(div).find("input[name='writein']").val(ui.item.value);
+                    return false;
+                }
+            });
+            $(div).find("input[name='now_location']").click(function(){
+                $(div).find("input[name='now_location']").keydown();
+            });
+        }
+//        $("input[name='now_location']").click(function(e){ $('#' + e.target.id).keydown() });
+    </script>
     <script language="JavaScript">
         $('.header').click(function(){
             $(this).toggleClass('expand').next().nextUntil('tr.header').slideToggle(100);

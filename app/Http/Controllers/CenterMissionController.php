@@ -45,7 +45,17 @@ class CenterMissionController extends Controller {
                 //取出各任務的通報內容 時間 負責人
                 $mission_contents = DB::table('missions')
                 ->get();
-//dd($mission_contents);
+//                dd($mission_contents);
+
+                //取出閒置的地方指揮官
+                $local = DB::table('users')
+                    ->join('role_user','users.id','=','role_user.user_id')
+                    ->join('roles','roles.id','=','role_user.role_id')
+                    ->join('works_ons','works_ons.id','=','role_user.user_id')
+                    ->where('role_user.role_id','=',3)
+                    ->where('works_ons.mission_list_id','=',1)
+                    ->get();
+//                    dd($local);
 
 //        $mission_contents_array =[];
 //        foreach($mission_contents as $mission_content){
@@ -609,6 +619,7 @@ class CenterMissionController extends Controller {
             ->with('missionUserArrays', $missionUserArrays)
             ->with('unsigned_missions', $unsigned_missions)
             ->with('mission_list_names', $mission_list_names)
+            ->with('local', $local)
 //            ->with('emtUsersArrays', $emtUsersArrays)
 //            ->with('relieverUsersArrays', $relieverUsersArrays)
 //            ->with('mission_new_location_Arrays', $mission_new_location_Arrays)
