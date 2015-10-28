@@ -54,6 +54,7 @@ class CenterMissionController extends Controller {
                     ->join('works_ons','works_ons.id','=','role_user.user_id')
                     ->where('role_user.role_id','=',3)
                     ->where('works_ons.mission_list_id','=',1)
+                    ->where('works_ons.status','=','閒置')
                     ->get();
 //                    dd($local);
 
