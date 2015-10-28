@@ -114,7 +114,7 @@
                                             <td>
                                                 @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
                                                     {{--{!! dd($mission_list_charge_Array['name'] ) !!}}--}}
-                                                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                                                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#setCharge{!! $mission_list->mission_list_id!!}">
                                                         指派負責人
                                                     </button>
                                                 @else
@@ -173,28 +173,31 @@
 
                                         </tr>
                                     @endif
+                                            <!-- Modal -->
+                                        <div class="modal fade" id="setCharge{!! $mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" style="width: 30%">
+                                                <div class="modal-content">
+                                                    {!! Form::open(array('url' => 'call/manage/updateMission'))!!}
+                                                    {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
+                                                    <div class="modal-header ">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel"><b>指派負責人</b></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        {{--{!! Form::text('now_location','',['class' => 'form-control']) !!}--}}
+                                                        {{--{!! Form::label('writein','',['class' => 'form-control','disabled' => 'disabled']) !!}--}}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                                        {!! Form::submit('修改', ['class' => 'btn btn-primary']) !!}
+                                                    </div>
+                                                    {!! Form::close() !!}
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
                                 @endforeach
                             @endif
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" style="width: 80%">
-                                    <div class="modal-content">
-                                        {!! Form::open(array('url' => 'victim/EMT/create', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
-                                        <div class="modal-header ">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel"><b>新增災民資料</b></h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            {!! Form::text('now_location','',['class' => 'form-control']) !!}
-                                            {!! Form::label('writein','',['class' => 'form-control','disabled' => 'disabled']) !!}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
+
                             </tbody>
 
                         </table>
@@ -436,12 +439,18 @@
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 {!! Form::open(array('url' => 'call/manage/updateMission'))!!}
+                                                                                {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
                                                                                 <table class="table table-bordered">
                                                                                     <tr>
-                                                                                        <th colspan="2">任務地點</th><td colspan="4">{!! Form::text('mission_name',$mission_list->mission_name,['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}</td>
+                                                                                        <th colspan="2">任務地點</th><td colspan="4">{!! Form::text('mission_name',$mission_list->mission_name,['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','required']) !!}</td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}</td>
+                                                                                        @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
+                                                                                            <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}</td>
+                                                                                        @else
+                                                                                            <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','required']) !!}</td>
+                                                                                            {!! Form::hidden('old_id',$mission_list->id) !!}
+                                                                                        @endif
                                                                                     </tr>
 
                                                                                     <tr>
@@ -675,27 +684,7 @@
     <script language="JavaScript">
         function checkForm()
         {
-            if($('#phone').val() == "" && $('#email').val()=="")
-            {
-                alert("至少填寫1項聯絡方式");
-                $('#phone').focus();
-                return false;
-            }
-            if( !isPhone( $('#phone').val() ) )
-            {
-                $('#phone').focus();
-                return false;
-            }
-            if( $('#email').val() != "" && !isEmail( $('#email').val() ) )
-            {
-                $('#email').focus();
-                return false;
-            }
-            if($('#donate_table tr').length<2)
-            {
-                alert("請選擇要捐贈的物資");
-                return false;
-            }
+
             return true;
         }
 

@@ -723,8 +723,30 @@ class CenterMissionController extends Controller {
 	 */
 	public function update(Request $request)
 	{
-        $inputs=$request->except('_token');
-        dd($inputs);
+//        $inputs=$request->except('_token');
+//        dd($inputs);
+        $mission_list_id = $request->input('mission_list_id');
+        $mission_name = $request->input('mission_name');
+        $id = $request->input('id');
+        $old_id = $request->input('old_id');
+        $call_to_remove_from_missions = $request->input('call_to_remove_from_mission');
+
+        if(isset($mission_name))
+        {
+            DB::table('mission_lists')->where('mission_list_id',$mission_list_id)->update(['mission_name' => $mission_name]);
+        }
+        if(isset($id) && isset($old_id) && $id != $old_id)
+        {
+            DB::table('mission_lists')->where('mission_list_id',$mission_list_id)->update(['id' => $id]);
+        }
+        if(isset($call_to_remove_from_missions))
+        {
+            foreach($call_to_remove_from_missions as $call_to_remove_from_mission)
+            {
+                DB::table('missions')->where('mission_id',$call_to_remove_from_mission)->update(['mission_list_id' => 1]);
+            }
+        }
+        return redirect()->route('centerPanel');
 	}
 
 	/**

@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CenterCallController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CenterCallController.php" />
+    <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="中央指派人數 改為由指定事件負責人 界面更新 (醫療) 上色+panel v.1">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/panal + nav 表格架構" afterPath="$PROJECT_DIR$/panal + nav 表格架構" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -61,18 +55,18 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="684">
-              <caret line="30" column="40" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="40" />
+            <state vertical-scroll-proportion="-2.451613" vertical-offset="0" max-vertical-offset="684">
+              <caret line="4" column="14" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CenterMissionController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CenterMissionController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.035714" vertical-offset="14016" max-vertical-offset="14497">
-              <caret line="751" column="0" selection-start-line="751" selection-start-column="0" selection-end-line="751" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.49445677" vertical-offset="13818" max-vertical-offset="14915">
+              <caret line="739" column="105" selection-start-line="739" selection-start-column="105" selection-end-line="739" selection-end-column="105" />
               <folding>
                 <element signature="e#39#61#0#PHP" expanded="true" />
               </folding>
@@ -83,9 +77,33 @@
       <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7586207" vertical-offset="1418" max-vertical-offset="14630">
-              <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
-              <folding />
+            <state vertical-scroll-proportion="-4.913793" vertical-offset="8265" max-vertical-offset="14421">
+              <caret line="450" column="162" selection-start-line="450" selection-start-column="162" selection-end-line="450" selection-end-column="189" />
+              <folding>
+                <element signature="e#12021#12039#0#HTML" expanded="true" />
+                <element signature="e#14460#14485#0#HTML" expanded="true" />
+                <element signature="e#15858#15899#0#HTML" expanded="true" />
+                <element signature="e#23070#23095#0#HTML" expanded="true" />
+                <element signature="e#24552#24593#0#HTML" expanded="true" />
+                <element signature="e#26733#26754#0#HTML" expanded="true" />
+                <element signature="e#26993#27072#0#HTML" expanded="true" />
+                <element signature="e#29146#29173#0#HTML" expanded="true" />
+                <element signature="e#29396#29422#0#HTML" expanded="true" />
+                <element signature="e#29639#29666#0#HTML" expanded="true" />
+                <element signature="e#29889#29915#0#HTML" expanded="true" />
+                <element signature="e#36443#36470#0#HTML" expanded="true" />
+                <element signature="e#36722#36748#0#HTML" expanded="true" />
+                <element signature="e#37032#37059#0#HTML" expanded="true" />
+                <element signature="e#37311#37337#0#HTML" expanded="true" />
+                <element signature="e#42846#42873#0#HTML" expanded="true" />
+                <element signature="e#43089#43115#0#HTML" expanded="true" />
+                <element signature="e#43327#43354#0#HTML" expanded="true" />
+                <element signature="e#43570#43596#0#HTML" expanded="true" />
+                <marker date="1446025677421" expanded="true" signature="15508:15720" placeholder="..." />
+                <marker date="1446025677421" expanded="true" signature="15522:15718" placeholder="..." />
+                <marker date="1446025677421" expanded="true" signature="35185:35422" placeholder="..." />
+                <marker date="1446025677421" expanded="true" signature="35646:35881" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,10 +118,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.97921" vertical-offset="5066" max-vertical-offset="13319">
+            <state vertical-scroll-proportion="-84.39286" vertical-offset="5579" max-vertical-offset="13319">
               <caret line="418" column="164" selection-start-line="418" selection-start-column="28" selection-end-line="418" selection-end-column="164" />
               <folding>
                 <marker date="1446020616795" expanded="true" signature="17786:17941" placeholder="..." />
@@ -662,12 +680,6 @@
       <option name="number" value="Default" />
       <updated>1428751848408</updated>
     </task>
-    <task id="LOCAL-00003" summary="更改資料庫table名稱&#10;mission-&gt;missions&#10;mission_list-&gt;mission_lists">
-      <created>1431068209645</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1431068209646</updated>
-    </task>
     <task id="LOCAL-00004" summary="下拉式database single row complete">
       <created>1431176360143</created>
       <option name="number" value="00004" />
@@ -956,13 +968,20 @@
       <option name="project" value="LOCAL" />
       <updated>1445505882833</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="中央指派人數 改為由指定事件負責人 界面更新 (醫療) 上色+panel v.1">
+      <created>1446021169821</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1446021169822</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="0" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -979,7 +998,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1345,16 +1363,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1664" max-vertical-offset="3705">
           <caret line="108" column="46" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/From 整理">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="684">
-          <caret line="30" column="40" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1363,6 +1371,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48169556" vertical-offset="6495" max-vertical-offset="7923">
           <caret line="355" column="35" selection-start-line="355" selection-start-column="16" selection-end-line="355" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1429,31 +1438,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-84.39286" vertical-offset="5579" max-vertical-offset="13319">
+          <caret line="418" column="164" selection-start-line="418" selection-start-column="28" selection-end-line="418" selection-end-column="164" />
+          <folding>
+            <marker date="1446020616795" expanded="true" signature="17786:17941" placeholder="..." />
+            <marker date="1446020616795" expanded="true" signature="18959:19162" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/From 整理">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.451613" vertical-offset="0" max-vertical-offset="684">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7586207" vertical-offset="1418" max-vertical-offset="14630">
-          <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
-          <folding />
+        <state vertical-scroll-proportion="-4.913793" vertical-offset="8265" max-vertical-offset="14421">
+          <caret line="450" column="162" selection-start-line="450" selection-start-column="162" selection-end-line="450" selection-end-column="189" />
+          <folding>
+            <element signature="e#12021#12039#0#HTML" expanded="true" />
+            <element signature="e#14460#14485#0#HTML" expanded="true" />
+            <element signature="e#15858#15899#0#HTML" expanded="true" />
+            <element signature="e#23070#23095#0#HTML" expanded="true" />
+            <element signature="e#24552#24593#0#HTML" expanded="true" />
+            <element signature="e#26733#26754#0#HTML" expanded="true" />
+            <element signature="e#26993#27072#0#HTML" expanded="true" />
+            <element signature="e#29146#29173#0#HTML" expanded="true" />
+            <element signature="e#29396#29422#0#HTML" expanded="true" />
+            <element signature="e#29639#29666#0#HTML" expanded="true" />
+            <element signature="e#29889#29915#0#HTML" expanded="true" />
+            <element signature="e#36443#36470#0#HTML" expanded="true" />
+            <element signature="e#36722#36748#0#HTML" expanded="true" />
+            <element signature="e#37032#37059#0#HTML" expanded="true" />
+            <element signature="e#37311#37337#0#HTML" expanded="true" />
+            <element signature="e#42846#42873#0#HTML" expanded="true" />
+            <element signature="e#43089#43115#0#HTML" expanded="true" />
+            <element signature="e#43327#43354#0#HTML" expanded="true" />
+            <element signature="e#43570#43596#0#HTML" expanded="true" />
+            <marker date="1446025677421" expanded="true" signature="15508:15720" placeholder="..." />
+            <marker date="1446025677421" expanded="true" signature="15522:15718" placeholder="..." />
+            <marker date="1446025677421" expanded="true" signature="35185:35422" placeholder="..." />
+            <marker date="1446025677421" expanded="true" signature="35646:35881" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.035714" vertical-offset="14016" max-vertical-offset="14497">
-          <caret line="751" column="0" selection-start-line="751" selection-start-column="0" selection-end-line="751" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.49445677" vertical-offset="13818" max-vertical-offset="14915">
+          <caret line="739" column="105" selection-start-line="739" selection-start-column="105" selection-end-line="739" selection-end-column="105" />
           <folding>
             <element signature="e#39#61#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.97921" vertical-offset="5066" max-vertical-offset="13319">
-          <caret line="418" column="164" selection-start-line="418" selection-start-column="28" selection-end-line="418" selection-end-column="164" />
-          <folding>
-            <marker date="1446020616795" expanded="true" signature="17786:17941" placeholder="..." />
-            <marker date="1446020616795" expanded="true" signature="18959:19162" placeholder="..." />
           </folding>
         </state>
       </provider>
