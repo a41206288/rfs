@@ -102,10 +102,12 @@ Route::group([
 //        Route::get('call/manage',array('as' => 'administratorPanel', 'uses' => 'CenterCallController@index'));
 //        //call manage 動態印出通報用
 //        Route::post('call/manage', 'CenterCallController@update');
-//        Route::post('call/manage/save', 'CenterCallController@store');
+        Route::post('call/manage/save', 'CenterCallController@store');
 //
 //        //call manage 創建新任務
-//        Route::post('call/manage/createMission', 'CenterMissionController@create');
+        Route::post('call/manage/createMission', 'CenterMissionController@create');
+        Route::post('call/manage/updateMission', 'CenterMissionController@update');
+        Route::post('call/manage/destroyMission', 'CenterMissionController@destroy');
         //Route::get('call/manage/auto_complete', 'MissionController@auto_complete');//auto_complete
 
         //mission manage()

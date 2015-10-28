@@ -178,22 +178,30 @@ class CenterCallController extends Controller {
 	public function store(Request $request)
 	{
         $inputs=$request->except('_token');
-        $missions_index = DB::table('missions')->select('mission_id')->where('mission_list_id', 1)->get();
-
+        $mission_list_id=$request->input('mission_list_id');
+        $calls=$request->input('call');
+//        $missions_index = DB::table('missions')->select('mission_id')->where('mission_list_id', 1)->get();
+//
 //        dd($inputs);
-        foreach($missions_index as $mission)
-        {
-//            dd($mission->mission_id);
-            if(isset($inputs[$mission->mission_id]) && $inputs[$mission->mission_id]!='請選擇')
+        if(isset($calls) ){
+            foreach($calls as $call)
             {
+//            dd($mission->mission_id);
+//            if(isset($inputs[$mission->mission_id]) && $inputs[$mission->mission_id]!='請選擇')
+//            {
+//
+//                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_list_id' => $inputs[$mission->mission_id]]);
+                DB::table('missions')->where('mission_id', $call)->update(['mission_list_id' => $mission_list_id]);
 
-                DB::table('missions')->where('mission_id', $mission->mission_id)->update(['mission_list_id' => $inputs[$mission->mission_id]]);
-
+//            }
             }
+
         }
 
 
-        return redirect()->route('administratorPanel');
+
+
+        return redirect()->route('centerPanel');
 	}
 
 	/**

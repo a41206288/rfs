@@ -4,7 +4,7 @@
 @endsection
 @section('link')
     {{--<li>{!! Html::link('call/manage', '通報管理') !!}</li>--}}
-    <li>{!! Html::link('mission/manage', '任務管理') !!}</li>
+    <li class="active">{!! Html::link('mission/manage', '任務管理') !!}</li>
 @endsection
 @section('css')
     tr.header,tr.header_no_next
@@ -43,15 +43,15 @@
                             <a class="navbar-sm-brand" href="#">任務進度列表</a>
                         </div>
 
-                        <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
-                            <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
-                                <button type="button" class="btn btn-sm btn-default navbar-sm-btn">依時間排序</button>
-                                <button type="button" class="btn btn-sm btn-default navbar-sm-btn">依地點排序</button>
-                                <button type="button" class="btn btn-sm btn-default navbar-sm-btn">依進度排序</button>
-                            </ul>
-                            <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
-                            </ul>
-                        </div>
+                        {{--<div class="collapse navbar-sm-collapse" >--}}{{--上面按鈕欄--}}
+                            {{--<ul class="nav navbar-sm-nav">--}}{{--上面按鈕欄內容 靠左對齊--}}
+                                {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">依時間排序</button>--}}
+                                {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">依地點排序</button>--}}
+                                {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">依進度排序</button>--}}
+                            {{--</ul>--}}
+                            {{--<ul class="nav navbar-sm-nav navbar-sm-right">--}}{{--上面按鈕欄內容 靠右對齊--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
                     </nav>
                     <div style="height: 450px;overflow-y: scroll;">{{--固定高度表格--}}
                         <table class="table table-bordered">
@@ -60,7 +60,7 @@
                                 <th width="80px">日期</th>
                                 <th width="45px">時間</th>
                                 <th width="125px">任務地點</th>
-                                <th width="50px">負責人</th>
+                                <th width="80px">負責人</th>
                                 {{--<th colspan="13">任務進度</th>--}}
                                 <th width="145px" colspan="2">調派人員結束時間</th>
                                 <th width="145px" colspan="2">到達任務現場時間</th>
@@ -205,6 +205,7 @@
             <div class="tab-pane active" id="call_tab">
                 <div class="col-xs-8 col-sm-6 col-md-6" >
                     <div class="panel panel-default" >
+                        {!! Form::open(array('url' => 'call/manage/save','id'=>'my_form'))!!}
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
                                 <a class="navbar-sm-brand" href="#">尚未處理通報</a>
@@ -212,21 +213,14 @@
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                                 <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
-                                    {!! Form::select('name', array('選擇區' => '選擇區', '新興區' => '新興區', '復興區' => '復興區'), '選擇區', ['class' => 'navbar-sm-btn btn-sm']) !!}
-                                    {!! Form::select('name', array('選擇路段' => '選擇路段', '中華路' => '中華路', '四維路' => '四維路'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::select('township_or_district', array('選擇區' => '選擇區', '新興區' => '新興區', '復興區' => '復興區'), '選擇區', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::select('rd_or_st', array('選擇路段' => '選擇路段', '中華路' => '中華路', '四維路' => '四維路'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
                                 </ul>
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
-                                    <button type="button" class="btn btn-sm btn-default navbar-sm-btn">將通報新增成任務</button>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-default  navbar-sm-btn dropdown-toggle" data-toggle="dropdown">
-                                            將通報分配至現有任務 <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">四維</a></li>
-                                            <li><a href="#">五福</a></li>
-                                        </ul>
-                                    </div>
+                                    <button id="new_mission_list" type="button" class="btn btn-sm btn-default navbar-sm-btn">將通報新增成任務</button>
+                                    {!! Form::select('mission_list_id', $mission_list_names, '將通報分配至現有任務', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
+
                                 </ul>
                             </div>
                         </nav>
@@ -286,12 +280,12 @@
 
 
                                 </thead>
-                                <tbody>
+                                <tbody  id="unsigned_missions_table">
                                 @if (isset($unsigned_missions))
 
                                     @foreach ($unsigned_missions as $unsigned_mission )
                                         <tr>
-                                            <td>{!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! Form::checkbox('call[]', $unsigned_mission->mission_id)!!}</td>
                                             <td>{{ (new Carbon\Carbon($unsigned_mission->created_at))->formatLocalized('%Y/%m/%d') }}</td>
                                             <td>{{ (new Carbon\Carbon($unsigned_mission->created_at))->formatLocalized('%H:%M') }}</td>
 
@@ -345,13 +339,22 @@
                     <div class="panel panel-default" >
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
-                                <a class="navbar-sm-brand" href="#">尚未處理通報</a>
+                                <a class="navbar-sm-brand" href="#">目前尚未完成任務清單</a>
                             </div>
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                                 <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
                                     {!! Form::select('name', array('選擇區' => '選擇區', '新興區' => '新興區', '復興區' => '復興區'), '選擇區', ['class' => 'navbar-sm-btn btn-sm']) !!}
                                     {!! Form::select('name', array('選擇路段' => '選擇路段', '中華路' => '中華路', '四維路' => '四維路'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                </ul>
+                                <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
+                                    <!-- 說明按鈕 -->
+
+                                    <a href="#" class="btn btn-default btn-sm navbar-sm-btn" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"
+                                       title="刪除說明"
+                                       data-content="已開始執行任務，<br>不得進行刪除，請<br>與地方指揮官溝通<br>協調後再刪除。"
+                                       data-html="true" role="button">刪除說明
+                                    </a>
                                 </ul>
 
                             </div>
@@ -364,7 +367,7 @@
                                     <th width="80px">日期</th>
                                     <th width="45px">時間</th>
                                     <th width="125px">任務地點</th>
-                                    <th colspan="6">通報內容</th>
+                                    <th colspan="4">通報內容</th>
                                 </tr>
                                 {{--<tr>--}}
                                     {{--<th>--}}
@@ -386,7 +389,7 @@
                                 <tbody>
                                 @if (isset($mission_lists) )
                                     @foreach ($mission_lists as $mission_list )
-                                        @if ($mission_list->mission_name != "未分配任務")
+                                        @if ($mission_list->mission_name != "未分配任務" && $mission_list->mission_complete_time == NULL)
                                             @if (isset($mission_contents_array[$mission_list->mission_list_id]) )
                                                 <div style="display: none">
                                                     {!! $n = count($mission_contents_array[$mission_list->mission_list_id])+1 !!}
@@ -411,14 +414,108 @@
 
                                                     @if($mission_contents_array[$mission_list->mission_list_id][1]['sex'] == '男')
 
-                                                        <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][1]['lname'].$mission_contents_array[$mission_list->mission_list_id][1]['fname'] !!}</td>
-                                                        <td style="border-left: none;"> 先生</td>
+                                                        <td width="60px" style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][1]['lname'].$mission_contents_array[$mission_list->mission_list_id][1]['fname'] !!}</td>
+                                                        <td width="40px" style="border-left: none;"> 先生</td>
                                                     @elseif($mission_contents_array[$mission_list->mission_list_id][1]['sex'] == '女')
-                                                        <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][1]['lname'].$mission_contents_array[$mission_list->mission_list_id][1]['fname'] !!}</td>
-                                                        <td style="border-left: none;">小姐</td>
+                                                        <td width="60px" style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][1]['lname'].$mission_contents_array[$mission_list->mission_list_id][1]['fname'] !!}</td>
+                                                        <td width="40px" style="border-left: none;">小姐</td>
                                                     @endif
+                                                    <td width="80px">
+                                                        {{--@if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")--}}
+                                                            <!-- Button trigger modal -->
+                                                            <a data-toggle="modal" data-target="#mission_list_update_Modal{!!$mission_list->mission_list_id!!}">
+                                                                修改
+                                                            </a>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="mission_list_update_Modal{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                <h4 class="modal-title" id="myModalLabel">修改任務</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                {!! Form::open(array('url' => 'call/manage/updateMission'))!!}
+                                                                                <table class="table table-bordered">
+                                                                                    <tr>
+                                                                                        <th colspan="2">任務地點</th><td colspan="4">{!! Form::text('mission_name',$mission_list->mission_name,['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}</td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                        <th colspan="6">通報內容<font color="#ff0b11" size="1px">※如欲移除通報，請勾選欲移除之通報並按下修改即可</font></th>
+                                                                                    </tr>
+                                                                                    @for($i=1;$i<$n;$i++)
+
+                                                                                        <tr>
+                                                                                            <td>{!! Form::checkbox('call_to_remove_from_mission[]', $mission_list->mission_list_id)!!}</td>
+                                                                                            <td>{!! $mission_contents_array[$mission_list->mission_list_id][$i]['id']  !!}</td>
+
+                                                                                            @if(isset($mission_contents_array[$mission_list->mission_list_id][$i]['r1']) && isset($mission_contents_array[$mission_list->mission_list_id][$i]['r2']))
+                                                                                                <td width="124px">{!! $mission_contents_array[$mission_list->mission_list_id][ $i]['township_or_district_input']." ".$mission_contents_array[$mission_list->mission_list_id][$i]['r1']."與".$mission_contents_array[$mission_list->mission_list_id][$i]['r2']."交叉口"!!}</td>
+                                                                                            @else
+                                                                                                <td width="124px">{!! $mission_contents_array[$mission_list->mission_list_id][ $i]['township_or_district_input']." ".$mission_contents_array[$mission_list->mission_list_id][$i]['r1'].$mission_contents_array[$mission_list->mission_list_id][ $i]['location'] !!}</td>
+                                                                                            @endif
+                                                                                            <td>{!! $mission_contents_array[$mission_list->mission_list_id][$i]['content']  !!}</td>
+
+                                                                                            @if($mission_contents_array[$mission_list->mission_list_id][$i]['sex'] == '男')
+
+                                                                                                <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!}</td>
+                                                                                                <td style="border-left: none;">先生</td>
+                                                                                            @elseif($mission_contents_array[$mission_list->mission_list_id][$i]['sex'] == '女')
+                                                                                                <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!}</td>
+                                                                                                <td style="border-left: none;">小姐</td>
+
+                                                                                            @endif
 
 
+                                                                                        </tr>
+                                                                                    @endfor
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                {!! Form::submit('修改', ['class' => 'btn btn-primary']) !!}
+                                                                                {!! Form::close() !!}
+                                                                            </div>
+
+                                                                        </div><!-- /.modal-content -->
+                                                                    </div><!-- /.modal-dialog -->
+                                                                </div><!-- /.modal -->
+                                                                <!-- Modal -->
+                                                        @if($mission_list->arrive_location_time == NULL)
+                                                            /
+                                                            <a data-toggle="modal" data-target="#mission_list_remove_Modal{!!$mission_list->mission_list_id!!}">
+                                                                刪除
+                                                            </a>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="mission_list_remove_Modal{!!$mission_list->mission_list_id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                            <h4 class="modal-title" id="myModalLabel">刪除任務</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            是否確認刪除此任務?<br>
+                                                                            刪除整個任務後，內含所有<br>
+                                                                            通報:將回到未處理通報中<br>
+                                                                            工作人員:將狀態更改為任務返回中<br>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            {!! Form::open(array('url' => 'call/manage/destroyMission','onSubmit' => 'return checkForm();'))!!}
+                                                                            {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
+                                                                            {!! Form::submit('確認刪除整個任務', ['class' => 'btn btn-danger']) !!}
+                                                                            {!! Form::close() !!}
+                                                                        </div>
+                                                                    </div><!-- /.modal-content -->
+                                                                </div><!-- /.modal-dialog -->
+                                                            </div>
+                                                            <!-- Modal -->
+
+                                                        @endif
+                                                    </td>
                                                 </tr>
 
                                                 {{--剩餘任務--}}
@@ -438,11 +535,14 @@
                                                         @elseif($mission_contents_array[$mission_list->mission_list_id][$i]['sex'] == '女')
                                                             <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!}</td>
                                                             <td style="border-left: none;">小姐</td>
+                                                            
                                                         @endif
-                                                @endfor
+                                                        <td></td>
+
                                                     </tr>
-                                            @else
-                                                <tr><td colspan="7"></td></tr>
+                                                @endfor
+                                                    @else
+                                                        <tr><td colspan="7"></td></tr>
 
                                             @endif
                                                     {{--<td>150929073202</td>--}}
@@ -492,6 +592,45 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="new_mission_list_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            {!! Form::open(array('url' => 'call/manage/createMission','id'=>'my_form'))!!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">將通報新增成任務</h4>
+                </div>
+                <div id="new_mission_list_Modal_content" class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    {{--<button type="button" class="btn btn-primary">確認將通報新增成任務</button>--}}
+                    {!! Form::submit('確認將通報新增成任務', ['class' => 'btn btn-primary']) !!}
+                </div>
+            </div><!-- /.modal-content -->
+            {!! Form::close() !!}
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal -->
+
+    <div class="modal fade" id="error_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">錯誤訊息</h4>
+                </div>
+                <div id="error_Modal_content" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                    {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 @endsection
@@ -533,5 +672,93 @@
         $('.header_no_next').trigger('click'); //trigger :觸發指定事件
 
     </script>
+    <script language="JavaScript">
+        function checkForm()
+        {
+            if($('#phone').val() == "" && $('#email').val()=="")
+            {
+                alert("至少填寫1項聯絡方式");
+                $('#phone').focus();
+                return false;
+            }
+            if( !isPhone( $('#phone').val() ) )
+            {
+                $('#phone').focus();
+                return false;
+            }
+            if( $('#email').val() != "" && !isEmail( $('#email').val() ) )
+            {
+                $('#email').focus();
+                return false;
+            }
+            if($('#donate_table tr').length<2)
+            {
+                alert("請選擇要捐贈的物資");
+                return false;
+            }
+            return true;
+        }
+
+
+        $('#new_mission_list').click(function(){
+           if($('#unsigned_missions_table').find("input:checked").length == 1)
+           {
+               var obj = document.getElementById("new_mission_list_Modal_content");
+               while(obj.firstChild){
+                   obj.removeChild(obj.firstChild)
+               }
+//               obj.innerHTML = $('#unsigned_missions_table').find("input:checked").closest('tr').find('td').eq(3).text();
+               var dl = document.createElement('dl');
+               dl.setAttribute('class','dl-horizontal');
+               var dt = document.createElement('dt');
+               dt.innerHTML ="任務地點";
+               dl.appendChild(dt);
+               var dd = document.createElement('dd');
+               var input = document.createElement('input');
+               input.setAttribute('class','form-control');
+               input.setAttribute('name','new_mission_name');
+               input.setAttribute('value', $('#unsigned_missions_table').find("input:checked").closest('tr').find('td').eq(3).text());
+               dd.appendChild(input);
+               var input = document.createElement('input');
+               input.setAttribute('name','mission_id');
+               input.setAttribute('type','hidden');
+               input.setAttribute('value', $('#unsigned_missions_table').find("input:checked").attr('value'));
+               dd.appendChild(input);
+               dl.appendChild(dd);
+               var br = document.createElement('br');
+               dl.appendChild(br);
+               var dt = document.createElement('dt');
+               dt.innerHTML ="通報內容";
+               dl.appendChild(dt);
+               var dd = document.createElement('dd');
+               dd.innerHTML =$('#unsigned_missions_table').find("input:checked").closest('tr').find('td').eq(4).text();
+               dl.appendChild(dd);
+
+
+           obj.appendChild(dl);
+               $('#new_mission_list_Modal').modal('show');
+           }
+           else if($('#unsigned_missions_table').find("input:checked").length == 0)
+           {
+               var obj = document.getElementById("error_Modal_content");
+               obj.innerHTML = "您並未勾選欲新增為任務之通報，請先勾選通報後再進行新增。";
+
+               $('#error_Modal').modal('show');
+//               alert("未勾選欲新增為任務之通報");
+           }
+            else
+           {
+               var obj = document.getElementById("error_Modal_content");
+               obj.innerHTML = "您勾選的通報數超過一個，一次只能新增一筆通報為一個任務。";
+               $('#error_Modal').modal('show');
+//               alert("一次只能新增一筆通報為一個任務");
+
+           }
+        });
+
+
+    </script>
+
+
 
 @endsection

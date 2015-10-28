@@ -36,6 +36,13 @@
 @section('content')
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
+        <div class="text-right panel">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">出發至任務現場</button>
+                <button type="button" class="btn btn-default">到達現場，並開始執行任務</button>
+                <button type="button" class="btn btn-default">任務執行完成，返回至中央</button>
+            </div>
+        </div>
         <div class="col-xs-9 col-sm-7 col-md-7" >
 
             <div class="panel panel-default" >
@@ -50,7 +57,7 @@
                         </ul>
                     </div>
                 </nav>
-                <div style="height: 200px;overflow-y: scroll;">
+                <div style="height: 210px;overflow-y: scroll;">
                     <table class="table table-striped table-hover"  >
                         <thead>
                             <th width="6%"></th>
@@ -135,7 +142,7 @@
                         </ul>
                     </div>
                 </nav>
-                <div style="height: 200px;overflow-y: scroll;">
+                <div style="height: 210px;overflow-y: scroll;">
                     <table class="table  table-hover table-bordered"  >
                         <thead>
                         <th width="10%"></th>
@@ -285,7 +292,7 @@
                         </ul>
                     </div>
                 </nav>
-                <div style="height: 150px;overflow-y: scroll;">
+                <div style="height: 145px;overflow-y: scroll;">
                     <table class="table table-bordered">
                         <thead>
                         <tr><th width="15%">人員種類</th><th width="20%">欲增援人數</th><th width="20%">缺額</th><th colspan="3" width="45%">已招募人員報到</th></tr>
@@ -440,7 +447,7 @@
                         </ul>
                     </div>
                 </nav>
-                <div style="height: 160px;overflow-y: scroll;">
+                <div style="height: 145px;overflow-y: scroll;">
                     <table width="100%" class="table table-bordered">
                         {{--<thead>--}}
                         {{--<tr><td colspan="8">各地方人員增援列表  (單位: 人)</td></tr>--}}

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Traits\HasRole;
-
+use Illuminate\Database\Eloquent\forceDelete;
 use App\Mission_list;
 class CenterMissionController extends Controller {
 
@@ -31,9 +31,11 @@ class CenterMissionController extends Controller {
 
                 $mission_list_names = DB::table('mission_lists')
                     ->where('mission_name','!=','未分配任務')
+                    ->where('mission_complete_time','=',NULL)
                     ->lists('mission_name','mission_list_id');
-        $mission_list_names  = array_add($mission_list_names, '請選擇', '請選擇');
-//        dd($mission_list_names);
+                $mission_list_names  = array_add($mission_list_names, '將通報分配至現有任務', '將通報分配至現有任務');
+//dd($mission_list_names);
+
 
                 //取出未分配任務
                  $unsigned_missions = DB::table('missions')
@@ -41,6 +43,7 @@ class CenterMissionController extends Controller {
                      ->orderBy('created_at')
                      ->get();
 //        dd($unsigned_missions);
+
 
                 //取出各任務的通報內容 時間 負責人
                 $mission_contents = DB::table('missions')
@@ -644,14 +647,22 @@ class CenterMissionController extends Controller {
 	 */
 	public function create(Request $request)
 	{
-        
-        $mission_list_name =$request->input('mission_list_name');
-        $leader = $request->input('leader');
+//        $inputs=$request->except('_token');
+//        dd($inputs);
+        $mission_list_name =$request->input('new_mission_name');
+        $mission_list_id = DB::table('mission_lists')->select(DB::raw('count(*) as total'))->get();
+        $mission_list_id = $mission_list_id[0]->total + 1;
+//        dd($mission_list_id);
+        $mission_id =$request->input('mission_id');
+
 //        dd($mission_list_name);
         $mission_list = new Mission_list;
+        $mission_list->mission_list_id = $mission_list_id ;
         $mission_list->mission_name = $mission_list_name;
         $mission_list->save();
-        return redirect()->route('administratorPanel');
+//        dd($mission_list->mission_list_id );
+        DB::table('missions')->where('mission_id',$mission_id)->update(['mission_list_id' => $mission_list_id]);
+        return redirect()->route('centerPanel');
 	}
 
 	/**
@@ -710,9 +721,10 @@ class CenterMissionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request)
 	{
-		//
+        $inputs=$request->except('_token');
+        dd($inputs);
 	}
 
 	/**
@@ -721,9 +733,25 @@ class CenterMissionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Request $request)
 	{
-		//
+//        $inputs=$request->except('_token');
+//        dd($inputs);
+        //任務本身 mission list
+        //通報 mission
+        //救災人員 work_on
+        //mission_help_others  ((?
+        //mission_support_people ((?
+        //victim_details ((?
+        //reports ((???
+        $mission_list_id = $request->input('mission_list_id');
+        DB::table('missions')->where('mission_list_id',$mission_list_id)->update(['mission_list_id' => 1]);
+        DB::table('works_ons')->where('mission_list_id',$mission_list_id)->update(['mission_list_id' => 1,'status' => '執行任務']);
+//        DB::table('works_ons')->where('mission_list_id',$mission_list_id)->update(['status' => '返回中']);
+        DB::table('mission_lists')->where('mission_list_id',$mission_list_id)->delete();
+
+
+        return redirect()->route('centerPanel');
 	}
 
 }

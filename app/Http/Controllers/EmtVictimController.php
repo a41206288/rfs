@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Victim_detail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 class EmtVictimController extends Controller {
 
@@ -17,11 +18,21 @@ class EmtVictimController extends Controller {
 	 */
 	public function index()
 	{
-            //Ū��victim�Ҧ����
-            $victim_details = DB::table('victim_details')
+
+        $victim_details = DB::table('victim_details')
                 ->get();
+
+        $now_locations = DB::table('victim_details')
+            ->distinct()
+            ->lists('now_location','now_location');
+
+//        $now_locations = array_add($now_locations,'','目前所在地');
+        $now_locations[""] = "目前所在地";
+
+//        dd($now_locations);
          return view('manage_pages.victim_EMT')
-             ->with('victim_details', $victim_details);
+             ->with('victim_details', $victim_details)
+             ->with('now_locations', $now_locations);
 	}
 
 	/**
@@ -131,46 +142,46 @@ class EmtVictimController extends Controller {
 	 */
 	public function update()
 	{
-        //$inputs=$request->except('_token');
-        //
-//         dd($inputs);
-//        $name =Input::get( 'name' );
+
         $sex =Input::get( 'sex' );
-//        $age =Input::get( 'age' );
-//        $person_id =Input::get( 'person_id' );
-//        $phone =Input::get( 'phone' );
-//        $address =Input::get( 'address' );
+        $damage_level =Input::get('damage_level');
+        $now_location =Input::get('now_location');
+        $name =Input::get( 'name' );
+        $person_id =Input::get( 'person_id' );
+        $phone =Input::get( 'phone' );
 
 
         $victim_details = DB::table('victim_details');
 
-//        if($name != ""){
-//            $victim_details = $victim_details->where('name','like','%'.$name.'%');
-//            //$victim_details = $victim_details->get();
-//
-//        }
-//        if($age != ""){
-//            $victim_details = $victim_details->where('age',$age);
-//            //$victim_details = $victim_details->get();
-//        }
         if($sex != ""){
             $victim_details = $victim_details->where('sex',$sex);
             //$victim_details = $victim_details->get();
         }
-//        if($person_id != ""){
-//            $victim_details = $victim_details->where('person_id',$person_id);
-//            //$victim_details = $victim_details->get();
-//        }
-//        if($phone != ""){
-//            $victim_details = $victim_details->where('phone',$phone);
-//            //$victim_details = $victim_details->get();
-//        }
-//        if($address != ""){
-//            $victim_details = $victim_details->where('address',$address);
-//            //$victim_details = $victim_details->get();
-//        }
+
+        if($damage_level != ""){
+            $victim_details = $victim_details->where('damage_level',$damage_level);
+            //$victim_details = $victim_details->get();
+        }
+
+        if($now_location != ""){
+            $victim_details = $victim_details->where('now_location',$now_location);
+            //$victim_details = $victim_details->get();
+        }
+        if($name != ""){
+            $victim_details = $victim_details->where('name','like','%'.$name.'%');
+//				$victim_details = $victim_details->get();
+
+        }
+        if($person_id != ""){
+            $victim_details = $victim_details->where('person_id','like','%'.$person_id.'%');
+//				$victim_details = $victim_details->get();
+        }
+        if($phone != ""){
+            $victim_details = $victim_details->where('phone','like','%'.$phone.'%');
+//				$victim_details = $victim_details->get();
+        }
         $victim_details = $victim_details->get();
-        //dd($victim_details);
+//        dd($victim_details);
 
 
         return response()->json($victim_details);
