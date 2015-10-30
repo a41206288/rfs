@@ -46,13 +46,15 @@
         <div class="col-xs-9 col-sm-7 col-md-7" >
 
             <div class="panel panel-default" >
+                {!! Form::open(array('url' => 'local/mission/manage/updateMissionStatus'))!!}
                 <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                     <div class="navbar-sm-header">
                         <a class="navbar-sm-brand" href="#">通報列表</a>
                     </div>
                     <div class="collapse navbar-sm-collapse" id="bs-example-navbar-sm-collapse-1">
                         <ul class="nav navbar-sm-nav navbar-sm-right">
-                            <button type="button" class="btn btn-sm btn-default navbar-sm-btn">通報完成</button>
+                            {!! Form::submit('通報完成', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                            {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">通報完成</button>--}}
 
                         </ul>
                     </div>
@@ -60,21 +62,25 @@
                 <div style="height: 210px;overflow-y: scroll;">
                     <table class="table table-striped table-hover"  >
                         <thead>
-                            <th width="6%"></th>
-                            <th width="6%">編號</th>
-                            <th width="25%">通報地址<br>
-                            <th width="15%">通報內容</th>
-                            <th width="15%">完成日期</th>
-                            <th width="15%">完成時間</th>
+                            <th></th>
+                            <th>編號</th>
+                            <th>通報地址<br>
+                            <th>通報內容</th>
+                            <th>完成日期</th>
+                            <th>完成時間</th>
                         </thead>
                         <tbody>
                        @if(isset($missions))
                             @foreach($missions as $mission)
                                 <tr>
                                     @if(!isset($mission->mission_complete_time))
-                                        <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                        <td> {!! Form::checkbox('mission_id[]', $mission->mission_id)!!}</td>
                                     @else
-                                        <td></td>
+                                        <td>
+                                            <fieldset disabled>
+                                                {!! Form::checkbox('name', 'value',['class' => 'checked'])!!}
+                                            </fieldset>
+                                        </td>
                                     @endif
                                     <td>C{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%y%m%d%H%M') }}{!! $mission->mission_id !!}</td>
                                     @if(isset($mission->rd_or_st_1) && isset($mission->rd_or_st_2))
@@ -83,20 +89,20 @@
                                         <td >{!!$mission->township_or_district_input." ".$mission->rd_or_st_1.$mission->location!!}</td>
                                     @endif
                                     <td >{!! $mission->mission_content!!}</td>
-                                        @if(isset($mission->mission_complete_time))
-                                            <td>{{ (new Carbon\Carbon($mission->mission_complete_time))->formatLocalized('%Y/%m/%d') }}</td>
-                                            <td>{{ (new Carbon\Carbon($mission->mission_complete_time))->formatLocalized('%H:%M') }}</td>
-                                        @endif
+                                     @if(isset($mission->mission_complete_time))
+                                        <td>{{ (new Carbon\Carbon($mission->mission_complete_time))->formatLocalized('%Y/%m/%d') }}</td>
+                                        <td>{{ (new Carbon\Carbon($mission->mission_complete_time))->formatLocalized('%H:%M') }}</td>
+                                     @else
+                                         <td colspan="2"></td>
+                                     @endif
 
                                 </tr>
                             @endforeach
                         @endif
-                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
-                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
-                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
-                        {{--<tr><td> {!! Form::checkbox('name', 'value')!!}</td><td>151016051401</td><td></td><td></td></tr>--}}
+
                         </tbody>
                     </table>
+                    {!! Form::close() !!}
                 </div>
             </div>
             <div class="panel panel-default" >
@@ -295,7 +301,7 @@
                 <div style="height: 145px;overflow-y: scroll;">
                     <table class="table table-bordered">
                         <thead>
-                        <tr><th width="15%">人員種類</th><th width="20%">欲增援人數</th><th width="20%">缺額</th><th colspan="3" width="45%">已招募人員報到</th></tr>
+                        <tr><th>人員種類</th><th>欲增援人數</th><th>缺額</th><th colspan="3">已招募人員報到</th></tr>
                         </thead>
                         <tbody>
 
@@ -354,57 +360,18 @@
                                     <td>{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name']  !!}</td>
                                 @endif
                                 <td class="text-right">{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_num']  !!}</td>
-                                <td><button class="btn btn-default btn-sm">已到達</button></td>
+                                <td>
+                                    {!! Form::open(array('url' => 'local/mission/manage/updatePeopleSupport'))!!}
+                                        {!! Form::hidden('mission_help_other_id',$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']) !!}
+                                        {!! Form::submit('已到達', ['class' => 'btn btn-default btn-sm']) !!}
+                                    {!! Form::close() !!}
+                                </td>
                             </tr>
                         @endfor
 
-                        {{--<tr>--}}
-                            {{--<td>六合路段</td>--}}
-                            {{--<td class="text-right">3</td>--}}
-                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
-                        {{--</tr>--}}
-
                             @endfor
                         @endif
-                        {{--<tr>--}}
-                            {{--<td  rowspan="1">醫療</td>--}}
-                            {{--<td  rowspan="1" class="text-right success">10</td>--}}
-                            {{--<td  rowspan="1" class="text-right success">1</td>--}}
-                            {{--<td>四維路段</td>--}}
-                            {{--<td class="text-right">3</td>--}}
-                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
-                        {{--</tr>--}}
 
-                        {{--<tr>--}}
-                            {{--<td  rowspan="4">清潔</td>--}}
-                            {{--<td  rowspan="4" class="text-right warning">10</td>--}}
-                            {{--<td  rowspan="4" class="text-right warning">6</td>--}}
-
-                        {{--</tr>--}}
-                        {{--<tr>--}}
-                            {{--<td>六合路段</td>--}}
-                            {{--<td class="text-right">3</td>--}}
-                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
-                        {{--</tr>--}}
-                        {{--<tr>--}}
-                            {{--<td>六合路段</td>--}}
-                            {{--<td class="text-right">3</td>--}}
-                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
-                        {{--</tr>--}}
-                        {{--<tr>--}}
-                            {{--<td>六合路段</td>--}}
-                            {{--<td class="text-right">3</td>--}}
-                            {{--<td><button class="btn btn-default btn-sm">已到達</button></td>--}}
-                        {{--</tr>--}}
-
-                        {{--<tr>--}}
-                            {{--<td>道路修復</td>--}}
-                            {{--<td class="text-right danger">10</td>--}}
-                            {{--<td class="text-right danger">0</td>--}}
-                            {{--<td></td>--}}
-                            {{--<td class="text-right"></td>--}}
-                            {{--<td></td>--}}
-                        {{--</tr>--}}
                         </tbody>
                     </table>
                 </div>
@@ -414,12 +381,13 @@
                     <div class="collapse navbar-sm-collapse" >
 
                         <ul class="nav navbar-sm-nav navbar-sm-right euro-sign">
-                            {!! Form::select('name', array('未選' => '增援種類', '醫療' => '醫療', '脫困' => '脫困'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
-                            {!! Form::number('name', 0, ['min'=>'0','class' => 'text-right','style'=>'width:50px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}&nbsp;&nbsp;人&nbsp;&nbsp;
-                            {!! Form::text('name','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
-                            <button type="button" class="btn btn-sm btn-default navbar-sm-btn">請求增援</button>
-
-
+                            {!! Form::open(array('url' => 'local/mission/manage/createPeopleSupport'))!!}
+                                {!! Form::hidden('mission_list_id',$mission_list_id) !!}
+                                {!! Form::select('mission_support_people_id',$role_of_work, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                {!! Form::number('mission_support_people_num', 0, ['min'=>'1','class' => 'text-right','style'=>'width:50px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}&nbsp;&nbsp;人&nbsp;&nbsp;
+                                {!! Form::text('mission_support_people_reason','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
+                                {!! Form::submit('請求增援', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                            {!! Form::close() !!}
                         </ul>
                     </div>
                 </nav>

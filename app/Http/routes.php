@@ -137,11 +137,15 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'local'],
     function () {
-        Route::get('mission/manage/local',array('as' => 'localPanel', 'uses' => 'LocalMissionController@index') );
-        Route::post('mission/manage/local', 'LocalMissionController@edit');
-        Route::post('report/local', 'LocalMissionController@update');
-        Route::get('analysis/manage/local', 'LocalAnalysisController@index');
-        Route::post('analysis/manage/local', 'LocalAnalysisController@edit');
+        Route::get('local/mission/manage',array('as' => 'localPanel', 'uses' => 'LocalMissionController@index') );
+        Route::post('local/mission/manage/updateMissionStatus', 'LocalMissionController@update');
+        Route::post('local/mission/manage/createPeopleSupport', 'LocalPeopleSupportController@create');
+        Route::post('local/mission/manage/updatePeopleSupport', 'LocalPeopleSupportController@update');
+        Route::post('local/mission/manage/updatePeople', 'LocalPeopleController@update');
+//        Route::post('mission/manage/local', 'LocalMissionController@edit');
+//        Route::post('report/local', 'LocalMissionController@update');
+//        Route::get('analysis/manage/local', 'LocalAnalysisController@index');
+//        Route::post('analysis/manage/local', 'LocalAnalysisController@edit');
     });
 
 //Route::group([

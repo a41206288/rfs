@@ -107,7 +107,16 @@ class LocalMissionController extends Controller {
 
             //取出所有人員種類
             $roles = DB::table('roles')->get();
-//        dd($roles);
+//            dd($roles);
+            //取出執行部門人員種類
+            $role_of_work = DB::table('roles')
+                ->where('Name','!=','Administrator')
+                ->where('Name','!=','center')
+                ->where('Name','!=','Local')
+                ->where('Name','!=','Resource')
+                ->lists('description','id');
+            $role_of_work = array_add($role_of_work,'','人員種類');
+//        dd($role_of_work);
 
             $mission_support_people_array =[];
             foreach($mission_support_people as $mission_support_person){
@@ -165,6 +174,7 @@ class LocalMissionController extends Controller {
             $mission_help_others = DB::table('mission_help_others')
                 ->join('mission_lists','mission_lists.mission_list_id','=','mission_help_others.mission_list_id')
 //                ->where('', ) 依照 mission_support_person_id 排
+                    ->where('arrived',0)
                 ->get();
 //dd($mission_help_others);
             $mission_help_other_array =[];
@@ -177,6 +187,7 @@ class LocalMissionController extends Controller {
                 {
                     $i=count($mission_help_other_array[$mission_help_other->mission_support_person_id])+1;
                 }
+                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_id'] = $mission_help_other->mission_help_other_id;
                 $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_name'] = $mission_help_other->mission_name;
                 $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
             }
@@ -261,11 +272,13 @@ class LocalMissionController extends Controller {
             $mission_roles = null;
             $mission_help_other_array = null;
             $roles = null;
+            $role_of_work = null;
             $mission_lists  = null;
             $mission_support_people_lists = null;
             $mission_no_support_people_lists = null;
             $mission_no_support_work_people_lists = null;
             $mission_no_support_finish_people_lists = null;
+
         }
 
         return view('manage_pages.mission_manage_local')
@@ -277,6 +290,7 @@ class LocalMissionController extends Controller {
                 ->with('missionUsers', $missionUsers)
                 ->with('mission_roles', $mission_roles)
                 ->with('roles', $roles)
+                ->with('role_of_work',$role_of_work)
                 ->with('mission_lists', $mission_lists)
                 ->with('mission_support_people_lists', $mission_support_people_lists)
                 ->with('mission_no_support_people_lists', $mission_no_support_people_lists)
@@ -526,28 +540,21 @@ class LocalMissionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-    public function update(Request $request)
+    public function update(Request $request)//完成通報 (更新通報完成狀態)
     {
 //        $inputs=$request->except('_token');
-////        dd($inputs);
-//        $emt = 0;
-//        $reliever = 1;
-//        $support_type =$request->input('support_type');
-//        $mission_list_id=Auth::user()->mission_list_id;
-//        if($support_type == $emt)
-//        {
-//            $local_emt_num = $request->input('local_emt_num');
-//            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_emt_num' => $local_emt_num]);
-//            DB::table('mission_new_locations')->where('mission_list_id',$mission_list_id)->where('mission_new_locations_id',1)->update(['executive_require_people_num' => 0,'executive_require_reason'=>""]);
-//
-//
-//        }
-//        elseif($support_type == $reliever)
-//        {
-//            $local_reliever_num = $request->input('local_reliever_num');
-//            DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->update(['local_reliever_num' => $local_reliever_num]);
-//        }
-        return Redirect::to('mission/manage/local');
+//        dd($inputs);
+        $missions_id =  $request->input('mission_id');
+        if(isset($missions_id))
+        {
+            foreach($missions_id as $mission_id)
+            {
+                DB::table('missions')->where('mission_id',$mission_id)->update(['mission_complete_time' => date('Y-m-d H:i:s')]);
+            }
+        }
+
+
+        return redirect()->route('localPanel');
 
     }
 
