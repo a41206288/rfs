@@ -185,6 +185,48 @@ class user_seeder extends Seeder{
         $Works_on->status = '執行任務';
         $Works_on->save();
 
+
+        $user = new App\User;
+        $user->id = 59;
+        $user->user_name = "洪褒";
+        $user->email = "redenvelope@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0905905959';
+        $user->arrived = 1;
+        $user->save();
+
+        $user  = User::where('user_name', '=', '洪褒')->first();
+        $role = Permission::where('name', '=', 'local')->first();
+        $user->assignRole($role);
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 59;
+        $Works_on->mission_list_id = 1;
+        $Works_on->status = '閒置';
+        $Works_on->save();
+
+
+        $user = new App\User;
+        $user->id = 60;
+        $user->user_name = "曹北";
+        $user->email = "south123@yahoo.com.tw";
+        $user->password =Hash::make ('1234');
+        $user->phone = '0906006060';
+        $user->arrived = 1;
+        $user->save();
+
+        $user  = User::where('user_name', '=', '曹北')->first();
+        $role = Permission::where('name', '=', 'local')->first();
+        $user->assignRole($role);
+        $user->save();
+
+        $Works_on = new App\Works_on;
+        $Works_on->id = 60;
+        $Works_on->mission_list_id = 1;
+        $Works_on->status = '閒置';
+        $Works_on->save();
+
         //後勤
 
         $user = new App\User;

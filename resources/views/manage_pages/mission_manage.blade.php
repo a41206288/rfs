@@ -184,8 +184,9 @@
                                                         <h4 class="modal-title" id="myModalLabel"><b>指派負責人</b></h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        {{--{!! Form::text('now_location','',['class' => 'form-control']) !!}--}}
-                                                        {{--{!! Form::label('writein','',['class' => 'form-control','disabled' => 'disabled']) !!}--}}
+                                                        {!! Form::label('name','負責人姓名') !!}
+                                                        {!! Form::text('name','',['class' => 'form-control']) !!}
+                                                        {!! Form::hidden('setChargeId','') !!}
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
@@ -216,8 +217,8 @@
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                                 <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
-                                    {!! Form::select('township_or_district', array('選擇區' => '選擇區', '新興區' => '新興區', '復興區' => '復興區'), '選擇區', ['class' => 'navbar-sm-btn btn-sm']) !!}
-                                    {!! Form::select('rd_or_st', array('選擇路段' => '選擇路段', '中華路' => '中華路', '四維路' => '四維路'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::select('township_or_district', $mission_township, '選擇區', ['class' => 'navbar-sm-btn btn-sm','id' => 'township_or_district','onchange' => 'township_onchange()']) !!}
+                                    {!! Form::select('rd_or_st', array('選擇路段' => '選擇路段'), '選擇路段', ['class' => 'navbar-sm-btn btn-sm','id' => 'rd_or_st']) !!}
                                 </ul>
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
@@ -323,7 +324,6 @@
                                             {{--@endif--}}
 
                                         </tr>
-                                        <tr>
 
                                     @endforeach
 
@@ -347,8 +347,8 @@
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                                 <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
-                                    {!! Form::select('name', array('選擇區' => '選擇區', '新興區' => '新興區', '復興區' => '復興區'), '選擇區', ['class' => 'navbar-sm-btn btn-sm']) !!}
-                                    {!! Form::select('name', array('選擇路段' => '選擇路段', '中華路' => '中華路', '四維路' => '四維路'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {{--{!! Form::select('name', array('選擇區' => '選擇區', '新興區' => '新興區', '復興區' => '復興區'), '選擇區', ['class' => 'navbar-sm-btn btn-sm']) !!}--}}
+                                    {{--{!! Form::select('name', array('選擇路段' => '選擇路段', '中華路' => '中華路', '四維路' => '四維路'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}--}}
                                 </ul>
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
                                     <!-- 說明按鈕 -->
@@ -438,17 +438,19 @@
                                                                                 <h4 class="modal-title" id="myModalLabel">修改任務</h4>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                {!! Form::open(array('url' => 'call/manage/updateMission'))!!}
+                                                                                {!! Form::open(array('url' => 'call/manage/updateMission','onSubmit' => 'return checkForm();'))!!}
                                                                                 {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
+                                                                                {!! Form::hidden('mission_num',$n-1) !!}
                                                                                 <table class="table table-bordered">
                                                                                     <tr>
                                                                                         <th colspan="2">任務地點</th><td colspan="4">{!! Form::text('mission_name',$mission_list->mission_name,['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','required']) !!}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
-                                                                                            <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}</td>
+                                                                                            <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','placeholder' => '尚未指派負責人，請至任務進度指派' ,'disabled' => 'disabled']) !!}</td>
                                                                                         @else
                                                                                             <th colspan="2">任務負責人</th><td colspan="4">{!! Form::text('mission_id',$mission_list_charge_Arrays[$mission_list->mission_list_id]['name'],['style'=>'width:300px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','required']) !!}</td>
+                                                                                            {!! Form::hidden('id',$mission_list->id) !!}
                                                                                             {!! Form::hidden('old_id',$mission_list->id) !!}
                                                                                         @endif
                                                                                     </tr>
@@ -485,7 +487,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <div class="modal-footer">
-                                                                                {!! Form::submit('修改', ['class' => 'btn btn-primary']) !!}
+                                                                                {!! Form::submit('修改', ['class' => 'btn btn-primary','name' => 'updateMissionList']) !!}
                                                                                 {!! Form::close() !!}
                                                                             </div>
 
@@ -513,7 +515,7 @@
                                                                             工作人員:將狀態更改為任務返回中<br>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            {!! Form::open(array('url' => 'call/manage/destroyMission','onSubmit' => 'return checkForm();'))!!}
+                                                                            {!! Form::open(array('url' => 'call/manage/destroyMission'))!!}
                                                                             {!! Form::hidden('mission_list_id',$mission_list->mission_list_id) !!}
                                                                             {!! Form::submit('確認刪除整個任務', ['class' => 'btn btn-danger']) !!}
                                                                             {!! Form::close() !!}
@@ -650,25 +652,71 @@
         var local_data = {!! json_encode($local) !!}; //controller傳來的陣列轉乘javascript陣列
         var localUserName = Array();
         for(var i=0;i<local_data.length;i++){
-            localUserName[i] = {value:local_data[i]['user_name'],label:local_data[i]['user_name']};
+            localUserName[i] = {
+                value:local_data[i]['id']+"_"+local_data[i]['user_name']+"_"+local_data[i]['phone'],
+                label:local_data[i]['id']+"　"+local_data[i]['user_name']+"　"+local_data[i]['phone']
+            };
         }
 
         for(var i=0; i<$('div .modal').length; i++){
             var div = "#" + $('div .modal').eq(i).attr('id');
-            $(div).find("input[name='now_location']").autocomplete({
+            $(div).find("input[name='name']").autocomplete({
                 source: localUserName,
                 appendTo: div,
                 minLength: 0,
                 select: function(event,ui){
-                    $(div).find("input[name='writein']").val(ui.item.value);
+                    var temp_local_data = ui.item.value.split("_");
+                    $(this).val(temp_local_data[1]);
+                    $(this).closest('div').find("input[name='setChargeId']").val(temp_local_data[0]);
                     return false;
                 }
+            }).focus(function() {
+                $(this).autocomplete("search", $(this).val());
             });
-            $(div).find("input[name='now_location']").click(function(){
-                $(div).find("input[name='now_location']").keydown();
+
+            $(div).find("input[name='mission_id']").autocomplete({
+                source: localUserName,
+                appendTo: div,
+                minLength: 0,
+                select: function(event,ui){
+                    var temp_local_data = ui.item.value.split("_");
+                    $(this).val(temp_local_data[1]);
+                    $(this).closest('div').find("input[name='id']").val(temp_local_data[0]);
+                    return false;
+                }
+            }).focus(function() {
+                $(this).autocomplete("search", $(this).val());
             });
+
         }
-//        $("input[name='now_location']").click(function(e){ $('#' + e.target.id).keydown() });
+
+        var unsigned_missions_location = Array();
+        for(var i=0; i<$('#unsigned_missions_table').find('tr').length; i++){
+            unsigned_missions_location[i] = $('#unsigned_missions_table').find('tr').eq(i).find('td').eq(3).text();
+        }
+        $('#township_or_district, #rd_or_st').change(function(){
+            for(var i=0; i<$('#unsigned_missions_table').find('tr').length; i++){
+                if($('#township_or_district').find(':selected').text() == "選擇區"){
+                    $('#unsigned_missions_table').find('tr').eq(i).show();
+                }
+                else if(unsigned_missions_location[i].indexOf($('#township_or_district').find(':selected').text()) != -1){
+                    if($('#rd_or_st').find(':selected').text() == "選擇路段"){
+                        $('#unsigned_missions_table').find('tr').eq(i).show();
+                    }
+                    else if(unsigned_missions_location[i].indexOf($('#rd_or_st').find(':selected').text()) != -1){
+                        $('#unsigned_missions_table').find('tr').eq(i).show();
+                    }
+                    else{
+                        $('#unsigned_missions_table').find('tr').eq(i).hide();
+                    }
+                }
+                else{
+                    $('#unsigned_missions_table').find('tr').eq(i).hide();
+                }
+            }
+        });
+
+
     </script>
     <script language="JavaScript">
         $('.header').click(function(){
@@ -682,9 +730,28 @@
 
     </script>
     <script language="JavaScript">
+        var mission_num = 0;
+        var checked_num = 0;
+//        var canChange = false;
+        $("input[name='updateMissionList']").click(function(){
+            mission_num = $(this).parent().parent().find("input[name='mission_num']").val();
+            checked_num = $(this).parent().parent().find('input:checked').length;
+//            if(typeof  $(this).parent().parent().find("input[name='old_id']").val() === "undefined"){}
+//            else{
+//                canChange = true;
+//            }
+        });
+
         function checkForm()
         {
-
+            if(mission_num - checked_num == 0){
+                alert("一個任務內至少要有一個通報");
+                return false;
+            }
+//            if(!canChange){
+//                alert("只能");
+//                return false;
+//            }
             return true;
         }
 
@@ -744,7 +811,32 @@
 
            }
         });
-
+        /*讀取通報所在的區及路，並將區和路對應 */
+        var read_road ={!! json_encode($mission_road) !!};
+        var read_township ={!! json_encode($mission_township) !!};
+        var rd_array = new Array(read_township.length);
+        rd_array[0] = ['選擇路段'];
+        for(var i=1; i<rd_array.length; i++){
+            var temp_array = new Array('選擇路段');
+            for(var j=0; j<read_road.length; j++){
+                if(read_road[j]['township_or_district_input'] == read_township[i]){
+                    if(read_road[j]['rd_or_st_1'] != null && temp_array.indexOf(read_road[j]['rd_or_st_1']) == -1){
+                        temp_array.push(read_road[j]['rd_or_st_1']);
+                    }
+                    if(read_road[j]['rd_or_st_2'] != null && temp_array.indexOf(read_road[j]['rd_or_st_2']) == -1){
+                        temp_array.push(read_road[j]['rd_or_st_2']);
+                    }
+                }
+            }
+            rd_array[i] = temp_array;
+        }
+        function township_onchange() {
+            var index = $('#township_or_district').find(':selected').index();
+            $("#rd_or_st option").remove();
+            for (j = 0; j < rd_array[index].length; j ++) {
+                $("#rd_or_st").append($("<option></option>").text(rd_array[index][j]) );
+            }
+        }
 
     </script>
 

@@ -206,6 +206,58 @@ class mission_seeder extends Seeder{
         $mission->mission_list_id = 1;
         $mission->save();
 
+        $mission = new App\Mission;
+        $mission->mission_id = 10;
+//        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->fname = '恩五';
+        $mission->lname = '陳';
+        $mission->sex = '男';
+        $mission->township_or_district_input = '橋頭區';
+        $mission->rd_or_st_1 = '白樹路';
+        $mission->rd_or_st_2 = '甲樹路';
+        $mission->mission_list_id = 1;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 11;
+//        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->fname = '恩五';
+        $mission->lname = '陳';
+        $mission->sex = '男';
+        $mission->township_or_district_input = '橋頭區';
+        $mission->rd_or_st_1 = '五林路';
+        $mission->rd_or_st_2 = '里林東路';
+        $mission->mission_list_id = 1;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 12;
+//        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->fname = '恩五';
+        $mission->lname = '陳';
+        $mission->sex = '男';
+        $mission->township_or_district_input = '前鎮區';
+        $mission->rd_or_st_1 = '二聖一路';
+        $mission->rd_or_st_2 = '廣三街';
+        $mission->mission_list_id = 1;
+        $mission->save();
+
+        $mission = new App\Mission;
+        $mission->mission_id = 13;
+//        $mission->mission_type = '建築物倒塌';
+        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->fname = '恩五';
+        $mission->lname = '陳';
+        $mission->sex = '男';
+        $mission->township_or_district_input = '前鎮區';
+        $mission->rd_or_st_1 = '和平二路';
+        $mission->location = '光華國小';
+        $mission->mission_list_id = 1;
+        $mission->save();
+
 //        $mission = new App\Mission;
 //        $mission->mission_id = 10;
 //        $mission->mission_type = '道路爆炸';

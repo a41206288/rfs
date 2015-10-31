@@ -61,6 +61,21 @@ class CenterMissionController extends Controller {
                     ->get();
 //                    dd($local);
 
+                $mission_township = DB::table('missions')
+                    ->where('mission_list_id',1)
+                    ->orderBy('created_at')
+                    ->lists('township_or_district_input');
+                $mission_township = array_unique($mission_township);
+                array_unshift($mission_township,'選擇區');
+//                dd($mission_township);
+
+                $mission_road = DB::table('missions')
+                    ->select('township_or_district_input','rd_or_st_1','rd_or_st_2')
+                    ->where('mission_list_id',1)
+                    ->orderBy('township_or_district_input')
+                    ->get();
+//                dd($mission_road);
+
 //        $mission_contents_array =[];
 //        foreach($mission_contents as $mission_content){
 //
@@ -624,6 +639,8 @@ class CenterMissionController extends Controller {
             ->with('unsigned_missions', $unsigned_missions)
             ->with('mission_list_names', $mission_list_names)
             ->with('local', $local)
+            ->with('mission_township', $mission_township)
+            ->with('mission_road', $mission_road)
 //            ->with('emtUsersArrays', $emtUsersArrays)
 //            ->with('relieverUsersArrays', $relieverUsersArrays)
 //            ->with('mission_new_location_Arrays', $mission_new_location_Arrays)
@@ -730,6 +747,8 @@ class CenterMissionController extends Controller {
         $id = $request->input('id');
         $old_id = $request->input('old_id');
         $call_to_remove_from_missions = $request->input('call_to_remove_from_mission');
+        $setChargeId = $request->input('setChargeId');
+//        dd($setChargeId);
 
         if(isset($mission_name))
         {
@@ -738,6 +757,12 @@ class CenterMissionController extends Controller {
         if(isset($id) && isset($old_id) && $id != $old_id)
         {
             DB::table('mission_lists')->where('mission_list_id',$mission_list_id)->update(['id' => $id]);
+            DB::table('works_ons')
+                ->where('id',$id)
+                ->update(['mission_list_id' => $mission_list_id, 'status' => "執行任務"]);
+            DB::table('works_ons')
+                ->where('id',$old_id)
+                ->update(['mission_list_id' => 1, 'status' => "閒置"]);
         }
         if(isset($call_to_remove_from_missions))
         {
@@ -745,6 +770,15 @@ class CenterMissionController extends Controller {
             {
                 DB::table('missions')->where('mission_id',$call_to_remove_from_mission)->update(['mission_list_id' => 1]);
             }
+        }
+        if(isset($setChargeId)){
+            DB::table('mission_lists')
+                ->where('mission_list_id',$mission_list_id)
+                ->update(['assign_people_finish_time' => date('Y-m-d H:i:s'), 'id' => $setChargeId]);
+            DB::table('works_ons')
+                ->where('id',$setChargeId)
+                ->update(['mission_list_id' => $mission_list_id, 'status' => "執行任務"]);
+
         }
         return redirect()->route('centerPanel');
 	}
