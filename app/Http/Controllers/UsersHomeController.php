@@ -61,30 +61,19 @@ class UsersHomeController extends Controller {
 
         $mission_township = DB::table('missions')
             ->where('mission_list_id','>',1)
-            ->where('township_or_district_input',"<>","")
-            ->lists('township_or_district_input','township_or_district_input');
-
-        $mission_township = array('選擇區'=>'選擇區') + $mission_township;
+            ->orderBy('created_at')
+            ->lists('township_or_district_input');
+        $mission_township = array_unique($mission_township);
+        array_unshift($mission_township,'選擇區');
 //        dd($mission_township);
 
-        $mission_street1 = DB::table('missions')
+        $mission_road = DB::table('missions')
+            ->select('township_or_district_input','rd_or_st_1','rd_or_st_2')
             ->where('mission_list_id','>',1)
-            ->where('rd_or_st_1',"<>","NULL")
-            ->lists('rd_or_st_1','rd_or_st_1');
+            ->orderBy('township_or_district_input')
+            ->get();
+//                dd($mission_road);
 
-
-        $mission_street2 = DB::table('missions')
-            ->where('mission_list_id','>',1)
-            ->where('rd_or_st_2',"<>","NULL")
-            ->lists('rd_or_st_2','rd_or_st_2');
-
-        $length=count($mission_street2);
-        for($i=0;$i<$length;$i++){
-            $temp = array_shift($mission_street2);
-            $mission_street1[$temp]=$temp;
-        }
-        $mission_street1 = array('選擇路段'=>'選擇路段') + $mission_street1;
-//        dd($mission_street1);
 
         //
         $mission_contents_array =[];
@@ -149,7 +138,7 @@ class UsersHomeController extends Controller {
             ->with('missions', $missions)
             ->with('dates', $dates)
             ->with('mission_township', $mission_township)
-            ->with('mission_street', $mission_street1)
+            ->with('mission_road', $mission_road)
             ;
 
 //        return view('user_pages.home');

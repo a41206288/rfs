@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="emt 所在地autocomplete">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/user_pages/call_input.blade.php" afterPath="$PROJECT_DIR$/resources/views/user_pages/call_input.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/user_pages/donate_input.blade.php" afterPath="$PROJECT_DIR$/resources/views/user_pages/donate_input.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_c.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/user_pages/submit_success.blade.php" afterPath="$PROJECT_DIR$/resources/views/user_pages/submit_success.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -42,21 +41,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersCallController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php">
+      <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.5" vertical-offset="1121" max-vertical-offset="2679">
-              <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+            <state vertical-scroll-proportion="-14.793103" vertical-offset="14589" max-vertical-offset="16169">
+              <caret line="813" column="8" selection-start-line="813" selection-start-column="8" selection-end-line="838" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="call_input.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/user_pages/call_input.blade.php">
+      <file leaf-file-name="UsersHomeController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.743363" vertical-offset="4926" max-vertical-offset="5491">
-              <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.40353984" vertical-offset="2280" max-vertical-offset="5358">
+              <caret line="139" column="57" selection-start-line="139" selection-start-column="57" selection-end-line="139" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/user_pages/home.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.275862" vertical-offset="6799" max-vertical-offset="7429">
+              <caret line="377" column="12" selection-start-line="377" selection-start-column="12" selection-end-line="381" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CenterMissionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.214286" vertical-offset="852" max-vertical-offset="15390">
+              <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="68" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -73,7 +92,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/EmtReportController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RelieverReportController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/report_reliever.blade.php" />
@@ -103,7 +121,6 @@
         <option value="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/report_EMT.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/user_pages/missing_poster_input.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersMissingPosterController.php" />
@@ -124,6 +141,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php" />
         <option value="$PROJECT_DIR$/resources/views/user_pages/temp.php" />
         <option value="$PROJECT_DIR$/resources/views/user_pages/call_input.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php" />
       </list>
     </option>
   </component>
@@ -624,12 +643,6 @@
       <option name="number" value="Default" />
       <updated>1428751848408</updated>
     </task>
-    <task id="LOCAL-00008" summary="讀取通報地址，任務名稱進入下拉式選單&#10;並排序完成">
-      <created>1431408060769</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1431408060769</updated>
-    </task>
     <task id="LOCAL-00009" summary="只顯示未加入任務的通報">
       <created>1431678580161</created>
       <option name="number" value="00009" />
@@ -918,7 +931,13 @@
       <option name="project" value="LOCAL" />
       <updated>1446353286331</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="民眾-通報 信箱重複檢查 送出後頁面修改">
+      <created>1446368085031</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1446368085031</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -963,7 +982,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="把controller 整理完成&#10;" />
     <MESSAGE value="地方指揮官 analysis table join&#10;" />
     <MESSAGE value="新增物資管理人員頁面及地方、中央controller" />
     <MESSAGE value="暫存" />
@@ -988,7 +1006,8 @@
     <MESSAGE value="中央  指派負責人 修改任務檢查 地址搜尋jquery 增加測資" />
     <MESSAGE value="民眾-應徵人員  信箱重複檢查 增加測資" />
     <MESSAGE value="emt 所在地autocomplete" />
-    <option name="LAST_COMMIT_MESSAGE" value="emt 所在地autocomplete" />
+    <MESSAGE value="民眾-通報 信箱重複檢查 送出後頁面修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="民眾-通報 信箱重複檢查 送出後頁面修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,14 +1190,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37876105" vertical-offset="5391" max-vertical-offset="6916">
-          <caret line="295" column="100" selection-start-line="295" selection-start-column="94" selection-end-line="295" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33211678" vertical-offset="23682" max-vertical-offset="24985">
@@ -1311,30 +1322,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2530973" vertical-offset="0" max-vertical-offset="15390">
-          <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50088495" vertical-offset="686" max-vertical-offset="5567">
-          <caret line="58" column="38" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1034484" vertical-offset="1794" max-vertical-offset="3781">
-          <caret line="119" column="73" selection-start-line="119" selection-start-column="73" selection-end-line="119" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/support_seeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7698962" vertical-offset="16921" max-vertical-offset="21584">
@@ -1375,26 +1362,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/call_input.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36106196" vertical-offset="15604" max-vertical-offset="16169">
-          <caret line="832" column="8" selection-start-line="832" selection-start-column="8" selection-end-line="838" selection-end-column="9" />
+        <state vertical-scroll-proportion="-7.743363" vertical-offset="4926" max-vertical-offset="5491">
+          <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.5" vertical-offset="1121" max-vertical-offset="2679">
+        <state vertical-scroll-proportion="-0.47079647" vertical-offset="1121" max-vertical-offset="2679">
           <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/call_input.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.743363" vertical-offset="4926" max-vertical-offset="5491">
-          <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
+        <state vertical-scroll-proportion="-5.1034484" vertical-offset="1794" max-vertical-offset="3781">
+          <caret line="119" column="73" selection-start-line="119" selection-start-column="73" selection-end-line="119" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.793103" vertical-offset="14589" max-vertical-offset="16169">
+          <caret line="813" column="8" selection-start-line="813" selection-start-column="8" selection-end-line="838" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.214286" vertical-offset="852" max-vertical-offset="15390">
+          <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="68" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.275862" vertical-offset="6799" max-vertical-offset="7429">
+          <caret line="377" column="12" selection-start-line="377" selection-start-column="12" selection-end-line="381" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40353984" vertical-offset="2280" max-vertical-offset="5358">
+          <caret line="139" column="57" selection-start-line="139" selection-start-column="57" selection-end-line="139" selection-end-column="57" />
           <folding />
         </state>
       </provider>

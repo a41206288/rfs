@@ -44,8 +44,8 @@
                         {!! Form::select('date', $dates, '請選擇日期', ['id' => 'date']) !!}
                     </th>
                     <th>
-                        {!! Form::select('township', $mission_township, '選擇區', ['id' => 'township']) !!}
-                        {!! Form::select('street', $mission_street, '選擇路段', ['id' => 'street']) !!}
+                        {!! Form::select('township', $mission_township, '選擇區', ['id' => 'township','onchange' => 'township_onchange()']) !!}
+                        {!! Form::select('street', array('選擇路段' => '選擇路段'), '選擇路段', ['id' => 'street']) !!}
                     </th>
 
                     <th colspan="2">調派人員結束時間</th>
@@ -353,6 +353,33 @@
                 obj.appendChild(tr);
             }
 
+        }
+
+        /*讀取通報所在的區及路，並將區和路對應 */
+        var read_road ={!! json_encode($mission_road) !!};
+        var read_township ={!! json_encode($mission_township) !!};
+        var rd_array = new Array(read_township.length);
+        rd_array[0] = ['選擇路段'];
+        for(var i=1; i<rd_array.length; i++){
+            var temp_array = new Array('選擇路段');
+            for(var j=0; j<read_road.length; j++){
+                if(read_road[j]['township_or_district_input'] == read_township[i]){
+                    if(read_road[j]['rd_or_st_1'] != null && temp_array.indexOf(read_road[j]['rd_or_st_1']) == -1){
+                        temp_array.push(read_road[j]['rd_or_st_1']);
+                    }
+                    if(read_road[j]['rd_or_st_2'] != null && temp_array.indexOf(read_road[j]['rd_or_st_2']) == -1){
+                        temp_array.push(read_road[j]['rd_or_st_2']);
+                    }
+                }
+            }
+            rd_array[i] = temp_array;
+        }
+        function township_onchange() {
+            var index = $('#township').find(':selected').index();
+            $("#street option").remove();
+            for (j = 0; j < rd_array[index].length; j ++) {
+                $("#street").append($("<option></option>").text(rd_array[index][j]) );
+            }
         }
     </script>
 @endsection
