@@ -24,14 +24,14 @@
             display: inline-block;
         }
         .well{
-            height: 300px;
+            height: 250px;
         }
     </style>
     <h4><b>我要應徵</b></h4>
     {{--<hr>--}}
     <ul class="nav nav-tabs">
         @foreach($center_support_people as $center_support_person)
-            <li><a href="#tab{!! $center_support_person->center_support_person_id !!}" data-toggle="tab" id="{!! $center_support_person->center_support_person_id !!}">{!! $center_support_person->center_support_person_requirement !!}</a></li>
+            <li><a href="#tab{!! $center_support_person->center_support_person_id !!}" data-toggle="tab" id="{!! $center_support_person->center_support_person_id !!}" onclick="show();">{!! $center_support_person->center_support_person_requirement !!}</a></li>
         @endforeach
     </ul>
 
@@ -42,7 +42,9 @@
                 <h4><b>&nbsp;&nbsp;工作內容: </b></h4>
                 <div class="col-xs-4 col-sm-3 col-md-3" >
                     <div class="well">{!! $center_support_person->center_support_person_introduction !!}</div>
+                    <h5><b>&nbsp;&nbsp;目前尚須 {!! $center_support_person->center_support_person_num - $center_support_person->called_person_num !!} 人</b></h5>
                 </div>
+
             </div>
         @endforeach
     </div>
@@ -93,15 +95,15 @@
                     <td  colspan="2" id="skill">
                         @foreach($skills as $skill)
                             <?php $hasbox = false; ?>
-                            @foreach($skill_support_people as $skill_support_person)
+                            @foreach($center_support_people_skills as $skill_support_person)
                                 @if($skill_support_person->skill_id == $skill->skill_id)
-                                    {!! Form::checkbox('options[]', $skill->skill_name,null,['id'=>'check'.$skill_support_person->support_people_id]) !!}
+                                    {!! Form::checkbox($skill->skill_id, $skill->skill_name,null,['id'=>'check'.$skill_support_person->center_support_person_id]) !!}
                                     {!! Form::label("",$skill->skill_name) !!}<br>
                                     <?php $hasbox = true; ?>
                                 @endif
                             @endforeach
                             @if($hasbox==false)
-                                {!! Form::checkbox('options[]', $skill->skill_name) !!}
+                                {!! Form::checkbox($skill->skill_id, $skill->skill_name) !!}
                                 {!! Form::label("",$skill->skill_name) !!}<br>
                             @endif
 
@@ -124,9 +126,9 @@
 
 @section('javascript')
     <script>
-        $('a').one("click", function () {
+        function show() {
             $('#profile').css('display','block');
-        });
+        }
         $('a').click(function () {
             $('#center_support_person_id').val($(this).attr('id'));
 
@@ -138,6 +140,8 @@
         });
         function checkForm()
         {
+            var read_email = {!! json_encode($email) !!};
+
             if( !isPhone( $('#phone').val() ) )
             {
                 $('#phone').focus();
@@ -148,19 +152,20 @@
                 $('#email').focus();
                 return false;
             }
+            if(read_email.indexOf( $('#email').val() ) != -1){
+                alert("此信箱已有人使用過!!");
+                $('#email').focus();
+                return false;
+            }
             if($('#country_or_city :selected').text()=="請選擇縣市"){
                 $('#country_or_city').focus();
                 alert("請選擇您的目前所在");
                 return false;
             }
-            var string = "";
+            var string = Array();
             for(var i=0; i<$('#skill').find('input').length;i++){
                 if($('#skill').find('input').eq(i).prop('checked')==true){
-                    if(string == ""){
-                        string = string + $('#skill').find('input').eq(i).val();
-                    }else{
-                        string = string + "," + $('#skill').find('input').eq(i).val();
-                    }
+                    string.push($('#skill').find('input').eq(i).attr('name'));
                 }
             }
             $('#submitskill').val(string);

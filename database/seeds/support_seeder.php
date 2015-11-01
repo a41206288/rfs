@@ -904,7 +904,7 @@ class support_seeder extends Seeder{
         $center_support_person->center_support_person_num = 10;
         $center_support_person->id = 6; //醫療
         $center_support_person->center_support_person_requirement = "醫療組";
-        $center_support_person->center_support_person_introduction = "";
+        $center_support_person->center_support_person_introduction = "診斷救出民眾的傷勢，並照料休息的傷患";
         $center_support_person->save();
 
         $center_support_person = new App\Center_support_person;
@@ -912,7 +912,7 @@ class support_seeder extends Seeder{
         $center_support_person->center_support_person_num = 20;
         $center_support_person->id = 7; //脫困
         $center_support_person->center_support_person_requirement = "脫困組";
-        $center_support_person->center_support_person_introduction = "";
+        $center_support_person->center_support_person_introduction = "前往通報地點就出脫困民眾";
         $center_support_person->save();
 
         $center_support_person = new App\Center_support_person;
@@ -920,7 +920,7 @@ class support_seeder extends Seeder{
         $center_support_person->center_support_person_num = 5;
         $center_support_person->id = 10;//管線
         $center_support_person->center_support_person_requirement = "管線修復組";
-        $center_support_person->center_support_person_introduction = "";
+        $center_support_person->center_support_person_introduction = "修理管線";
         $center_support_person->save();
 
         $center_support_person_detail = new App\Center_support_person_detail;
