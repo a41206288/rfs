@@ -293,6 +293,25 @@ EMT災民
 @section('javascript')
 
     <script>
+        var victim = {!! json_encode($victim_details) !!}; //controller傳來的陣列轉乘javascript陣列
+        var nowLocation = Array();
+        for(var i=0;i<victim.length;i++){
+            if(victim[i]['now_location'] != ""){
+                if(nowLocation.indexOf(victim[i]['now_location']) == -1){ //沒重複才存入陣列
+                    nowLocation.push(victim[i]['now_location']);
+                }
+            }
+        }
+        for(var i=0; i<$('div .modal').length; i++){
+            var div = "#" + $('div .modal').eq(i).attr('id');
+            $(div).find("input[name='now_location']").autocomplete({
+                source: nowLocation,
+                appendTo: div,
+                minLength: 0
+            }).focus(function() {
+                $(this).autocomplete("search", $(this).val());
+            });
+        }
 
         $('#sex,#damage_level,#now_location').on('change',function()
         {
@@ -307,7 +326,6 @@ EMT災民
                         now_location: $('#now_location').val(),
                         damage_level: $('#damage_level').val()
 
-
                     },
                     success: function(response) {
                         updateTable(response);
@@ -319,7 +337,6 @@ EMT災民
         });
         $('#name,#person_id,#phone').on('keydown',function()
         {
-//            alert();
             $.ajax({
                 url: 'http://localhost:8000/victim/EMT/update',
                 type: 'POST',
