@@ -24,7 +24,7 @@
 
 
                 <!-- 說明按鈕 -->
-                 <a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body"
+                 <a href="#" class="btn btn-default btn-sm navbar-sm-btn" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body"
                     title="人員顏色說明"
                     data-content="
                         {{--綠色:完成任務，閒置<br />橘色:任務執行中<br />紅色:受傷<br />"--}}

@@ -3,8 +3,12 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\User;
+use App\Works_on;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Kodeine\Acl\Models\Eloquent\Permission;
 
 class ResourceCenterPeopleController extends Controller {
 
@@ -19,7 +23,12 @@ class ResourceCenterPeopleController extends Controller {
 		$mission_lists = DB::table('mission_lists')
 			->get();
 //		dd($mission_lists);
-
+        $mission_list_names = DB::table('mission_lists')
+            ->where('mission_name','!=','未分配任務')
+            ->where('mission_complete_time','=',NULL)
+            ->lists('mission_name','mission_list_id');
+        $mission_list_names  = array_add($mission_list_names, '', '將志工分配至現有任務');
+//dd($mission_list_names);
 		//應徵志工人員資料
 		$center_support_person_details = DB::table('center_support_person_details')
 			->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id')
@@ -34,7 +43,7 @@ class ResourceCenterPeopleController extends Controller {
 			->groupBy('description')
 			->lists('description','description')
 			;
-		$center_support_person_detail_roles = array_add($center_support_person_detail_roles, '全部', '全部');
+		$center_support_person_detail_roles = array_add($center_support_person_detail_roles, '', '人員種類');
 //				dd($center_support_person_detail_roles);
 
 
@@ -114,6 +123,14 @@ class ResourceCenterPeopleController extends Controller {
 		//取出所有人員種類
 		$roles = DB::table('roles')->get();
 //        dd($roles);
+        $role_of_work = DB::table('roles')
+            ->where('Name','!=','Administrator')
+            ->where('Name','!=','center')
+            ->where('Name','!=','Local')
+            ->where('Name','!=','Resource')
+            ->lists('description','id');
+        $role_of_work = array_add($role_of_work,'','人員種類');
+//        dd($role_of_work);
 
 		$mission_support_people_array =[];
 		foreach($mission_support_people as $mission_support_person){
@@ -129,7 +146,7 @@ class ResourceCenterPeopleController extends Controller {
 			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_person_id'] = $mission_support_person->mission_support_person_id;
 			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['role'] = $mission_support_person->description;
 			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
-//                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
 
 		}
 
@@ -230,6 +247,7 @@ class ResourceCenterPeopleController extends Controller {
 
         return view('manage_pages.people_manage_resource_c')
 			->with('mission_lists', $mission_lists)
+            ->with('mission_list_names', $mission_list_names)
 			->with('center_support_person_details', $center_support_person_details)
 			->with('center_support_people', $center_support_people)
 //			->with('relieverFreeUsers', $relieverFreeUsers)
@@ -237,6 +255,7 @@ class ResourceCenterPeopleController extends Controller {
 			->with('mission_support_people', $mission_support_people)
 //			->with('mission_names', $mission_names)
 			->with('roles', $roles)
+            ->with('role_of_work', $role_of_work)
 			->with('center_support_person_details_array', $center_support_person_details_array)
 			->with('center_support_person_detail_roles', $center_support_person_detail_roles)
 			->with('centerFreeUsers', $centerFreeUsers)
@@ -254,9 +273,12 @@ class ResourceCenterPeopleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)//新增新的招募志工單
 	{
-		//
+        $inputs=$request->except('_token');
+        dd($inputs);
+
+        return redirect()->route('resourcePanel');
 	}
 
 	/**
@@ -264,9 +286,11 @@ class ResourceCenterPeopleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)// 更改人員狀態
 	{
-		//
+        $inputs=$request->except('_token');
+//        dd($inputs);
+        return redirect()->route('resourcePanel');
 	}
 
 	/**
@@ -286,10 +310,32 @@ class ResourceCenterPeopleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request) //修改招募志工人數
 	{
-		//
+        $inputs=$request->except('_token');
+//        dd($inputs);
+        if(isset($inputs))
+        {
+            foreach($inputs as $key=>$value)
+            {
+                DB::table('center_support_people')->where('center_support_person_id',$key)->update(['center_support_person_num' => $value]);
+            }
+        }
+        return redirect()->route('resourcePanel');
 	}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function editSkill(Request $request) //修改招募志工人數
+    {
+        $inputs=$request->except('_token');
+        dd($inputs);
+        return redirect()->route('resourcePanel');
+
+    }
 
 	/**
 	 * Update the specified resource in storage.
@@ -297,9 +343,48 @@ class ResourceCenterPeopleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request)//錄取志工
 	{
-		//
+//        $inputs=$request->except('_token');
+//        dd($inputs);
+
+        $center_support_person_detail_ids=$request->input('center_support_person_detail_ids');
+        if(isset($center_support_person_detail_ids))
+        {
+            foreach($center_support_person_detail_ids as $center_support_person_detail_id){
+                $user_id = DB::table('users')->select(DB::raw('count(*) as total'))->get();
+                $user_id = $user_id[0]->total + 1;
+                $center_support_person_detail = DB::table('center_support_person_details')->where('center_support_person_detail_id',$center_support_person_detail_id)->get();
+//            dd($center_support_person_detail[0]);
+                $user = new User();
+                $user->id = $user_id;
+                $user->user_name = $center_support_person_detail[0]->center_support_person_detail_name;
+                $user->email = $center_support_person_detail[0]->email;
+                $user->password =Hash::make ('1234');
+                $user->phone = $center_support_person_detail[0]->phone;
+                $user->country_or_city_input = $center_support_person_detail[0]->country_or_city_input;
+                $user->township_or_district_input = $center_support_person_detail[0]->township_or_district_input;
+                $user->arrived = 0;
+                $user->save();
+
+                $center_support_person_role = DB::table('center_support_people')->select('id')->where('center_support_person_id',$center_support_person_detail[0]->center_support_person_id)->get();
+//                dd($center_support_person_role);
+                $user  = User::where('id', '=', $user_id)->first();
+                $role = Permission::where('id', '=',$center_support_person_role[0]->id)->first();
+                $user->assignRole($role);
+                $user->save();
+
+                $Works_on = new Works_on();
+                $Works_on->id = $user_id;
+                $Works_on->mission_list_id = 1;
+//                $Works_on->status = '執行任務';
+                $Works_on->save();
+
+                DB::table('center_support_person_details')->where('center_support_person_detail_id',$center_support_person_detail_id)->delete();
+            }
+        }
+
+        return redirect()->route('resourcePanel');
 	}
 
 	/**

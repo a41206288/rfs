@@ -4,7 +4,7 @@
 @endsection
 @section('link')
     {{--<li>{!! Html::link('resource/manage/product/center', '物資管理') !!}</li>--}}
-    <li class="active">{!! Html::link('resource/manage/people/center', '人員管理') !!}</li>
+    <li class="active">{!! Html::link('resource/center/manage/people', '人員管理') !!}</li>
 @endsection
 @section('css')
     tr.header,tr.header_no_next
@@ -18,7 +18,9 @@
     .header.expand .sign:after{
     content:"▼";
     }
-
+    .divA a:link {
+    text-decoration: underline;
+    }
 @endsection
 @section('content')
     {{--1.新增人員需求 (人數、人員背景)--}}
@@ -37,14 +39,15 @@
             <div class="tab-content">
                 <div class="tab-pane" id="application_person">
                     <div class="panel panel-default" >
+                        {!! Form::open(array('url' => 'resource/manage/people/center/updatePeople'))!!}
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
                                 <a class="navbar-sm-brand" href="#">應徵志工人員資料</a>
                             </div>
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
-                                <ul class="nav navbar-sm-nav t">{{--上面按鈕欄內容 靠右對齊--}}
-                                    {!! Form::select('name', $center_support_person_detail_roles, '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                <ul class="nav navbar-sm-nav ">{{--上面按鈕欄內容 靠右對齊--}}
+                                    {!! Form::select('center_support_person_detail_role', $center_support_person_detail_roles, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
                                 </ul>
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
@@ -79,7 +82,7 @@
                                     @foreach($center_support_person_details as $center_support_person_detail)
                                         <tr>
 
-                                            <td>{!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! Form::checkbox('center_support_person_detail_ids[]', $center_support_person_detail->center_support_person_detail_id)!!}</td>
                                             <td>{!!$center_support_person_detail->description!!}</td>
                                             <td>{!!$center_support_person_detail->center_support_person_detail_name!!}</td>
                                             <td>{!!$center_support_person_detail->phone!!}</td>
@@ -102,43 +105,50 @@
                                 {{--{!! Form::close() !!}--}}
                             </table>
                         </div>
+                        {!! Form::close() !!}
                         {{--表格尾端--}}
                     </div>
                 </div>
                 <div class="tab-pane active" id="application_lists">
                     <div class="panel panel-default" >
+
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
                                 <a class="navbar-sm-brand" href="#">向民眾招募人員需求表(單位: 人)</a>
                             </div>
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
+                                {{--<ul class="nav navbar-sm-nav">--}}{{--上面按鈕欄內容 靠左對齊--}}
+                                    {{--<button class="btn btn-default navbar-sm-btn btn-sm" data-toggle="modal" data-target="#createVolunteerNeedBlock"> 新增新的志工需求單</button>--}}
+                                    {{--<!-- Modal -->--}}
+                                    {{--<div class="modal fade" id="createVolunteerNeedBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
+
+                                    {{--<div class="modal-dialog">--}}
+                                        {{--<div class="modal-content">--}}
+                                            {{--{!! Form::open(array('url' => 'resource/manage/people/center/createPeopleSupport', 'method' => 'post')) !!}--}}
+                                            {{--<div class="modal-header">--}}
+                                                {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+                                                {{--<h4 class="modal-title" id="myModalLabel"><b>志工需求單</b></h4>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="modal-body">--}}
+                                                    {{--{!! Form::select('mission_support_people_id',$role_of_work, '', ['class' => 'form-control']) !!}--}}
+
+                                                {{--</div>--}}
+                                                {{--<div class="modal-footer">--}}
+                                                {{--<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>--}}
+                                                {{--{!! Form::submit('招募志工', ['class' => 'btn btn-default btn-sm btn-primary']) !!}--}}
+                                                {{--</div>--}}
+                                                {{--{!! Form::close() !!}--}}
+                                            {{--</div><!-- /.modal-content -->--}}
+                                        {{--</div><!-- /.modal-dialog -->--}}
+                                    {{--</div><!-- /.modal -->--}}
+                                {{--</ul>--}}
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
+
+                                    {!! Form::open(array('url' => 'resource/manage/people/center/editPeopleSupport'))!!}
                                     {!! Form::submit('修改需求人數', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
-                                    <button class="btn btn-default navbar-sm-btn btn-sm" data-toggle="modal" data-target="#createVolunteerNeedBlock"> 新增新的志工需求單</button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="createVolunteerNeedBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                {!! Form::open(array('url' => 'call/manage/createMission', 'method' => 'post','class' => 'form-horizontal','onSubmit' => 'return checkForm();')) !!}
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title" id="myModalLabel"><b>志工需求單</b></h4>
-                                                </div>
-                                                <div class="modal-body">
 
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                                    {!! Form::submit('招募志工', ['class' => 'btn btn-default btn-sm btn-primary']) !!}
-                                                </div>
-                                                {!! Form::close() !!}
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-                                    {{--<a href="#application_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">應徵志工人員資料表</a>--}}
                                 </ul>
                             </div>
                         </nav>
@@ -164,9 +174,17 @@
                                         <tr>
                                             <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%Y/%m/%d') }}</td>
                                             <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%H:%M') }}</td>
-                                            <td>{!!$center_support_person->description  !!}</td>
                                             <td>
-                                                {!! Form::number('center_support_person_num', $center_support_person->center_support_person_num, ['min'=>'0','class' => 'form-control text-right']) !!}
+                                                {{--{!!$center_support_person->description  !!}--}}
+                                                <a id="{!!$center_support_person->slug!!}" name="change_skill" href="#" class="" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"
+                                                   title="所需技能 "
+                                                   data-content="讀取該職業技能"
+                                                   data-html="true" role="button"> {!!$center_support_person->description  !!}
+                                                </a>
+
+                                            </td>
+                                            <td>
+                                                {!! Form::number($center_support_person->center_support_person_id, $center_support_person->center_support_person_num, ['min'=>'0','class' => 'form-control text-right']) !!}
                                             </td>
                                             @if(isset($center_support_person_details_array[$center_support_person->center_support_person_id]))
                                                 <td class="text-right">{!! $center_support_person->center_support_person_num - count($center_support_person_details_array[$center_support_person->center_support_person_id])!!} </td>
@@ -181,7 +199,65 @@
                                 {{--{!! Form::close() !!}--}}
                             </table>
                         </div>
+                        {!! Form::close() !!}
+                        @if(isset($center_support_people))
+                            @foreach($center_support_people as $center_support_person)
+                                <!-- Modal -->
+                                <div class="modal fade" id="change_{!!$center_support_person->slug!!}_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            {!! Form::open(array('url' => 'resource/manage/people/center/editSkill', 'method' => 'post')) !!}
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">修改技能</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-striped">
+                                                    <tr><td width="20%">組別</td><td>{!!$center_support_person->description  !!}</td></tr>
+                                                    <tr><td>技能</td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="checkbox" checked> 技能1
+                                                            </label>
+                                                            <label>
+                                                                <input type="checkbox"> 技能2
+                                                            </label>
+                                                            <label>
+                                                                <input type="checkbox"> 技能3
+                                                            </label>
+                                                            <label>
+                                                                <input type="checkbox"> 技能4
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                {{--<button type="button" class="btn btn-default" data-dismiss="modal">修改</button>--}}
+                                                {{--<button type="button" class="btn btn-primary">修改</button>--}}
+                                                {!! Form::submit('修改', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
+                                            </div>
+                                            {!! Form::close() !!}
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            @endforeach
+                        @endif
                         {{--表格尾端--}}
+                        <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+                            <div class="collapse navbar-sm-collapse" >
+
+                                <ul class="nav navbar-sm-nav navbar-sm-right">
+                                    {!! Form::open(array('url' => 'resource/manage/people/center/createPeopleSupport', 'method' => 'post')) !!}
+                                    {!! Form::select('mission_support_people_id',$role_of_work, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::number('mission_support_people_num', 0, ['min'=>'1','class' => 'text-right','style'=>'width:200px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}&nbsp;&nbsp;人&nbsp;&nbsp;
+                                    {{--{!! Form::text('mission_support_people_reason','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
+                                    {!! Form::submit('新增新的志工需求單', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                                    {!! Form::close() !!}
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
 
                 </div>
@@ -205,22 +281,24 @@
 
 
                         </ul>
+                        {!! Form::open(array('url' => 'resource/manage/people/center/editPeople'))!!}
                         <ul class="nav navbar-sm-nav navbar-sm-right">
                             {{--{!! Form::submit('將志工分配至現有任務', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}--}}
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                    將志工分配至現有任務 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
+                                {{--<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">--}}
+                                    {{--將志工分配至現有任務 <span class="caret"></span>--}}
+                                {{--</button>--}}
+                                {{--<ul class="dropdown-menu" role="menu">--}}
 
-                                    @if(isset($mission_lists))
-                                        @foreach($mission_lists as $mission_list)
-                                            @if($mission_list->mission_name != '未分配任務')
-                                                <li><a href="#">{!! $mission_list->mission_name !!}</a></li>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                </ul>
+                                    {{--@if(isset($mission_lists))--}}
+                                        {{--@foreach($mission_lists as $mission_list)--}}
+                                            {{--@if($mission_list->mission_name != '未分配任務')--}}
+                                                {{--<li><a href="#">{!! $mission_list->mission_name !!}</a></li>--}}
+                                            {{--@endif--}}
+                                        {{--@endforeach--}}
+                                    {{--@endif--}}
+                                {{--</ul>--}}
+                                {!! Form::select('mission_list_id', $mission_list_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
                             </div>
                             {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
                         </ul>
@@ -253,7 +331,7 @@
                             @foreach($centerFreeUsers as $centerFreeUser)
                                 @if($centerFreeUser->description != '地方指揮官')
                                     <tr>
-                                        <td>{!! Form::checkbox('name', 'value')!!}</td>
+                                        <td>{!! Form::checkbox('user_ids[]', $centerFreeUser->id)!!}</td>
                                         {{--<td></td>--}}
                                         <td>{!!$centerFreeUser->description!!}</td>
                                         <td>{!!$centerFreeUser->user_name!!}</td>
@@ -286,8 +364,9 @@
 
 
                         </tbody>
-                        {{--{!! Form::close() !!}--}}
+
                     </table>
+                    {!! Form::close() !!}
                 </div>
                 {{--表格尾端--}}
 
@@ -305,7 +384,11 @@
                         <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠左對齊--}}
                         </ul>
                         <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
-
+                            <a href="#" class="btn btn-default btn-sm navbar-sm-btn" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body"
+                               title="功能說明"
+                               data-content="將滑鼠移至增援人數上，可看到其他任務欲增援人員原因"
+                               data-html="true" role="button">功能說明
+                            </a>
                         </ul>
                     </div>
                 </nav>
@@ -354,11 +437,16 @@
                                                                 {!! $mission_support_people_array_count = count($mission_support_people_array[$mission_support_people_list->mission_list_id])+1 !!}
                                                             </div>
                                                             {{--@for($i=1;$i<$roles_count;$i++)--}}
-                                                            <td class="text-right ">
+                                                            <td class="text-right divA">
                                                                 @for($j=1;$j<$mission_support_people_array_count;$j++)
                                                                     @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]))
                                                                         @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description)
-                                                                            {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] !!}
+
+                                                                            <a href="#" class="" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"
+                                                                               title="增援原因"
+                                                                               data-content=" {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_reason'] !!}"
+                                                                               data-html="true" role="button"> {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] !!}
+                                                                            </a>
                                                                         @else
 
                                                                         @endif
@@ -482,6 +570,13 @@
         });
         $('.header_no_next').trigger('click'); //trigger :觸發指定事件
 
+    </script>
+    <script>
+        $("a[name='change_skill']").click(function(){
+//            alert($(this).attr('id'));
+            var model_name = "#change_" + $(this).attr('id') + "_Modal"
+            $(model_name).modal('show');
+        });
     </script>
 
 @endsection

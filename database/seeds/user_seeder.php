@@ -1,6 +1,7 @@
 <?php
 //use Kodeine\Acl\Models\Eloquent\Role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Kodeine\Acl\Models\Eloquent\Permission;
 use app\User;
 use app\Post;
@@ -1099,11 +1100,11 @@ class user_seeder extends Seeder{
         $Works_on->save();
 
         $user = new App\User;
-        $user->id = 58;
+        $user->id = 57;
         $user->user_name = "江文溪";
-        $user->email = "058@yahoo.com.tw";
+        $user->email = "057@yahoo.com.tw";
         $user->password =Hash::make ('1234');
-        $user->phone = '0905805858';
+        $user->phone = '0905705757';
         $user->arrived = 0;
         $user->save();
 
@@ -1113,7 +1114,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->id = 58;
+        $Works_on->id = 57;
         $Works_on->mission_list_id = 1;
         $Works_on->status = '執行任務';
         $Works_on->save();

@@ -194,8 +194,13 @@ Route::group([
     'middleware' => ['auth', 'acl'],
     'is' => 'resource'],
     function () {
-        Route::get('resource/manage/people/center', array('as' => 'resourcePanel', 'uses' => 'ResourceCenterPeopleController@index'));
-        Route::get('resource/manage/product/center', 'ResourceCenterProductController@index');
+        Route::get('resource/center/manage/people', array('as' => 'resourcePanel', 'uses' => 'ResourceCenterPeopleController@index'));
+        Route::get('resource/center/manage/product', 'ResourceCenterProductController@index');
+        Route::post('resource/manage/people/center/updatePeople', 'ResourceCenterPeopleController@update');
+        Route::post('resource/manage/people/center/createPeopleSupport', 'ResourceCenterPeopleController@create');
+        Route::post('resource/manage/people/center/editPeopleSupport', 'ResourceCenterPeopleController@edit');
+        Route::post('resource/manage/people/center/editPeople', 'ResourceCenterPeopleController@store');
+        Route::post('resource/manage/people/center/editSkill', 'ResourceCenterPeopleController@editSkill');
 
     });
 
