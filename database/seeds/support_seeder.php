@@ -27,6 +27,7 @@ class support_seeder extends Seeder{
         DB:: table('center_support_person_details')->delete();
         DB:: table('mission_support_people')->delete();
         DB:: table('mission_help_others')->delete();
+        DB:: table('mission_help_other_users')->delete();
         DB:: table('skills')->delete();
         DB:: table('center_support_people_skills')->delete();
         DB:: table('center_support_person_detail_skills')->delete();
@@ -1060,7 +1061,7 @@ class support_seeder extends Seeder{
         $mission_support_person->mission_support_person_id = 1;
         $mission_support_person->mission_list_id = 2;
         $mission_support_person->id = 6;
-        $mission_support_person->mission_support_people_num = 3;
+        $mission_support_person->mission_support_people_num = 4;
         $mission_support_person->mission_support_people_reason = "目前醫療人手不足，需要更多增援";
         $mission_support_person->save();
 
@@ -1104,33 +1105,69 @@ class support_seeder extends Seeder{
         $mission_help_other->mission_help_other_id = 1;
         $mission_help_other->mission_support_person_id = 1;
         $mission_help_other->mission_list_id = 1;
-        $mission_help_other->mission_help_other_num = 1;
-        $mission_help_other->arrived = 0;
+//        $mission_help_other->mission_help_other_num = 1;
+//        $mission_help_other->arrived = 0;
         $mission_help_other->save();
 
         $mission_help_other = new App\Mission_help_other;
         $mission_help_other->mission_help_other_id = 2;
         $mission_help_other->mission_support_person_id = 2;
         $mission_help_other->mission_list_id = 1;
-        $mission_help_other->mission_help_other_num = 1;
-        $mission_help_other->arrived = 0;
+//        $mission_help_other->mission_help_other_num = 1;
+//        $mission_help_other->arrived = 0;
         $mission_help_other->save();
 
         $mission_help_other = new App\Mission_help_other;
         $mission_help_other->mission_help_other_id = 3;
         $mission_help_other->mission_support_person_id = 1;
         $mission_help_other->mission_list_id = 4;
-        $mission_help_other->mission_help_other_num = 1;
-        $mission_help_other->arrived = 0;
+//        $mission_help_other->mission_help_other_num = 1;
+//        $mission_help_other->arrived = 0;
         $mission_help_other->save();
 
         $mission_help_other = new App\Mission_help_other;
         $mission_help_other->mission_help_other_id = 4;
         $mission_help_other->mission_support_person_id = 4;
         $mission_help_other->mission_list_id = 2;
-        $mission_help_other->mission_help_other_num = 1;
-        $mission_help_other->arrived = 0;
+//        $mission_help_other->mission_help_other_num = 1;
+//        $mission_help_other->arrived = 0;
         $mission_help_other->save();
+
+
+        $mission_help_other_user = new App\Mission_help_other_user;
+        $mission_help_other_user->mission_help_other_user_id = 1;
+        $mission_help_other_user->mission_help_other_id = 1;
+        $mission_help_other_user->id = 12;
+        $mission_help_other_user->arrive_mission = 0;
+        $mission_help_other_user->save();
+
+        $mission_help_other_user = new App\Mission_help_other_user;
+        $mission_help_other_user->mission_help_other_user_id = 2;
+        $mission_help_other_user->mission_help_other_id = 1;
+        $mission_help_other_user->id = 13;
+        $mission_help_other_user->arrive_mission = 0;
+        $mission_help_other_user->save();
+
+        $mission_help_other_user = new App\Mission_help_other_user;
+        $mission_help_other_user->mission_help_other_user_id = 3;
+        $mission_help_other_user->mission_help_other_id = 1;
+        $mission_help_other_user->id = 55;
+        $mission_help_other_user->arrive_mission = 0;
+        $mission_help_other_user->save();
+
+        $mission_help_other_user = new App\Mission_help_other_user;
+        $mission_help_other_user->mission_help_other_user_id = 4;
+        $mission_help_other_user->mission_help_other_id = 2;
+        $mission_help_other_user->id = 25;
+        $mission_help_other_user->arrive_mission = 0;
+        $mission_help_other_user->save();
+
+        $mission_help_other_user = new App\Mission_help_other_user;
+        $mission_help_other_user->mission_help_other_user_id = 5;
+        $mission_help_other_user->mission_help_other_id = 4;
+        $mission_help_other_user->id = 41;
+        $mission_help_other_user->arrive_mission = 0;
+        $mission_help_other_user->save();
 
 
 

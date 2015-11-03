@@ -329,7 +329,7 @@ class user_seeder extends Seeder{
         $Works_on = new App\Works_on;
         $Works_on->id = 55;
         $Works_on->mission_list_id = 4;
-        $Works_on->status = '執行任務';
+        $Works_on->status = '閒置';
         $Works_on->save();
 
 

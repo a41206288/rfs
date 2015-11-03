@@ -130,6 +130,7 @@ class LocalMissionController extends Controller {
                 }
 
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_person_id'] = $mission_support_person->mission_support_person_id;
+                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_list_id'] = $mission_support_person->mission_list_id;
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['role'] = $mission_support_person->description;
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
 //                $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
@@ -170,11 +171,11 @@ class LocalMissionController extends Controller {
 //                }
 //            }
 
-
+//取出哪個地點支援哪個地點的表
             $mission_help_others = DB::table('mission_help_others')
                 ->join('mission_lists','mission_lists.mission_list_id','=','mission_help_others.mission_list_id')
 //                ->where('', ) 依照 mission_support_person_id 排
-                    ->where('arrived',0)
+//                    ->where('arrived',0)
                 ->get();
 //dd($mission_help_others);
             $mission_help_other_array =[];
@@ -189,9 +190,24 @@ class LocalMissionController extends Controller {
                 }
                 $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_id'] = $mission_help_other->mission_help_other_id;
                 $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_name'] = $mission_help_other->mission_name;
-                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
+                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_list_id'] = $mission_help_other->mission_list_id;
+
+//                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
             }
 //            dd($mission_help_other_array);
+
+            //取出哪個地點支援哪個地點的表包含哪些人
+            $mission_help_other_users = DB::table('mission_help_other_users')
+                ->join('works_ons','works_ons.id','=','mission_help_other_users.id')
+                ->get();
+//            dd($mission_help_other_users);
+            $mission_help_other_users_array = [];
+            foreach($mission_help_other_users as $mission_help_other_user){
+                $mission_help_other_users_array[$mission_help_other_user->mission_help_other_id][$mission_help_other_user->mission_list_id ][$mission_help_other_user->id ] = $mission_help_other_user->arrive_mission;
+
+            }
+//dd($mission_help_other_users_array);
+
 
 
 
@@ -206,16 +222,43 @@ class LocalMissionController extends Controller {
 //        dd($mission_roles);
 
 
+            //用以下兩陣列來判斷支援其他地方的救災人員是支援哪裡(配合$missionUsers) 讀取時再用mission_list來判斷名稱
+            $user_help_missions = DB::table('mission_help_others')
+                ->join('mission_help_other_users','mission_help_other_users.mission_help_other_id','=','mission_help_others.mission_help_other_id')
+//                ->join('mission_support_people','mission_support_people.mission_support_person_id','=','mission_help_others.mission_support_person_id')
+                ->get();
+//        dd($user_help_missions);
+
+
+            $help_missions_and_names = DB::table('mission_support_people')
+                ->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
+//                ->join('mission_support_people','mission_support_people.mission_support_person_id','=','mission_help_others.mission_support_person_id')
+                ->get();
+//        dd($help_missions_and_names);
 
             //取出本任務所有救災人員
             $missionUsers = DB::table('users')
                 ->join('role_user','users.id','=','role_user.user_id')
                 ->join('roles','roles.id','=','role_user.role_id')
                 ->join('works_ons','works_ons.id','=','role_user.user_id')
+                ->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id')
                 ->where('mission_list_id','=',$mission_list_id)
+                ->orderBy('arrive_mission')
                 ->orderBy('role_id')
                 ->get();
 //        dd($missionUsers);
+
+            //取出所有user(用來印出其他任務支援的user)
+            $mission_help_users = DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('roles','roles.id','=','role_user.role_id')
+                ->join('works_ons','works_ons.id','=','role_user.user_id')
+                ->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id')
+                ->orderBy('role_id')
+
+                ->get();
+//        dd($mission_help_users);
+
 
             //計算各嚴重程度傷患人數
             $victim_nums = DB::table('victim_details')
@@ -296,6 +339,12 @@ class LocalMissionController extends Controller {
                 ->with('mission_no_support_people_lists', $mission_no_support_people_lists)
                 ->with('mission_no_support_work_people_lists', $mission_no_support_work_people_lists)
                 ->with('mission_no_support_finish_people_lists', $mission_no_support_finish_people_lists)
+                ->with('mission_help_other_users_array', $mission_help_other_users_array)
+                ->with('mission_help_other_users', $mission_help_other_users)
+                ->with('user_help_missions', $user_help_missions)
+                ->with('mission_help_users', $mission_help_users)
+                ->with('help_missions_and_names', $help_missions_and_names)
+
     ;
 
 

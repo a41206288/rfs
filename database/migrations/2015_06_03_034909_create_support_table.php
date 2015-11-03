@@ -107,10 +107,21 @@ class CreateSupportTable extends Migration {
             $table->increments('mission_help_other_id');
             $table->unsignedInteger('mission_support_person_id');
             $table->unsignedInteger('mission_list_id');
-            $table->integer('mission_help_other_num');
-            $table->boolean('arrived');
+            $table->timestamp('mission_help_other_finish_time');
+//            $table->integer('mission_help_other_num');
+//            $table->boolean('arrived');
             $table->timestamps();
         });
+
+        Schema::create('mission_help_other_users', function(Blueprint $table)
+        {
+            $table->increments('mission_help_other_user_id');
+            $table->unsignedInteger('mission_help_other_id');
+            $table->unsignedInteger('id');
+            $table->boolean('arrive_mission');
+            $table->timestamps();
+        });
+
 
         Schema::create('center_support_people', function(Blueprint $table){
             $table->increments('center_support_person_id');
@@ -181,6 +192,8 @@ class CreateSupportTable extends Migration {
         Schema::drop('modifies');
         Schema::drop('mission_support_people');
         Schema::drop('mission_help_others');
+        Schema::drop('mission_help_other_users');
+
 //        Schema::drop('interviews');
 //        Schema::drop('interviewers');
 
