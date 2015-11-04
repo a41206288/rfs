@@ -122,19 +122,7 @@
                             <button type="button" class="btn btn-sm btn-default navbar-sm-btn">閒置</button>
                             <button type="button" class="btn btn-sm btn-default navbar-sm-btn">負傷</button>
                             <!-- Single button -->
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                    支援其他任務 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-
-                                    @if(isset($mission_support_people_lists))
-                                        @foreach($mission_support_people_lists as $mission_support_people_list)
-                                            <li><a href="#">{!! $mission_support_people_list->mission_name !!}</a></li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </div>
+                            {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
                             <a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body" title="人員顏色說明"
                                data-content="
                                                 {{--綠色:完成任務，閒置<br />橘色:任務執行中<br />紅色:受傷<br />"--}}

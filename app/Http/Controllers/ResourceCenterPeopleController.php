@@ -23,12 +23,9 @@ class ResourceCenterPeopleController extends Controller {
 		$mission_lists = DB::table('mission_lists')
 			->get();
 //		dd($mission_lists);
-        $mission_list_names = DB::table('mission_lists')
-            ->where('mission_name','!=','未分配任務')
-            ->where('mission_complete_time','=',NULL)
-            ->lists('mission_name','mission_list_id');
-        $mission_list_names  = array_add($mission_list_names, '', '將志工分配至現有任務');
-//dd($mission_list_names);
+
+
+
 		//應徵志工人員資料
 		$center_support_person_details = DB::table('center_support_person_details')
 			->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id')
@@ -59,6 +56,22 @@ class ResourceCenterPeopleController extends Controller {
 			->join('roles','roles.id','=','center_support_people.id')
 			->get();
 //				dd($center_support_people);
+
+		//取出向民眾招募人員需求表的技能
+		$center_support_people_skills = DB::table('center_support_people_skills')
+			->join('skills','skills.skill_id','=','center_support_people_skills.skill_id')
+			->get();
+
+		$center_support_people_skills_array = [];
+		foreach($center_support_people_skills as $center_support_people_skill){
+			$center_support_people_skills_array[$center_support_people_skill->center_support_person_id][$center_support_people_skill->skill_id] = $center_support_people_skill->skill_name;
+		}
+
+//		dd($center_support_people_skills_array);
+
+		//取出所有技能
+		$skills = DB::table('skills')
+	->get();
 
 		//計算中心待命的各種類人數
 		$centerFreeUsers = DB::table('users')
@@ -113,6 +126,26 @@ class ResourceCenterPeopleController extends Controller {
 			->get();
 //            dd($mission_support_people_lists);
 
+		//取出尚未分配人員的任務
+		$mission_lists_not_assign = DB::table('mission_lists')
+			->select('mission_list_id','mission_name')
+			->where('assign_people_finish_time', NULL)
+			->where('mission_list_id', '!=' , 1)
+			->distinct()
+			->get();
+//dd($mission_lists_not_assign);
+		//將擁有增援列表的任務編號和名稱($mission_support_people_lists)存成lists形式 給下拉式選單用
+		$mission_support_people_names = [];
+		foreach($mission_support_people_lists as $mission_support_people_list){
+			$mission_support_people_names[$mission_support_people_list->mission_list_id] = $mission_support_people_list->mission_name;
+		}
+		//將尚未分配人員的任務($mission_lists_not_assign)存成lists形式 給下拉式選單用
+		foreach($mission_lists_not_assign as $mission_list_not_assign){
+			$mission_support_people_names[$mission_list_not_assign->mission_list_id] = $mission_list_not_assign->mission_name;
+		}
+		$mission_support_people_names  = array_add($mission_support_people_names, '', '將志工分配至現有任務');
+//            dd($mission_support_people_names);
+
 		//計算向中央要求總增援數用
 		$mission_support_people = DB::table('mission_support_people')
 			->join('roles','roles.id','=','mission_support_people.id')
@@ -123,14 +156,22 @@ class ResourceCenterPeopleController extends Controller {
 		//取出所有人員種類
 		$roles = DB::table('roles')->get();
 //        dd($roles);
-        $role_of_work = DB::table('roles')
-            ->where('Name','!=','Administrator')
-            ->where('Name','!=','center')
-            ->where('Name','!=','Local')
-            ->where('Name','!=','Resource')
-            ->lists('description','id');
+
+//取出不在向民眾招募人員需求表裡的種類 (下拉式選單用)
+        $role_of_work = DB::table('roles');
+
+			foreach($center_support_people as $center_support_person){
+				$role_of_work = $role_of_work->where('Name','!=',$center_support_person->name);
+			}
+			$role_of_work = $role_of_work->where('Name','!=','Administrator');
+            $role_of_work = $role_of_work->where('Name','!=','center');
+            $role_of_work = $role_of_work->where('Name','!=','Local');
+            $role_of_work = $role_of_work->where('Name','!=','Resource');
+            $role_of_work = $role_of_work->lists('description','id');
         $role_of_work = array_add($role_of_work,'','人員種類');
 //        dd($role_of_work);
+
+
 
 		$mission_support_people_array =[];
 		foreach($mission_support_people as $mission_support_person){
@@ -247,7 +288,6 @@ class ResourceCenterPeopleController extends Controller {
 
         return view('manage_pages.people_manage_resource_c')
 			->with('mission_lists', $mission_lists)
-            ->with('mission_list_names', $mission_list_names)
 			->with('center_support_person_details', $center_support_person_details)
 			->with('center_support_people', $center_support_people)
 //			->with('relieverFreeUsers', $relieverFreeUsers)
@@ -262,7 +302,10 @@ class ResourceCenterPeopleController extends Controller {
 			->with('centerFreeUserRoles', $centerFreeUserRoles)
 			->with('mission_support_people_lists', $mission_support_people_lists)
 			->with('mission_support_people_array', $mission_support_people_array)
+			->with('mission_support_people_names', $mission_support_people_names)
 			->with('missionUserArrays', $missionUserArrays)
+			->with('center_support_people_skills_array', $center_support_people_skills_array)
+			->with('skills', $skills)
 
 
 	;

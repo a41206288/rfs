@@ -65,6 +65,14 @@ class LocalMissionController extends Controller {
                 ->get();
 //            dd($mission_support_people_lists);
 
+            //將擁有增援列表的任務編號和名稱($mission_support_people_lists)存成lists形式 給下拉式選單用
+            $mission_support_people_names = [];
+            foreach($mission_support_people_lists as $mission_support_people_list){
+                $mission_support_people_names[$mission_support_people_list->mission_list_id] = $mission_support_people_list->mission_name;
+            }
+            $mission_support_people_names  = array_add($mission_support_people_names, '', '將志工分配至現有任務');
+            $mission_support_people_names = array_except($mission_support_people_names, array($mission_list_id, 'to', 'remove'));
+//            dd($mission_support_people_names);
 
 //取出無增援列表任務編號和名稱
             $mission_no_support_people_lists = DB::table('mission_lists')
@@ -336,6 +344,7 @@ class LocalMissionController extends Controller {
                 ->with('role_of_work',$role_of_work)
                 ->with('mission_lists', $mission_lists)
                 ->with('mission_support_people_lists', $mission_support_people_lists)
+                ->with('mission_support_people_names', $mission_support_people_names)
                 ->with('mission_no_support_people_lists', $mission_no_support_people_lists)
                 ->with('mission_no_support_work_people_lists', $mission_no_support_work_people_lists)
                 ->with('mission_no_support_finish_people_lists', $mission_no_support_finish_people_lists)

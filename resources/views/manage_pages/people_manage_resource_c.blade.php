@@ -177,10 +177,11 @@
                                             <td>
                                                 {{--{!!$center_support_person->description  !!}--}}
                                                 <a id="{!!$center_support_person->slug!!}" name="change_skill" href="#" class="" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"
-                                                   title="所需技能 "
-                                                   data-content="讀取該職業技能"
+                                                   {{--title="所需技能 "--}}
+                                                   {{--data-content="讀取該職業技能<br />"--}}
                                                    data-html="true" role="button"> {!!$center_support_person->description  !!}
                                                 </a>
+
 
                                             </td>
                                             <td>
@@ -216,18 +217,18 @@
                                                     <tr><td width="20%">組別</td><td>{!!$center_support_person->description  !!}</td></tr>
                                                     <tr><td>技能</td>
                                                         <td>
-                                                            <label>
-                                                                <input type="checkbox" checked> 技能1
-                                                            </label>
-                                                            <label>
-                                                                <input type="checkbox"> 技能2
-                                                            </label>
-                                                            <label>
-                                                                <input type="checkbox"> 技能3
-                                                            </label>
-                                                            <label>
-                                                                <input type="checkbox"> 技能4
-                                                            </label>
+                                                            @foreach($skills as $skill)
+                                                                @if(isset($center_support_people_skills_array[$center_support_person->center_support_person_id][$skill->skill_id]))
+                                                                    <label>
+                                                                        <input type="checkbox" checked> {!! $skill->skill_name !!}
+                                                                    </label>
+                                                                @else
+                                                                    <label>
+                                                                        <input type="checkbox" > {!! $skill->skill_name !!}
+                                                                    </label>
+                                                                @endif
+                                                            @endforeach
+
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -298,7 +299,7 @@
                                         {{--@endforeach--}}
                                     {{--@endif--}}
                                 {{--</ul>--}}
-                                {!! Form::select('mission_list_id', $mission_list_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
+                                {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
                             </div>
                             {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
                         </ul>
