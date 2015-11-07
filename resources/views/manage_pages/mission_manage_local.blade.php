@@ -18,6 +18,77 @@
     .header.expand .sign:after{
     content:"▲";
     }
+    div#Box0 {
+    right:0px;
+    }
+    div#Box1 {
+        right:225px;
+    }
+    div#Box2 {
+        right:500px;
+    }
+    div#Box3 {
+    right:775px;
+    }
+    div#Box4 {
+    right:1050px;
+    }
+    .contactBox {
+    position:absolute;
+    {{--background-color:red;--}}
+    z-index:2;
+    position:fixed;
+    top:50px;
+    {{--right:200px;--}}
+    width:200px;
+    height:100%;
+    margin-bottom: 0px;
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    border-color: #dddddd;
+    overflow-y: scroll;
+    }
+    .contactBox ul li{
+        background-color: #f5f5f5;
+    }
+    .chatBox {
+        position:absolute;
+        {{--background-color:red;--}}
+        z-index:2;
+        position:fixed;
+        bottom:0px;
+        {{--right:200px;--}}
+        width:250px;height:300px;
+        margin-bottom: 0px;
+        background-color: #ffffff;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        border-color: #dddddd;
+    }
+    .chatBox-body {
+    padding: 5px;
+    height: 225px;
+    overflow-y: scroll;
+    {{--margin-bottom: 5px;--}}
+    {{--margin-top: 5px;--}}
+    {{--background-color: #f5f5f5;--}}
+    }
+    .chatBox-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #333333;
+    background-color: #f5f5f5;
+    border-color: #dddddd;
+    }
+    .chatBox > input {
+    position:absolute;
+    bottom:0px;
+    }
 
 @endsection
 {{--@section('content')--}}
@@ -34,6 +105,193 @@
 {{--管線修復--}}
 {{--警戒--}}
 @section('content')
+    {{--<div id="Box1" class="chatBox panel" style="border:1px solid #333333;">myBox--}}
+        {{--<div class="panel-heading">Panel heading without title</div>--}}
+        {{--<div class="panel-body">--}}
+            {{--Panel content--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    <div id="Box0" class="contactBox">
+        <ul class="nav nav-pills nav-stacked">
+            {{--<li class="active"><a>聯絡人</a></li>--}}
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li><li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+            <li><a>韓東霖</a></li>
+
+
+
+        </ul>
+    </div>
+    <div id="Box1" class="chatBox">
+        {{--<div class="chatBox-heading">韓東霖</div>--}}
+        <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+            <div class="navbar-sm-header">{{--標題--}}
+                <a class="navbar-sm-brand" href="#">韓東霖</a>
+            </div>
+
+            {{--<div class="collapse navbar-sm-collapse" >--}}{{--上面按鈕欄--}}
+                {{--<ul class="nav navbar-sm-nav">--}}{{--上面按鈕欄內容 靠左對齊--}}
+                    {{--<!-- 範例按鈕 -->--}}
+                    {{--<!-- select -->--}}
+                    {{--{!! Form::select('name', array('全部' => '全部', '醫療' => '醫療', '脫困' => '脫困'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}--}}
+                    {{--<!-- button -->--}}
+                    {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">執行任務</button>--}}
+                    {{--<!-- dropdown -->--}}
+                    {{--<div class="btn-group">--}}
+                        {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn dropdown-toggle" data-toggle="dropdown">--}}
+                            {{--支援其他任務 <span class="caret"></span>--}}
+                        {{--</button>--}}
+                        {{--<ul class="dropdown-menu" role="menu">--}}
+                            {{--<li><a href="#">四維</a></li>--}}
+                            {{--<li><a href="#">五福</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+
+
+                    {{--<!-- 說明按鈕 -->--}}
+                    {{--<a href="#" class="btn btn-default btn-sm navbar-sm-btn" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body"--}}
+                       {{--title="人員顏色說明"--}}
+                       {{--data-content="--}}
+                        {{--綠色:完成任務，閒置<br />橘色:任務執行中<br />紅色:受傷<br />"--}}
+                        {{--<p class=&quot;bg-success&quot;>綠色:完成任務，閒置</p>--}}
+                        {{--<p class=&quot;bg-warning&quot;>橘色:任務執行中</p>--}}
+                        {{--<p class=&quot;bg-danger&quot;>紅色:受傷</p>"--}}
+                       {{--data-html="true" role="button">人員顏色說明--}}
+                    {{--</a>--}}
+                {{--</ul>--}}
+                {{--<ul class="nav navbar-sm-nav navbar-sm-right">--}}{{--上面按鈕欄內容 靠右對齊--}}
+
+                {{--</ul>--}}
+            {{--</div>--}}
+        </nav>
+        <div class="chatBox-body">
+            {{--<p>韓東霖 : 多處房子出入處已坍塌, 尚有12人受困</p>--}}
+            {{--<p>韓東霖 : 電線杆倒塌起火</p>--}}
+            {{--<p>韓東霖 : 爆炸將地下水管管線炸斷，路上積水</p>--}}
+            {{--<p>韓東霖 : 校門附近建築遭倒下的樹壓毀</p>--}}
+
+            <table class="table table-nonbordered">
+                <tr>
+                    <th width="70px">韓東霖</th>
+                    <td class="active">電線杆倒塌起火</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="active">多處房子出入處已坍塌, 尚有12人受困</td>
+                </tr>
+                <tr>
+                  <td></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="active">爆炸將地下水管管線炸斷，路上積水</td>
+                </tr>
+                <tr>
+                    <td></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="active">校門附近建築遭倒下的樹壓毀</td>
+                </tr>
+                <tr>
+                    <td></th>
+                </tr>
+                <tr>
+                    <th width="70px"></th>
+                    <td class="info">電線杆倒塌起火</td>
+                </tr>
+                <tr>
+                    <td></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="info">多處房子出入處已坍塌, 尚有12人受困</td>
+                </tr>
+                <tr>
+                    <td></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="info">爆炸將地下水管管線炸斷，路上積水</td>
+                </tr>
+                <tr>
+                    <td></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td class="info">校門附近建築遭倒下的樹壓毀</td>
+                </tr>
+
+            </table>
+        </div>
+{{--        {!! Form::text('name','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
+        <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">傳送</button>
+            </span>
+        </div><!-- /input-group -->
+    </div>
+    <div id="Box2" class="chatBox">
+        <div class="chatBox-heading">陳芊蓉</div>
+        <div class="chatBox-body">
+            Panel content
+        </div>
+    </div>
+    <div id="Box3" class="chatBox">
+        <div class="chatBox-heading">Panel heading without title</div>
+        <div class="chatBox-body">
+            Panel content
+        </div>
+    </div>
+    <div id="Box4" class="chatBox">
+        <div class="chatBox-heading">Panel heading without title</div>
+        <div class="chatBox-body">
+            Panel content
+        </div>
+    </div>
+
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
         <div class="text-right panel">
@@ -114,15 +372,21 @@
                     <div class="collapse navbar-sm-collapse" >
                         <ul class="nav navbar-sm-nav">
                             <!-- Single button -->
-                            {!! Form::select('name',$mission_roles, '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}
+
+                            {!! Form::select('name',$mission_roles, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
                         </ul>
 
                         <ul class="nav navbar-sm-nav navbar-sm-right">
-                            <button type="button" class="btn btn-sm btn-default navbar-sm-btn">執行任務</button>
-                            <button type="button" class="btn btn-sm btn-default navbar-sm-btn">閒置</button>
-                            <button type="button" class="btn btn-sm btn-default navbar-sm-btn">負傷</button>
+                            {!! Form::open(array('url' => 'local/mission/manage/editPeople'))!!}
+                            {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">執行任務</button>--}}
+                            {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">閒置</button>--}}
+                            {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">負傷</button>--}}
+
+                            {!! Form::select('mission_list_id', array('' => '更改人員狀態','執行任務' => '執行任務', '閒置' => '閒置', '負傷' => '負傷'),  '', ['class' => 'navbar-sm-btn btn-sm','style'=>'border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
+
                             <!-- Single button -->
                             {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
+
                             <a href="#" class="btn btn-default btn-sm" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body" title="人員顏色說明"
                                data-content="
                                                 {{--綠色:完成任務，閒置<br />橘色:任務執行中<br />紅色:受傷<br />"--}}
@@ -132,6 +396,7 @@
                                 data-html="true" role="button">
                                 人員顏色說明
                             </a>
+                            {!! Form::close() !!}
 
                         </ul>
                     </div>
@@ -181,8 +446,7 @@
                                             {!! $mission_help_other_num_total = 0 !!}
                                         </div>
                                     @endif
-
-
+                                    {!! Form::open(array('url' => 'local/mission/manage/updatePeople'))!!}
                                     @for($k=1;$k<$mission_help_other_count;$k++)
                                         {{--{!! dd($mission_help_other_count) !!}--}}
 
@@ -199,9 +463,25 @@
                                                             {{--<td></td>--}}
                                                             @foreach($mission_lists as $mission_list)
                                                                 @if($mission_help_user->mission_list_id == 1 && $mission_list->mission_list_id == $mission_help_user->mission_list_id)
-                                                                    <td><button class="btn btn-sm btn-default">報到</button>由中央支援</td>
+                                                                    <td>
+                                                                        {{--<button class="btn btn-sm btn-default">報到</button>--}}
+                                                                        {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm']) !!}
+                                                                        {!! Form::hidden('user_id',$mission_help_user->user_id) !!}
+                                                                        {!! Form::hidden('mission_help_other_user_id',$mission_help_user->mission_help_other_user_id) !!}
+                                                                        {!! Form::hidden('mission_help_other_id',$mission_help_user->mission_help_other_id) !!}
+                                                                        {!! Form::hidden('mission_list_id',$mission_list_id) !!}
+                                                                        由中央支援
+                                                                    </td>
                                                                 @elseif( $mission_list->mission_list_id == $mission_help_user->mission_list_id )
-                                                                    <td><button class="btn btn-sm btn-default">報到</button>由 {!! $mission_list->mission_name  !!} 支援</td>
+                                                                    <td>
+                                                                        {{--<button class="btn btn-sm btn-default">報到</button>--}}
+                                                                        {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm']) !!}
+                                                                        {!! Form::hidden('user_id',$mission_help_user->user_id) !!}
+                                                                        {!! Form::hidden('mission_help_other_user_id',$mission_help_user->mission_help_other_user_id) !!}
+                                                                        {!! Form::hidden('mission_help_other_id',$mission_help_user->mission_help_other_id) !!}
+                                                                        {!! Form::hidden('mission_list_id',$mission_list_id) !!}
+                                                                        由 {!! $mission_list->mission_name  !!} 支援
+                                                                    </td>
 
                                                                     {{--@elseif($mission_help_user->mission_list_id == 1)--}}
                                                                     {{--<td>由中央支援，正在前往中</td>--}}
@@ -212,14 +492,14 @@
                                                     @endif
                                                 @endforeach
                                             @endforeach
-
                                     @endfor
+                                    {!! Form::close() !!}
                                 @endfor
                         @endif
 
 
 
-
+                        {!! Form::open(array('url' => 'local/mission/manage/editPeople'))!!}
                         @if(isset($missionUsers))
                             @foreach($missionUsers as $missionUser)
                                 @if($missionUser->description != '地方指揮官')
@@ -257,7 +537,8 @@
                                         {{--arrive_mission == 0是避免同樣一人被同一任務非配兩次--}}
                                     @elseif(isset($missionUser->arrive_mission) && $missionUser->arrive_mission == 0)
                                         <tr >
-                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                            {{--<td> {!! Form::checkbox('name', 'value')!!}</td>--}}
+                                            <td></td>
                                             <td>{!! $missionUser->description !!}</td>
                                             {{--尋找此人要被派往哪個任務--}}
                                             @foreach($user_help_missions as $user_help_mission)
@@ -294,13 +575,7 @@
                                 @endif
                             @endforeach
                         @endif
-                        {{--<tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>醫療</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td></td></tr>--}}
-                        {{--<tr class="danger"><td> {!! Form::checkbox('name', 'value')!!}</td><td>救火</td><td>受傷</td><td>遊鑫</td><td>0987654321</td><td></td></tr>--}}
-                        {{--<tr class="success"><td> {!! Form::checkbox('name', 'value')!!}</td><td>救火</td><td>閒置</td><td>遊鑫</td><td>0987654321</td><td></td></tr>--}}
-                        {{--<tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>--}}
-                        {{--<tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>--}}
-                        {{--<tr class="warning"><td> {!! Form::checkbox('name', 'value')!!}</td><td>脫困</td><td>任務執行</td><td>遊鑫</td><td>0987654321</td><td></tr>--}}
-                        {{--</tbody>--}}
+                        {!! Form::close() !!}
                     </table>
                 </div>
                 {{--<div class="panel-footer">綠色:完成任務，閒置&nbsp;&nbsp;&nbsp;&nbsp;橘色:任務執行中&nbsp;&nbsp;&nbsp;&nbsp; 紅色:受傷</div>--}}

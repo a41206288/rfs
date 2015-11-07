@@ -16,6 +16,8 @@ EMT災民
     }
 @endsection
 @section('content')
+
+
     <div class="col-xs-16 col-sm-12 col-md-12" >
         <div class="panel panel-default" >
             <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">

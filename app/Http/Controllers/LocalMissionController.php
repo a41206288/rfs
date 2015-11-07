@@ -225,7 +225,7 @@ class LocalMissionController extends Controller {
                 ->join('roles','roles.id','=','role_user.role_id')
                 ->join('works_ons','works_ons.id','=','role_user.user_id')
                 ->lists('description','role_id');
-            $mission_roles  = array_add($mission_roles, '請選擇', '請選擇');
+            $mission_roles  = array_add($mission_roles, '', '人員種類');
             $mission_roles = array_except($mission_roles, array(3, 'to', 'remove'));
 //        dd($mission_roles);
 

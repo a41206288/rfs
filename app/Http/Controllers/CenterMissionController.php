@@ -27,7 +27,7 @@ class CenterMissionController extends Controller {
                     ->orderBy('mission_complete_time')
                     ->orderBy('mission_name')
                     ->get();
-//dd($mission_lists);
+dd($mission_lists);
 
                 $mission_list_names = DB::table('mission_lists')
                     ->where('mission_name','!=','未分配任務')
