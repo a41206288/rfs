@@ -47,7 +47,7 @@
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                                 <ul class="nav navbar-sm-nav ">{{--上面按鈕欄內容 靠右對齊--}}
-                                    {!! Form::select('center_support_person_detail_role', $center_support_person_detail_roles, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::select('center_support_person_detail_role', $center_support_person_detail_roles, '', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'center_support_person_detail_role']) !!}
                                 </ul>
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
@@ -75,7 +75,7 @@
                                     {{--</th>--}}
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="center_support_person_table">
 
                                 {{--應徵志工人員資料--}}
                                 @if(isset($center_support_person_details))
@@ -207,7 +207,7 @@
                                 <div class="modal fade" id="change_{!!$center_support_person->slug!!}_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            {!! Form::open(array('url' => 'resource/manage/people/center/editSkill', 'method' => 'post')) !!}
+                                            {!! Form::open(array('url' => 'resource/manage/people/center/editSkill', 'method' => 'post', 'onSubmit' => 'checkForm();')) !!}
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                 <h4 class="modal-title" id="myModalLabel">修改技能</h4>
@@ -220,15 +220,15 @@
                                                             @foreach($skills as $skill)
                                                                 @if(isset($center_support_people_skills_array[$center_support_person->center_support_person_id][$skill->skill_id]))
                                                                     <label>
-                                                                        <input type="checkbox" checked> {!! $skill->skill_name !!}
+                                                                        <input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" checked> {!! $skill->skill_name !!}
                                                                     </label>
                                                                 @else
                                                                     <label>
-                                                                        <input type="checkbox" > {!! $skill->skill_name !!}
+                                                                        <input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" > {!! $skill->skill_name !!}
                                                                     </label>
                                                                 @endif
                                                             @endforeach
-
+                                                            {!! Form::hidden('center_support_people_id',$center_support_person->center_support_person_id) !!}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -273,8 +273,8 @@
                     <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
                         <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠右對齊--}}
                             <!-- select -->
-                            {!! Form::select('name', array( '已報到' => '已報到', '未報到' => '未報到'), '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
-                            {!! Form::select('name', $centerFreeUserRoles, '全部', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                            {!! Form::select('arrived', array( '已報到' => '已報到', '未報到' => '未報到'), '全部', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'arrived']) !!}
+                            {!! Form::select('center_user_roles', $centerFreeUserRoles, '全部', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'center_user_roles']) !!}
                             {{--{!! Form::text('name','',['placeholder'=>'名字或電話','style'=>'width:130px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
                             {{--<button type="submit" class="btn btn-default navbar-sm-btn btn-sm">--}}
                                 {{--<span class="glyphicon glyphicon-search"></span>--}}
@@ -301,7 +301,7 @@
                                 {{--</ul>--}}
                                 {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
                             </div>
-                            {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
+                            {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn', 'id' => 'submit_arrived', 'style' => 'display: none;']) !!}
                         </ul>
                     </div>
                 </nav>
@@ -327,12 +327,12 @@
                             {{--<th>備註</th>--}}
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="free_users_table">
                         @if(isset($centerFreeUsers))
                             @foreach($centerFreeUsers as $centerFreeUser)
-                                @if($centerFreeUser->description != '地方指揮官')
+                                @if($centerFreeUser->arrived == 1)
                                     <tr>
-                                        <td>{!! Form::checkbox('user_ids[]', $centerFreeUser->id)!!}</td>
+                                        <td>{!! Form::checkbox('user_ids[]', $centerFreeUser->user_id)!!}</td>
                                         {{--<td></td>--}}
                                         <td>{!!$centerFreeUser->description!!}</td>
                                         <td>{!!$centerFreeUser->user_name!!}</td>
@@ -578,6 +578,112 @@
             var model_name = "#change_" + $(this).attr('id') + "_Modal"
             $(model_name).modal('show');
         });
+        $("#arrived, #center_user_roles").change(function () {
+            if($('#arrived option:selected').text() == "已報到"){
+                var send = 1;
+                $("select[name='mission_list_id']").show();
+                $('#submit_arrived').hide();
+            }
+            else{
+                var send = 0;
+                $("select[name='mission_list_id']").hide();
+                $('#submit_arrived').show();
+            }
+            $.ajax({
+                url: 'http://localhost:8000/resource/manage/people/center/updateTable',
+                type: 'POST',
+                headers: {
+                    'X-CSRF-Token': "{{ Session::token() }}"
+                },
+                data: {
+                    arrived: send,
+                    roles: $('#center_user_roles option:selected').text()
+                },
+                success: function(response) {
+                    updateTable(response,"free_users_table");
+//                    alert(response);
+                },
+                error: function(xhr) {
+                    alert('Ajax request 發生錯誤');
+                }
+            });
+        });
+        $('#center_support_person_detail_role').change(function(){
+            $.ajax({
+                url: 'http://localhost:8000/resource/manage/people/center/updateTable',
+                type: 'POST',
+                headers: {
+                    'X-CSRF-Token': "{{ Session::token() }}"
+                },
+                data: {
+                    roles: $('#center_support_person_detail_role option:selected').text()
+                },
+                success: function(response) {
+                    updateTable(response,"center_support_person_table");
+                },
+                error: function(xhr) {
+                    alert('Ajax request 發生錯誤');
+                }
+            });
+        });
+        function updateTable(newData,tableId){
+            var obj = document.getElementById(tableId);
+            while(obj.firstChild){
+                obj.removeChild(obj.firstChild)
+            }
+            if(tableId == "center_support_person_table"){
+                for(var i=0; i<newData.length; i++){
+                    var tr = document.createElement('tr');
+                    var td = document.createElement('td');
+                    var input = document.createElement('input');
+                    input.setAttribute("type", "checkbox");
+                    input.setAttribute("name", "center_support_person_detail_ids[]");
+                    input.setAttribute("value", newData[i]['center_support_person_detail_id']);
+                    td.appendChild(input);
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['description'];
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['center_support_person_detail_name'];
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['phone'];
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['country_or_city_input'] + "" + newData[i]['township_or_district_input'];
+                    tr.appendChild(td);
+                    obj.appendChild(tr);
+                }
+            }
+            if(tableId == "free_users_table"){
+                for(var i=0; i<newData.length; i++){
+                    var tr = document.createElement('tr');
+                    var td = document.createElement('td');
+                    var input = document.createElement('input');
+                    input.setAttribute("type", "checkbox");
+                    input.setAttribute("name", "user_ids[]");
+                    input.setAttribute("value", newData[i]['user_id']);
+                    td.appendChild(input);
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['description'];
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['user_name'];
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+                    td.innerHTML = newData[i]['phone'];
+                    tr.appendChild(td);
+                    obj.appendChild(tr);
+                }
+            }
+        }
+    </script>
+    <script>
+        function checkForm(){
+            return true;
+        }
     </script>
 
 @endsection

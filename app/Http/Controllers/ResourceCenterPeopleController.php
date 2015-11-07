@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Center_support_people_skill;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -79,6 +80,7 @@ class ResourceCenterPeopleController extends Controller {
 			->join('works_ons','works_ons.id','=','role_user.user_id')
 			->join('roles','roles.id','=','role_user.role_id')
 			->where('mission_list_id','=',1)
+            ->where('description','<>',"地方指揮官")
 			->orderBy('role_id')
 			->get();
 //        dd($centerFreeUsers);
@@ -342,9 +344,41 @@ class ResourceCenterPeopleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Request $request) //動態更新table
 	{
-		//
+        $arrived = $request->get('arrived');
+        $roles = $request->get('roles');
+
+        if(isset($arrived)){
+            if($roles == "全部"){
+                $roles = "";
+            }
+            $response =DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('works_ons','works_ons.id','=','role_user.user_id')
+                ->join('roles','roles.id','=','role_user.role_id')
+                ->where('mission_list_id','=',1)
+                ->where('description','<>',"地方指揮官")
+                ->where('description','like','%'.$roles.'%')
+                ->where('arrived',$arrived)
+                ->orderBy('role_id')
+                ->get();
+        }
+        else{
+            if($roles == "人員種類"){
+                $roles = "";
+            }
+            $response = DB::table('center_support_person_details')
+                ->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id')
+                ->join('roles','roles.id','=','center_support_people.id')
+                ->where('description','like','%'.$roles.'%')
+                ->get();
+        }
+
+
+
+
+        return response()->json($response);
 	}
 
 	/**
@@ -372,10 +406,35 @@ class ResourceCenterPeopleController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function editSkill(Request $request) //修改招募志工人數
+    public function editSkill(Request $request) //修改技能
     {
         $inputs=$request->except('_token');
-        dd($inputs);
+        $center_support_people_id=$request->input('center_support_people_id');
+        $new_skills=$request->input('skills');
+
+
+        $old_skills=DB::table('center_support_people_skills')
+            ->where('center_support_person_id',$center_support_people_id)
+            ->lists('skill_id');
+//        dd(in_array($old_skills[0],$new_skills) );
+
+        foreach($new_skills as $new_skill){
+            if(in_array(intval($new_skill),$old_skills) == false){
+                $center_support_people_skills = new Center_support_people_skill();
+                $center_support_people_skills->center_support_person_id = $center_support_people_id;
+                $center_support_people_skills->skill_id = $new_skill;
+                $center_support_people_skills->save();
+            }
+        }
+        foreach($old_skills as $old_skill){
+            if(in_array($old_skill,$new_skills) == false){
+                DB::table('center_support_people_skills')
+                    ->where('center_support_person_id',$center_support_people_id)
+                    ->where('skill_id',$old_skill)
+                    ->delete();
+            }
+        }
+
         return redirect()->route('resourcePanel');
 
     }

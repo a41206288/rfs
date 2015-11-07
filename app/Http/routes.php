@@ -201,6 +201,7 @@ Route::group([
         Route::post('resource/manage/people/center/editPeopleSupport', 'ResourceCenterPeopleController@edit');
         Route::post('resource/manage/people/center/editPeople', 'ResourceCenterPeopleController@store');
         Route::post('resource/manage/people/center/editSkill', 'ResourceCenterPeopleController@editSkill');
+        Route::post('resource/manage/people/center/updateTable', 'ResourceCenterPeopleController@show');
 
     });
 
