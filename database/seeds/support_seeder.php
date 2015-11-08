@@ -32,6 +32,7 @@ class support_seeder extends Seeder{
         DB:: table('center_support_people_skills')->delete();
         DB:: table('center_support_person_detail_skills')->delete();
         DB:: table('user_skills')->delete();
+        DB:: table('role_skills')->delete();
 //        DB:: table('center_support_products')->delete();
 //        DB:: table('buys')->delete();
 //        DB:: table('companies')->delete();
@@ -903,7 +904,7 @@ class support_seeder extends Seeder{
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 1;
         $center_support_person->center_support_person_num = 10;
-        $center_support_person->id = 6; //醫療
+        $center_support_person->role_id = 6; //醫療
         $center_support_person->center_support_person_requirement = "醫療組";
         $center_support_person->center_support_person_introduction = "診斷救出民眾的傷勢，並照料休息的傷患";
         $center_support_person->save();
@@ -911,7 +912,7 @@ class support_seeder extends Seeder{
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 2;
         $center_support_person->center_support_person_num = 20;
-        $center_support_person->id = 7; //脫困
+        $center_support_person->role_id = 5; //脫困
         $center_support_person->center_support_person_requirement = "脫困組";
         $center_support_person->center_support_person_introduction = "前往通報地點就出脫困民眾";
         $center_support_person->save();
@@ -919,7 +920,7 @@ class support_seeder extends Seeder{
         $center_support_person = new App\Center_support_person;
         $center_support_person->center_support_person_id = 3;
         $center_support_person->center_support_person_num = 5;
-        $center_support_person->id = 10;//管線
+        $center_support_person->role_id = 10;//管線
         $center_support_person->center_support_person_requirement = "管線修復組";
         $center_support_person->center_support_person_introduction = "修理管線";
         $center_support_person->save();
@@ -930,7 +931,7 @@ class support_seeder extends Seeder{
         $center_support_person_detail->email = "clear5656@yahoo.com.tw";
         $center_support_person_detail->phone = "0900100160";
         $center_support_person_detail->center_support_person_id = 1;
-        $center_support_person_detail->skill = "有醫生執照";
+        $center_support_person_detail->role_id = 5;
         $center_support_person_detail->country_or_city_input = "台中市";
         $center_support_person_detail->township_or_district_input = "北屯區";
         $center_support_person_detail->save();
@@ -941,7 +942,7 @@ class support_seeder extends Seeder{
         $center_support_person_detail->email = "one7625@yahoo.com.tw";
         $center_support_person_detail->phone = "0900200260";
         $center_support_person_detail->center_support_person_id = 1;
-        $center_support_person_detail->skill = "有護士執照";
+        $center_support_person_detail->role_id = 6;
         $center_support_person_detail->country_or_city_input = "台北市";
         $center_support_person_detail->township_or_district_input = "萬華區";
         $center_support_person_detail->save();
@@ -952,7 +953,7 @@ class support_seeder extends Seeder{
         $center_support_person_detail->email = "fishfood@yahoo.com.tw";
         $center_support_person_detail->phone = "0900300360";
         $center_support_person_detail->center_support_person_id = 2;
-        $center_support_person_detail->skill = "當過消防員";
+        $center_support_person_detail->role_id = 8;
         $center_support_person_detail->country_or_city_input = "苗栗縣";
         $center_support_person_detail->township_or_district_input = "公館鄉";
         $center_support_person_detail->save();
@@ -999,7 +1000,7 @@ class support_seeder extends Seeder{
         $center_support_people_skill = new App\Center_support_people_skill;
         $center_support_people_skill->center_support_people_skill_id = 2;
         $center_support_people_skill->center_support_person_id = 2;
-        $center_support_people_skill->skill_id = 2;
+        $center_support_people_skill->skill_id = 6;
         $center_support_people_skill->save();
 
         $center_support_people_skill = new App\Center_support_people_skill;
@@ -1033,6 +1034,23 @@ class support_seeder extends Seeder{
         $center_support_person_detail->center_support_person_detail_id = 3;
         $center_support_person_detail->skill_id = 3;
         $center_support_person_detail->save();
+
+
+        //職位技能
+        $role_skills = new App\Role_skill;
+        $role_skills->role_id = 6;
+        $role_skills->skill_id = 1;
+        $role_skills->save();
+
+        $role_skills = new App\Role_skill;
+        $role_skills->role_id = 5;
+        $role_skills->skill_id = 5;
+        $role_skills->save();
+
+        $role_skills = new App\Role_skill;
+        $role_skills->role_id = 10;
+        $role_skills->skill_id = 3;
+        $role_skills->save();
 
 
 

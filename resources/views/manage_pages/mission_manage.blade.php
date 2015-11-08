@@ -190,7 +190,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                                        {!! Form::submit('修改', ['class' => 'btn btn-primary']) !!}
+                                                        {!! Form::submit('指派負責人', ['class' => 'btn btn-primary']) !!}
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div><!-- /.modal-content -->
@@ -546,7 +546,7 @@
                                                         @elseif($mission_contents_array[$mission_list->mission_list_id][$i]['sex'] == '女')
                                                             <td style="border-right: none;">{!! $mission_contents_array[$mission_list->mission_list_id][$i]['lname'].$mission_contents_array[$mission_list->mission_list_id][$i]['fname'] !!}</td>
                                                             <td style="border-left: none;">小姐</td>
-                                                            
+
                                                         @endif
                                                         <td></td>
 

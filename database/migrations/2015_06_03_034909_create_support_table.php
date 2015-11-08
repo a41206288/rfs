@@ -127,7 +127,7 @@ class CreateSupportTable extends Migration {
             $table->increments('center_support_person_id');
             $table->integer('center_support_person_num');
             $table->integer('called_person_num');
-            $table->unsignedInteger('id');
+            $table->unsignedInteger('role_id');
             $table->text('center_support_person_requirement');
             $table->text('center_support_person_introduction');
             $table->timestamps();
@@ -139,7 +139,7 @@ class CreateSupportTable extends Migration {
             $table->string('email');//->unique()
             $table->string('phone');
             $table->unsignedInteger('center_support_person_id');
-            $table->text('skill');
+            $table->Integer('role_id');
             $table->text('country_or_city_input');
             $table->text('township_or_district_input');
             $table->timestamps();
