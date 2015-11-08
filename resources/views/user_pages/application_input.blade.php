@@ -28,17 +28,15 @@
         }
     </style>
     <h4><b>我要應徵</b></h4>
-    {{--<hr>--}}
     <ul class="nav nav-tabs">
         @foreach($center_support_people as $center_support_person)
-            <li><a href="#tab{!! $center_support_person->center_support_person_id !!}" data-toggle="tab" id="{!! $center_support_person->center_support_person_id !!}" onclick="show();">{!! $center_support_person->center_support_person_requirement !!}</a></li>
+            <li><a href="#tab{!! $center_support_person->center_support_person_id !!}" data-toggle="tab" id="{!! $center_support_person->center_support_person_id.",".$center_support_person->role_id !!}" onclick="show();">{!! $center_support_person->center_support_person_requirement !!}</a></li>
         @endforeach
     </ul>
 
     <div class="tab-content">
         @foreach($center_support_people as $center_support_person)
             <div class="tab-pane" id="tab{!! $center_support_person->center_support_person_id !!}">
-                {{--<h3><b>醫療組-醫生</b></h3>--}}
                 <h4><b>&nbsp;&nbsp;工作內容: </b></h4>
                 <div class="col-xs-4 col-sm-3 col-md-3" >
                     <div class="well">{!! $center_support_person->center_support_person_introduction !!}</div>
@@ -51,7 +49,25 @@
     <div class="col-xs-12 col-sm-9 col-md-9" style="display:none" id="profile">
         {!! Form::open(array('url' => 'application/input', 'method' => 'post','class' => 'form-horizontal', 'id' => 'formInput', 'onSubmit' => 'return checkForm();')) !!}
 
-        <div class="col-xs-10 col-sm-7 col-md-7" >
+
+        <div class="col-xs-6 col-sm-4 col-md-4" >
+            <table>
+                <thead>
+                    <tr><th colspan="2"><b>需求技能 </b></th></tr>
+                </thead>
+                <tbody id="skill_table">
+                    @foreach($skills as $skill)
+                        <tr id="skill_{!! $skill->skill_id !!}">
+                            <td>&nbsp;●</td>
+                            <td>{!! Form::label("",$skill->skill_name) !!}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+
+            </table>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8" >
             <table>
                 <tr><td colspan="2"><b>個人資料</b></td></tr>
                 <tr>
@@ -77,38 +93,9 @@
                         </select>
                     </td>
                 </tr>
-                <tr><td><input type="text" hidden="hidden" name="center_support_person_id" id="center_support_person_id"/><br></td></tr>
-                {{--<tr>--}}
-                    {{--<td colspan="3"><font color="#ff0b11">※</font> 至少填寫1項聯絡方式，以方便我們聯絡您</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td colspan="3"><font color="#ff0b11">*</font> 請務必填寫</td>--}}
-                {{--</tr>--}}
-
-            </table>
-        </div>
-        <div class="col-xs-6 col-sm-5 col-md-5" >
-            <table>
-                <tr><td colspan="3"><b>特殊技能 </b>( 已勾選為必須技能 )</td></tr>
-                <tr>
-                    <td></td>
-                    <td  colspan="2" id="skill">
-                        @foreach($skills as $skill)
-                            <?php $hasbox = false; ?>
-                            @foreach($center_support_people_skills as $skill_support_person)
-                                @if($skill_support_person->skill_id == $skill->skill_id)
-                                    {!! Form::checkbox($skill->skill_id, $skill->skill_name,null,['id'=>'check'.$skill_support_person->center_support_person_id]) !!}
-                                    {!! Form::label("",$skill->skill_name) !!}<br>
-                                    <?php $hasbox = true; ?>
-                                @endif
-                            @endforeach
-                            @if($hasbox==false)
-                                {!! Form::checkbox($skill->skill_id, $skill->skill_name) !!}
-                                {!! Form::label("",$skill->skill_name) !!}<br>
-                            @endif
-
-                        @endforeach
-                            <input type="text" name="submitskill" id="submitskill" hidden="hidden" />
+                <tr><td>
+                        {!! Form::hidden('center_support_person_id','',['id' => 'center_support_person_id']) !!}
+                        {!! Form::hidden('role_id','',['id' => 'role_id']) !!}
                     </td>
                 </tr>
             </table>
@@ -116,7 +103,6 @@
 
 
         <div class="col-xs-16 col-sm-12 col-md-12 text-center">
-            {{--<hr>--}}
             {!! Form::submit('送出', ['class' => 'btn btn-primary btn-sm']) !!}
         </div >
         {!! Form::close() !!}
@@ -130,13 +116,26 @@
             $('#profile').css('display','block');
         }
         $('a').click(function () {
-            $('#center_support_person_id').val($(this).attr('id'));
+            var get_id = $(this).attr('id').split(",");
+            var center_support_person_id = get_id[0];
+            var role_id = get_id[1];
+            var read_role_skill = {!! json_encode($role_skill) !!};
 
-            var checkboxid = '#check' + $(this).attr('id');
-            $('#skill').find('input').prop('disabled',false);
-            $('#skill').find('input').prop('checked',false);
-            $(checkboxid).prop('disabled',true);
-            $(checkboxid).prop('checked',true);
+            $('#center_support_person_id').val(center_support_person_id);
+            $('#role_id').val(role_id);
+
+            var role_skill_array = new Array();
+            for(var i=0; i<read_role_skill.length; i++){
+                if(role_id == read_role_skill[i]['role_id']){
+                    role_skill_array.push(read_role_skill[i]['skill_id']);
+                }
+            }
+
+            $('#skill_table').find('tr').hide();
+            for(var i=0; i<role_skill_array.length; i++){
+                var skill_id = "#skill_" + role_skill_array[i];
+                $(skill_id).show();
+            }
         });
         function checkForm()
         {
