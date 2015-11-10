@@ -209,8 +209,12 @@
                     street: $('#street option:selected').text()
                 },
                 success: function(response) {
-//                    alert("Controller return : " + response['x']);
-                    updateTable(response);
+                    if(response['mission_lists'].length == 0){
+                        alert("無符合之通報");
+                    }
+                    else{
+                        updateTable(response);
+                    }
                 },
                 error: function(xhr) {
                     alert('Ajax request 發生錯誤');
@@ -230,9 +234,16 @@
                         search: $('#search').val()
                     },
                     success: function(response) {
-//                        alert("Controller return : " + response['x'][0]['created_at'] + "  " + response['x'][0]['mission_list_id']);
                         $('#search').val("");
-                        updateTable(response);
+                        if(response['find_mission_list_id'] == 1){
+                            alert("您所查詢的通報尚未分配至任務，無法查詢狀態");
+                        }
+                        else if(response['find_mission_list_id'] == 0){
+                            alert("您所查詢的通報不存在，請確認您輸入的編號是否正確");
+                        }
+                        else{
+                            updateTable(response);
+                        }
                     },
                     error: function(xhr) {
                         alert('Ajax request 發生錯誤');

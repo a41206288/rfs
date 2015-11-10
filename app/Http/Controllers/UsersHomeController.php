@@ -205,18 +205,16 @@ class UsersHomeController extends Controller {
         //使用任務編號搜尋
         if($search != null){
             $get_mission_new_ids = DB::table('missions')
-                ->where('mission_list_id','>',1)
                 ->select('created_at','mission_list_id','mission_id')
                 ->get();
             $length = count($get_mission_new_ids);
-            $get_mission_new_id_array = array();
-            $find_mission_list_id = 1;
+//            $get_mission_new_id_array = array();
+            $find_mission_list_id = 0;
             for($i=0; $i<$length; $i++){
-                $get_mission_new_id_array[$i]['created_at'] = "C".(new Carbon($get_mission_new_ids[$i]->created_at))->formatLocalized('%y%m%d%H%M').$get_mission_new_ids[$i]->mission_id;
-                if($search == $get_mission_new_id_array[$i]['created_at']){
+                $id_string = "C".(new Carbon($get_mission_new_ids[$i]->created_at))->formatLocalized('%y%m%d%H%M').$get_mission_new_ids[$i]->mission_id;
+                if($search == $id_string){
                     $find_mission_list_id = $get_mission_new_ids[$i]->mission_list_id;
                 }
-
             }
             $mission_lists = DB::table('mission_lists')
                 ->where('mission_list_id','>','1')
@@ -263,7 +261,8 @@ class UsersHomeController extends Controller {
 
         $response = array(
             'mission_lists' => $mission_lists,
-            'missions' => $missions
+            'missions' => $missions,
+            'find_mission_list_id' => $find_mission_list_id
         );
 
         return $response;//$date."   ".$area."   ".$search
