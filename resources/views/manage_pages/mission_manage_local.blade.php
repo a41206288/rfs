@@ -60,13 +60,22 @@
         position:fixed;
         bottom:0px;
         {{--right:200px;--}}
-        width:250px;height:300px;
+        width:250px;
         margin-bottom: 0px;
         background-color: #ffffff;
         border: 1px solid transparent;
         border-radius: 4px;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
         border-color: #dddddd;
+    }
+    .chatBoxButton {
+        position:absolute;
+        z-index:3;
+        position:fixed;
+        bottom:0px;
+        right: 0;
+        margin-bottom: 0px;
+        border: 1px solid transparent;
     }
     .chatBox-body {
     padding: 5px;
@@ -111,186 +120,75 @@
             {{--Panel content--}}
         {{--</div>--}}
     {{--</div>--}}
-    <div id="Box0" class="contactBox">
+    <button class="btn btn-primary btn-sm chatBoxButton" type="button" data-toggle="collapse" data-target="#Box0" aria-expanded="false" aria-controls="collapseExample">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>訊息
+    </button>
+    <div id="Box0" class="collapse contactBox">
         <ul class="nav nav-pills nav-stacked">
             {{--<li class="active"><a>聯絡人</a></li>--}}
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li><li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-            <li><a>韓東霖</a></li>
-
-
-
+            @foreach($users as $user)
+                <li><a>{!! $user->user_name !!}</a></li>
+            @endforeach
         </ul>
     </div>
-    <div id="Box1" class="chatBox">
-        {{--<div class="chatBox-heading">韓東霖</div>--}}
-        <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
-            <div class="navbar-sm-header">{{--標題--}}
-                <a class="navbar-sm-brand" href="#">韓東霖</a>
-            </div>
-
-            {{--<div class="collapse navbar-sm-collapse" >--}}{{--上面按鈕欄--}}
-                {{--<ul class="nav navbar-sm-nav">--}}{{--上面按鈕欄內容 靠左對齊--}}
-                    {{--<!-- 範例按鈕 -->--}}
-                    {{--<!-- select -->--}}
-                    {{--{!! Form::select('name', array('全部' => '全部', '醫療' => '醫療', '脫困' => '脫困'), '請選擇', ['class' => 'navbar-sm-btn btn-sm']) !!}--}}
-                    {{--<!-- button -->--}}
-                    {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">執行任務</button>--}}
-                    {{--<!-- dropdown -->--}}
-                    {{--<div class="btn-group">--}}
-                        {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn dropdown-toggle" data-toggle="dropdown">--}}
-                            {{--支援其他任務 <span class="caret"></span>--}}
-                        {{--</button>--}}
-                        {{--<ul class="dropdown-menu" role="menu">--}}
-                            {{--<li><a href="#">四維</a></li>--}}
-                            {{--<li><a href="#">五福</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-
-
-                    {{--<!-- 說明按鈕 -->--}}
-                    {{--<a href="#" class="btn btn-default btn-sm navbar-sm-btn" data-toggle="popover" data-placement="top" data-trigger="hover" data-container="body"--}}
-                       {{--title="人員顏色說明"--}}
-                       {{--data-content="--}}
-                        {{--綠色:完成任務，閒置<br />橘色:任務執行中<br />紅色:受傷<br />"--}}
-                        {{--<p class=&quot;bg-success&quot;>綠色:完成任務，閒置</p>--}}
-                        {{--<p class=&quot;bg-warning&quot;>橘色:任務執行中</p>--}}
-                        {{--<p class=&quot;bg-danger&quot;>紅色:受傷</p>"--}}
-                       {{--data-html="true" role="button">人員顏色說明--}}
-                    {{--</a>--}}
-                {{--</ul>--}}
-                {{--<ul class="nav navbar-sm-nav navbar-sm-right">--}}{{--上面按鈕欄內容 靠右對齊--}}
-
-                {{--</ul>--}}
+    {{--<div id="Box2" class="panel panel-default chatBox">--}}
+        {{--<div class="panel-heading">--}}
+            {{--<h4 class="panel-title">--}}
+                {{--<span class="glyphicon glyphicon-user" style="width: 70%;" aria-hidden="true">韓東霖</span>--}}
+                {{--<button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#test" aria-expanded="true" aria-controls="test">--}}
+                    {{--<span class="glyphicon glyphicon-minus"></span>--}}
+                {{--</button>--}}
+                {{--<button class="btn btn-default btn-xs" type="button">--}}
+                    {{--<span class="glyphicon glyphicon-remove"></span>--}}
+                {{--</button>--}}
+            {{--</h4>--}}
+        {{--</div>--}}
+        {{--<div id="test" class="panel-collapse collapse in">--}}
+            {{--<div class="panel-body chatBox-body">--}}
+                {{--<table class="table table-nonbordered">--}}
+                    {{--<tr>--}}
+                        {{--<th width="70px">韓東霖</th>--}}
+                        {{--<td class="active">電線杆倒塌起火</td>--}}
+                    {{--</tr>--}}
+                {{--</table>--}}
             {{--</div>--}}
-        </nav>
-        <div class="chatBox-body">
-            {{--<p>韓東霖 : 多處房子出入處已坍塌, 尚有12人受困</p>--}}
-            {{--<p>韓東霖 : 電線杆倒塌起火</p>--}}
-            {{--<p>韓東霖 : 爆炸將地下水管管線炸斷，路上積水</p>--}}
-            {{--<p>韓東霖 : 校門附近建築遭倒下的樹壓毀</p>--}}
+            {{--<div class="input-group">--}}
+                {{--<input type="text" class="form-control">--}}
+                {{--<span class="input-group-btn">--}}
+                    {{--<button class="btn btn-default" type="button">傳送</button>--}}
+                {{--</span>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div id="Box1" class="collapse in chatBox">--}}
+        {{--<div class="chatBox-heading">韓東霖</div>--}}
+        {{--<nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">--}}
+            {{--<div class="navbar-sm-header">--}}{{--標題--}}
+                {{--<a class="navbar-sm-brand" data-toggle="collapse" href="#Box1">韓東霖</a>--}}
+            {{--</div>--}}
+        {{--</nav>--}}
+        {{--<div class="chatBox-body">--}}
+            {{--<table class="table table-nonbordered">--}}
+                {{--<tr>--}}
+                    {{--<th width="70px">韓東霖</th>--}}
+                    {{--<td class="active">電線杆倒塌起火</td>--}}
+                {{--</tr>--}}
+                {{--<tr><td></td></tr>--}}
+                {{--<tr>--}}
+                    {{--<th width="70px"></th>--}}
+                    {{--<td class="info">電線杆倒塌起火</td>--}}
+                {{--</tr>--}}
 
-            <table class="table table-nonbordered">
-                <tr>
-                    <th width="70px">韓東霖</th>
-                    <td class="active">電線杆倒塌起火</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="active">多處房子出入處已坍塌, 尚有12人受困</td>
-                </tr>
-                <tr>
-                  <td></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="active">爆炸將地下水管管線炸斷，路上積水</td>
-                </tr>
-                <tr>
-                    <td></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="active">校門附近建築遭倒下的樹壓毀</td>
-                </tr>
-                <tr>
-                    <td></th>
-                </tr>
-                <tr>
-                    <th width="70px"></th>
-                    <td class="info">電線杆倒塌起火</td>
-                </tr>
-                <tr>
-                    <td></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="info">多處房子出入處已坍塌, 尚有12人受困</td>
-                </tr>
-                <tr>
-                    <td></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="info">爆炸將地下水管管線炸斷，路上積水</td>
-                </tr>
-                <tr>
-                    <td></th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="info">校門附近建築遭倒下的樹壓毀</td>
-                </tr>
 
-            </table>
-        </div>
-{{--        {!! Form::text('name','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">傳送</button>
-            </span>
-        </div><!-- /input-group -->
-    </div>
-    <div id="Box2" class="chatBox">
-        <div class="chatBox-heading">陳芊蓉</div>
-        <div class="chatBox-body">
-            Panel content
-        </div>
-    </div>
-    <div id="Box3" class="chatBox">
-        <div class="chatBox-heading">Panel heading without title</div>
-        <div class="chatBox-body">
-            Panel content
-        </div>
-    </div>
-    <div id="Box4" class="chatBox">
-        <div class="chatBox-heading">Panel heading without title</div>
-        <div class="chatBox-body">
-            Panel content
-        </div>
-    </div>
+            {{--</table>--}}
+        {{--</div>--}}
+        {{--<div class="input-group">--}}
+            {{--<input type="text" class="form-control">--}}
+            {{--<span class="input-group-btn">--}}
+                {{--<button class="btn btn-default" type="button">傳送</button>--}}
+            {{--</span>--}}
+        {{--</div><!-- /input-group -->--}}
+    {{--</div>--}}
 
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
@@ -969,7 +867,31 @@
             }
             else{} //其他class="btn-default"不用動作
         });
+        {{--setInterval(function(){--}}
+            {{--$.ajax({--}}
+                {{--url: 'http://localhost:8000/local/mission/manage/chatRoom',--}}
+                {{--type: 'GET',--}}
+                {{--headers: {--}}
+                    {{--'X-CSRF-Token': "{{ Session::token() }}"--}}
+                {{--},--}}
+                {{--success: function(response) {--}}
+{{--//                    updateTable(response);--}}
+                    {{--alert(response);--}}
+                {{--},--}}
+                {{--error: function(xhr) {--}}
+                    {{--alert('Ajax request 發生錯誤');--}}
+                {{--}--}}
+            {{--});--}}
+        {{--}, 3000);--}}
+        $('li a').click(function(){
+//            alert($(this).text());
 
+            addChatBox($(this).text());
+        });
+        $('#Box0').parent().on('click','.glyphicon-remove',function(){
+            $(this).closest('div').parent().remove();
+//            alert("remove");
+        });
         function add_person(id,name,div_id,isBusyTable)
         {
             if(isBusyTable){
@@ -1033,6 +955,89 @@
 
                 obj.appendChild(div);
             }
+
+        }
+        function addChatBox(name){
+            var obj = document.getElementById("Box0").parentElement;
+
+//            var chatBox = document.getElementById('Box2');
+//            obj.removeChild(chatBox);
+//            var chatBox = document.getElementById('Box1');
+//            obj.removeChild(chatBox);
+
+            var chatBox = document.createElement('div');
+            chatBox.className = "panel panel-default chatBox";
+            chatBox.setAttribute('id','Box1');
+
+            var div = document.createElement('div');
+            div.className = "panel-heading";
+            var h4 = document.createElement('h4');
+            h4.className = "panel-title";
+            var span = document.createElement('span');
+            span.className = "glyphicon glyphicon-user";
+            span.setAttribute('style','width: 75%;');
+            span.setAttribute('aria-hidden','true');
+            span.innerHTML = name;
+            h4.appendChild(span);
+            var button = document.createElement('button');
+            button.className = "btn btn-default btn-xs";
+            button.setAttribute('type','button');
+            button.setAttribute('data-toggle','collapse');
+            button.setAttribute('data-target','#test'); //id
+            button.setAttribute('aria-expanded','true');
+            button.setAttribute('aria-controls','test'); //id
+            var span = document.createElement('span');
+            span.className = "glyphicon glyphicon-minus";
+            button.appendChild(span);
+            h4.appendChild(button);
+            var button = document.createElement('button');
+            button.className = "btn btn-default btn-xs";
+            button.setAttribute('type','button');
+            var span = document.createElement('span');
+            span.className = "glyphicon glyphicon-remove";
+            button.appendChild(span);
+            h4.appendChild(button);
+            div.appendChild(h4);
+            chatBox.appendChild(div);
+
+
+            var collapse = document.createElement('div');
+            collapse.className = "panel-collapse collapse in";
+            collapse.setAttribute('id','test'); //id
+            var div = document.createElement('div');
+            div.className = "panel-body chatBox-body";
+            var table = document.createElement('table');
+            table.className = "table table-nonbordered";
+            var tbody = document.createElement('tbody');
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            td.className = "active";
+            td.innerHTML = "電線杆倒塌起火";
+            tr.appendChild(td);
+            var th = document.createElement('th');
+            th.setAttribute('width','70px');
+            tr.appendChild(th);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+            div.appendChild(table);
+            collapse.appendChild(div);
+            var div = document.createElement('div');
+            div.className = "input-group";
+            var input = document.createElement('input');
+            input.className = "form-control";
+            div.appendChild(input);
+            var span = document.createElement('span');
+            span.className ="input-group-btn";
+            var button = document.createElement('button');
+            button.className ="btn btn-default";
+            button.innerHTML ="傳送";
+            span.appendChild(button);
+            div.appendChild(span);
+            collapse.appendChild(div);
+            chatBox.appendChild(collapse);
+
+            obj.appendChild(chatBox);
+
 
         }
     </script>

@@ -143,6 +143,7 @@ Route::group([
         Route::post('local/mission/manage/updatePeopleSupport', 'LocalPeopleSupportController@update');
         Route::post('local/mission/manage/updatePeople', 'LocalPeopleController@update');
         Route::post('local/mission/manage/editPeople', 'LocalPeopleController@edit');
+        Route::get('local/mission/manage/chatRoom', 'LocalMissionController@chat');
 //        Route::post('mission/manage/local', 'LocalMissionController@edit');
 //        Route::post('report/local', 'LocalMissionController@update');
 //        Route::get('analysis/manage/local', 'LocalAnalysisController@index');

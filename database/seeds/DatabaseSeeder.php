@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 //        $this->call('post_seeder');
         $this->call('mission_seeder');
 		$this->call('support_seeder');
+        $this->call('message_seeder');
 	}
 
 }

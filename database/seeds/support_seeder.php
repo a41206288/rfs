@@ -17,8 +17,8 @@ use app\Skill_user;
  */
 
 class support_seeder extends Seeder{
-    use HasRole;
-    public function run(){
+        use HasRole;
+        public function run(){
 //        DB:: table('product_total_amounts')->delete();
 //        DB:: table('local_safe_amounts')->delete();
 //        DB:: table('donates')->delete();
@@ -1038,18 +1038,23 @@ class support_seeder extends Seeder{
 
         //職位技能
         $role_skills = new App\Role_skill;
-        $role_skills->role_id = 6;
-        $role_skills->skill_id = 1;
+        $role_skills->role_id = 6; //醫療
+        $role_skills->skill_id = 1; //外傷治療
         $role_skills->save();
 
         $role_skills = new App\Role_skill;
-        $role_skills->role_id = 5;
-        $role_skills->skill_id = 5;
+        $role_skills->role_id = 5; //脫困
+        $role_skills->skill_id = 5; //協助脫困
         $role_skills->save();
 
         $role_skills = new App\Role_skill;
-        $role_skills->role_id = 10;
-        $role_skills->skill_id = 3;
+        $role_skills->role_id = 10; //管線修復
+        $role_skills->skill_id = 3; //水電管線維修
+        $role_skills->save();
+
+        $role_skills = new App\Role_skill;
+        $role_skills->role_id = 10; //管線修復
+        $role_skills->skill_id = 3; //水電管線維修
         $role_skills->save();
 
 

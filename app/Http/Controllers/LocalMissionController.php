@@ -297,6 +297,10 @@ class LocalMissionController extends Controller {
             }
 
 //            dd($victim_num_arrays);
+            $users = DB::table('users')
+                ->select('id', 'user_name')
+                ->get();
+//            dd($users);
 
 
 
@@ -354,6 +358,7 @@ class LocalMissionController extends Controller {
                 ->with('user_help_missions', $user_help_missions)
                 ->with('mission_help_users', $mission_help_users)
                 ->with('help_missions_and_names', $help_missions_and_names)
+                ->with('users', $users)
 
     ;
 
@@ -628,5 +633,10 @@ class LocalMissionController extends Controller {
 	{
 		//
 	}
+
+    public function chat()
+    {
+        return "try to get and success!!!";
+    }
 
 }
