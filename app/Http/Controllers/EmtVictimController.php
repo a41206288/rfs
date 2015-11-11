@@ -29,10 +29,17 @@ class EmtVictimController extends Controller {
 //        $now_locations = array_add($now_locations,'','目前所在地');
         $now_locations[""] = "目前所在地";
 
+
+
 //        dd($now_locations);
+            $users = DB::table('users')
+                ->select('id', 'user_name')
+                ->get();
          return view('manage_pages.victim_EMT')
              ->with('victim_details', $victim_details)
-             ->with('now_locations', $now_locations);
+             ->with('now_locations', $now_locations)
+             ->with('users', $users);
+
 	}
 
 	/**

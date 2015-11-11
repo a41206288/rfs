@@ -287,7 +287,9 @@ class ResourceCenterPeopleController extends Controller {
 //		$roles = array_except($roles, array('Center', 'to', 'remove'));
 //		$roles = array_except($roles, array('Masses', 'to', 'remove'));
 ////dd($roles);
-
+		$users = DB::table('users')
+			->select('id', 'user_name')
+			->get();
         return view('manage_pages.people_manage_resource_c')
 			->with('mission_lists', $mission_lists)
 			->with('center_support_person_details', $center_support_person_details)
@@ -308,6 +310,7 @@ class ResourceCenterPeopleController extends Controller {
 			->with('missionUserArrays', $missionUserArrays)
 			->with('center_support_people_skills_array', $center_support_people_skills_array)
 			->with('skills', $skills)
+			->with('users', $users)
 
 
 	;

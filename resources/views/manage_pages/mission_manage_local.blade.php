@@ -18,86 +18,6 @@
     .header.expand .sign:after{
     content:"▲";
     }
-    div#Box0 {
-    right:0px;
-    }
-    div#Box1 {
-        right:225px;
-    }
-    div#Box2 {
-        right:500px;
-    }
-    div#Box3 {
-    right:775px;
-    }
-    div#Box4 {
-    right:1050px;
-    }
-    .contactBox {
-    position:absolute;
-    {{--background-color:red;--}}
-    z-index:2;
-    position:fixed;
-    top:50px;
-    {{--right:200px;--}}
-    width:200px;
-    height:100%;
-    margin-bottom: 0px;
-    background-color: #ffffff;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    border-color: #dddddd;
-    overflow-y: scroll;
-    }
-    .contactBox ul li{
-        background-color: #f5f5f5;
-    }
-    .chatBox {
-        position:absolute;
-        {{--background-color:red;--}}
-        z-index:2;
-        position:fixed;
-        bottom:0px;
-        {{--right:200px;--}}
-        width:250px;
-        margin-bottom: 0px;
-        background-color: #ffffff;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-        border-color: #dddddd;
-    }
-    .chatBoxButton {
-        position:absolute;
-        z-index:3;
-        position:fixed;
-        bottom:0px;
-        right: 0;
-        margin-bottom: 0px;
-        border: 1px solid transparent;
-    }
-    .chatBox-body {
-    padding: 5px;
-    height: 225px;
-    overflow-y: scroll;
-    {{--margin-bottom: 5px;--}}
-    {{--margin-top: 5px;--}}
-    {{--background-color: #f5f5f5;--}}
-    }
-    .chatBox-heading {
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-    color: #333333;
-    background-color: #f5f5f5;
-    border-color: #dddddd;
-    }
-    .chatBox > input {
-    position:absolute;
-    bottom:0px;
-    }
 
 @endsection
 {{--@section('content')--}}
@@ -114,81 +34,7 @@
 {{--管線修復--}}
 {{--警戒--}}
 @section('content')
-    {{--<div id="Box1" class="chatBox panel" style="border:1px solid #333333;">myBox--}}
-        {{--<div class="panel-heading">Panel heading without title</div>--}}
-        {{--<div class="panel-body">--}}
-            {{--Panel content--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    <button class="btn btn-primary btn-sm chatBoxButton" type="button" data-toggle="collapse" data-target="#Box0" aria-expanded="false" aria-controls="collapseExample">
-        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>訊息
-    </button>
-    <div id="Box0" class="collapse contactBox">
-        <ul class="nav nav-pills nav-stacked">
-            {{--<li class="active"><a>聯絡人</a></li>--}}
-            @foreach($users as $user)
-                <li><a>{!! $user->user_name !!}</a></li>
-            @endforeach
-        </ul>
-    </div>
-    {{--<div id="Box2" class="panel panel-default chatBox">--}}
-        {{--<div class="panel-heading">--}}
-            {{--<h4 class="panel-title">--}}
-                {{--<span class="glyphicon glyphicon-user" style="width: 70%;" aria-hidden="true">韓東霖</span>--}}
-                {{--<button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#test" aria-expanded="true" aria-controls="test">--}}
-                    {{--<span class="glyphicon glyphicon-minus"></span>--}}
-                {{--</button>--}}
-                {{--<button class="btn btn-default btn-xs" type="button">--}}
-                    {{--<span class="glyphicon glyphicon-remove"></span>--}}
-                {{--</button>--}}
-            {{--</h4>--}}
-        {{--</div>--}}
-        {{--<div id="test" class="panel-collapse collapse in">--}}
-            {{--<div class="panel-body chatBox-body">--}}
-                {{--<table class="table table-nonbordered">--}}
-                    {{--<tr>--}}
-                        {{--<th width="70px">韓東霖</th>--}}
-                        {{--<td class="active">電線杆倒塌起火</td>--}}
-                    {{--</tr>--}}
-                {{--</table>--}}
-            {{--</div>--}}
-            {{--<div class="input-group">--}}
-                {{--<input type="text" class="form-control">--}}
-                {{--<span class="input-group-btn">--}}
-                    {{--<button class="btn btn-default" type="button">傳送</button>--}}
-                {{--</span>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--<div id="Box1" class="collapse in chatBox">--}}
-        {{--<div class="chatBox-heading">韓東霖</div>--}}
-        {{--<nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">--}}
-            {{--<div class="navbar-sm-header">--}}{{--標題--}}
-                {{--<a class="navbar-sm-brand" data-toggle="collapse" href="#Box1">韓東霖</a>--}}
-            {{--</div>--}}
-        {{--</nav>--}}
-        {{--<div class="chatBox-body">--}}
-            {{--<table class="table table-nonbordered">--}}
-                {{--<tr>--}}
-                    {{--<th width="70px">韓東霖</th>--}}
-                    {{--<td class="active">電線杆倒塌起火</td>--}}
-                {{--</tr>--}}
-                {{--<tr><td></td></tr>--}}
-                {{--<tr>--}}
-                    {{--<th width="70px"></th>--}}
-                    {{--<td class="info">電線杆倒塌起火</td>--}}
-                {{--</tr>--}}
 
-
-            {{--</table>--}}
-        {{--</div>--}}
-        {{--<div class="input-group">--}}
-            {{--<input type="text" class="form-control">--}}
-            {{--<span class="input-group-btn">--}}
-                {{--<button class="btn btn-default" type="button">傳送</button>--}}
-            {{--</span>--}}
-        {{--</div><!-- /input-group -->--}}
-    {{--</div>--}}
 
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
@@ -883,15 +729,7 @@
                 {{--}--}}
             {{--});--}}
         {{--}, 3000);--}}
-        $('li a').click(function(){
-//            alert($(this).text());
 
-            addChatBox($(this).text());
-        });
-        $('#Box0').parent().on('click','.glyphicon-remove',function(){
-            $(this).closest('div').parent().remove();
-//            alert("remove");
-        });
         function add_person(id,name,div_id,isBusyTable)
         {
             if(isBusyTable){
@@ -955,89 +793,6 @@
 
                 obj.appendChild(div);
             }
-
-        }
-        function addChatBox(name){
-            var obj = document.getElementById("Box0").parentElement;
-
-//            var chatBox = document.getElementById('Box2');
-//            obj.removeChild(chatBox);
-//            var chatBox = document.getElementById('Box1');
-//            obj.removeChild(chatBox);
-
-            var chatBox = document.createElement('div');
-            chatBox.className = "panel panel-default chatBox";
-            chatBox.setAttribute('id','Box1');
-
-            var div = document.createElement('div');
-            div.className = "panel-heading";
-            var h4 = document.createElement('h4');
-            h4.className = "panel-title";
-            var span = document.createElement('span');
-            span.className = "glyphicon glyphicon-user";
-            span.setAttribute('style','width: 75%;');
-            span.setAttribute('aria-hidden','true');
-            span.innerHTML = name;
-            h4.appendChild(span);
-            var button = document.createElement('button');
-            button.className = "btn btn-default btn-xs";
-            button.setAttribute('type','button');
-            button.setAttribute('data-toggle','collapse');
-            button.setAttribute('data-target','#test'); //id
-            button.setAttribute('aria-expanded','true');
-            button.setAttribute('aria-controls','test'); //id
-            var span = document.createElement('span');
-            span.className = "glyphicon glyphicon-minus";
-            button.appendChild(span);
-            h4.appendChild(button);
-            var button = document.createElement('button');
-            button.className = "btn btn-default btn-xs";
-            button.setAttribute('type','button');
-            var span = document.createElement('span');
-            span.className = "glyphicon glyphicon-remove";
-            button.appendChild(span);
-            h4.appendChild(button);
-            div.appendChild(h4);
-            chatBox.appendChild(div);
-
-
-            var collapse = document.createElement('div');
-            collapse.className = "panel-collapse collapse in";
-            collapse.setAttribute('id','test'); //id
-            var div = document.createElement('div');
-            div.className = "panel-body chatBox-body";
-            var table = document.createElement('table');
-            table.className = "table table-nonbordered";
-            var tbody = document.createElement('tbody');
-            var tr = document.createElement('tr');
-            var td = document.createElement('td');
-            td.className = "active";
-            td.innerHTML = "電線杆倒塌起火";
-            tr.appendChild(td);
-            var th = document.createElement('th');
-            th.setAttribute('width','70px');
-            tr.appendChild(th);
-            tbody.appendChild(tr);
-            table.appendChild(tbody);
-            div.appendChild(table);
-            collapse.appendChild(div);
-            var div = document.createElement('div');
-            div.className = "input-group";
-            var input = document.createElement('input');
-            input.className = "form-control";
-            div.appendChild(input);
-            var span = document.createElement('span');
-            span.className ="input-group-btn";
-            var button = document.createElement('button');
-            button.className ="btn btn-default";
-            button.innerHTML ="傳送";
-            span.appendChild(button);
-            div.appendChild(span);
-            collapse.appendChild(div);
-            chatBox.appendChild(collapse);
-
-            obj.appendChild(chatBox);
-
 
         }
     </script>

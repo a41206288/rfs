@@ -28,7 +28,7 @@ class CenterMissionController extends Controller {
                     ->orderBy('assign_people_finish_time')
                     ->orderBy('updated_at','desc')
                     ->get();
-dd($mission_lists);
+//dd($mission_lists);
 
                 $mission_list_names = DB::table('mission_lists')
                     ->where('mission_name','!=','未分配任務')
@@ -628,7 +628,10 @@ dd($mission_lists);
 //                    }
 //                }
 
-
+        $users = DB::table('users')
+            ->select('id', 'user_name')
+            ->get();
+//            dd($users);
         return view('manage_pages.mission_manage')
             ->with('mission_lists', $mission_lists)
             ->with('mission_total_Arrays', $mission_total_Arrays)
@@ -654,6 +657,7 @@ dd($mission_lists);
 //            ->with('mission_support_people_Array', $mission_support_people_Array)
 //            ->with('mission_support_product_Arrays', $mission_support_product_Arrays)
 //            ->with('center_amounts_arrays', $center_amounts_arrays)
+            ->with('users', $users)
             ;
 
 	}
