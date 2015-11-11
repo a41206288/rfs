@@ -34,12 +34,12 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#application_lists" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn"><b>向民眾招募志工列表</b></a></li>
                 <li><a href="#application_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">已應徵志工名單</a></li>
-
+                <li><a href="#new_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">新增職位</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane" id="application_person">
                     <div class="panel panel-default" >
-                        {!! Form::open(array('url' => 'resource/manage/people/center/updatePeople'))!!}
+                        {!! Form::open(array('url' => 'resource/manage/people/center/updatePeople','onsubmit' => 'return checkForm("center_support_person");'))!!}
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
                                 <a class="navbar-sm-brand" href="#">已應徵志工名單</a>
@@ -51,7 +51,7 @@
                                 </ul>
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
-                                    {!! Form::submit('錄取志工', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
+                                    {!! Form::submit('錄取志工', ['class' => 'btn btn-default btn-sm navbar-sm-btn','id' => 'submit_center_support_person']) !!}
                                     {{--<a href="#application_lists" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn"><b>向民眾招募人員需求表</b></a>--}}
                                 </ul>
                             </div>
@@ -262,6 +262,85 @@
                     </div>
 
                 </div>
+                <div class="tab-pane" id="new_person">
+                    <div class="panel panel-default" >
+                        {!! Form::open(array('url' => 'resource/manage/people/center/updatePeople'))!!}
+                        <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+                            <div class="navbar-sm-header">{{--標題--}}
+                                <a class="navbar-sm-brand" href="#">新增職位</a>
+                            </div>
+
+                        </nav>
+                        <div style="height: 200px;overflow-y: scroll;">{{--固定高度表格--}}
+                            <table class="table">
+
+                                <tbody id="center_support_person_table">
+                                <tr>
+                                    <td width="25%"><b>職位名稱：</b></td>
+                                    <td width="25%"><input type="text" class="form-control"></td>
+                                    <td width="25%"></td><td width="25%"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            <input name="skills[]" type="checkbox" value="" >外傷治療
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input name="skills[]" type="checkbox" value="" >傷患照料
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input name="skills[]" type="checkbox" value="" >水電管線維修
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input name="skills[]" type="checkbox" value="" >交通指揮
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>
+                                            <input name="skills[]" type="checkbox" value="" >協助脫困
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input name="skills[]" type="checkbox" value="" >滅火
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            {{--<input name="skills[]" type="checkbox" value="" disabled="true">--}}
+                                            <input name="skills[]" type="text" class="form-control" placeholder="新增技能">
+
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-default">新增</button>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                                {{--{!! Form::close() !!}--}}
+                            </table>
+                        </div>
+                        <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+                            <div class="collapse navbar-sm-collapse" >
+                                <ul class="nav navbar-sm-nav navbar-sm-right">
+                                    {!! Form::submit('新增職位', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                                </ul>
+                            </div>
+                        </nav>
+                        {!! Form::close() !!}
+                        {{--表格尾端--}}
+                    </div>
+                </div>
             </div>
 
             <div class="panel panel-default" >
@@ -282,7 +361,7 @@
 
 
                         </ul>
-                        {!! Form::open(array('url' => 'resource/manage/people/center/editPeople'))!!}
+                        {!! Form::open(array('url' => 'resource/manage/people/center/editPeople','onsubmit' => 'return checkForm("free_users");','id' => 'form_free_users'))!!}
                         <ul class="nav navbar-sm-nav navbar-sm-right">
                             {{--{!! Form::submit('將志工分配至現有任務', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}--}}
                             <div class="btn-group">
@@ -299,7 +378,7 @@
                                         {{--@endforeach--}}
                                     {{--@endif--}}
                                 {{--</ul>--}}
-                                {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
+                                {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
                             </div>
                             {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn', 'id' => 'submit_arrived', 'style' => 'display: none;']) !!}
                         </ul>
@@ -578,6 +657,9 @@
             var model_name = "#change_" + $(this).attr('id') + "_Modal"
             $(model_name).modal('show');
         });
+        $('#free_users_table,#center_support_person_table').find('tr').click(function () {
+            $(this).find("input[type='checkbox']").click();
+        });
         $("#arrived, #center_user_roles").change(function () {
             if($('#arrived option:selected').text() == "已報到"){
                 var send = 1;
@@ -681,8 +763,35 @@
         }
     </script>
     <script>
-        function checkForm(){
-            return true;
+        var checked_center_support_person = 0;
+        var checked_center_free_user = 0;
+        $('#submit_center_support_person').click(function(){
+            checked_center_support_person = $("input[name='center_support_person_detail_ids[]']:checked").length;
+        });
+        $("select[name='mission_list_id']").change(function(){
+            checked_center_free_user = $("input[name='user_ids[]']:checked").length;
+            $('#form_free_users').submit();
+        });
+        $('#submit_arrived').click(function(){
+            checked_center_free_user = $("input[name='user_ids[]']:checked").length;
+        });
+
+        function checkForm(form){
+            if(form == "center_support_person"){
+                if(checked_center_support_person > 0){
+                    return true;
+                }
+                alert("請至少勾選1位人員");
+                return false;
+            }
+            if(form == "free_users"){
+                if(checked_center_free_user > 0){
+                    return true;
+                }
+                alert("請至少勾選1位人員");
+                return false;
+            }
+            return false;
         }
     </script>
 
