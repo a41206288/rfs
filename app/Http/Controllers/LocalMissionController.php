@@ -123,7 +123,7 @@ class LocalMissionController extends Controller {
                 ->where('Name','!=','Local')
                 ->where('Name','!=','Resource')
                 ->lists('description','id');
-            $role_of_work = array_add($role_of_work,'','人員種類');
+            $role_of_work = array_add($role_of_work,'','愈增援職位');
 //        dd($role_of_work);
 
             $mission_support_people_array =[];
@@ -182,7 +182,7 @@ class LocalMissionController extends Controller {
 //取出哪個地點支援哪個地點的表
             $mission_help_others = DB::table('mission_help_others')
                 ->join('mission_lists','mission_lists.mission_list_id','=','mission_help_others.mission_list_id')
-//                ->where('', ) 依照 mission_support_person_id 排
+                ->where('mission_help_other_finish_time', NULL)
 //                    ->where('arrived',0)
                 ->get();
 //dd($mission_help_others);
@@ -252,6 +252,7 @@ class LocalMissionController extends Controller {
                 ->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id')
                 ->where('mission_list_id','=',$mission_list_id)
                 ->orderBy('arrive_mission')
+                ->orderBy('status')
                 ->orderBy('role_id')
                 ->get();
 //        dd($missionUsers);

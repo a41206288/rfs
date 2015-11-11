@@ -21,11 +21,12 @@ class CenterMissionController extends Controller {
 	{
                 //取出mission_list 按照 未分配任務->分配人員->執行中->任務完成 排序
                 $mission_lists = DB::table('mission_lists')
-
-                    ->orderBy('assign_people_finish_time')
-                    ->orderBy('arrive_location_time')
                     ->orderBy('mission_complete_time')
-                    ->orderBy('mission_name')
+                    ->orderBy('updated_at','desc')
+                    ->orderBy('arrive_location_time')
+                    ->orderBy('updated_at','desc')
+                    ->orderBy('assign_people_finish_time')
+                    ->orderBy('updated_at','desc')
                     ->get();
 dd($mission_lists);
 
@@ -774,7 +775,7 @@ dd($mission_lists);
         if(isset($setChargeId)){
             DB::table('mission_lists')
                 ->where('mission_list_id',$mission_list_id)
-                ->update(['assign_people_finish_time' => date('Y-m-d H:i:s'), 'id' => $setChargeId]);
+                ->update(['created_at' => date('Y-m-d H:i:s'), 'id' => $setChargeId]);
             DB::table('works_ons')
                 ->where('id',$setChargeId)
                 ->update(['mission_list_id' => $mission_list_id, 'status' => "執行任務"]);

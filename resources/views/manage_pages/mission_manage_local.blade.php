@@ -405,7 +405,7 @@
                     <table class="table  table-hover table-bordered"  >
                         <thead>
                         <th width="5%"></th>
-                        <th width="10%">種類</th>
+                        <th width="10%">職位</th>
                         <th width="15%">狀態</th>
                         <th width="10%">姓名<br>
                         <th width="15%">電話</th>
@@ -421,7 +421,7 @@
                                  !!}
 
                             </div>
-                            {{--{!! dd($mission_support_people_count) !!}--}}
+{{--                            {!! dd($mission_support_people_count) !!}--}}
 
                             <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
                                 @for($i=1;$i<$mission_support_people_count;$i++)
@@ -449,7 +449,7 @@
                                     {!! Form::open(array('url' => 'local/mission/manage/updatePeople'))!!}
                                     @for($k=1;$k<$mission_help_other_count;$k++)
                                         {{--{!! dd($mission_help_other_count) !!}--}}
-
+                                        {{--{!! dd($i) !!}--}}
                                             @foreach($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']] as $key => $value)
                                                 @foreach($mission_help_users as $mission_help_user)
                                                     @if($key == $mission_help_user->user_id)
@@ -665,7 +665,7 @@
                 <div style="height: 145px;overflow-y: scroll;">
                     <table class="table table-bordered">
                         <thead>
-                        <tr><th>人員種類</th><th>欲增援人數</th><th>缺額</th><th colspan="3">已招募人員報到</th></tr>
+                        <tr><th>職位</th><th>欲增援人數</th><th>尚需人數</th><th colspan="3">已招募人數</th></tr>
                         </thead>
                         <tbody>
 
@@ -681,7 +681,7 @@
 
                             <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
                             @for($i=1;$i<$mission_support_people_count;$i++)
-                                @if(isset($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']]))
+                                @if(isset($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']]) )
                                     <div style="display: none">
                                         {{--計算每張請求支援單有多少人支援了--}}
                                         {!! $mission_help_other_count = count($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']])+1 !!}
@@ -761,7 +761,7 @@
                                 {!! Form::hidden('mission_list_id',$mission_list_id) !!}
                                 {!! Form::select('mission_support_people_id',$role_of_work, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
                                 {!! Form::number('mission_support_people_num', 0, ['min'=>'1','class' => 'text-right','style'=>'width:50px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}&nbsp;&nbsp;人&nbsp;&nbsp;
-                                {!! Form::text('mission_support_people_reason','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
+                                {!! Form::text('mission_support_people_reason','',['placeholder'=>'增援原因','style'=>'width:200px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
                                 {!! Form::submit('請求增援', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
                             {!! Form::close() !!}
                         </ul>

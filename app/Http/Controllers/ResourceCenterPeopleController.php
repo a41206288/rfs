@@ -41,7 +41,7 @@ class ResourceCenterPeopleController extends Controller {
 			->groupBy('description')
 			->lists('description','description')
 			;
-		$center_support_person_detail_roles = array_add($center_support_person_detail_roles, '', '人員種類');
+		$center_support_person_detail_roles = array_add($center_support_person_detail_roles, '', '職位');
 //				dd($center_support_person_detail_roles);
 
 
@@ -170,7 +170,7 @@ class ResourceCenterPeopleController extends Controller {
             $role_of_work = $role_of_work->where('Name','!=','Local');
             $role_of_work = $role_of_work->where('Name','!=','Resource');
             $role_of_work = $role_of_work->lists('description','id');
-        $role_of_work = array_add($role_of_work,'','人員種類');
+        $role_of_work = array_add($role_of_work,'','職位');
 //        dd($role_of_work);
 
 

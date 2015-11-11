@@ -21,11 +21,12 @@ class UsersHomeController extends Controller {
 
         //取出mission_list 按照 未分配任務->分配人員->執行中->任務完成 排序
         $mission_lists = DB::table('mission_lists')
-
-            ->orderBy('assign_people_finish_time')
-            ->orderBy('arrive_location_time')
             ->orderBy('mission_complete_time')
-
+            ->orderBy('updated_at','desc')
+            ->orderBy('arrive_location_time')
+            ->orderBy('updated_at','desc')
+            ->orderBy('assign_people_finish_time')
+            ->orderBy('updated_at','desc')
             ->get();
 //dd($mission_lists);
 

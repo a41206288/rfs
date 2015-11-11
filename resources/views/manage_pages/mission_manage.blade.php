@@ -236,7 +236,7 @@
                                     <th></th>
                                     <th width="80px">日期</th>
                                     <th width="45px">時間</th>
-                                    <th width="125px">任務地點</th>
+                                    <th width="125px">通報地點</th>
                                     {{--<th >通報日期/時間</th>--}}
                                     {{--<th >通報地址<br>--}}
                                     {{--@foreach ($country_or_cities as $country_or_city)--}}

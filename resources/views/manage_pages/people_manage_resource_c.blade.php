@@ -32,8 +32,8 @@
         <div class="col-xs-8 col-sm-6 col-md-6" >
             <!-- Tab panes -->
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#application_lists" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn"><b>向民眾招募人員需求表</b></a></li>
-                <li><a href="#application_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">應徵志工人員資料表</a></li>
+                <li class="active"><a href="#application_lists" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn"><b>向民眾招募志工列表</b></a></li>
+                <li><a href="#application_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">已應徵志工名單</a></li>
 
             </ul>
             <div class="tab-content">
@@ -42,7 +42,7 @@
                         {!! Form::open(array('url' => 'resource/manage/people/center/updatePeople'))!!}
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
-                                <a class="navbar-sm-brand" href="#">應徵志工人員資料</a>
+                                <a class="navbar-sm-brand" href="#">已應徵志工名單</a>
                             </div>
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
@@ -62,7 +62,7 @@
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th>人員種類</th>
+                                    <th>職位</th>
                                     <th>姓名</th>
                                     <th>電話</th>
                                     {{--<th width="10%">Email</th>--}}
@@ -114,7 +114,7 @@
 
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
-                                <a class="navbar-sm-brand" href="#">向民眾招募人員需求表(單位: 人)</a>
+                                <a class="navbar-sm-brand" href="#">向民眾招募志工列表(單位: 人)</a>
                             </div>
 
                             <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
@@ -160,7 +160,7 @@
                                     <th width="10%">建表日期</th>
                                     <th width="10%">時間</th>
                                     {{--<th>編號</th>--}}
-                                    <th width="15%">人員種類</th>
+                                    <th width="15%">職位</th>
                                     {{--<th width="25%">技能</th>--}}
                                     <th width="27%">需求人數</th>
                                     <th width="18%">尚需人數</th>
@@ -267,7 +267,7 @@
             <div class="panel panel-default" >
                 <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                     <div class="navbar-sm-header">{{--標題--}}
-                        <a class="navbar-sm-brand" href="#">中央志工人員資料列表</a>
+                        <a class="navbar-sm-brand" href="#">中央閒置志工資料列表</a>
                     </div>
                     {{--<br>--}}
                     <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
@@ -314,7 +314,7 @@
                         <tr>
                             <th></th>
 
-                            <th>種類</th>
+                            <th>職位</th>
                             {{--<th>狀態</th>--}}
                             <th>姓名</th>
                             <th>電話</th>
@@ -479,7 +479,7 @@
             <div class="panel panel-default" >
                 <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                     <div class="navbar-sm-header">{{--標題--}}
-                        <a class="navbar-sm-brand" href="#">各地方人員閒置列表  (單位: 人)</a>
+                        <a class="navbar-sm-brand" href="#">各地方閒置人員列表  (單位: 人)</a>
                     </div>
 
                     <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
