@@ -19,6 +19,7 @@
     content:"▲";
     }
 
+
 @endsection
 {{--@section('content')--}}
     {{--<div class="col-xs-10 col-sm-8 col-md-8" >--}}
@@ -34,7 +35,6 @@
 {{--管線修復--}}
 {{--警戒--}}
 @section('content')
-
 
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
@@ -703,99 +703,5 @@
 
 
     </script>
-    <script>
-        $(document).on('click','.btn-default', function(e){
-            if($(this).closest('div').parent('div').attr('id').indexOf("busy")==0){
-                add_person($(this).closest('div').find('input').val(), $(this).closest('div').find('span').eq(0).text(), $(this).closest('div').parent('div').attr('id'),true);
-                $(this).closest('div').remove();
-            }
-            else if($(this).closest('div').parent('div').attr('id').indexOf("idle")==0){
-                add_person($(this).closest('div').find('input').val(), $(this).closest('div').find('span').eq(1).text(), $(this).closest('div').parent('div').attr('id'),false);
-                $(this).closest('div').remove();
-            }
-            else{} //其他class="btn-default"不用動作
-        });
-        {{--setInterval(function(){--}}
-            {{--$.ajax({--}}
-                {{--url: 'http://localhost:8000/local/mission/manage/chatRoom',--}}
-                {{--type: 'GET',--}}
-                {{--headers: {--}}
-                    {{--'X-CSRF-Token': "{{ Session::token() }}"--}}
-                {{--},--}}
-                {{--success: function(response) {--}}
-{{--//                    updateTable(response);--}}
-                    {{--alert(response);--}}
-                {{--},--}}
-                {{--error: function(xhr) {--}}
-                    {{--alert('Ajax request 發生錯誤');--}}
-                {{--}--}}
-            {{--});--}}
-        {{--}, 3000);--}}
 
-        function add_person(id,name,div_id,isBusyTable)
-        {
-            if(isBusyTable){
-                var obj=document.getElementById(div_id.replace(/busy/,"idle"));
-                var div = document.createElement("div");
-                div.setAttribute("class", "input-group");
-
-                var span = document.createElement("span");
-                span.setAttribute("class", "input-group-btn");
-
-
-                var span_btn = document.createElement("button");
-                span_btn.setAttribute("class", "btn btn-default");
-                span_btn.setAttribute("type", "button");
-                span_btn.innerHTML="+";
-
-                span.appendChild(span_btn);
-                div.appendChild(span);
-
-                var hidden_input= document.createElement("input");
-                hidden_input.name="free[]";
-                hidden_input.value=id;
-                hidden_input.setAttribute("type", "hidden");
-                div.appendChild(hidden_input);
-
-                var span = document.createElement("span");
-                span.setAttribute("class", "form-control");
-                span.innerHTML=name;
-
-                div.appendChild(span);
-
-                obj.appendChild(div);
-            }
-            else{
-                var obj=document.getElementById(div_id.replace(/idle/,"busy"));
-                var div = document.createElement("div");
-                div.setAttribute("class", "input-group");
-
-
-                var span = document.createElement("span");
-                span.setAttribute("class", "form-control");
-                span.innerHTML=name;
-
-                div.appendChild(span);
-
-                var span = document.createElement("span");
-                span.setAttribute("class", "input-group-btn");
-
-                var span_btn = document.createElement("button");
-                span_btn.setAttribute("class", "btn btn-default");
-                span_btn.setAttribute("type", "button");
-                span_btn.innerHTML="-";
-
-                span.appendChild(span_btn);
-                div.appendChild(span);
-                var hidden_input= document.createElement("input");
-                hidden_input.name="mission[]";
-                hidden_input.value=id;
-                hidden_input.setAttribute("type", "hidden");
-                div.appendChild(hidden_input);
-
-                obj.appendChild(div);
-            }
-
-        }
-    </script>
 @endsection

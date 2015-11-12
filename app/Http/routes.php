@@ -115,6 +115,10 @@ Route::group([
         Route::get('mission/manage',array('as' => 'centerPanel', 'uses' => 'CenterMissionController@index'));
 //        Route::get('mission/manage', 'CenterMissionController@index');
         Route::post('mission/manage/support', 'CenterMissionController@store');
+        //對話視窗
+        Route::get('mission/manage/getUser', 'ChatController@get_users');
+        Route::post('mission/manage/updateChatRoom', 'ChatController@update_chat_room');
+        Route::post('mission/manage/sendMessage', 'ChatController@send_message');
 
 //        Route::post('mission/manage/supportPeople', 'CenterMissionController@store');
 //        Route::post('mission/manage/supportProducts', 'CenterMissionController@store');
@@ -143,7 +147,10 @@ Route::group([
         Route::post('local/mission/manage/updatePeopleSupport', 'LocalPeopleSupportController@update');
         Route::post('local/mission/manage/updatePeople', 'LocalPeopleController@update');
         Route::post('local/mission/manage/editPeople', 'LocalPeopleController@edit');
-        Route::get('local/mission/manage/chatRoom', 'LocalMissionController@chat');
+        //對話視窗
+        Route::get('local/mission/manage/getUser', 'ChatController@get_users');
+        Route::post('local/mission/manage/updateChatRoom', 'ChatController@update_chat_room');
+        Route::post('local/mission/manage/sendMessage', 'ChatController@send_message');
 //        Route::post('mission/manage/local', 'LocalMissionController@edit');
 //        Route::post('report/local', 'LocalMissionController@update');
 //        Route::get('analysis/manage/local', 'LocalAnalysisController@index');
@@ -173,6 +180,10 @@ Route::group([
 
         Route::get('report/EMT', 'EmtReportController@index');
         Route::post('report/reliever', 'EmtReportController@create');
+        //對話視窗
+        Route::get('victim/EMT/getUser', 'ChatController@get_users');
+        Route::post('victim/EMT/updateChatRoom', 'ChatController@update_chat_room');
+        Route::post('victim/EMT/sendMessage', 'ChatController@send_message');
 
     });
 
@@ -204,6 +215,10 @@ Route::group([
         Route::post('resource/manage/people/center/editPeople', 'ResourceCenterPeopleController@store');
         Route::post('resource/manage/people/center/editSkill', 'ResourceCenterPeopleController@editSkill');
         Route::post('resource/manage/people/center/updateTable', 'ResourceCenterPeopleController@show');
+        //對話視窗
+        Route::get('resource/center/manage/people/getUser', 'ChatController@get_users');
+        Route::post('resource/center/manage/people/updateChatRoom', 'ChatController@update_chat_room');
+        Route::post('resource/center/manage/people/sendMessage', 'ChatController@send_message');
 
     });
 

@@ -70,7 +70,7 @@
               box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
               border-color: #dddddd;
           }
-          .chatBoxButton {
+          .contactBoxButton {
               position:absolute;
               z-index:3;
               position:fixed;
@@ -104,15 +104,12 @@
   </head>
 
   <body>
-  <button class="btn btn-primary btn-sm chatBoxButton" type="button" data-toggle="collapse" data-target="#Box0" aria-expanded="false" aria-controls="collapseExample">
+  <button id="contactBoxButton" class="btn btn-primary btn-sm contactBoxButton" type="button" data-toggle="collapse" data-target="#Box0" aria-expanded="false" aria-controls="collapseExample">
       <span class="glyphicon glyphicon-user" aria-hidden="true"></span>訊息
   </button>
   <div id="Box0" class="collapse contactBox">
       <ul class="nav nav-pills nav-stacked">
           {{--<li class="active"><a>聯絡人</a></li>--}}
-          @foreach($users as $user)
-              <li><a>{!! $user->user_name !!}</a></li>
-          @endforeach
       </ul>
   </div>
     <!-- Fixed navbar -->
@@ -180,98 +177,202 @@
     <script src="/js/application.js"></script>
     @yield('javascript')
   <script>
-      $('#Box0 li a').click(function(){
-//            alert($(this).text());
-
-          addChatBox($(this).text());
+      var url = window.location.href; //目前所在之URL
+      //讀取人員姓名
+      $('#contactBoxButton').one('click',function(){
+          $.ajax({
+              url: url + '/getUser',
+              type: 'GET',
+              headers: {
+                  'X-CSRF-Token': "{{ Session::token() }}"
+              },
+              success: function(response) {
+                  for(var i=0; i<response.length; i++){
+                      var string = "<li><a id='" + response[i]['id'] + "' name='" + response[i]['user_name'] + "'>" + response[i]['user_name'] + "<span class='badge'>1</span></a></li>";
+                      $('#Box0').find('ul').append(string);
+                  }
+              },
+              error: function(xhr) {
+                  alert('Ajax request 發生錯誤');
+              }
+          });
       });
+      //點下名字開啟對話
+      $('#Box0').on('click','li a',function(){
+          var user_name = $(this).attr('name');
+          var box_num = $('.chatBox').length;
+          var box_id;
+          var user_id = $(this).attr('id');
+          if($("#chat" + user_id).length == 0){ //尚未開啟點擊對象之對話視窗
+              if(box_num < 4){
+                  var has_add = false;
+                  var count = 1;
+                  while(!has_add){
+                      if($("#Box" + count).length == 0){
+                          box_id = "Box" + count;
+                          addChatBox(user_name, box_id, "chat" + user_id);
+                          var interval_id = setUpdateWithInterval("chat" + user_id, user_id);
+                          $("#"+box_id).attr('name',interval_id);
+                          has_add = true;
+                      }
+                      count++;
+                  }
+              }
+              else{
+                  removeChatBox($('#Box4'), $('#Box4').attr('name'));
+                  box_id = "Box4";
+                  addChatBox(user_name, box_id, "chat" + user_id);
+                  var interval_id = setUpdateWithInterval("chat" + user_id, user_id);
+                  $("#"+box_id).attr('name',interval_id);
+              }
+          }
+      });
+      //點下X關閉對話
       $('#Box0').parent().on('click','.glyphicon-remove',function(){
-          $(this).closest('div').parent().remove();
-//            alert("remove");
+          var get_div = $(this).closest('div').parent();
+          removeChatBox(get_div, get_div.attr('name'));
       });
-  function addChatBox(name){
-  var obj = document.getElementById("Box0").parentElement;
+      //按下傳送
+      $('#Box0').parent().on('click',"button[name='send_message_button']",function(){
+          var input_string = $(this).closest('div').find('input').val();
+          var user_id = $(this).attr('id').replace("send_message_button_", "");
+          $(this).closest('div').find('input').val("");
+          if(input_string != ""){
+              $.ajax({
+                  url: url + '/sendMessage',
+                  type: 'POST',
+                  headers: {
+                      'X-CSRF-Token': "{{ Session::token() }}"
+                  },
+                  data:{
+                      message: input_string,
+                      user_id: user_id
+                  },
+                  success: function(response) {
 
-  //            var chatBox = document.getElementById('Box2');
-  //            obj.removeChild(chatBox);
-  //            var chatBox = document.getElementById('Box1');
-  //            obj.removeChild(chatBox);
+                  },
+                  error: function(xhr) {
+                      alert('Ajax request 發生錯誤');
+                  }
+              });
+          }
+      });
+      function addChatBox(name,box_id,collapse_id){
+          var obj = document.getElementById("Box0").parentElement;
 
-  var chatBox = document.createElement('div');
-  chatBox.className = "panel panel-default chatBox";
-  chatBox.setAttribute('id','Box1');
+          var chatBox = document.createElement('div');
+          chatBox.className = "panel panel-default chatBox";
+          chatBox.setAttribute('id',box_id);
 
-  var div = document.createElement('div');
-  div.className = "panel-heading";
-  var h4 = document.createElement('h4');
-  h4.className = "panel-title";
-  var span = document.createElement('span');
-  span.className = "glyphicon glyphicon-user";
-  span.setAttribute('style','width: 75%;');
-  span.setAttribute('aria-hidden','true');
-  span.innerHTML = name;
-  h4.appendChild(span);
-  var button = document.createElement('button');
-  button.className = "btn btn-default btn-xs";
-  button.setAttribute('type','button');
-  button.setAttribute('data-toggle','collapse');
-  button.setAttribute('data-target','#test'); //id
-  button.setAttribute('aria-expanded','true');
-  button.setAttribute('aria-controls','test'); //id
-  var span = document.createElement('span');
-  span.className = "glyphicon glyphicon-minus";
-  button.appendChild(span);
-  h4.appendChild(button);
-  var button = document.createElement('button');
-  button.className = "btn btn-default btn-xs";
-  button.setAttribute('type','button');
-  var span = document.createElement('span');
-  span.className = "glyphicon glyphicon-remove";
-  button.appendChild(span);
-  h4.appendChild(button);
-  div.appendChild(h4);
-  chatBox.appendChild(div);
+          var div = document.createElement('div');
+          div.className = "panel-heading";
+          var h4 = document.createElement('h4');
+          h4.className = "panel-title";
+          var span = document.createElement('span');
+          span.className = "glyphicon glyphicon-user";
+          span.setAttribute('style','width: 75%;');
+          span.setAttribute('aria-hidden','true');
+          span.innerHTML = name;
+          h4.appendChild(span);
+          var button = document.createElement('button');
+          button.className = "btn btn-default btn-xs";
+          button.setAttribute('type','button');
+          button.setAttribute('data-toggle','collapse');
+          button.setAttribute('data-target','#' + collapse_id);
+          button.setAttribute('aria-expanded','true');
+          button.setAttribute('aria-controls',collapse_id);
+          var span = document.createElement('span');
+          span.className = "glyphicon glyphicon-minus";
+          button.appendChild(span);
+          h4.appendChild(button);
+          var button = document.createElement('button');
+          button.className = "btn btn-default btn-xs";
+          button.setAttribute('type','button');
+          var span = document.createElement('span');
+          span.className = "glyphicon glyphicon-remove";
+          button.appendChild(span);
+          h4.appendChild(button);
+          div.appendChild(h4);
+          chatBox.appendChild(div);
+
+          var collapse = document.createElement('div');
+          collapse.className = "panel-collapse collapse in";
+          collapse.setAttribute('id',collapse_id);
+          var div = document.createElement('div');
+          div.className = "panel-body chatBox-body";
+          var table = document.createElement('table');
+          table.className = "table table-nonbordered";
+          var tbody = document.createElement('tbody');
+          table.appendChild(tbody);
+          div.appendChild(table);
+          collapse.appendChild(div);
+          var div = document.createElement('div');
+          div.className = "input-group";
+          var input = document.createElement('input');
+          input.className = "form-control";
+          div.appendChild(input);
+          var span = document.createElement('span');
+          span.className ="input-group-btn";
+          var button = document.createElement('button');
+          button.className ="btn btn-default";
+          button.setAttribute('name','send_message_button');
+          button.setAttribute('id','send_message_button_' + collapse_id.replace("chat",""));
+          button.innerHTML ="傳送";
+          span.appendChild(button);
+          div.appendChild(span);
+          collapse.appendChild(div);
+          chatBox.appendChild(collapse);
+
+          obj.appendChild(chatBox);
+      }
+      function removeChatBox(box,interval){
+          box.remove();               //關閉對話視窗
+          clearInterval(interval);   //關閉interval
+      }
+      function updateChatBox(messages,chat_id,user_id){
+          var tbody = $("#"+chat_id).find('tbody');
+          tbody.find('tr').remove();
+          for(var i=0; i<messages.length; i++){
+              //對方
+              if(messages[i]['user_id'] == user_id){
+                  tbody.append("<tr></tr>");
+                  var tr_num = tbody.find('tr').length;
+                  tbody.find('tr').eq(tr_num-1).append("<td class='active'>" + messages[i]['message_content'] + "</td>");
+                  tbody.find('tr').eq(tr_num-1).append("<th width='70px'></th>");
+              }
+              //自己
+              else{
+                  tbody.append("<tr></tr>");
+                  var tr_num = tbody.find('tr').length;
+                  tbody.find('tr').eq(tr_num-1).append("<th width='70px'></th>");
+                  tbody.find('tr').eq(tr_num-1).append("<td class='info'>" + messages[i]['message_content'] + "</td>");
+              }
+              tbody.append("<tr><th></th><td></td></tr>");
+          }
 
 
-  var collapse = document.createElement('div');
-  collapse.className = "panel-collapse collapse in";
-  collapse.setAttribute('id','test'); //id
-  var div = document.createElement('div');
-  div.className = "panel-body chatBox-body";
-  var table = document.createElement('table');
-  table.className = "table table-nonbordered";
-  var tbody = document.createElement('tbody');
-  var tr = document.createElement('tr');
-  var td = document.createElement('td');
-  td.className = "active";
-  td.innerHTML = "電線杆倒塌起火";
-  tr.appendChild(td);
-  var th = document.createElement('th');
-  th.setAttribute('width','70px');
-  tr.appendChild(th);
-  tbody.appendChild(tr);
-  table.appendChild(tbody);
-  div.appendChild(table);
-  collapse.appendChild(div);
-  var div = document.createElement('div');
-  div.className = "input-group";
-  var input = document.createElement('input');
-  input.className = "form-control";
-  div.appendChild(input);
-  var span = document.createElement('span');
-  span.className ="input-group-btn";
-  var button = document.createElement('button');
-  button.className ="btn btn-default";
-  button.innerHTML ="傳送";
-  span.appendChild(button);
-  div.appendChild(span);
-  collapse.appendChild(div);
-  chatBox.appendChild(collapse);
+      }
+      function setUpdateWithInterval(chat_id,user_id){
+          var interval = setInterval(function(){
+              $.ajax({
+                  url: url + '/updateChatRoom',
+                  type: 'POST',
+                  headers: {
+                      'X-CSRF-Token': "{{ Session::token() }}"
+                  },
+                  data:{
+                      user_id: user_id
+                  },
+                  success: function(response) {
+                      updateChatBox(response,chat_id,user_id);
+                  },
+                  error: function(xhr) {
 
-  obj.appendChild(chatBox);
-
-
-  }
+                  }
+              });
+          },1000);
+          return interval;
+      }
   </script>
   </body>
 </html>
