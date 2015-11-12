@@ -209,7 +209,7 @@ class mission_seeder extends Seeder{
         $mission = new App\Mission;
         $mission->mission_id = 10;
 //        $mission->mission_type = '建築物倒塌';
-        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->mission_content = '這裡多處路樹倒塌，車輛難以通行';
         $mission->fname = '恩五';
         $mission->lname = '陳';
         $mission->sex = '男';
@@ -222,7 +222,7 @@ class mission_seeder extends Seeder{
         $mission = new App\Mission;
         $mission->mission_id = 11;
 //        $mission->mission_type = '建築物倒塌';
-        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->mission_content = '多處建築物起火燃燒';
         $mission->fname = '恩五';
         $mission->lname = '陳';
         $mission->sex = '男';
@@ -235,7 +235,7 @@ class mission_seeder extends Seeder{
         $mission = new App\Mission;
         $mission->mission_id = 12;
 //        $mission->mission_type = '建築物倒塌';
-        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->mission_content = '電線杆倒塌，多處停電';
         $mission->fname = '恩五';
         $mission->lname = '陳';
         $mission->sex = '男';
@@ -248,7 +248,7 @@ class mission_seeder extends Seeder{
         $mission = new App\Mission;
         $mission->mission_id = 13;
 //        $mission->mission_type = '建築物倒塌';
-        $mission->mission_content = '校門附近建築遭倒下的樹壓毀';
+        $mission->mission_content = '地面攏起，管線斷裂';
         $mission->fname = '恩五';
         $mission->lname = '陳';
         $mission->sex = '男';

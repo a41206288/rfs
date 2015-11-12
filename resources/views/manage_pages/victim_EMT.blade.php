@@ -4,7 +4,7 @@ EMT災民
 @endsection
 @section('link')
     {{--<li>{!! Html::link('analysis/manage/local', '現場分析地點管理') !!}</li>--}}
-    <li class="active">{!! Html::link('victim/EMT', '傷員管理' )!!}</li>
+    <li class="active">{!! Html::link('victim/EMT', '災民管理' )!!}</li>
 @endsection
 @section('css')
     table, td, th {

@@ -257,29 +257,10 @@
                                             {{--<td>{!! $missionUser->phone !!}</td>--}}
                                             {{--<td><button class="btn btn-sm btn-default">報到</button></td>--}}
                                         {{--</tr>--}}
-                                    @if($missionUser->status == "執行任務")
-                                        <tr class="warning">
 
-                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
-                                            <td>{!! $missionUser->description !!}</td>
-                                            <td>{!! $missionUser->status !!}</td>
-                                            <td>{!! $missionUser->user_name !!}</td>
-                                            <td>{!! $missionUser->phone !!}</td>
-                                            <td></td>
-                                        </tr>
-
-                                    @elseif($missionUser->status == "負傷")
-                                    <tr class="danger">
-                                        <td> {!! Form::checkbox('name', 'value')!!}</td>
-                                        <td>{!! $missionUser->description !!}</td>
-                                        <td>{!! $missionUser->status !!}</td>
-                                        <td>{!! $missionUser->user_name !!}</td>
-                                        <td>{!! $missionUser->phone !!}</td>
-                                        <td></td>
-                                    </tr>
                                         {{--有arrive_mission代表此人被支援給其他任務--}}
                                         {{--arrive_mission == 0是避免同樣一人被同一任務非配兩次--}}
-                                    @elseif(isset($missionUser->arrive_mission) && $missionUser->arrive_mission == 0)
+                                    @if(isset($missionUser->arrive_mission) && $missionUser->arrive_mission == 0)
                                         <tr >
                                             {{--<td> {!! Form::checkbox('name', 'value')!!}</td>--}}
                                             <td></td>
@@ -306,6 +287,27 @@
                                                 @endif
                                             @endforeach
                                         </tr>
+                                    @elseif($missionUser->status == "執行任務")
+                                        <tr class="warning">
+
+                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! $missionUser->description !!}</td>
+                                            <td>{!! $missionUser->status !!}</td>
+                                            <td>{!! $missionUser->user_name !!}</td>
+                                            <td>{!! $missionUser->phone !!}</td>
+                                            <td></td>
+                                        </tr>
+
+                                    @elseif($missionUser->status == "負傷")
+                                        <tr class="danger">
+                                            <td> {!! Form::checkbox('name', 'value')!!}</td>
+                                            <td>{!! $missionUser->description !!}</td>
+                                            <td>{!! $missionUser->status !!}</td>
+                                            <td>{!! $missionUser->user_name !!}</td>
+                                            <td>{!! $missionUser->phone !!}</td>
+                                            <td></td>
+                                        </tr>
+
                                     @elseif($missionUser->status == "閒置")
                                         <tr class="success">
                                             <td> {!! Form::checkbox('name', 'value')!!}</td>

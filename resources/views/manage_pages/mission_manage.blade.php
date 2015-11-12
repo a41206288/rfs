@@ -461,7 +461,7 @@
                                                                                     @for($i=1;$i<$n;$i++)
 
                                                                                         <tr>
-                                                                                            <td>{!! Form::checkbox('call_to_remove_from_mission[]', $mission_list->mission_list_id)!!}</td>
+                                                                                            <td>{!! Form::checkbox('call_to_remove_from_mission[]', $mission_contents_array[$mission_list->mission_list_id][$i]['id'])!!}</td>
                                                                                             <td>{!! $mission_contents_array[$mission_list->mission_list_id][$i]['id']  !!}</td>
 
                                                                                             @if(isset($mission_contents_array[$mission_list->mission_list_id][$i]['r1']) && isset($mission_contents_array[$mission_list->mission_list_id][$i]['r2']))

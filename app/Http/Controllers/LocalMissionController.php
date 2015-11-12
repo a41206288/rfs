@@ -211,7 +211,9 @@ class LocalMissionController extends Controller {
 //            dd($mission_help_other_users);
             $mission_help_other_users_array = [];
             foreach($mission_help_other_users as $mission_help_other_user){
-                $mission_help_other_users_array[$mission_help_other_user->mission_help_other_id][$mission_help_other_user->mission_list_id ][$mission_help_other_user->id ] = $mission_help_other_user->arrive_mission;
+                if( $mission_help_other_user->arrive_mission != 1){
+                    $mission_help_other_users_array[$mission_help_other_user->mission_help_other_id][$mission_help_other_user->mission_list_id ][$mission_help_other_user->id ] = $mission_help_other_user->arrive_mission;
+                }
 
             }
 //dd($mission_help_other_users_array);
