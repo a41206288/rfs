@@ -189,53 +189,57 @@
                                             {!! $mission_help_other_count = 1  !!}
                                             {!! $mission_help_other_num_total = 0 !!}
                                         </div>
+                            {{--{!! dd($mission_help_other_count) !!}}--}}
                                     @endif
                                     {!! Form::open(array('url' => 'local/mission/manage/updatePeople'))!!}
                                     @for($k=1;$k<$mission_help_other_count;$k++)
                                         {{--{!! dd($mission_help_other_count) !!}--}}
                                         {{--{!! dd($i) !!}--}}
-                                            @foreach($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']] as $key => $value)
-                                                @foreach($mission_help_users as $mission_help_user)
-                                                    @if($key == $mission_help_user->user_id)
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>{!! $mission_help_user->description !!}</td>
-                                                            <td>前往此任務中</td>
+                                          @if(isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
+                                              @foreach($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']] as $key => $value)
+                                                  @foreach($mission_help_users as $mission_help_user)
+                                                      @if($key == $mission_help_user->user_id)
+                                                          <tr>
+                                                              <td></td>
+                                                              <td>{!! $mission_help_user->description !!}</td>
+                                                              <td>前往此任務中</td>
 
-                                                            <td>{!! $mission_help_user->user_name !!}</td>
-                                                            <td>{!! $mission_help_user->phone !!}</td>
-                                                            {{--<td></td>--}}
-                                                            @foreach($mission_lists as $mission_list)
-                                                                @if($mission_help_user->mission_list_id == 1 && $mission_list->mission_list_id == $mission_help_user->mission_list_id)
-                                                                    <td>
-                                                                        {{--<button class="btn btn-sm btn-default">報到</button>--}}
-                                                                        {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm']) !!}
-                                                                        {!! Form::hidden('user_id',$mission_help_user->user_id) !!}
-                                                                        {!! Form::hidden('mission_help_other_user_id',$mission_help_user->mission_help_other_user_id) !!}
-                                                                        {!! Form::hidden('mission_help_other_id',$mission_help_user->mission_help_other_id) !!}
-                                                                        {!! Form::hidden('mission_list_id',$mission_list_id) !!}
-                                                                        由中央支援
-                                                                    </td>
-                                                                @elseif( $mission_list->mission_list_id == $mission_help_user->mission_list_id )
-                                                                    <td>
-                                                                        {{--<button class="btn btn-sm btn-default">報到</button>--}}
-                                                                        {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm']) !!}
-                                                                        {!! Form::hidden('user_id',$mission_help_user->user_id) !!}
-                                                                        {!! Form::hidden('mission_help_other_user_id',$mission_help_user->mission_help_other_user_id) !!}
-                                                                        {!! Form::hidden('mission_help_other_id',$mission_help_user->mission_help_other_id) !!}
-                                                                        {!! Form::hidden('mission_list_id',$mission_list_id) !!}
-                                                                        由 {!! $mission_list->mission_name  !!} 支援
-                                                                    </td>
+                                                              <td>{!! $mission_help_user->user_name !!}</td>
+                                                              <td>{!! $mission_help_user->phone !!}</td>
+                                                              {{--<td></td>--}}
+                                                              @foreach($mission_lists as $mission_list)
+                                                                  @if($mission_help_user->mission_list_id == 1 && $mission_list->mission_list_id == $mission_help_user->mission_list_id)
+                                                                      <td>
+                                                                          {{--<button class="btn btn-sm btn-default">報到</button>--}}
+                                                                          {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm']) !!}
+                                                                          {!! Form::hidden('user_id',$mission_help_user->user_id) !!}
+                                                                          {!! Form::hidden('mission_help_other_user_id',$mission_help_user->mission_help_other_user_id) !!}
+                                                                          {!! Form::hidden('mission_help_other_id',$mission_help_user->mission_help_other_id) !!}
+                                                                          {!! Form::hidden('mission_list_id',$mission_list_id) !!}
+                                                                          由中央支援
+                                                                      </td>
+                                                                  @elseif( $mission_list->mission_list_id == $mission_help_user->mission_list_id )
+                                                                      <td>
+                                                                          {{--<button class="btn btn-sm btn-default">報到</button>--}}
+                                                                          {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm']) !!}
+                                                                          {!! Form::hidden('user_id',$mission_help_user->user_id) !!}
+                                                                          {!! Form::hidden('mission_help_other_user_id',$mission_help_user->mission_help_other_user_id) !!}
+                                                                          {!! Form::hidden('mission_help_other_id',$mission_help_user->mission_help_other_id) !!}
+                                                                          {!! Form::hidden('mission_list_id',$mission_list_id) !!}
+                                                                          由 {!! $mission_list->mission_name  !!} 支援
+                                                                      </td>
 
-                                                                    {{--@elseif($mission_help_user->mission_list_id == 1)--}}
-                                                                    {{--<td>由中央支援，正在前往中</td>--}}
+                                                                      {{--@elseif($mission_help_user->mission_list_id == 1)--}}
+                                                                      {{--<td>由中央支援，正在前往中</td>--}}
 
-                                                                @endif
-                                                            @endforeach
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
+                                                                  @endif
+                                                              @endforeach
+                                                          </tr>
+                                                      @endif
+                                                  @endforeach
+                                              @endforeach
+                                            @endif
+
                                     @endfor
                                     {!! Form::close() !!}
                                 @endfor
@@ -472,14 +476,16 @@
 
                                 @for($k=1;$k<$mission_help_other_count;$k++)
                                     {{--{!! dd($mission_help_other_count) !!}--}}
+
                                     <tr>
-                                        @if($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name'] == "未分配任務")
+                                        @if(isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]) && $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name'] == "未分配任務")
                                             <td>中央</td>
-                                        @else
+                                        @elseif (isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
                                             <td>{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name']  !!}</td>
                                         @endif
-
+                                        @if(isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
                                             <td class="text-right">{!! count($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']])  !!}</td>
+                                        @endif
 
                                             {{--<td class="text-right">{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_num']  !!}</td>--}}
                                         {{--<td>--}}
