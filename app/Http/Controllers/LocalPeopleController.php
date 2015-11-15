@@ -69,32 +69,42 @@ class LocalPeopleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request)
+	public function update(Request $request)//增援人員報到
 	{
 //        $inputs=$request->except('_token');
 //        dd($inputs);
-        $mission_list_id =  $request->input('mission_list_id');
-        $user_id =  $request->input('user_id');
-        $mission_help_other_user_id =  $request->input('mission_help_other_user_id');
-        $mission_help_other_id =  $request->input('mission_help_other_id');
-//        DB::table('works_ons')->where('id',$user_id)->update(['mission_list_id' => $mission_list_id,'status' =>'閒置']);
-//        DB::table('mission_help_other_users')->where('mission_help_other_user_id',$mission_help_other_user_id)->update(['arrive_mission' => 1]);
-        $mission_help_other = DB::table('mission_help_others')->where('mission_help_other_id',$mission_help_other_id)->get();
-        $mission_support_people_num = DB::table('mission_support_people')->select('mission_support_people_num')->where('mission_support_person_id',$mission_help_other[0]->mission_support_person_id)->get();
-        dd($mission_support_people_num[0]->mission_support_people_num);
-        $mission_support_people_num = $mission_support_people_num[0]->mission_support_people_num -1;
-        if($mission_support_people_num == 0)
-        {
-            DB::table('mission_support_people')->where('mission_support_person_id',$mission_help_other[0]->mission_support_person_id)->update(['mission_support_people_num' =>$mission_support_people_num ,'mission_help_other_finish_time' => date('Y-m-d H:i:s')]);
-        }
-        else
-        {
-            DB::table('mission_support_people')->where('mission_support_person_id',$mission_help_other[0]->mission_support_person_id)->update(['mission_support_people_num' =>$mission_support_people_num]);
-        }
+
+		$mission_list_id =  $request->input('mission_list_id');
+		$user_id =  $request->input('user_id');
+		$mission_help_other_user_id =  $request->input('mission_help_other_user_id');
+		$mission_help_other_id =  $request->input('mission_help_other_id');
+		//更改work_on
+		DB::table('works_ons')->where('id',$user_id)->update(['mission_list_id' => $mission_list_id,'status' =>'閒置']);
+		//更改支援人員狀態為已到達
+		DB::table('mission_help_other_users')->where('mission_help_other_user_id',$mission_help_other_user_id)->update(['arrive_mission' => 1]);
+		//更改增援人員需求總數
+		$mission_help_other = DB::table('mission_help_others')->where('mission_help_other_id',$mission_help_other_id)->get();
+		$mission_support_people_num = DB::table('mission_support_people')->select('mission_support_people_num')->where('mission_support_person_id',$mission_help_other[0]->mission_support_person_id)->get();
+//        dd($mission_support_people_num[0]->mission_support_people_num);
+		$mission_support_people_num = $mission_support_people_num[0]->mission_support_people_num -1;
+		DB::table('mission_support_people')->where('mission_support_person_id',$mission_help_other[0]->mission_support_person_id)->update(['mission_support_people_num' =>$mission_support_people_num]);
+		//如果支援單人員都已經到達 紀錄完成時間
+
+//        計算mission_help_others 的人員是否都已經到了
+		$all_arrived = DB::table('mission_help_other_users')
+			->where('mission_help_other_id',$mission_help_other_id)
+			->where('arrive_mission',0)
+			->get();
+//dd($all_arrived);
+		if($all_arrived == NULL)
+		{
+			DB::table('mission_help_others')->where('mission_help_other_id',$mission_help_other_id)->update(['mission_help_other_finish_time' =>date('Y-m-d H:i:s') ]);
+		}
 
 
 
-        return redirect()->route('localPanel');
+
+		return redirect()->route('localPanel');
 	}
 
 	/**

@@ -60,7 +60,7 @@ class LocalMissionController extends Controller {
 //                ->groupBy('mission_list_id')
                 ->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
                 ->select('mission_support_people.mission_list_id','mission_name')
-//                ->where('mission_list_id', $mission_list_id)
+                ->where('mission_support_people_num', '!=' , 0)
                 ->distinct()
                 ->get();
 //            dd($mission_support_people_lists);
@@ -203,6 +203,12 @@ class LocalMissionController extends Controller {
 //                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
             }
 //            dd($mission_help_other_array);
+
+//            $all_arrived = DB::table('mission_help_other_users')
+//                ->where('mission_help_other_id',$mission_help_other_id)
+//                ->where('arrive_mission',0)
+//                ->get();
+//            dd($all_arrived);
 
             //取出哪個地點支援哪個地點的表包含哪些人
             $mission_help_other_users = DB::table('mission_help_other_users')

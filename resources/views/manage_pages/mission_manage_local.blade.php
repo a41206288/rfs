@@ -173,21 +173,18 @@
                                         <div style="display: none">
                                             {{--計算每張請求支援單有多少人支援了--}}
                                             {!! $mission_help_other_count = count($mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']])+1 !!}
-                                            {!! $mission_help_other_num_total = 0 !!}
+
                                             {{--{!! dd($mission_help_other_count) !!}--}}
                                             {{--計算支援給我們多少人--}}
-                                            @if(isset($mission_help_other_users_array[$i]))
-                                                @foreach($mission_help_other_users_array[$i] as $mission_help_other_user_array)
-                                                    {!! $mission_help_other_num_total = $mission_help_other_num_total + count($mission_help_other_user_array) !!}
-                                                @endforeach
-                                            @endif
+
+
 
                                         </div>
                                     @else
                                         {{--{!! dd($i) !!}--}}
                                         <div style="display: none">
                                             {!! $mission_help_other_count = 1  !!}
-                                            {!! $mission_help_other_num_total = 0 !!}
+
                                         </div>
                             {{--{!! dd($mission_help_other_count) !!}}--}}
                                     @endif
@@ -195,10 +192,31 @@
                                     @for($k=1;$k<$mission_help_other_count;$k++)
                                         {{--{!! dd($mission_help_other_count) !!}--}}
                                         {{--{!! dd($i) !!}--}}
-                                          @if(isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
-                                              @foreach($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']] as $key => $value)
+
+
+                                          @if(isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
+                                              @foreach($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']] as $key => $value)
+                                                    {{--$mission_help_other_users_array  //全部支援的人 array[支援單][從哪裡來][人(key=>userid  value=>到了沒)]
+                                                        [//每張支援單
+                                                                $mission_help_other_array[   //增援單編號為此的支援單
+                                                                $mission_support_people_array[$mission_list_id][$i]['mission_support_person_id'] //增援單編號
+                                                                ]
+                                                                [$k]//第幾筆支援單
+                                                                ['mission_help_other_id']//欄位
+                                                        ]
+                                                        [
+                                                                $mission_help_other_array
+                                                                [
+                                                                    $mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']//增援單編號
+                                                                ]
+                                                                [$k]
+                                                                ['mission_list_id']
+                                                       ] as $key => $value--}}
                                                   @foreach($mission_help_users as $mission_help_user)
                                                       @if($key == $mission_help_user->user_id)
+                                                          {{--@if($mission_help_user->user_id ==12)--}}
+                                                              {{--{!! dd($mission_help_user->user_id) !!}--}}
+                                                          {{--@endif--}}
                                                           <tr>
                                                               <td></td>
                                                               <td>{!! $mission_help_user->description !!}</td>
@@ -438,11 +456,11 @@
                                         {!! $mission_help_other_num_total = 0 !!}
                                         {{--{!! dd($mission_help_other_count) !!}--}}
                                         {{--計算支援給我們多少人--}}
-                                        @if(isset($mission_help_other_users_array[$i]))
-                                            @foreach($mission_help_other_users_array[$i] as $mission_help_other_user_array)
-                                                {!! $mission_help_other_num_total = $mission_help_other_num_total + count($mission_help_other_user_array) !!}
-                                            @endforeach
-                                        @endif
+                                        @for($k=1;$k<$mission_help_other_count;$k++)
+                                            @if(isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
+                                                {!! $mission_help_other_num_total = $mission_help_other_num_total + count($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]) !!}
+                                            @endif
+                                        @endfor
 
                                         {{--@for($j=1;$j<$mission_help_other_count;$j++)--}}
                                             {{--{!! $mission_help_other_num_total = $mission_help_other_num_total + $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$j]['mission_help_other_num'] !!}--}}
@@ -457,34 +475,38 @@
                                 @endif
                                 <tr style="border-top-width:2px; border-top-style:solid; border-top-color: #000000">
                                 <tr>
-                                    <td  rowspan="{!! $mission_help_other_count !!}">{!! $mission_support_people_array[$mission_list_id][$i]['role'] !!}</td>
-                                    @if($mission_help_other_num_total / $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] > 0.5)
-                                        <td  rowspan="{!! $mission_help_other_count !!}" class="text-right success">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
-                                        <td  rowspan="{!! $mission_help_other_count !!}" class="text-right success">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
-                                    @elseif($mission_help_other_num_total / $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] == 0)
-                                        <td  rowspan="{!! $mission_help_other_count !!}" class="text-right danger">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
-                                        <td  rowspan="{!! $mission_help_other_count !!}" class="text-right danger">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
-                                    @else
-                                        <td  rowspan="{!! $mission_help_other_count !!}" class="text-right warning">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
-                                        <td  rowspan="{!! $mission_help_other_count !!}" class="text-right warning">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+                                    @if($mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] != 0)
+                                        <td  rowspan="{!! $mission_help_other_count !!}">{!! $mission_support_people_array[$mission_list_id][$i]['role'] !!}</td>
 
-                                    @endif
-                                    @if($mission_help_other_count == 1)
-                                        <td colspan="3"></td>
-                                    @endif
+                                        @if( $mission_help_other_num_total / $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] > 0.5)
+                                            <td  rowspan="{!! $mission_help_other_count !!}" class="text-right success">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
+                                            <td  rowspan="{!! $mission_help_other_count !!}" class="text-right success">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+                                        @elseif($mission_help_other_num_total / $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] == 0)
+                                            <td  rowspan="{!! $mission_help_other_count !!}" class="text-right danger">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
+                                            <td  rowspan="{!! $mission_help_other_count !!}" class="text-right danger">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+                                        @else
+                                            <td  rowspan="{!! $mission_help_other_count !!}" class="text-right warning">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] !!}</td>
+                                            <td  rowspan="{!! $mission_help_other_count !!}" class="text-right warning">{!! $mission_support_people_array[$mission_list_id][$i]['mission_support_people_num'] - $mission_help_other_num_total !!}</td>
+
+                                        @endif
+                                        @if($mission_help_other_count == 1)
+                                            <td colspan="3"></td>
+                                        @endif
+                                     @endif
                                 </tr>
 
                                 @for($k=1;$k<$mission_help_other_count;$k++)
                                     {{--{!! dd($mission_help_other_count) !!}--}}
 
                                     <tr>
-                                        @if(isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]) && $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name'] == "未分配任務")
+                                        @if(isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]) && $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name'] == "未分配任務")
                                             <td>中央</td>
-                                        @elseif (isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
+                                        @elseif (isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
                                             <td>{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_name']  !!}</td>
                                         @endif
-                                        @if(isset($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
-                                            <td class="text-right">{!! count($mission_help_other_users_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']])  !!}</td>
+
+                                        @if(isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']]))
+                                                <td class="text-right"> {!! count($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_list_id']])  !!} </td>
                                         @endif
 
                                             {{--<td class="text-right">{!! $mission_help_other_array[$mission_support_people_array[$mission_list_id][$i]['mission_support_person_id']][$k]['mission_help_other_num']  !!}</td>--}}
@@ -581,7 +603,6 @@
                                             {{--@endfor--}}
                                                 @foreach($roles as $role)
                                                     @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
-
                                                         @if (isset($mission_support_people_array) )
                                                             @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id]))
                                                                 <div style="display: none">
@@ -589,10 +610,40 @@
                                                                 </div>
                                                                 {{--@for($i=1;$i<$roles_count;$i++)--}}
                                                                 <td class="text-right ">
+
                                                                     @for($j=1;$j<$mission_support_people_array_count;$j++)
+
+
+                                                                        {{--此段if是複製上面程式碼 的計算張數與人數的部分, 原本$mission_list_id的部分改成   ->      $mission_support_people_list->mission_list_id--}}
+                                                                        @if(isset($mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']]) )
+                                                                            <div style="display: none">
+                                                                                {{--計算每張請求支援單有多少人支援了--}}
+                                                                                {!! $mission_help_other_count = count($mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']])+1 !!}
+                                                                                {!! $mission_help_other_num_total = 0 !!}
+                                                                                {{--{!! dd($mission_help_other_count) !!}--}}
+                                                                                {{--計算支援給我們多少人--}}
+                                                                                @for($k=1;$k<$mission_help_other_count;$k++)
+                                                                                    @if(isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_list_id']]))
+                                                                                        {!! $mission_help_other_num_total = $mission_help_other_num_total + count($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_list_id']]) !!}
+                                                                                    @endif
+                                                                                @endfor
+
+                                                                                {{--@for($j=1;$j<$mission_help_other_count;$j++)--}}
+                                                                                {{--{!! $mission_help_other_num_total = $mission_help_other_num_total + $mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$i]['mission_support_person_id']][$j]['mission_help_other_num'] !!}--}}
+                                                                                {{--@endfor--}}
+                                                                            </div>
+                                                                        @else
+                                                                            {{--{!! dd($i) !!}--}}
+                                                                            <div style="display: none">
+                                                                                {!! $mission_help_other_count = 1  !!}
+                                                                                {!! $mission_help_other_num_total = 0 !!}
+                                                                            </div>
+                                                                        @endif
+
+
                                                                         @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]))
                                                                             @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description)
-                                                                               {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] !!}
+                                                                               {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] - $mission_help_other_num_total !!}
                                                                             @else
 
                                                                             @endif

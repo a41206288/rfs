@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/support_seeder.php" afterPath="$PROJECT_DIR$/database/seeds/support_seeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -25,41 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="people_manage_resource_c.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
+      <file leaf-file-name="LocalMissionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="171" column="64" selection-start-line="171" selection-start-column="64" selection-end-line="171" selection-end-column="64" />
+            <state vertical-scroll-proportion="13.692307">
+              <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CenterMissionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
+      <file leaf-file-name="user_seeder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mission_seeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/mission_seeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="250" column="46" selection-start-line="250" selection-start-column="46" selection-end-line="250" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsersCallController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersCallController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="41.48387">
+              <caret line="313" column="22" selection-start-line="313" selection-start-column="15" selection-end-line="313" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -68,97 +51,36 @@
       <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4593573">
-              <caret line="482" column="301" selection-start-line="482" selection-start-column="301" selection-end-line="482" selection-end-column="301" />
+            <state vertical-scroll-proportion="1.0">
+              <caret line="616" column="136" selection-start-line="616" selection-start-column="136" selection-end-line="616" selection-end-column="136" />
               <folding>
-                <element signature="e#1468#1493#0#HTML" expanded="true" />
-                <element signature="e#2141#2182#0#HTML" expanded="true" />
-                <element signature="e#4919#4944#0#HTML" expanded="true" />
-                <element signature="e#7382#7423#0#HTML" expanded="true" />
-                <element signature="e#8046#8067#0#HTML" expanded="true" />
-                <element signature="e#8410#8489#0#HTML" expanded="true" />
-                <element signature="e#8773#8794#0#HTML" expanded="true" />
-                <element signature="e#9992#10013#0#HTML" expanded="true" />
-                <element signature="e#21485#21510#0#HTML" expanded="true" />
-                <element signature="e#24812#24837#0#HTML" expanded="true" />
-                <element signature="e#26390#26431#0#HTML" expanded="true" />
-                <element signature="e#26853#26874#0#HTML" expanded="true" />
-                <element signature="e#27217#27296#0#HTML" expanded="true" />
-                <element signature="e#27569#27590#0#HTML" expanded="true" />
-                <element signature="e#29142#29163#0#HTML" expanded="true" />
-                <element signature="e#29444#29523#0#HTML" expanded="true" />
-                <element signature="e#35106#35131#0#HTML" expanded="true" />
-                <element signature="e#36420#36445#0#HTML" expanded="true" />
-                <element signature="e#37989#38030#0#HTML" expanded="true" />
-                <element signature="e#39553#39574#0#HTML" expanded="true" />
-                <element signature="e#40801#40822#0#HTML" expanded="true" />
-                <marker date="1447410557641" expanded="true" signature="5957:6195" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="5971:6193" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="6282:6494" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="6296:6492" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="8104:8259" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="26911:27066" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="33312:33567" placeholder="..." />
-                <marker date="1447410557641" expanded="true" signature="33319:33564" placeholder="..." />
+                <element signature="e#28024#28045#0#HTML" expanded="true" />
+                <element signature="e#28388#28467#0#HTML" expanded="true" />
+                <element signature="e#42930#42951#0#HTML" expanded="true" />
+                <element signature="e#44032#44053#0#HTML" expanded="true" />
+                <element signature="e#46954#46975#0#HTML" expanded="true" />
+                <marker date="1447496825919" expanded="true" signature="5957:6195" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="5971:6193" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="6282:6494" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="6296:6492" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="8104:8259" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="28082:28237" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="29742:30116" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="29813:30114" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="35385:35696" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="35392:35693" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="45441:45873" placeholder="..." />
+                <marker date="1447496825919" expanded="true" signature="45512:45871" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="victim_EMT.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php">
+      <file leaf-file-name="LocalPeopleController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage_master.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="272" column="10" selection-start-line="272" selection-start-column="10" selection-end-line="272" selection-end-column="10" />
-              <folding>
-                <marker date="1447410554838" expanded="true" signature="14212:14215" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="message_seeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/message_seeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="463" column="213" selection-start-line="463" selection-start-column="213" selection-end-line="463" selection-end-column="213" />
-              <folding>
-                <marker date="1447246827787" expanded="true" signature="15550:15762" placeholder="..." />
-                <marker date="1447246827787" expanded="true" signature="15564:15760" placeholder="..." />
-                <marker date="1447246827787" expanded="true" signature="33125:33366" placeholder="..." />
-                <marker date="1447246827787" expanded="true" signature="33137:33364" placeholder="..." />
-                <marker date="1447246827787" expanded="true" signature="35589:35826" placeholder="..." />
-                <marker date="1447246827787" expanded="true" signature="36050:36285" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocalMissionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.483871">
-              <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+            <state vertical-scroll-proportion="-13.129032">
+              <caret line="100" column="49" selection-start-line="100" selection-start-column="49" selection-end-line="100" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -175,7 +97,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceProductController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CenterResourceProductController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceLocalPeopleController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceLocalProductController.php" />
@@ -213,7 +134,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_04_11_121949_create_mission_table.php" />
         <option value="$PROJECT_DIR$/app/Mission_help_other_user.php" />
         <option value="$PROJECT_DIR$/database/seeds/user_seeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/support_seeder.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_06_03_034909_create_support_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersHomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
@@ -224,6 +144,8 @@
         <option value="$PROJECT_DIR$/database/seeds/mission_seeder.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" />
+        <option value="$PROJECT_DIR$/database/seeds/support_seeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
       </list>
@@ -736,12 +658,6 @@
       <option name="number" value="Default" />
       <updated>1428751848408</updated>
     </task>
-    <task id="LOCAL-00013" summary="中央指揮官頁面完成">
-      <created>1432367830607</created>
-      <option name="number" value="00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1432367830607</updated>
-    </task>
     <task id="LOCAL-00014" summary="創建執行部門reports table">
       <created>1433071426724</created>
       <option name="number" value="00014" />
@@ -1030,12 +946,18 @@
       <option name="project" value="LOCAL" />
       <updated>1447329244173</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary=" 地方指揮官 修改測資(存檔)時發生的問題修改&#10; 當支援人數都報到時會無法計算人數的bug">
+      <created>1447410819427</created>
+      <option name="number" value="00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1447410819427</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26573938" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1044,7 +966,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.057416268" sideWeight="0.5139092" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.054226477" sideWeight="0.48609078" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.054226477" sideWeight="0.48609078" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -1059,6 +981,29 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.057416268" sideWeight="0.5139092" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.054226477" sideWeight="0.48609078" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26573938" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1072,7 +1017,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="local resources  html update" />
     <MESSAGE value="local missing and analysis update" />
     <MESSAGE value="user application  save finish" />
     <MESSAGE value="center resources update" />
@@ -1097,7 +1041,8 @@
     <MESSAGE value="人員種類 -&gt; 職位" />
     <MESSAGE value="聊天室改進master" />
     <MESSAGE value=" 地方指揮官 修改測資(存檔)時發生的問題修改" />
-    <option name="LAST_COMMIT_MESSAGE" value=" 地方指揮官 修改測資(存檔)時發生的問題修改" />
+    <MESSAGE value=" 地方指揮官 修改測資(存檔)時發生的問題修改&#10; 當支援人數都報到時會無法計算人數的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value=" 地方指揮官 修改測資(存檔)時發生的問題修改&#10; 當支援人數都報到時會無法計算人數的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1123,13 +1068,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/application_input.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.86902654">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/report_reliever.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1315,6 +1253,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1329,13 +1268,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64136624">
           <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/support_seeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-150.51613">
-          <caret line="1168" column="48" selection-start-line="1168" selection-start-column="48" selection-end-line="1168" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -1365,13 +1297,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.83870965">
-          <caret line="313" column="22" selection-start-line="313" selection-start-column="15" selection-end-line="313" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1425,16 +1350,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="272" column="10" selection-start-line="272" selection-start-column="10" selection-end-line="272" selection-end-column="10" />
-          <folding>
-            <marker date="1447410554838" expanded="true" signature="14212:14215" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/message_seeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1443,26 +1358,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state vertical-scroll-proportion="-75.48387">
+          <caret line="272" column="10" selection-start-line="272" selection-start-column="10" selection-end-line="272" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="463" column="213" selection-start-line="463" selection-start-column="213" selection-end-line="463" selection-end-column="213" />
-          <folding>
-            <marker date="1447246827787" expanded="true" signature="15550:15762" placeholder="..." />
-            <marker date="1447246827787" expanded="true" signature="15564:15760" placeholder="..." />
-            <marker date="1447246827787" expanded="true" signature="33125:33366" placeholder="..." />
-            <marker date="1447246827787" expanded="true" signature="33137:33364" placeholder="..." />
-            <marker date="1447246827787" expanded="true" signature="35589:35826" placeholder="..." />
-            <marker date="1447246827787" expanded="true" signature="36050:36285" placeholder="..." />
-          </folding>
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1482,56 +1390,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.483871">
-          <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+          <caret line="463" column="213" selection-start-line="463" selection-start-column="213" selection-end-line="463" selection-end-column="213" />
+          <folding>
+            <marker date="1447246827787" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1447246827787" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1447246827787" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1447246827787" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1447246827787" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1447246827787" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/support_seeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.709677">
+          <caret line="1175" column="59" selection-start-line="1175" selection-start-column="59" selection-end-line="1175" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="41.48387">
+          <caret line="313" column="22" selection-start-line="313" selection-start-column="15" selection-end-line="313" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.129032">
+          <caret line="100" column="49" selection-start-line="100" selection-start-column="49" selection-end-line="100" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.692307">
+          <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4593573">
-          <caret line="482" column="301" selection-start-line="482" selection-start-column="301" selection-end-line="482" selection-end-column="301" />
+        <state vertical-scroll-proportion="1.0">
+          <caret line="616" column="136" selection-start-line="616" selection-start-column="136" selection-end-line="616" selection-end-column="136" />
           <folding>
-            <element signature="e#1468#1493#0#HTML" expanded="true" />
-            <element signature="e#2141#2182#0#HTML" expanded="true" />
-            <element signature="e#4919#4944#0#HTML" expanded="true" />
-            <element signature="e#7382#7423#0#HTML" expanded="true" />
-            <element signature="e#8046#8067#0#HTML" expanded="true" />
-            <element signature="e#8410#8489#0#HTML" expanded="true" />
-            <element signature="e#8773#8794#0#HTML" expanded="true" />
-            <element signature="e#9992#10013#0#HTML" expanded="true" />
-            <element signature="e#21485#21510#0#HTML" expanded="true" />
-            <element signature="e#24812#24837#0#HTML" expanded="true" />
-            <element signature="e#26390#26431#0#HTML" expanded="true" />
-            <element signature="e#26853#26874#0#HTML" expanded="true" />
-            <element signature="e#27217#27296#0#HTML" expanded="true" />
-            <element signature="e#27569#27590#0#HTML" expanded="true" />
-            <element signature="e#29142#29163#0#HTML" expanded="true" />
-            <element signature="e#29444#29523#0#HTML" expanded="true" />
-            <element signature="e#35106#35131#0#HTML" expanded="true" />
-            <element signature="e#36420#36445#0#HTML" expanded="true" />
-            <element signature="e#37989#38030#0#HTML" expanded="true" />
-            <element signature="e#39553#39574#0#HTML" expanded="true" />
-            <element signature="e#40801#40822#0#HTML" expanded="true" />
-            <marker date="1447410557641" expanded="true" signature="5957:6195" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="5971:6193" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="6282:6494" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="6296:6492" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="8104:8259" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="26911:27066" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="33312:33567" placeholder="..." />
-            <marker date="1447410557641" expanded="true" signature="33319:33564" placeholder="..." />
+            <element signature="e#28024#28045#0#HTML" expanded="true" />
+            <element signature="e#28388#28467#0#HTML" expanded="true" />
+            <element signature="e#42930#42951#0#HTML" expanded="true" />
+            <element signature="e#44032#44053#0#HTML" expanded="true" />
+            <element signature="e#46954#46975#0#HTML" expanded="true" />
+            <marker date="1447496825919" expanded="true" signature="5957:6195" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="5971:6193" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="6282:6494" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="6296:6492" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="8104:8259" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="28082:28237" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="29742:30116" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="29813:30114" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="35385:35696" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="35392:35693" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="45441:45873" placeholder="..." />
+            <marker date="1447496825919" expanded="true" signature="45512:45871" placeholder="..." />
           </folding>
         </state>
       </provider>

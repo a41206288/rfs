@@ -1173,7 +1173,7 @@ class support_seeder extends Seeder{
 
         $mission_help_other_user = new App\Mission_help_other_user;
         $mission_help_other_user->mission_help_other_user_id = 3;
-        $mission_help_other_user->mission_help_other_id = 1;
+        $mission_help_other_user->mission_help_other_id = 3;
         $mission_help_other_user->id = 55;
         $mission_help_other_user->arrive_mission = 0;
         $mission_help_other_user->save();
