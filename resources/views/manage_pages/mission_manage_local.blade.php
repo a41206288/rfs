@@ -41,8 +41,9 @@
         <div class="text-right panel">
             <div class="btn-group">
                 <button type="button" class="btn btn-default">出發至任務現場</button>
-                <button type="button" class="btn btn-default">到達現場，並開始執行任務</button>
-                <button type="button" class="btn btn-default">任務執行完成，返回至中央</button>
+                <button type="button" class="btn btn-default active">到達現場，並開始執行任務</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>
+
             </div>
         </div>
         <div class="col-xs-9 col-sm-7 col-md-7" >
@@ -126,7 +127,7 @@
                             {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">閒置</button>--}}
                             {{--<button type="button" class="btn btn-sm btn-default navbar-sm-btn">負傷</button>--}}
 
-                            {!! Form::select('mission_list_id', array('' => '更改人員狀態','執行任務' => '執行任務', '閒置' => '閒置', '負傷' => '負傷'),  '', ['class' => 'navbar-sm-btn btn-sm','style'=>'border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
+                            {!! Form::select('status', array('' => '更改人員狀態','執行任務' => '執行任務', '閒置' => '閒置', '負傷' => '負傷'),  '', ['class' => 'navbar-sm-btn btn-sm','style'=>'border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
 
                             <!-- Single button -->
                             {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;','onchange'=>'submit();']) !!}
@@ -748,7 +749,28 @@
 
         </div>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade " id="finish_mission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            {!! Form::open(array('url' => 'call/manage/createMission','id'=>'my_form'))!!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">完成任務</h4>
+                </div>
+                <div id="new_mission_list_Modal_content" class="modal-body">
+                    確認向中央回報，已完成任務 ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    {{--<button type="button" class="btn btn-primary">確認將通報新增成任務</button>--}}
+                    {!! Form::submit('向中央通報完成任務', ['class' => 'btn btn-primary']) !!}
+                </div>
+            </div><!-- /.modal-content -->
+            {!! Form::close() !!}
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal -->
 @endsection
 @section('javascript')
 

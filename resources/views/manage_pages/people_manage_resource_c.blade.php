@@ -33,7 +33,7 @@
             <!-- Tab panes -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#application_lists" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn"><b>向民眾招募志工列表</b></a></li>
-                <li><a href="#application_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">已應徵志工名單</a></li>
+                <li><a href="#application_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn ">已應徵志工名單</a></li>
                 <li><a href="#new_person" role="tab" data-toggle="tab" class="btn btn-sm btn-default navbar-sm-btn">新增職位</a></li>
             </ul>
             <div class="tab-content">
@@ -175,12 +175,12 @@
                                             <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%Y/%m/%d') }}</td>
                                             <td>{{ (new Carbon\Carbon($center_support_person->created_at))->formatLocalized('%H:%M') }}</td>
                                             <td>
-                                                {{--{!!$center_support_person->description  !!}--}}
-                                                <a id="{!!$center_support_person->slug!!}" name="change_skill" href="#" class="" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"
+                                                {!!$center_support_person->description  !!}
+                                                {{--<a id="{!!$center_support_person->slug!!}" name="change_skill" href="#" class="" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"--}}
                                                    {{--title="所需技能 "--}}
                                                    {{--data-content="讀取該職業技能<br />"--}}
-                                                   data-html="true" role="button"> {!!$center_support_person->description  !!}
-                                                </a>
+                                                   {{--data-html="true" role="button"> {!!$center_support_person->description  !!}--}}
+                                                {{--</a>--}}
 
 
                                             </td>
@@ -201,57 +201,57 @@
                             </table>
                         </div>
                         {!! Form::close() !!}
-                        @if(isset($center_support_people))
-                            @foreach($center_support_people as $center_support_person)
-                                <!-- Modal -->
-                                <div class="modal fade" id="change_{!!$center_support_person->slug!!}_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            {!! Form::open(array('url' => 'resource/manage/people/center/editSkill', 'method' => 'post', 'onSubmit' => 'checkForm();')) !!}
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">修改技能</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <table class="table table-striped">
-                                                    <tr><td width="20%">組別</td><td>{!!$center_support_person->description  !!}</td></tr>
-                                                    <tr><td>技能</td>
-                                                        <td>
-                                                            @foreach($skills as $skill)
-                                                                @if(isset($center_support_people_skills_array[$center_support_person->center_support_person_id][$skill->skill_id]))
-                                                                    <label>
-                                                                        <input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" checked> {!! $skill->skill_name !!}
-                                                                    </label>
-                                                                @else
-                                                                    <label>
-                                                                        <input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" > {!! $skill->skill_name !!}
-                                                                    </label>
-                                                                @endif
-                                                            @endforeach
-                                                            {!! Form::hidden('center_support_people_id',$center_support_person->center_support_person_id) !!}
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                        {{--@if(isset($center_support_people))--}}
+                            {{--@foreach($center_support_people as $center_support_person)--}}
+                                {{--<!-- Modal -->--}}
+                                {{--<div class="modal fade" id="change_{!!$center_support_person->slug!!}_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--}}
+                                    {{--<div class="modal-dialog">--}}
+                                        {{--<div class="modal-content">--}}
+                                            {{--{!! Form::open(array('url' => 'resource/manage/people/center/editSkill', 'method' => 'post', 'onSubmit' => 'checkForm();')) !!}--}}
+                                            {{--<div class="modal-header">--}}
+                                                {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>--}}
+                                                {{--<h4 class="modal-title" id="myModalLabel">修改技能</h4>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="modal-body">--}}
+                                                {{--<table class="table table-striped">--}}
+                                                    {{--<tr><td width="20%">組別</td><td>{!!$center_support_person->description  !!}</td></tr>--}}
+                                                    {{--<tr><td>技能</td>--}}
+                                                        {{--<td>--}}
+                                                            {{--@foreach($skills as $skill)--}}
+                                                                {{--@if(isset($center_support_people_skills_array[$center_support_person->center_support_person_id][$skill->skill_id]))--}}
+                                                                    {{--<label>--}}
+                                                                        {{--<input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" checked> {!! $skill->skill_name !!}--}}
+                                                                    {{--</label>--}}
+                                                                {{--@else--}}
+                                                                    {{--<label>--}}
+                                                                        {{--<input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" > {!! $skill->skill_name !!}--}}
+                                                                    {{--</label>--}}
+                                                                {{--@endif--}}
+                                                            {{--@endforeach--}}
+                                                            {{--{!! Form::hidden('center_support_people_id',$center_support_person->center_support_person_id) !!}--}}
+                                                        {{--</td>--}}
+                                                    {{--</tr>--}}
+                                                {{--</table>--}}
 
-                                            </div>
-                                            <div class="modal-footer">
+                                            {{--</div>--}}
+                                            {{--<div class="modal-footer">--}}
                                                 {{--<button type="button" class="btn btn-default" data-dismiss="modal">修改</button>--}}
                                                 {{--<button type="button" class="btn btn-primary">修改</button>--}}
-                                                {!! Form::submit('修改', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}
-                                            </div>
-                                            {!! Form::close() !!}
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                            @endforeach
-                        @endif
+                                                {{--{!! Form::submit('修改', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}--}}
+                                            {{--</div>--}}
+                                            {{--{!! Form::close() !!}--}}
+                                        {{--</div><!-- /.modal-content -->--}}
+                                    {{--</div><!-- /.modal-dialog -->--}}
+                                {{--</div><!-- /.modal -->--}}
+                            {{--@endforeach--}}
+                        {{--@endif--}}
                         {{--表格尾端--}}
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="collapse navbar-sm-collapse" >
 
                                 <ul class="nav navbar-sm-nav navbar-sm-right">
-                                    {!! Form::open(array('url' => 'resource/manage/people/center/createPeopleSupport', 'method' => 'post')) !!}
-                                    {!! Form::select('mission_support_people_id',$role_of_work, '', ['class' => 'navbar-sm-btn btn-sm']) !!}
+                                    {!! Form::open(array('url' => 'resource/manage/people/center/createPeopleSupport', 'method' => 'post','onsubmit' => 'return checkForm("create_people_support");')) !!}
+                                    {!! Form::select('mission_support_people_role',$role_of_work, '', ['class' => 'navbar-sm-btn btn-sm','required']) !!}
                                     {!! Form::number('mission_support_people_num', 0, ['min'=>'1','class' => 'text-right','style'=>'width:200px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}&nbsp;&nbsp;人&nbsp;&nbsp;
                                     {{--{!! Form::text('mission_support_people_reason','',['placeholder'=>'增援原因','style'=>'width:220px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
                                     {!! Form::submit('新增新的志工需求單', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
@@ -264,20 +264,19 @@
                 </div>
                 <div class="tab-pane" id="new_person">
                     <div class="panel panel-default" >
-                        {!! Form::open(array('url' => 'resource/manage/people/center/updatePeople'))!!}
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="navbar-sm-header">{{--標題--}}
                                 <a class="navbar-sm-brand" href="#">新增職位</a>
                             </div>
 
                         </nav>
+                        {!! Form::open(array('url' => 'resource/manage/people/center/creatRole','onsubmit' => 'return checkForm("creat_role");','id' => 'creat_role_form'))!!}
                         <div style="height: 200px;overflow-y: scroll;">{{--固定高度表格--}}
                             <table class="table">
-
                                 <tbody id="center_support_person_table">
                                 <tr>
                                     <td width="25%"><b>職位名稱：</b></td>
-                                    <td width="25%"><input type="text" class="form-control"></td>
+                                    <td width="25%"> {!! Form::text('role_name','',['class' => 'form-control','id' => 'skill_name']) !!}</td>
                                     <td width="25%"></td><td width="25%"></td>
                                 </tr>
                                 <tr>
@@ -315,29 +314,41 @@
                                     </td>
                                     <td>
                                         <label>
-                                            {{--<input name="skills[]" type="checkbox" value="" disabled="true">--}}
-                                            <input name="skills[]" type="text" class="form-control" placeholder="新增技能">
-
+                                            <input name="skills[]" type="checkbox" value="" >清理街道
                                         </label>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-default">新增</button>
+                                    <td></td>
+                                </tr>
+                                {!! Form::close() !!}
+                                <tr>
+                                    <td colspan="4" class="text-right">
+                                        {!! Form::open(array('url' => 'resource/manage/people/center/createSkill'))!!}
+                                        <label>
+                                            {{--<input name="skills[]" type="checkbox" value="" disabled="true">--}}
+                                            {{--<input name="skill" type="text" class="form-control" placeholder="新增技能">--}}
+                                            {{--<button class="btn btn-default">新增</button>--}}
+                                            {!! Form::text('skill','',['class' => 'form-control']) !!}
+                                        </label>
+                                        {!! Form::submit('新增', ['placeholder' => '技能名稱','class' => 'btn btn-sm btn-default navbar-sm-btn','required']) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
 
 
                                 </tbody>
-                                {{--{!! Form::close() !!}--}}
+
                             </table>
                         </div>
                         <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                             <div class="collapse navbar-sm-collapse" >
                                 <ul class="nav navbar-sm-nav navbar-sm-right">
-                                    {!! Form::submit('新增職位', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                                    {{--{!! Form::open(array('url' => 'resource/manage/people/center/creatRole'))!!}--}}
+                                    {!! Form::submit('新增職位', ['class' => 'btn btn-sm btn-default navbar-sm-btn','id' =>'creat_role_submit']) !!}
+                                    {{--{!! Form::close() !!}--}}
                                 </ul>
                             </div>
                         </nav>
-                        {!! Form::close() !!}
+
                         {{--表格尾端--}}
                     </div>
                 </div>
@@ -346,7 +357,7 @@
             <div class="panel panel-default" >
                 <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                     <div class="navbar-sm-header">{{--標題--}}
-                        <a class="navbar-sm-brand" href="#">中央閒置志工資料列表</a>
+                        <a class="navbar-sm-brand" href="#">中央閒置志工表</a>
                     </div>
                     {{--<br>--}}
                     <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
@@ -363,25 +374,12 @@
                         </ul>
                         {!! Form::open(array('url' => 'resource/manage/people/center/editPeople','onsubmit' => 'return checkForm("free_users");','id' => 'form_free_users'))!!}
                         <ul class="nav navbar-sm-nav navbar-sm-right">
-                            {{--{!! Form::submit('將志工分配至現有任務', ['class' => 'btn btn-default btn-sm navbar-sm-btn']) !!}--}}
-                            <div class="btn-group">
-                                {{--<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">--}}
-                                    {{--將志工分配至現有任務 <span class="caret"></span>--}}
-                                {{--</button>--}}
-                                {{--<ul class="dropdown-menu" role="menu">--}}
-
-                                    {{--@if(isset($mission_lists))--}}
-                                        {{--@foreach($mission_lists as $mission_list)--}}
-                                            {{--@if($mission_list->mission_name != '未分配任務')--}}
-                                                {{--<li><a href="#">{!! $mission_list->mission_name !!}</a></li>--}}
-                                            {{--@endif--}}
-                                        {{--@endforeach--}}
-                                    {{--@endif--}}
-                                {{--</ul>--}}
-                                {!! Form::select('mission_list_id', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
-                            </div>
+                            {!! Form::select('status', array('' => '更改人員狀態', '閒置' => '閒置', '負傷' => '負傷'),  '', ['class' => 'navbar-sm-btn btn-sm','style'=>'border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
+                            {!! Form::hidden('mission_list_id', 1) !!}
+                            {!! Form::select('mission_list_id_other', $mission_support_people_names, '', ['class' => 'navbar-sm-btn btn-sm','style'=>'width:170px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
                             {!! Form::submit('報到', ['class' => 'btn btn-default btn-sm navbar-sm-btn', 'id' => 'submit_arrived', 'style' => 'display: none;']) !!}
                         </ul>
+                        {{--{!! Form::close() !!}--}}
                     </div>
                 </nav>
                 <div style="height: 200px;overflow-y: scroll;">{{--固定高度表格--}}
@@ -394,7 +392,7 @@
                             <th></th>
 
                             <th>職位</th>
-                            {{--<th>狀態</th>--}}
+                            <th>狀態</th>
                             <th>姓名</th>
                             <th>電話</th>
                             {{--<th>Email</th>--}}
@@ -407,15 +405,16 @@
                         </tr>
                         </thead>
                         <tbody id="free_users_table">
+                        {{--{!! Form::open(array('url' => 'resource/manage/people/center/editPeople','onsubmit' => 'return checkForm("free_users");','id' => 'form_free_users'))!!}--}}
                         @if(isset($centerFreeUsers))
                             @foreach($centerFreeUsers as $centerFreeUser)
                                 @if($centerFreeUser->arrived == 1)
                                     <tr>
-                                        <td>{!! Form::checkbox('user_ids[]', $centerFreeUser->user_id)!!}</td>
-                                        {{--<td></td>--}}
-                                        <td>{!!$centerFreeUser->description!!}</td>
-                                        <td>{!!$centerFreeUser->user_name!!}</td>
-                                        <td>{!!$centerFreeUser->phone!!}</td>
+                                        <td width="5%">{!! Form::checkbox('user_ids[]', $centerFreeUser->user_id)!!}</td>
+                                        <td width="15%">{!!$centerFreeUser->description!!}</td>
+                                        <td width="15%">{!!$centerFreeUser->status!!}</td>
+                                        <td width="10%">{!!$centerFreeUser->user_name!!}</td>
+                                        <td width="55%">{!!$centerFreeUser->phone!!}</td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -441,12 +440,12 @@
                         {{--@endif--}}
 
 
-
+                        {!! Form::close() !!}
 
                         </tbody>
 
                     </table>
-                    {!! Form::close() !!}
+
                 </div>
                 {{--表格尾端--}}
 
@@ -636,7 +635,22 @@
 
 
 
-
+    <div class="modal fade" id="error_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">錯誤訊息</h4>
+                </div>
+                <div id="error_Modal_content" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                    {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 @endsection
 @section('javascript')
 
@@ -652,23 +666,25 @@
 
     </script>
     <script>
-        $("a[name='change_skill']").click(function(){
-//            alert($(this).attr('id'));
-            var model_name = "#change_" + $(this).attr('id') + "_Modal"
-            $(model_name).modal('show');
-        });
-        $('#free_users_table,#center_support_person_table').find('tr').click(function () {
-            $(this).find("input[type='checkbox']").click();
-        });
+//        $("a[name='change_skill']").click(function(){
+////            alert($(this).attr('id'));
+//            var model_name = "#change_" + $(this).attr('id') + "_Modal"
+//            $(model_name).modal('show');
+//        });
+//        $('#free_users_table,#center_support_person_table').find('tr').click(function () {
+//            $(this).find("input[type='checkbox']").click();
+//        });
         $("#arrived, #center_user_roles").change(function () {
             if($('#arrived option:selected').text() == "已報到"){
                 var send = 1;
-                $("select[name='mission_list_id']").show();
+                $("select[name='mission_list_id_other']").show();
+                $("select[name='status']").show();
                 $('#submit_arrived').hide();
             }
             else{
                 var send = 0;
-                $("select[name='mission_list_id']").hide();
+                $("select[name='mission_list_id_other']").hide();
+                $("select[name='status']").hide();
                 $('#submit_arrived').show();
             }
             $.ajax({
@@ -679,14 +695,17 @@
                 },
                 data: {
                     arrived: send,
-                    roles: $('#center_user_roles option:selected').text()
+                    roles: $('#center_user_roles option:selected').val()
                 },
                 success: function(response) {
                     updateTable(response,"free_users_table");
 //                    alert(response);
                 },
                 error: function(xhr) {
-                    alert('Ajax request 發生錯誤');
+//                    alert('Ajax request 發生錯誤');
+                    var obj = document.getElementById("error_Modal_content");
+                    obj.innerHTML = "Ajax request 發生錯誤";
+                    $('#error_Modal').modal('show');
                 }
             });
         });
@@ -698,13 +717,16 @@
                     'X-CSRF-Token': "{{ Session::token() }}"
                 },
                 data: {
-                    roles: $('#center_support_person_detail_role option:selected').text()
+                    roles: $('#center_support_person_detail_role option:selected').val()
                 },
                 success: function(response) {
                     updateTable(response,"center_support_person_table");
                 },
                 error: function(xhr) {
-                    alert('Ajax request 發生錯誤');
+//                    alert('Ajax request 發生錯誤');
+                    var obj = document.getElementById("error_Modal_content");
+                    obj.innerHTML = "Ajax request 發生錯誤";
+                    $('#error_Modal').modal('show');
                 }
             });
         });
@@ -765,34 +787,85 @@
     <script>
         var checked_center_support_person = 0;
         var checked_center_free_user = 0;
+        var checked_new_role_skills = 0;
+
         $('#submit_center_support_person').click(function(){
             checked_center_support_person = $("input[name='center_support_person_detail_ids[]']:checked").length;
         });
-        $("select[name='mission_list_id']").change(function(){
+        $("select[name='mission_list_id_other']").change(function(){
+            checked_center_free_user = $("input[name='user_ids[]']:checked").length;
+            $('#form_free_users').submit();
+        });
+        $("select[name='status']").change(function(){
             checked_center_free_user = $("input[name='user_ids[]']:checked").length;
             $('#form_free_users').submit();
         });
         $('#submit_arrived').click(function(){
             checked_center_free_user = $("input[name='user_ids[]']:checked").length;
         });
+        $('#creat_role_submit').click(function(){
+            checked_new_role_skills = $("input[name='skills[]']:checked").length;
+            $('#creat_role_form').submit();
+
+        });
+
 
         function checkForm(form){
             if(form == "center_support_person"){
                 if(checked_center_support_person > 0){
                     return true;
                 }
-                alert("請至少勾選1位人員");
+//                alert("請至少勾選1位人員");
+                var obj = document.getElementById("error_Modal_content");
+                obj.innerHTML = "請至少勾選1位人員";
+                $('#error_Modal').modal('show');
+                return false;
+            }
+
+            if(form == "create_people_support"){
+                if($("select[name='mission_support_people_role']").val() != ""){
+                    return true;
+                }
+                var obj = document.getElementById("error_Modal_content");
+                obj.innerHTML = "請選擇職位";
+                $('#error_Modal').modal('show');
                 return false;
             }
             if(form == "free_users"){
+
                 if(checked_center_free_user > 0){
                     return true;
                 }
-                alert("請至少勾選1位人員");
+//                alert("請至少勾選1位人員");
+                var obj = document.getElementById("error_Modal_content");
+                obj.innerHTML = "請至少勾選1位人員";
+                $('#error_Modal').modal('show');
+                $("select[name='mission_list_id_other']").find('option[value=""]').attr("selected",true);
+                $("select[name='status']").find('option[value=""]').attr("selected",true);
+                return false;
+            }
+            if(form == "creat_role"){
+
+                if(checked_new_role_skills > 0 && $('#skill_name').val() != ""){
+                    return true;
+                }
+
+//                alert("請至少勾選1位人員");
+                var obj = document.getElementById("error_Modal_content");
+                if($('#skill_name').val() == "")
+                {
+                    obj.innerHTML = "請填寫技能名稱";
+                }
+                else
+                {
+                    obj.innerHTML = "請至少勾選1項技能";
+                }
+                $('#error_Modal').modal('show');
                 return false;
             }
             return false;
         }
     </script>
+
 
 @endsection

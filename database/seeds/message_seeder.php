@@ -9,8 +9,8 @@ use app\Chat_room;
 class message_seeder extends Seeder{
     use HasRole;
     public function run(){
-//        DB:: table('messages')->delete();
-//        DB:: table('chat_rooms')->delete();
+        DB:: table('messages')->delete();
+        DB:: table('chat_rooms')->delete();
 
         $chat_room = new App\Chat_room;
         $chat_room->chat_room_id = 1;

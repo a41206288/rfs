@@ -209,7 +209,7 @@ class user_seeder extends Seeder{
 
 
         $user = new App\User;
-        $user->id = 60;
+        $user->id = 58;
         $user->user_name = "曹北";
         $user->email = "south123@yahoo.com.tw";
         $user->password =Hash::make ('1234');
@@ -223,7 +223,7 @@ class user_seeder extends Seeder{
         $user->save();
 
         $Works_on = new App\Works_on;
-        $Works_on->id = 60;
+        $Works_on->id = 58;
         $Works_on->mission_list_id = 1;
         $Works_on->status = '閒置';
         $Works_on->save();

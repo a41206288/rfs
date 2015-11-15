@@ -642,9 +642,6 @@ class LocalMissionController extends Controller {
 		//
 	}
 
-    public function chat()
-    {
-        return "try to get and success!!!";
-    }
+
 
 }

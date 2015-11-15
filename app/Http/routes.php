@@ -213,7 +213,9 @@ Route::group([
         Route::post('resource/manage/people/center/createPeopleSupport', 'ResourceCenterPeopleController@create');
         Route::post('resource/manage/people/center/editPeopleSupport', 'ResourceCenterPeopleController@edit');
         Route::post('resource/manage/people/center/editPeople', 'ResourceCenterPeopleController@store');
-        Route::post('resource/manage/people/center/editSkill', 'ResourceCenterPeopleController@editSkill');
+//        Route::post('resource/manage/people/center/editSkill', 'ResourceCenterPeopleController@editSkill');
+        Route::post('resource/manage/people/center/createSkill', 'ResourceCenterPeopleController@creatSkill');
+        Route::post('resource/manage/people/center/creatRole', 'ResourceCenterPeopleController@creatRole');
         Route::post('resource/manage/people/center/updateTable', 'ResourceCenterPeopleController@show');
         //對話視窗
         Route::get('resource/center/manage/people/getUser', 'ChatController@get_users');

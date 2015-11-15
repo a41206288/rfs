@@ -745,7 +745,10 @@
         function checkForm()
         {
             if(mission_num - checked_num == 0){
-                alert("一個任務內至少要有一個通報");
+//                alert("一個任務內至少要有一個通報");
+                var obj = document.getElementById("error_Modal_content");
+                obj.innerHTML = "一個任務內至少要有一個通報";
+                $('#error_Modal').modal('show');
                 return false;
             }
 //            if(!canChange){
