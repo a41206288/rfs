@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mission_help_other;
 use App\Mission_help_other_user;
 use App\Mission_support_person;
+use App\Role_skill;
 use App\Skill;
 use App\User;
 use App\Works_on;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Kodeine\Acl\Models\Eloquent\Permission;
+use Kodeine\Acl\Models\Eloquent\Role;
 
 class ResourceCenterPeopleController extends Controller {
 
@@ -77,6 +79,7 @@ class ResourceCenterPeopleController extends Controller {
 		//取出所有技能
 		$skills = DB::table('skills')
 	->get();
+//		dd($skills);
 
 		//計算中心待命的各種類人數
 		$centerFreeUsers = DB::table('users')
@@ -192,9 +195,49 @@ class ResourceCenterPeopleController extends Controller {
 			}
 
 			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_person_id'] = $mission_support_person->mission_support_person_id;
+//			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_list_id'] = $mission_support_person->mission_list_id;
 			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['role'] = $mission_support_person->description;
 			$mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_num'] = $mission_support_person->mission_support_people_num;
                 $mission_support_people_array[$mission_support_person->mission_list_id][ $i]['mission_support_people_reason'] = $mission_support_person->mission_support_people_reason;
+
+		}
+//		dd($mission_support_people_array);
+
+
+		//取出哪個地點支援哪個地點的表
+		$mission_help_others = DB::table('mission_help_others')
+			->join('mission_lists','mission_lists.mission_list_id','=','mission_help_others.mission_list_id')
+			->where('mission_help_other_finish_time', NULL)
+//                    ->where('arrived',0)
+			->get();
+//dd($mission_help_others);
+		$mission_help_other_array =[];
+		foreach($mission_help_others as $mission_help_other){
+			if(!isset($mission_help_other_array[$mission_help_other->mission_support_person_id]))
+			{
+				$i=1;
+			}
+			else
+			{
+				$i=count($mission_help_other_array[$mission_help_other->mission_support_person_id])+1;
+			}
+			$mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_id'] = $mission_help_other->mission_help_other_id;
+			$mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_name'] = $mission_help_other->mission_name;
+			$mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_list_id'] = $mission_help_other->mission_list_id;
+
+//                $mission_help_other_array[$mission_help_other->mission_support_person_id][ $i]['mission_help_other_num'] = $mission_help_other->mission_help_other_num;
+		}
+
+		//取出哪個地點支援哪個地點的表包含哪些人
+		$mission_help_other_users = DB::table('mission_help_other_users')
+			->join('works_ons','works_ons.id','=','mission_help_other_users.id')
+			->get();
+//            dd($mission_help_other_users);
+		$mission_help_other_users_array = [];
+		foreach($mission_help_other_users as $mission_help_other_user){
+			if( $mission_help_other_user->arrive_mission != 1){
+				$mission_help_other_users_array[$mission_help_other_user->mission_help_other_id][$mission_help_other_user->mission_list_id ][$mission_help_other_user->id ] = $mission_help_other_user->arrive_mission;
+			}
 
 		}
 
@@ -316,6 +359,8 @@ class ResourceCenterPeopleController extends Controller {
 			->with('center_support_people_skills_array', $center_support_people_skills_array)
 			->with('skills', $skills)
 			->with('users', $users)
+			->with('mission_help_other_array', $mission_help_other_array)
+			->with('mission_help_other_users_array', $mission_help_other_users_array)
 
 
 	;
@@ -586,7 +631,7 @@ class ResourceCenterPeopleController extends Controller {
     public function creatSkill(Request $request) //新增技能
     {
         $inputs=$request->except('_token');
-        dd($inputs);
+//        dd($inputs);
         $skill=$request->input('skill');
         $Skill= new Skill();
         $Skill->skill_name = $skill;
@@ -598,12 +643,42 @@ class ResourceCenterPeopleController extends Controller {
     public function creatRole(Request $request) //新增職業
     {
         $inputs=$request->except('_token');
-        dd($inputs);
+//        dd($inputs);
         $role_name=$request->input('role_name');
         $skills=$request->input('skills');
 
         // 建立新的 role
-        //建立 rolee skill
+        $role = new Role();
+		$createRole = $role->create([
+			'name' => $role_name,
+			'slug' => $role_name,
+			'description' => $role_name
+		]);
+
+		$permission = new Permission();
+		$permRole = $permission->create([
+			'name'        => $role_name,
+			'slug'        => [          // pass an array of permissions.
+				'create'     => true,
+				'view'       => true,
+				'update'     => true,
+				'delete'     => true,
+				'view.phone' => true
+			],
+			'description' => $role_name
+		]);
+
+		$createRole->assignPermission($permRole);
+
+
+		//建立 role skill
+		$role_id = Permission::where('name', '=', $role_name)->first();
+		foreach($skills as $key => $value){
+			$role_skills = new Role_skill();
+			$role_skills->role_id = $role_id->id;
+			$role_skills->skill_id = $value;
+			$role_skills->save();
+		}
 
         return redirect()->route('resourcePanel');
 

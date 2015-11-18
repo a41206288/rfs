@@ -279,46 +279,29 @@
                                     <td width="25%"> {!! Form::text('role_name','',['class' => 'form-control','id' => 'skill_name']) !!}</td>
                                     <td width="25%"></td><td width="25%"></td>
                                 </tr>
+
+                                    <div style="display: none">
+                                        {!! $skill_count = 0 !!}
+                                    </div>
                                 <tr>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >外傷治療
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >傷患照料
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >水電管線維修
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >交通指揮
-                                        </label>
-                                    </td>
+                                    @foreach($skills as $skill)
+                                            <td>
+                                                    <label>
+                                                        <input name="skills[]" type="checkbox" value="{!! $skill->skill_id !!}" >{!! $skill->skill_name !!}
+                                                    </label>
+                                            </td>
+                                            <div style="display: none">
+                                                {!! $skill_count = $skill_count + 1 !!}
+                                            </div>
+                                           @if($skill_count == 4)
+                                               </tr><tr>
+                                                <div style="display: none">
+                                                    {!! $skill_count = 0!!}
+                                                </div>
+                                             @endif
+                                    @endforeach
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >協助脫困
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >滅火
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label>
-                                            <input name="skills[]" type="checkbox" value="" >清理街道
-                                        </label>
-                                    </td>
-                                    <td></td>
-                                </tr>
+
                                 {!! Form::close() !!}
                                 <tr>
                                     <td colspan="4" class="text-right">
@@ -509,7 +492,6 @@
                                             {{--@endfor--}}
                                             @foreach($roles as $role)
                                                 @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
-
                                                     @if (isset($mission_support_people_array) )
                                                         @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id]))
                                                             <div style="display: none">
@@ -518,13 +500,43 @@
                                                             {{--@for($i=1;$i<$roles_count;$i++)--}}
                                                             <td class="text-right divA">
                                                                 @for($j=1;$j<$mission_support_people_array_count;$j++)
+
+                                                                    {{--此段if是複製上面程式碼 的計算張數與人數的部分, 原本$mission_list_id的部分改成   ->      $mission_support_people_list->mission_list_id--}}
+                                                                    @if(isset($mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']]) )
+                                                                        <div style="display: none">
+                                                                            {{--計算每張請求支援單有多少人支援了--}}
+                                                                            {!! $mission_help_other_count = count($mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']])+1 !!}
+                                                                            {!! $mission_help_other_num_total = 0 !!}
+                                                                            {{--{!! dd($mission_help_other_count) !!}--}}
+                                                                            {{--計算支援給我們多少人--}}
+                                                                            @for($k=1;$k<$mission_help_other_count;$k++)
+                                                                                @if(isset($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_list_id']]))
+                                                                                    {!! $mission_help_other_num_total = $mission_help_other_num_total + count($mission_help_other_users_array[$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_help_other_id']][$mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_person_id']][$k]['mission_list_id']]) !!}
+                                                                                @endif
+                                                                            @endfor
+
+                                                                            {{--@for($j=1;$j<$mission_help_other_count;$j++)--}}
+                                                                            {{--{!! $mission_help_other_num_total = $mission_help_other_num_total + $mission_help_other_array[$mission_support_people_array[$mission_support_people_list->mission_list_id][$i]['mission_support_person_id']][$j]['mission_help_other_num'] !!}--}}
+                                                                            {{--@endfor--}}
+                                                                        </div>
+                                                                    @else
+                                                                        {{--{!! dd($i) !!}--}}
+                                                                        <div style="display: none">
+                                                                            {!! $mission_help_other_count = 1  !!}
+                                                                            {!! $mission_help_other_num_total = 0 !!}
+                                                                        </div>
+                                                                    @endif
+
+
+
                                                                     @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]))
-                                                                        @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description)
+                                                                        @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description &&
+                                                                        $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] - $mission_help_other_num_total != 0)
 
                                                                             <a href="#" class="" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-container="body"
                                                                                title="增援原因"
                                                                                data-content=" {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_reason'] !!}"
-                                                                               data-html="true" role="button"> {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] !!}
+                                                                               data-html="true" role="button"> {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] - $mission_help_other_num_total  !!}
                                                                             </a>
                                                                         @else
 

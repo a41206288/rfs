@@ -289,6 +289,7 @@
                                             <td></td>
                                             <td>{!! $missionUser->description !!}</td>
                                             {{--尋找此人要被派往哪個任務--}}
+
                                             @foreach($user_help_missions as $user_help_mission)
                                                 @if($user_help_mission->id == $missionUser->id)
                                                     {{--找到哪個任務後尋找他的任務名稱--}}
@@ -302,11 +303,16 @@
                                                     {{--@endforeach--}}
                                                 @endif
                                             @endforeach
+
                                             <td>{!! $missionUser->user_name !!}</td>
                                             <td>{!! $missionUser->phone !!}</td>
-                                            @foreach($help_missions_and_names as $help_mission_and_name)
-                                                @if($help_mission_and_name->mission_support_person_id == $user_help_mission->mission_support_person_id)
-                                                    <td>派往{!! $help_mission_and_name->mission_name  !!}</td>
+                                            @foreach($user_help_missions as $user_help_mission)
+                                                @if($user_help_mission->id == $missionUser->id)
+                                                    @foreach($help_missions_and_names as $help_mission_and_name)
+                                                        @if($help_mission_and_name->mission_support_person_id == $user_help_mission->mission_support_person_id)
+                                                            <td>派往{!! $help_mission_and_name->mission_name  !!}</td>
+                                                        @endif
+                                                    @endforeach
                                                 @endif
                                             @endforeach
                                         </tr>
@@ -643,7 +649,8 @@
 
 
                                                                         @if(isset($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]))
-                                                                            @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description)
+                                                                            @if($mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['role'] == $role->description &&
+                                                                             $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] - $mission_help_other_num_total != 0)
                                                                                {!! $mission_support_people_array[$mission_support_people_list->mission_list_id][$j]['mission_support_people_num'] - $mission_help_other_num_total !!}
                                                                             @else
 
