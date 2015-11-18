@@ -146,7 +146,8 @@ Route::group([
         Route::post('local/mission/manage/createPeopleSupport', 'LocalPeopleSupportController@create');
         Route::post('local/mission/manage/updatePeopleSupport', 'LocalPeopleSupportController@update');
         Route::post('local/mission/manage/updatePeople', 'LocalPeopleController@update');
-        Route::post('local/mission/manage/editPeople', 'LocalPeopleController@edit');
+        Route::post('local/mission/manage/editPeople', 'LocalPeopleController@store');
+        Route::post('local/mission/manage/updateTable', 'LocalMissionController@show');
         //對話視窗
         Route::get('local/mission/manage/getUser', 'ChatController@get_users');
         Route::post('local/mission/manage/updateChatRoom', 'ChatController@update_chat_room');

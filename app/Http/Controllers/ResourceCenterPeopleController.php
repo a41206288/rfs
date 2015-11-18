@@ -384,7 +384,7 @@ class ResourceCenterPeopleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)// 更改人員狀態
+	public function store(Request $request)// 更改人員狀態 + 調派人員
 	{
         $inputs=$request->except('_token');
 //        dd($inputs);
@@ -452,6 +452,14 @@ class ResourceCenterPeopleController extends Controller {
                 }
             }
 
+        }
+        elseif($status == "" && $mission_list_id_other == "")//錄取人員報到
+        {
+
+            foreach($user_ids as $user_id)
+            {
+
+            }
         }
         return redirect()->route('resourcePanel');
 	}

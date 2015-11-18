@@ -16,6 +16,7 @@ class LocalMissionController extends Controller {
 	 */
 	public function index()
 	{
+
         $id=Auth::user()->id;
         $works_ons = DB::table('works_ons')
             ->where('id', $id)
@@ -34,9 +35,6 @@ class LocalMissionController extends Controller {
                 ->where('mission_list_id', $mission_list_id)
                 ->get();
 //            dd($missions);
-
-
-
             $mission_lists = DB::table('mission_lists')
 //                ->join('mission_support_people','mission_support_people.mission_list_id','=','mission_lists.mission_list_id')
                 ->get();
@@ -46,14 +44,13 @@ class LocalMissionController extends Controller {
 //                ->where('mission_list_id', $mission_list_id)
 //                ->orderBy('analysis_time')
 //                ->get();
-////            dd($mission_new_locations);
+//            dd($mission_new_locations);
 //
 //            //計算總欲增援人數
 //            $executive_require_people_num = DB::table('mission_new_locations')
 //                ->where('mission_list_id', $mission_list_id)
 //                ->sum('executive_require_people_num');
-////            dd($relieverFreeUserAmounts);
-
+//            dd($relieverFreeUserAmounts);
 
 //取出擁有增援列表的任務編號和名稱
             $mission_support_people_lists = DB::table('mission_support_people')
@@ -275,7 +272,6 @@ class LocalMissionController extends Controller {
 
                 ->get();
 //        dd($mission_help_users);
-
 
             //計算各嚴重程度傷患人數
             $victim_nums = DB::table('victim_details')
@@ -544,10 +540,80 @@ class LocalMissionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
-	}
+    public function show(Request $request) //動態更新table
+    {
+        $arrived = $request->get('arrived');
+        $roles = $request->get('roles');
+        $mission_list_id = $request->get('mission_list_id');
+        if(isset($arrived)){
+            if($arrived == 1)
+            {
+                $response = DB::table('users');
+                $response = $response->join('role_user','users.id','=','role_user.user_id');
+                $response = $response->join('roles','roles.id','=','role_user.role_id');
+                $response = $response->join('works_ons','works_ons.id','=','role_user.user_id');
+                $response = $response->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id');
+                $response = $response->where('mission_list_id',$mission_list_id);
+                $response = $response->where('roles.id','>',4);
+
+                if($roles != ""){
+                    $response = $response->where('role_id',$roles);
+                }
+
+                $response = $response->orderBy('arrive_mission');
+                $response = $response->orderBy('status');
+                $response = $response->orderBy('role_id');
+                $response = $response->get();
+            }
+            elseif($arrived == 0)
+            {
+                //拿出所有這個任務增援
+                $mission_support_people = DB::table('mission_support_people')->where('mission_list_id',$mission_list_id)->lists('mission_support_person_id');
+                //拿出所有這個任務增援的支援人員 且 未報到
+                $mission_help_others = DB::table('mission_help_others')
+                    ->join('mission_help_other_users','mission_help_others.mission_help_other_id','=','mission_help_other_users.mission_help_other_id')
+                    ->whereIn('mission_support_person_id',$mission_support_people)
+                    ->where('arrive_mission', 0)
+                    ->lists('id');
+                $response = DB::table('users');
+                $response = $response->join('role_user','users.id','=','role_user.user_id');
+                $response = $response->join('roles','roles.id','=','role_user.role_id');
+                $response = $response->join('works_ons','works_ons.id','=','role_user.user_id');
+                $response = $response->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id');
+//                $response = $response->where('mission_list_id',$mission_list_id);
+                $response = $response->where('roles.id','>',4);
+                $response = $response->whereIn('user_id',$mission_help_others);
+                $response = $response->where('arrive_mission', 0);
+
+                if($roles != ""){
+                    $response = $response->where('role_id',$roles);
+                }
+
+                $response = $response->orderBy('arrive_mission');
+                $response = $response->orderBy('status');
+                $response = $response->orderBy('role_id');
+                $response = $response->get();
+            }
+
+        }
+//        else{
+//            $response = DB::table('center_support_person_details');
+//            $response = $response->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id');
+//            $response = $response ->join('roles','roles.id','=','center_support_people.role_id');
+//
+//            if($roles != ""){
+//                $response = $response->where('description','like','%'.$roles.'%');
+//            }
+//
+//            $response = $response->get();
+//
+//        }
+
+
+
+
+        return response()->json($response);
+    }
 
 	/**
 	 * Show the form for editing the specified resource.

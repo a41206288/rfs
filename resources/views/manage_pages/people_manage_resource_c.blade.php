@@ -338,6 +338,7 @@
             </div>
 
             <div class="panel panel-default" >
+                {!! Form::open(array('url' => 'resource/manage/people/center/editPeople','onsubmit' => 'return checkForm("free_users");','id' => 'form_free_users'))!!}
                 <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
                     <div class="navbar-sm-header">{{--標題--}}
                         <a class="navbar-sm-brand" href="#">中央閒置志工表</a>
@@ -348,14 +349,9 @@
                             <!-- select -->
                             {!! Form::select('arrived', array( '已報到' => '已報到', '未報到' => '未報到'), '全部', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'arrived']) !!}
                             {!! Form::select('center_user_roles', $centerFreeUserRoles, '全部', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'center_user_roles']) !!}
-                            {{--{!! Form::text('name','',['placeholder'=>'名字或電話','style'=>'width:130px;border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}--}}
-                            {{--<button type="submit" class="btn btn-default navbar-sm-btn btn-sm">--}}
-                                {{--<span class="glyphicon glyphicon-search"></span>--}}
-                            {{--</button>--}}
-
 
                         </ul>
-                        {!! Form::open(array('url' => 'resource/manage/people/center/editPeople','onsubmit' => 'return checkForm("free_users");','id' => 'form_free_users'))!!}
+
                         <ul class="nav navbar-sm-nav navbar-sm-right">
                             {!! Form::select('status', array('' => '更改人員狀態', '閒置' => '閒置', '負傷' => '負傷'),  '', ['class' => 'navbar-sm-btn btn-sm','style'=>'border: 1px solid #cccccc; border-radius: 4px;height: 30px;']) !!}
                             {!! Form::hidden('mission_list_id', 1) !!}
@@ -423,7 +419,7 @@
                         {{--@endif--}}
 
 
-                        {!! Form::close() !!}
+
 
                         </tbody>
 
@@ -431,7 +427,7 @@
 
                 </div>
                 {{--表格尾端--}}
-
+                {!! Form::close() !!}
             </div>
         </div>
         <div class="col-xs-8 col-sm-6 col-md-6" >
@@ -647,22 +643,6 @@
 
 
 
-    <div class="modal fade" id="error_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">錯誤訊息</h4>
-                </div>
-                <div id="error_Modal_content" class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-                    {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 @endsection
 @section('javascript')
 
@@ -784,6 +764,20 @@
                     tr.appendChild(td);
                     var td = document.createElement('td');
                     td.innerHTML = newData[i]['description'];
+                    tr.appendChild(td);
+                    var td = document.createElement('td');
+//                    if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
+//                    {
+//                        td.innerHTML = "派往其他任務";
+//                    }
+//                    else if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() != "已報到")
+//                    {
+//                        td.innerHTML = "前往此任務中";
+//                    }
+//                    else
+                    {
+                        td.innerHTML = newData[i]['status'];
+                    }
                     tr.appendChild(td);
                     var td = document.createElement('td');
                     td.innerHTML = newData[i]['user_name'];
