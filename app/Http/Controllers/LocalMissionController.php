@@ -40,6 +40,10 @@ class LocalMissionController extends Controller {
                 ->get();
 //            dd($mission_lists);
 
+            $mission_list = DB::table('mission_lists')
+                ->where('mission_list_id', $mission_list_id)
+                ->get();
+//            dd($mission_list);
 //            $mission_new_locations =  DB::table('mission_new_locations')
 //                ->where('mission_list_id', $mission_list_id)
 //                ->orderBy('analysis_time')
@@ -260,7 +264,7 @@ class LocalMissionController extends Controller {
                 ->orderBy('status')
                 ->orderBy('role_id')
                 ->get();
-        dd($missionUsers);
+//        dd($missionUsers);
 
             //取出所有user(用來印出其他任務支援的user)
             $mission_help_users = DB::table('users')
@@ -338,8 +342,15 @@ class LocalMissionController extends Controller {
             $mission_no_support_people_lists = null;
             $mission_no_support_work_people_lists = null;
             $mission_no_support_finish_people_lists = null;
+            $mission_support_people_names = null;
+            $mission_help_other_users_array = null;
+            $mission_help_other_users = null;
+            $user_help_missions = null;
+            $mission_help_users = null;
+            $help_missions_and_names = null;
+            $users = null;
 
-        }
+    }
 
         return view('manage_pages.mission_manage_local')
                 ->with('victim_num_arrays', $victim_num_arrays)
@@ -363,6 +374,8 @@ class LocalMissionController extends Controller {
                 ->with('mission_help_users', $mission_help_users)
                 ->with('help_missions_and_names', $help_missions_and_names)
                 ->with('users', $users)
+                ->with('mission_list', $mission_list)
+
 
     ;
 
@@ -532,7 +545,19 @@ class LocalMissionController extends Controller {
 	public function store(Request $request)//任務進度回報
 	{
         $inputs=$request->except('_token');
-        dd($inputs);
+//        dd($inputs);
+//        dd($inputs['mission_list_status']);
+        if($inputs['mission_list_status'] == 1 ){
+                DB::table('mission_lists')->where('mission_list_id',$inputs['mission_list_id'])
+                    ->update(['assign_people_finish_time' => date('Y-m-d H:i:s'),'arrive_location_time' => NULL,'mission_complete_time' => NULL]);
+        }elseif($inputs['mission_list_status'] == 2 ){
+            DB::table('mission_lists')->where('mission_list_id',$inputs['mission_list_id'])
+            ->update(['arrive_location_time'  => date('Y-m-d H:i:s')]);
+        }elseif($inputs['mission_list_status'] == 3 ){
+            DB::table('mission_lists')->where('mission_list_id',$inputs['mission_list_id'])
+                ->update(['mission_complete_time'  => date('Y-m-d H:i:s')]);
+        }
+        return redirect()->route('localPanel');
 	}
 
 	/**

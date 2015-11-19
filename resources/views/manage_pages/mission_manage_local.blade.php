@@ -35,20 +35,74 @@
 {{--管線修復--}}
 {{--警戒--}}
 @section('content')
-
+@if($mission_list_id != 1 && $mission_list[0]->assign_people_finish_time == NULL )
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
         <div class="text-right panel">
-            {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
+
             <div class="btn-group">
-                <button type="button" class="btn btn-default">出發至任務現場</button>
-                <button type="button" class="btn btn-default">到達現場，並開始執行任務</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>
-                {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
-                {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
-                {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
-            </div>
+            {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
+            {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
+            {!! Form::hidden('mission_list_status', 1,[ 'id' => 'mission_list_id']) !!}
+            {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
             {!! Form::close() !!}
+
+            {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
+
+            {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
+
+            </div>
+        </div>
+    <center>請至後勤支援管理部門，申請人員調派完成後，再點選按鈕，出發至任務現場</center>
+    </div>
+
+@elseif($mission_list_id != 1)
+    <div class="col-xs-16 col-sm-12 col-md-12" >
+        {{--<h4><b>任務管理</b></h4><div >--}}
+        <div class="text-right panel">
+
+            <div class="btn-group">
+                {{--<button type="button" class="btn btn-default">出發至任務現場</button>--}}
+                {{--<button type="button" class="btn btn-default">到達現場，並開始執行任務</button>--}}
+                {{--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>--}}
+
+
+                    @if( $mission_list[0]->assign_people_finish_time != NULL && $mission_list[0]->arrive_location_time != NULL)
+                        {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
+                        {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::hidden('mission_list_status', 1,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                        {!! Form::close() !!}
+
+                        {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
+                        <button type="button" class="btn btn-sm btn-default navbar-sm-btn" data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>
+
+                    @elseif($mission_list[0]->assign_people_finish_time != NULL && $mission_list[0]->arrive_location_time == NULL)
+                        {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn' , 'disabled']) !!}
+
+                        {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
+                        {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::hidden('mission_list_status', 2,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                        {!! Form::close() !!}
+
+                        {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
+                    @elseif($mission_list[0]->assign_people_finish_time == NULL && $mission_list[0]->arrive_location_time == NULL)
+                        {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
+                        {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::hidden('mission_list_status', 1,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                        {!! Form::close() !!}
+
+                        {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
+
+                        {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
+                    @endif
+
+
+
+            </div>
+
         </div>
         <div class="col-xs-9 col-sm-7 col-md-7" >
 
@@ -743,7 +797,7 @@
     <!-- Modal -->
     <div class="modal fade " id="finish_mission" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
         <div class="modal-dialog">
-            {!! Form::open(array('url' => 'call/manage/createMission','id'=>'my_form'))!!}
+            {{--{!! Form::open(array('url' => 'call/manage/createMission','id'=>'my_form'))!!}--}}
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -753,15 +807,34 @@
                     確認向中央回報，已完成任務 ?
                 </div>
                 <div class="modal-footer">
+                    {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    {{--<button type="button" class="btn btn-primary">確認將通報新增成任務</button>--}}
-                    {!! Form::submit('向中央通報完成任務', ['class' => 'btn btn-primary']) !!}
+
+                    {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
+                    {!! Form::hidden('mission_list_status', 3,[ 'id' => 'mission_list_id']) !!}
+                    {!! Form::submit('向中央通報完成任務，返回至中央', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::close() !!}
+                    {{--{!! Form::submit('向中央通報完成任務', ['class' => 'btn btn-primary']) !!}--}}
                 </div>
             </div><!-- /.modal-content -->
-            {!! Form::close() !!}
+{{--            {!! Form::close() !!}--}}
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <!-- Modal -->
+@else
+    <div class="col-xs-16 col-sm-12 col-md-12" >
+        {{--<h4><b>任務管理</b></h4><div >--}}
+        <div class="text-right panel">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm" disabled>出發至任務現場</button>
+                <button type="button" class="btn btn-default btn-sm" disabled>到達現場，並開始執行任務</button>
+                <button type="button" class="btn btn-default btn-sm" disabled data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>
+            </div>
+        </div>
+        <center>尚未被分配負責的任務</center>
+    </div>
+@endif
 @endsection
 @section('javascript')
 
