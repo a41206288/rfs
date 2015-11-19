@@ -374,6 +374,7 @@
                             <th>狀態</th>
                             <th>姓名</th>
                             <th>電話</th>
+                            <th>備註</th>
                             {{--<th>Email</th>--}}
                             {{--<th>所在地</th>--}}
                             {{--<th>技能</th>--}}
@@ -387,13 +388,46 @@
                         {{--{!! Form::open(array('url' => 'resource/manage/people/center/editPeople','onsubmit' => 'return checkForm("free_users");','id' => 'form_free_users'))!!}--}}
                         @if(isset($centerFreeUsers))
                             @foreach($centerFreeUsers as $centerFreeUser)
-                                @if($centerFreeUser->arrived == 1)
+                                @if( isset($centerFreeUser->arrive_mission) && $centerFreeUser->arrive_mission == 0)
+                                    <tr >
+                                        {{--<td> {!! Form::checkbox('name', 'value')!!}</td>--}}
+                                        <td width="5%"></td>
+                                        <td>{!! $centerFreeUser->description !!}</td>
+                                        {{--尋找此人要被派往哪個任務--}}
+                                        @foreach($user_help_missions as $user_help_mission)
+                                            @if($user_help_mission->id == $centerFreeUser->id)
+                                                {{--找到哪個任務後尋找他的任務名稱--}}
+                                                <td>派往其他任務</td>
+
+
+                                                {{--@foreach($mission_lists as $mission_list)--}}
+                                                {{--@if($mission_list->mission_list_id == $user_help_mission->mission_list_id)--}}
+                                                {{--<td>派往任務：{!! $mission_list->mission_name  !!}</td>--}}
+                                                {{--@endif--}}
+                                                {{--@endforeach--}}
+                                            @endif
+                                        @endforeach
+
+                                        <td>{!! $centerFreeUser->user_name !!}</td>
+                                        <td>{!! $centerFreeUser->phone !!}</td>
+                                        @foreach($user_help_missions as $user_help_mission)
+                                            @if($user_help_mission->id == $centerFreeUser->id)
+                                                @foreach($help_missions_and_names as $help_mission_and_name)
+                                                    @if($help_mission_and_name->mission_support_person_id == $user_help_mission->mission_support_person_id)
+                                                        <td>派往{!! $help_mission_and_name->mission_name  !!}</td>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    </tr>
+                                @elseif($centerFreeUser->arrived == 1)
                                     <tr>
                                         <td width="5%">{!! Form::checkbox('user_ids[]', $centerFreeUser->user_id)!!}</td>
                                         <td width="15%">{!!$centerFreeUser->description!!}</td>
-                                        <td width="15%">{!!$centerFreeUser->status!!}</td>
+                                        <td width="20%">{!!$centerFreeUser->status!!}</td>
                                         <td width="10%">{!!$centerFreeUser->user_name!!}</td>
-                                        <td width="55%">{!!$centerFreeUser->phone!!}</td>
+                                        <td width="15%">{!!$centerFreeUser->phone!!}</td>
+                                        <td></td>
                                     </tr>
                                 @endif
                             @endforeach

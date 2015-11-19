@@ -81,13 +81,32 @@ class ResourceCenterPeopleController extends Controller {
 	->get();
 //		dd($skills);
 
+
+		//用以下兩陣列來判斷支援其他地方的救災人員是支援哪裡(配合$missionUsers) 讀取時再用mission_list來判斷名稱
+		$user_help_missions = DB::table('mission_help_others')
+			->join('mission_help_other_users','mission_help_other_users.mission_help_other_id','=','mission_help_others.mission_help_other_id')
+//                ->join('mission_support_people','mission_support_people.mission_support_person_id','=','mission_help_others.mission_support_person_id')
+			->get();
+//        dd($user_help_missions);
+
+
+		$help_missions_and_names = DB::table('mission_support_people')
+			->join('mission_lists','mission_lists.mission_list_id','=','mission_support_people.mission_list_id')
+//                ->join('mission_support_people','mission_support_people.mission_support_person_id','=','mission_help_others.mission_support_person_id')
+			->get();
+//        dd($help_missions_and_names);
+
+
+
 		//計算中心待命的各種類人數
 		$centerFreeUsers = DB::table('users')
 			->join('role_user','users.id','=','role_user.user_id')
 			->join('works_ons','works_ons.id','=','role_user.user_id')
 			->join('roles','roles.id','=','role_user.role_id')
+			->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id')
 			->where('mission_list_id','=',1)
             ->where('description','<>',"地方指揮官")
+			->orderBy('arrive_mission')
             ->orderBy('status')
 			->orderBy('role_id')
 			->get();
@@ -361,6 +380,8 @@ class ResourceCenterPeopleController extends Controller {
 			->with('users', $users)
 			->with('mission_help_other_array', $mission_help_other_array)
 			->with('mission_help_other_users_array', $mission_help_other_users_array)
+			->with('user_help_missions', $user_help_missions)
+			->with('help_missions_and_names', $help_missions_and_names)
 
 
 	;

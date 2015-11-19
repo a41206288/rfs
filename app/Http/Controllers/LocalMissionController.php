@@ -260,7 +260,7 @@ class LocalMissionController extends Controller {
                 ->orderBy('status')
                 ->orderBy('role_id')
                 ->get();
-//        dd($missionUsers);
+        dd($missionUsers);
 
             //取出所有user(用來印出其他任務支援的user)
             $mission_help_users = DB::table('users')
