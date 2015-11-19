@@ -529,9 +529,10 @@ class LocalMissionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)//任務進度回報
 	{
-		//
+        $inputs=$request->except('_token');
+        dd($inputs);
 	}
 
 	/**
@@ -623,8 +624,8 @@ class LocalMissionController extends Controller {
 	 */
 	public function edit(Request $request)
 	{
-//        //        $inputs=$request->except('_token');
-////        dd($inputs);
+        //        $inputs=$request->except('_token');
+//        dd($inputs);
 //        $frees=$request->input('free');
 ////        dd($frees);
 //        $missions=$request->input('mission');

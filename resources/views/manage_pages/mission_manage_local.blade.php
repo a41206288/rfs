@@ -39,12 +39,16 @@
     <div class="col-xs-16 col-sm-12 col-md-12" >
         {{--<h4><b>任務管理</b></h4><div >--}}
         <div class="text-right panel">
+            {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
             <div class="btn-group">
                 <button type="button" class="btn btn-default">出發至任務現場</button>
-                <button type="button" class="btn btn-default active">到達現場，並開始執行任務</button>
+                <button type="button" class="btn btn-default">到達現場，並開始執行任務</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>
-
+                {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
             </div>
+            {!! Form::close() !!}
         </div>
         <div class="col-xs-9 col-sm-7 col-md-7" >
 
