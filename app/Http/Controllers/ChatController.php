@@ -23,7 +23,50 @@ class ChatController extends Controller {
             ->select('users.id', 'users.user_name')
             ->get();
 
-        return $users;
+        $chat_room_id_with_users = [];
+        $message_num = [];
+        $i = 0;
+        foreach($users as $user){
+            $find_chat_room_id = DB::table('chat_rooms')
+                ->where('user_id_1', $my_id)
+                ->where('user_id_2', $user->id)                     //user_id_1=$my_id AND user_id_2=$user_id
+                ->orWhere(function($query) use ($my_id,$user){ //                              OR
+                    $query->where('user_id_1', $user->id)           //user_id_1=$user_id AND user_id_2=$my_id
+                    ->where('user_id_2', $my_id);
+                })
+                ->lists('chat_room_id');
+            if( count($find_chat_room_id) != 0 ){
+                $users[$i]->chat_room_id = $find_chat_room_id[0];
+                array_push($chat_room_id_with_users, $find_chat_room_id[0]);
+                $message_num[ $find_chat_room_id[0] ] = 0;
+            }
+            else{
+                $users[$i]->chat_room_id = 0;
+            }
+            $i++;
+        }
+//        dd($message_num);
+        $messages = DB::table('messages')
+            ->whereIn('chat_room_id',$chat_room_id_with_users)
+            ->where('read',0)
+            ->where('user_id','<>',$my_id)
+            ->select('chat_room_id', DB::raw('count(*) as total'))
+            ->groupBy('chat_room_id')
+            ->get();
+//        dd($messages);
+        $has_message_to_read = false;
+        foreach($messages as $message){
+            $message_num[$message->chat_room_id] = $message->total;
+            $has_message_to_read = true;
+        }
+//        dd($message_num);
+        $response = array(
+            'users' => $users,
+            'message_num' => $message_num,
+            'has_message_to_read' =>$has_message_to_read
+        );
+
+        return $response;
 	}
 
     public function update_chat_room(Request $request)
@@ -45,12 +88,14 @@ class ChatController extends Controller {
                 ->where('chat_room_id',$find_chat_room_id)
                 ->orderBy('created_at')
                 ->get();
+            DB::table('messages')
+                ->where('chat_room_id',$find_chat_room_id)
+                ->where('read',0)
+                ->where('user_id',$user_id)
+                ->update(['read' => 1]);
         }
         else{
-            $read_message = [[
-                'message_content' => '無對話紀錄',
-                'user_id' => $my_id
-            ]];
+            $read_message = [];
         }
 
         return $read_message;
@@ -76,6 +121,7 @@ class ChatController extends Controller {
             $message->message_content = $input_string;
             $message->chat_room_id = $find_chat_room_id[0];
             $message->user_id = $my_id;
+            $message->read = 0;
             $message->save();
         }
         else{
@@ -93,6 +139,7 @@ class ChatController extends Controller {
             $message->message_content = $input_string;
             $message->chat_room_id = $find_chat_room_id[0];
             $message->user_id = $my_id;
+            $message->read = 0;
             $message->save();
         }
 

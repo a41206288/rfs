@@ -17,6 +17,7 @@ class CreateMessageTable extends Migration {
             $table->text('message_content');
             $table->unsignedInteger('chat_room_id');
             $table->unsignedInteger('user_id');
+            $table->boolean('read');
             $table->timestamps();
         });
 
