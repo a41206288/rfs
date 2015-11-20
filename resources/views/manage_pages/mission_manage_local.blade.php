@@ -945,7 +945,8 @@
                     td.innerHTML = newData[i]['phone'];
                     tr.appendChild(td);
                     var td = document.createElement('td');
-
+                    var user_help_mission = 0;
+                    var help_missions_and_name = "";
                     if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
                     {
                         for (var n=0 ; n < user_help_missions.length; n++)
@@ -953,15 +954,15 @@
 
                             if(user_help_missions[n]['id'] == newData[i]['id'])
                             {
-                                user_help_missions = user_help_missions[n]['mission_support_person_id'];
+                                user_help_mission = user_help_missions[n]['mission_support_person_id'];
                             }
                         }
                         for (var j=0 ; j< help_missions_and_names.length; j++) {
 
-                            if (help_missions_and_names[j]['mission_support_person_id'] == user_help_missions)
+                            if (help_missions_and_names[j]['mission_support_person_id'] == user_help_mission)
                             {
-                                help_missions_and_names = help_missions_and_names[j]['mission_name'];
-                                td.innerHTML = "派往" + help_missions_and_names;
+                                help_missions_and_name = help_missions_and_names[j]['mission_name'];
+                                td.innerHTML = "派往" + help_missions_and_name;
                             }
                         }
                     }

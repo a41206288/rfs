@@ -348,7 +348,7 @@
                         <ul class="nav navbar-sm-nav">{{--上面按鈕欄內容 靠右對齊--}}
                             <!-- select -->
                             {!! Form::select('arrived', array( '已報到' => '已報到', '未報到' => '未報到'), '全部', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'arrived']) !!}
-                            {!! Form::select('center_user_roles', $centerFreeUserRoles, '全部', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'center_user_roles']) !!}
+                            {!! Form::select('center_user_roles', $centerFreeUserRoles, '', ['class' => 'navbar-sm-btn btn-sm', 'id' => 'center_user_roles']) !!}
 
                         </ul>
 
@@ -787,37 +787,104 @@
                 }
             }
             if(tableId == "free_users_table"){
+                var help_missions_and_names ={!! json_encode($help_missions_and_names) !!};
+                var user_help_missions ={!! json_encode($user_help_missions) !!};
                 for(var i=0; i<newData.length; i++){
+
                     var tr = document.createElement('tr');
                     var td = document.createElement('td');
-                    var input = document.createElement('input');
-                    input.setAttribute("type", "checkbox");
-                    input.setAttribute("name", "user_ids[]");
-                    input.setAttribute("value", newData[i]['user_id']);
-                    td.appendChild(input);
+                    if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
+                    {
+                        td.innerHTML = "";
+                    }
+                    else
+                    {
+                        var input = document.createElement('input');
+                        input.setAttribute("type", "checkbox");
+                        input.setAttribute("name", "user_ids[]");
+                        input.setAttribute("value", newData[i]['user_id']);
+                        td.appendChild(input);
+                    }
                     tr.appendChild(td);
+
                     var td = document.createElement('td');
                     td.innerHTML = newData[i]['description'];
                     tr.appendChild(td);
+
                     var td = document.createElement('td');
-//                    if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
-//                    {
-//                        td.innerHTML = "派往其他任務";
-//                    }
-//                    else if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() != "已報到")
-//                    {
-//                        td.innerHTML = "前往此任務中";
-//                    }
-//                    else
+                    if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
+                    {
+                        td.innerHTML = "派往其他任務";
+                    }
+                    else if($('#arrived option:selected').text() != "已報到")
+                    {
+                        td.innerHTML = "前往救災中心中";
+                    }
+                    else
                     {
                         td.innerHTML = newData[i]['status'];
                     }
                     tr.appendChild(td);
+
                     var td = document.createElement('td');
                     td.innerHTML = newData[i]['user_name'];
                     tr.appendChild(td);
+
                     var td = document.createElement('td');
                     td.innerHTML = newData[i]['phone'];
+                    tr.appendChild(td);
+
+                    var td = document.createElement('td');
+                    var user_help_mission = 0;
+                    var help_missions_and_name = "";
+                    if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
+                    {
+                        alert(3);
+                        for (var n=0 ; n < user_help_missions.length; n++)
+                        {
+                            if(user_help_missions[n]['id'] == newData[i]['id'])
+                            {
+                                alert(1);
+                                user_help_mission = user_help_missions[n]['mission_support_person_id'];
+                            }
+                        }
+                        for (var j=0 ; j< help_missions_and_names.length; j++)
+                        {
+
+                            if (help_missions_and_names[j]['mission_support_person_id'] == user_help_mission)
+                            {
+                                alert(2);
+                                help_missions_and_name = help_missions_and_names[j]['mission_name'];
+                                td.innerHTML = "派往" + help_missions_and_name;
+                            }
+                        }
+                    }
+
+//                    else if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() != "已報到")
+//                    {
+//                        if(newData[i]['mission_list_id'] == 1)
+//                        {
+//                            td.innerHTML = "由中央支援";
+//                        }
+//                        else
+//                        {
+//                            for (var j=0 ; j< help_missions_and_names.length; j++) {
+//
+//                                if (help_missions_and_names[j]['mission_list_id'] == newData[i]['mission_list_id'])
+//                                {
+//                                    help_missions_and_names = help_missions_and_names[j]['mission_name'];
+//
+//                                    td.innerHTML = "由"+help_missions_and_names+"支援";
+//
+//                                }
+//                            }
+//                        }
+//
+//                    }
+                    else
+                    {
+                        td.innerHTML = "";
+                    }
                     tr.appendChild(td);
                     obj.appendChild(tr);
                 }

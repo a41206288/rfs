@@ -32,7 +32,6 @@ class ResourceCenterPeopleController extends Controller {
 //		dd($mission_lists);
 
 
-
 		//應徵志工人員資料
 		$center_support_person_details = DB::table('center_support_person_details')
 			->join('center_support_people','center_support_people.center_support_person_id','=','center_support_person_details.center_support_person_id')
@@ -434,35 +433,35 @@ class ResourceCenterPeopleController extends Controller {
                     //判斷是否有此增援
                     $mission_support_person = DB::table('mission_support_people')->where('mission_list_id',$mission_list_id_other)->where('id',$role)->get();
 //                    dd($mission_support_people);
-                   //拿出該增援的所有支援
-                    $mission_help_others = DB::table('mission_help_others')
-                                           ->join('mission_help_other_users','mission_help_others.mission_help_other_id','=','mission_help_other_users.mission_help_other_id')
-                                           ->where('mission_support_person_id',$mission_support_person[0]->mission_support_person_id)->get();
-                    //算出此增援還需要多少支援人員
-                    $mission_support_people_require_num = $mission_support_person[0]->mission_support_people_num - count($mission_help_others);
-//                    dd($mission_support_people_require_num);
-                    if($mission_support_person != null && $mission_support_people_require_num != 0)
-                    {
-                        //查詢我方是否已經有支援該增源
-                        $mission_help_other = DB::table('mission_help_others')->where('mission_support_person_id',$mission_support_person[0]->mission_support_person_id)->where('mission_list_id',$mission_list_id)->get();
-//                        dd($mission_help_other);
-                        if($mission_help_other == null)//建支援表
-                        {
-                            $mission_help_other = new Mission_help_other();
-                            $mission_help_other->mission_support_person_id = $mission_support_person[0]->mission_support_person_id;
-                            $mission_help_other->mission_list_id = $mission_list_id;
-                            $mission_help_other->save();
-                            $mission_help_other = DB::table('mission_help_others')->where('mission_support_person_id',$mission_support_person[0]->mission_support_person_id)->where('mission_list_id',$mission_list_id)->get();
-                        }
-                        //建支援人
-                        $mission_help_other_users = new Mission_help_other_user();
-                        $mission_help_other_users->mission_help_other_id = $mission_help_other[0]->mission_help_other_id;
-                        $mission_help_other_users->id = $user_id;
-                        $mission_help_other_users->arrive_mission = 0 ;
-                        $mission_help_other_users->save();
+                    if($mission_support_person !=null) {
+                        //拿出該增援的所有支援
+                        $mission_help_others = DB::table('mission_help_others')
+                            ->join('mission_help_other_users', 'mission_help_others.mission_help_other_id', '=', 'mission_help_other_users.mission_help_other_id')
+                            ->where('mission_support_person_id', $mission_support_person[0]->mission_support_person_id)->get();
+                        //算出此增援還需要多少支援人員
+                        $mission_support_people_require_num = $mission_support_person[0]->mission_support_people_num - count($mission_help_others);
+                        //                    dd($mission_support_people_require_num);
+                        if ($mission_support_person != null && $mission_support_people_require_num != 0) {
+                            //查詢我方是否已經有支援該增源
+                            $mission_help_other = DB::table('mission_help_others')->where('mission_support_person_id', $mission_support_person[0]->mission_support_person_id)->where('mission_list_id', $mission_list_id)->get();
+                            //                        dd($mission_help_other);
+                            if ($mission_help_other == null)//建支援表
+                            {
+                                $mission_help_other = new Mission_help_other();
+                                $mission_help_other->mission_support_person_id = $mission_support_person[0]->mission_support_person_id;
+                                $mission_help_other->mission_list_id = $mission_list_id;
+                                $mission_help_other->save();
+                                $mission_help_other = DB::table('mission_help_others')->where('mission_support_person_id', $mission_support_person[0]->mission_support_person_id)->where('mission_list_id', $mission_list_id)->get();
+                            }
+                            //建支援人
+                            $mission_help_other_users = new Mission_help_other_user();
+                            $mission_help_other_users->mission_help_other_id = $mission_help_other[0]->mission_help_other_id;
+                            $mission_help_other_users->id = $user_id;
+                            $mission_help_other_users->arrive_mission = 0;
+                            $mission_help_other_users->save();
 
+                        }
                     }
-//                    dd("等於0");
                 }
             }
             else//初始配員
@@ -480,6 +479,7 @@ class ResourceCenterPeopleController extends Controller {
             foreach($user_ids as $user_id)
             {
 
+                DB::table('users')->where('id',$user_id)->update(['arrived' => 1]);
             }
         }
         return redirect()->route('resourcePanel');
@@ -501,6 +501,7 @@ class ResourceCenterPeopleController extends Controller {
             $response = $response->join('role_user','users.id','=','role_user.user_id');
             $response = $response->join('works_ons','works_ons.id','=','role_user.user_id');
             $response = $response->join('roles','roles.id','=','role_user.role_id');
+            $response = $response->leftjoin('mission_help_other_users','mission_help_other_users.id','=','users.id');
             $response = $response->where('mission_list_id','=',1);
             $response = $response->where('roles.id','>',4);
 
@@ -509,6 +510,8 @@ class ResourceCenterPeopleController extends Controller {
             }
 
             $response = $response->where('arrived',$arrived);
+            $response = $response->orderBy('arrive_mission');
+            $response = $response->orderBy('status');
             $response = $response->orderBy('role_id');
              $response = $response->get();
         }
