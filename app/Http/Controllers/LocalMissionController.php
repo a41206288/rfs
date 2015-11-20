@@ -349,7 +349,7 @@ class LocalMissionController extends Controller {
             $mission_help_users = null;
             $help_missions_and_names = null;
             $users = null;
-
+            $mission_list  = null;
     }
 
         return view('manage_pages.mission_manage_local')
@@ -375,9 +375,7 @@ class LocalMissionController extends Controller {
                 ->with('help_missions_and_names', $help_missions_and_names)
                 ->with('users', $users)
                 ->with('mission_list', $mission_list)
-
-
-    ;
+                 ;
 
 
 //            //將新地點的要求增援人數(包括醫療跟脫困)和原因分類
@@ -547,15 +545,26 @@ class LocalMissionController extends Controller {
         $inputs=$request->except('_token');
 //        dd($inputs);
 //        dd($inputs['mission_list_status']);
-        if($inputs['mission_list_status'] == 1 ){
-                DB::table('mission_lists')->where('mission_list_id',$inputs['mission_list_id'])
+        $mission_list_id = $request->get('mission_list_id');
+        $mission_list_status = $request->get('mission_list_status');
+        if($mission_list_status == 1 ){
+                DB::table('mission_lists')->where('mission_list_id',$mission_list_id)
                     ->update(['assign_people_finish_time' => date('Y-m-d H:i:s'),'arrive_location_time' => NULL,'mission_complete_time' => NULL]);
-        }elseif($inputs['mission_list_status'] == 2 ){
-            DB::table('mission_lists')->where('mission_list_id',$inputs['mission_list_id'])
+        }elseif($mission_list_status == 2 ){
+            DB::table('mission_lists')->where('mission_list_id',$mission_list_id)
             ->update(['arrive_location_time'  => date('Y-m-d H:i:s')]);
-        }elseif($inputs['mission_list_status'] == 3 ){
-            DB::table('mission_lists')->where('mission_list_id',$inputs['mission_list_id'])
+        }elseif($mission_list_status == 3 ){
+            DB::table('mission_lists')->where('mission_list_id',$mission_list_id)
                 ->update(['mission_complete_time'  => date('Y-m-d H:i:s')]);
+            $help = DB::table('mission_help_other_users')
+                ->join('mission_help_others','mission_help_others.mission_help_other_id','=','mission_help_other_users.mission_help_other_id')
+                ->where('mission_list_id',$mission_list_id)->lists('id','id');
+//            dd($help);
+            DB::table('works_ons')->where('mission_list_id',$mission_list_id)->whereNotIn('id', $help)->where('status','!=','負傷')
+                ->update(['status'  => '返回中','mission_list_id'=> 1]);
+            DB::table('works_ons')->where('mission_list_id',$mission_list_id)->whereNotIn('id', $help)->where('status','負傷')
+                ->update(['status'  => '負傷返回中','mission_list_id'=> 1]);
+
         }
         return redirect()->route('localPanel');
 	}

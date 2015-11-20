@@ -48,7 +48,7 @@ class CreateMissionTable extends Migration {
 //            $table->unsignedInteger('mission_new_locations_id');
             $table->unsignedInteger('mission_list_id');
             $table->unsignedInteger('id');
-            $table->enum('status', [ '閒置','執行任務','負傷','返回中']);
+            $table->enum('status', [ '閒置','執行任務','負傷','返回中','負傷返回中']);
             $table->timestamps();
         });
 
