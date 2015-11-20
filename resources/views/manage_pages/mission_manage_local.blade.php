@@ -45,11 +45,12 @@
             {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
             {!! Form::hidden('mission_list_status', 1,[ 'id' => 'mission_list_id']) !!}
             {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+
+                {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
+
+                {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
             {!! Form::close() !!}
 
-            {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
-
-            {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
 
             </div>
         </div>
@@ -72,31 +73,34 @@
                         {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
                         {!! Form::hidden('mission_list_status', 1,[ 'id' => 'mission_list_id']) !!}
                         {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
-                        {!! Form::close() !!}
-
                         {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
                         <button type="button" class="btn btn-sm btn-default navbar-sm-btn" data-toggle="modal" data-target="#finish_mission">任務執行完成，返回至中央</button>
+                        {!! Form::close() !!}
+
+
 
                     @elseif($mission_list[0]->assign_people_finish_time != NULL && $mission_list[0]->arrive_location_time == NULL)
-                        {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn' , 'disabled']) !!}
+
 
                         {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
                         {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
                         {!! Form::hidden('mission_list_status', 2,[ 'id' => 'mission_list_id']) !!}
+                        {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn' , 'disabled']) !!}
                         {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                        {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
                         {!! Form::close() !!}
 
-                        {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
+
                     @elseif($mission_list[0]->assign_people_finish_time == NULL && $mission_list[0]->arrive_location_time == NULL)
                         {!! Form::open(array('url' => 'local/mission/manage/updateMissionListsStatus'))!!}
                         {!! Form::hidden('mission_list_id', $mission_list_id,[ 'id' => 'mission_list_id']) !!}
                         {!! Form::hidden('mission_list_status', 1,[ 'id' => 'mission_list_id']) !!}
                         {!! Form::submit('出發至任務現場', ['class' => 'btn btn-sm btn-default navbar-sm-btn']) !!}
+                        {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
+                        {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
                         {!! Form::close() !!}
 
-                        {!! Form::submit('到達現場，並開始執行任務', ['class' => 'btn btn-sm btn-default navbar-sm-btn ', 'disabled']) !!}
 
-                        {!! Form::submit('任務執行完成，返回至中央', ['class' => 'btn btn-sm btn-default navbar-sm-btn', 'disabled']) !!}
                     @endif
 
 

@@ -162,8 +162,10 @@
                                                 @foreach($roles as $role)
                                                     @if($role->description != '系統管理者' && $role->description != '中央指揮官' && $role->description != '地方指揮官' && $role->description != '後勤部門')
 
-                                                        @if (isset($missionUserArrays) )
+                                                        @if (isset($missionUserArrays[$mission_list->mission_list_id][$role->slug]) )
                                                             <td class="text-right ">{!! $missionUserArrays[$mission_list->mission_list_id][$role->slug] !!}</td>
+                                                        @else
+                                                            <td class="text-right ">0</td>
                                                         @endif
 
                                                     @endif
