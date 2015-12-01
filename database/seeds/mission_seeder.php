@@ -109,7 +109,7 @@ class mission_seeder extends Seeder{
         $mission->rd_or_st_1 = '三多一路';
          $mission->location = '283巷二弄';
         $mission->mission_list_id = 2;
-        $mission->mission_complete_time =  date('Y-m-d H:i:s');
+//        $mission->mission_complete_time =  date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -167,6 +167,7 @@ class mission_seeder extends Seeder{
         $mission->rd_or_st_1 = '廣東三街';
         $mission->rd_or_st_2 = '一心一路';
         $mission->mission_list_id = 6;
+        $mission->mission_complete_time =  date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;
@@ -192,6 +193,7 @@ class mission_seeder extends Seeder{
         $mission->township_or_district_input = '新興區';
         $mission->location = '德智街1號';
         $mission->mission_list_id = 8;
+        $mission->mission_complete_time =  date('Y-m-d H:i:s');
         $mission->save();
 
         $mission = new App\Mission;

@@ -5,32 +5,51 @@
 @section('home_active')
     active
 @endsection
-{{--@section('css')--}}
-   {{--td {--}}
-    {{--width:250px;--}}
-    {{--white-space:nowrap;--}}
-    {{--text-overflow:ellipsis;--}}
-    {{---o-text-overflow:ellipsis;--}}
-    {{--overflow: hidden;--}}
-    {{--}--}}
-{{--@endsection--}}
-@section('content_12')
-    <br><br>
-    <div class="text-right navbar-form">
-        <form onsubmit="return false;">
-            <div class="form-group">
-                <input class="form-control" placeholder="搜尋任務/通報編號" type="text" name="search" id="search">
-            </div>
+@section('css')
+    tr.header_no_next
+    {
+    cursor:pointer;
+    }
+    .header_no_next .sign:after{
+        content:"▲";
+        float: right;
+        color: #31708f;
+        display:inline-block;
+    }
+    .header_no_next.expand .sign:after{
+        content:"▼";
+        float: right;
+        color: #31708f;
+        float: right;
+        display:inline-block;
+    }
 
-            <button type="button" class="btn btn-default" id="submit">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </form>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">任務列表</div>
-        <div class="panel-body">
-            <table class="table table-bordered">
+@endsection
+@section('content_12')
+    <br>
+    <div class="panel panel-default" >
+        <nav class="navbar-sm navbar-sm-default" role="navigation" style="min-height: 20px;">
+            <div class="navbar-sm-header">{{--標題--}}
+                <a class="navbar-sm-brand" href="#">任務列表</a>
+            </div>
+            <div class="collapse navbar-sm-collapse" >{{--上面按鈕欄--}}
+                <ul class="nav navbar-sm-nav navbar-sm-right">{{--上面按鈕欄內容 靠右對齊--}}
+                    <div class="navbar-form">
+                        <form onsubmit="return false;">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="搜尋任務/通報編號" type="text" name="search" id="search">
+                            </div>
+
+                            <button type="button" class="btn btn-default" id="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </form>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+        <div style="height: 400px;overflow-y: scroll;">{{--固定高度表格--}}
+            <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th width="10%">任務時間</th>
@@ -51,7 +70,7 @@
                     <th colspan="2">調派人員結束時間</th>
                     <th colspan="2">到達任務現場時間</th>
                     <th colspan="2">任務執行完成時間</th>
-                    <th>內容</th>
+                    <th colspan="2">內容</th>
                     {{--<th>通報人</th>--}}
                 </tr>
                 </thead>
@@ -59,10 +78,11 @@
                 @if (isset($mission_lists) )
                     @foreach ($mission_lists as $mission_list )
                         @if ($mission_list->mission_name != "未分配任務")
-                            <tr>
-                                <td>{{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%Y/%m/%d') }}
+                            <tr class="header_no_next">
+                                {{--<tr>--}}
+                                <td>{!! (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%Y/%m/%d') !!}
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {{ (new Carbon\Carbon($mission_list->created_at))->formatLocalized('%H:%M') }}</td>
+                                    {!!(new Carbon\Carbon($mission_list->created_at))->formatLocalized('%H:%M') !!}</td>
                                 <td>{!! $mission_list->mission_name!!}</td>
                                 <td colspan="6">
                                     @if($mission_list_charge_Arrays[$mission_list->mission_list_id]['name'] == "")
@@ -71,9 +91,9 @@
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-success" role="progressbar"
                                                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%Y/%m/%d') }}
+                                                <p class="text-right">{!! (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%Y/%m/%d')!!}
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%H:%M') }}
+                                                    {!! (new Carbon\Carbon($mission_list->mission_complete_time))->formatLocalized('%H:%M') !!}
                                                     &nbsp;&nbsp;</p>
                                             </div>
                                         </div>
@@ -82,9 +102,9 @@
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-warning" role="progressbar"
                                                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
-                                                <p class="text-right">{{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%Y/%m/%d') }}
+                                                <p class="text-right">{!! (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%Y/%m/%d') !!}
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%H:%M') }}
+                                                    {!! (new Carbon\Carbon($mission_list->arrive_location_time))->formatLocalized('%H:%M') !!}
                                                     &nbsp;&nbsp;</p>
                                             </div>
                                         </div>
@@ -95,96 +115,130 @@
                                                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
                                                 <p class="text-right">{{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%Y/%m/%d') }}
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%H:%M') }}
+                                                    {!! (new Carbon\Carbon($mission_list->assign_people_finish_time))->formatLocalized('%H:%M') !!}
                                                     &nbsp;&nbsp;</p>
                                             </div>
                                         </div>
                                     @endif
                                 </td>
 
-                                <td width="100%" class="btn-group">
-                                    <?php $hasadd = false; ?>
-                                    @foreach( $missions as $mission )
-                                        @if( $mission_list->mission_list_id == $mission->mission_list_id)
-                                            @if($hasadd == false)
-                                                <a type="button" class=" btn-s list-group-item dropdown-toggle" data-toggle="dropdown">
-                                                    {{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}
+
+                                <div style="display: none">
+                                    {!! $count_mission = 0 !!}
+                                </div>
+                                @foreach( $missions as $mission )
+                                    @if( $mission_list->mission_list_id == $mission->mission_list_id)
+                                        @if($count_mission == 0)
+                                            @if(isset($mission->mission_complete_time))
+                                                <td width="100%" style="color: #5cb85c">
+                                                    @elseif($mission->mission_complete_time == NULL)
+                                                <td width="100%" style="color: #d9534f">
+                                                    @endif
+
+                                                    {{--<a type="button" class=" btn-s list-group-item dropdown-toggle" data-toggle="dropdown">--}}
+                                                    {!! (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') !!}
                                                     &nbsp;&nbsp;&nbsp;
-                                                    {{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M') }}
+                                                    {!! (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M') !!}
                                                     &nbsp;&nbsp;
                                                     {!! $mission->mission_content !!}
-                                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                                </a>
-                                                <?php $hasadd = true; ?>
-                                            @endif
+
+                                                    <div style="display: none">
+                                                        {!! $count_mission = $count_mission + 1 !!}
+                                                    </div>
+                                                    @elseif($count_mission != 0)
+                                                        {{--<td>--}}
+                                                        <span class="sign"></span>
+                                                </td></tr>
+                            <tr><td colspan="8"></td>
+                                @if(isset($mission->mission_complete_time))
+                                    <td width="100%" style="color: #5cb85c">
+                                        @elseif($mission->mission_complete_time == NULL)
+                                    <td width="100%" style="color: #d9534f">
                                         @endif
-                                    @endforeach
-                                    @if($hasadd == false)
-                                            <a type="button" class=" btn-s list-group-item dropdown-toggle" data-toggle="dropdown">
-                                                &nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
-                                            </a>
-                                    @endif
-
-                                    <ul class="dropdown-menu" role="menu">
-                                    <?php $haspassfirst=false ?>
-                                    @foreach( $missions as $mission )
-                                        @if( $mission_list->mission_list_id == $mission->mission_list_id)
-                                            @if($haspassfirst==true)
-                                                <li>
-                                                    <a href="#">
-                                                        {{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}
-                                                        &nbsp;&nbsp;&nbsp;
-                                                        {{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M') }}
-                                                        &nbsp;&nbsp;
-                                                        {!! $mission->mission_content !!}
-                                                    </a>
-                                                </li>
-                                            @elseif($haspassfirst==false)
-                                                <?php $haspassfirst=true ?>
-                                            @endif
-                                        @endif
-                                    @endforeach
-
-                                    </ul>
-                                </td>
-
+                                        {!! (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') !!}
+                                        &nbsp;&nbsp;&nbsp;
+                                        {!! (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M') !!}
+                                        &nbsp;&nbsp;
+                                        {!! $mission->mission_content !!}
+                                    </td>
                             </tr>
                         @endif
+                        @endif
+
                     @endforeach
+
+                    {{--<a type="button" class=" btn-s list-group-item dropdown-toggle" data-toggle="dropdown">--}}
+                    {{--&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>--}}
+                    {{--</a>--}}
+                    {{--@endif--}}
+
+                    {{--<ul class="dropdown-menu" role="menu">--}}
+
+                    {{--@foreach( $missions as $mission )--}}
+                    {{--@if( $mission_list->mission_list_id == $mission->mission_list_id)--}}
+                    {{--@if($haspassfirst==true)--}}
+                    {{--<li>--}}
+                    {{--<a href="#">--}}
+                    {{--{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%Y/%m/%d') }}--}}
+                    {{--&nbsp;&nbsp;&nbsp;--}}
+                    {{--{{ (new Carbon\Carbon($mission->created_at))->formatLocalized('%H:%M') }}--}}
+                    {{--&nbsp;&nbsp;--}}
+                    {{--{!! $mission->mission_content !!}--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--@elseif($haspassfirst==false)--}}
+
+                    {{--@endif--}}
+                    {{--@endif--}}
+                    {{--@endforeach--}}
+
+                    {{--</ul>--}}
+                    {{--</td>--}}
+
+                    {{--</tr>--}}
+                @endif
+                @endforeach
                 @endif
                 {{--<tr>--}}
-                    {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>--}}
-                    {{--<td  >四維林森交叉路口</td>--}}
-                    {{--<td  colspan="6">--}}
-                        {{--<div class="progress">--}}
-                            {{--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">--}}
-                                {{--<p class="text-right">2015/09/30 07:30 &nbsp;&nbsp;</p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</td>--}}
-                    {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp07:32</td>--}}
-                    {{--<td width="100%" class="btn-group">--}}
+                {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07:32</td>--}}
+                {{--<td  >四維林森交叉路口</td>--}}
+                {{--<td  colspan="6">--}}
+                {{--<div class="progress">--}}
+                {{--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">--}}
+                {{--<p class="text-right">2015/09/30 07:30 &nbsp;&nbsp;</p>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</td>--}}
+                {{--<td>15/09/29&nbsp;&nbsp;&nbsp;&nbsp07:32</td>--}}
+                {{--<td width="100%" class="btn-group">--}}
 
-                        {{--<a type="button" class=" btn-s list-group-item dropdown-toggle" data-toggle="dropdown">--}}
-                            {{--15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面<span class="glyphicon glyphicon-chevron-down"></span>--}}
-                        {{--</a>--}}
-                        {{--<ul class="dropdown-menu" role="menu">--}}
-                            {{--<li><a href="#"> 15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面</a></li>--}}
-                            {{--<li><a href="#"> 15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面</a></li>--}}
-                            {{--<li><a href="#"> 15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面</a></li>--}}
-                        {{--</ul>--}}
+                {{--<a type="button" class=" btn-s list-group-item dropdown-toggle" data-toggle="dropdown">--}}
+                {{--15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面<span class="glyphicon glyphicon-chevron-down"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="dropdown-menu" role="menu">--}}
+                {{--<li><a href="#"> 15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面</a></li>--}}
+                {{--<li><a href="#"> 15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面</a></li>--}}
+                {{--<li><a href="#"> 15/09/29&nbsp;&nbsp;&nbsp07:32&nbsp;&nbsp;路樹倒塌壓過路面</a></li>--}}
+                {{--</ul>--}}
 
-                    {{--</td>--}}
+                {{--</td>--}}
                 {{--</tr>--}}
                 </tbody>
             </table>
         </div>
+        {{--表格尾端--}}
     </div>
+
 
 
 @endsection
 @section('javascript')
     <script>
+        $('.header_no_next').click(function(){
+            $(this).toggleClass('expand').nextUntil('tr.header_no_next').slideToggle(100);
+        });
+        $('.header_no_next').trigger('click'); //trigger :觸發指定事件
+
         //移除只有一個任務按下會出現的空白
         for(var i=0;i<$('tr').find('.btn-group').length;i++){
             if($('tr').find('.btn-group').eq(i).find('ul').find('li').length == 0){
