@@ -917,11 +917,19 @@
                         tr.setAttribute("class", "success");
                     }
                     var td = document.createElement('td');
-                    var input = document.createElement('input');
-                    input.setAttribute("type", "checkbox");
-                    input.setAttribute("name", "user_ids[]");
-                    input.setAttribute("value", newData[i]['user_id']);
-                    td.appendChild(input);
+
+                    if(newData[i]['arrive_mission'] != null && newData[i]['arrive_mission'] == 0 && $('#arrived option:selected').text() == "已報到")
+                    {
+
+                    }
+                    else{
+                        var input = document.createElement('input');
+                        input.setAttribute("type", "checkbox");
+                        input.setAttribute("name", "user_ids[]");
+                        input.setAttribute("value", newData[i]['user_id']);
+                        td.appendChild(input);
+                    }
+
                     tr.appendChild(td);
 
                     var td = document.createElement('td');

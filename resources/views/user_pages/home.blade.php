@@ -24,6 +24,10 @@
         display:inline-block;
     }
 
+    {{--table thead{--}}
+    {{--position: absolute;--}}
+    {{--width:100%;--}}
+    {{--}--}}
 @endsection
 @section('content_12')
     <br>
