@@ -61,6 +61,7 @@ EMT災民
                                                         {{--<tr>--}}
                                                         {{--<th width="40%" class="text-right">姓氏</th><td  width="60%">{!! Form::text('lname','',['class' => 'form-control']) !!}</td>--}}
                                                         {{--</tr>--}}
+                                                        {!! Form::hidden('mission_list_id',$mission_list_id) !!}
                                                         <tr>
                                                             <th class="text-right">姓名</th><td>{!! Form::text('name','',['class' => 'form-control']) !!}</td>
                                                         </tr>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Victim_detail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -18,6 +19,12 @@ class EmtVictimController extends Controller {
 	 */
 	public function index()
 	{
+        $id=Auth::user()->id;
+        $works_ons = DB::table('works_ons')
+            ->where('id', $id)
+            ->select('mission_list_id')
+            ->get();
+        $mission_list_id = $works_ons[0]->mission_list_id;
 
         $victim_details = DB::table('victim_details')
                 ->get();
@@ -38,6 +45,7 @@ class EmtVictimController extends Controller {
          return view('manage_pages.victim_EMT')
              ->with('victim_details', $victim_details)
              ->with('now_locations', $now_locations)
+             ->with('mission_list_id', $mission_list_id)
              ->with('users', $users);
 
 	}
@@ -61,12 +69,21 @@ class EmtVictimController extends Controller {
         $damage_detail = $request->input('damage_detail');
         $now_location = $request->input('now_location');
         $disposal = $request->input('disposal');
+        $mission_list_id = $request->input('mission_list_id');
 
         $victim_details = new Victim_detail();
+        $victim_details->mission_list_id = $mission_list_id;
         $victim_details->name = $name;
         $victim_details->sex = $sex;
         $victim_details->age = $age;
-        $victim_details->person_id = $person_id;
+        if($person_id != "")
+        {
+            $victim_details->person_id = $person_id;
+        }
+        else
+        {
+            $victim_details->person_id = null;
+        }
         $victim_details->phone = $phone;
         $victim_details->address = $address;
         $victim_details->damage_level = $damage_level;

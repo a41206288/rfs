@@ -31,17 +31,17 @@ class CreateUsersTable extends Migration {
 
 		Schema::create('victim_details', function(Blueprint $table){
 			$table->increments('victim_detail_id');
-			$table->unsignedInteger('mission_list_id');
-			$table->string('name');
-			$table->integer('age');
+			$table->unsignedInteger('mission_list_id')->nullable();
+			$table->string('name')->nullable();
+			$table->integer('age')->nullable();
 			$table->enum('sex', ['男','女','其他']);
-			$table->string('person_id')->unique();
-			$table->string('phone');
-			$table->string('address');
-			$table->enum('damage_level', [0,1,2,3,4]);
-			$table->text('damage_detail');
-			$table->text('now_location');
-			$table->text('disposal');
+			$table->string('person_id')->unique()->nullable();
+			$table->string('phone')->nullable();
+			$table->string('address')->nullable();
+			$table->enum('damage_level', [0,1,2,3,4])->nullable();
+			$table->text('damage_detail')->nullable();
+			$table->text('now_location')->nullable();
+			$table->text('disposal')->nullable();
 			$table->timestamp('disposal_finish_time')->nullable();
 			$table->timestamps();
 			//$table->foreign('product_total_amount_id')->references('product_total_amount_id')->on('product_total_amounts');

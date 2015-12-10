@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c9f981-5ec3-4d3e-bb3e-b09279aea38d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/user_seeder.php" afterPath="$PROJECT_DIR$/database/seeds/user_seeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfs.iws" />
@@ -32,30 +35,18 @@
       <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/user_pages/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.5" vertical-offset="285" max-vertical-offset="8740">
+            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="8740">
               <caret line="29" column="9" selection-start-line="25" selection-start-column="0" selection-end-line="29" selection-end-column="9" />
-              <folding>
-                <element signature="e#725#750#0#HTML" expanded="true" />
-                <element signature="e#1684#1725#0#HTML" expanded="true" />
-                <element signature="e#4118#4137#0#HTML" expanded="true" />
-                <element signature="e#5089#5107#0#HTML" expanded="true" />
-                <element signature="e#6062#6080#0#HTML" expanded="true" />
-                <element signature="e#6779#6800#0#HTML" expanded="true" />
-                <element signature="e#7290#7312#0#HTML" expanded="true" />
-                <element signature="e#7480#7502#0#HTML" expanded="true" />
-                <element signature="e#8251#8272#0#HTML" expanded="true" />
-                <element signature="e#8908#8930#0#HTML" expanded="true" />
-                <element signature="e#9074#9096#0#HTML" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mission_manage_local.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7769953" vertical-offset="17320" max-vertical-offset="19893">
-              <caret line="929" column="46" selection-start-line="929" selection-start-column="46" selection-end-line="929" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5617" max-vertical-offset="19893">
+              <caret line="305" column="138" selection-start-line="305" selection-start-column="74" selection-end-line="305" selection-end-column="138" />
               <folding>
                 <marker date="1448961201787" expanded="true" signature="9741:9964" placeholder="..." />
                 <marker date="1448961201787" expanded="true" signature="9755:9962" placeholder="..." />
@@ -73,22 +64,79 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <file leaf-file-name="people_manage_resource_c.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.666667" vertical-offset="108379" max-vertical-offset="131537">
-              <caret line="5721" column="0" selection-start-line="5721" selection-start-column="0" selection-end-line="5721" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="11842" max-vertical-offset="18677">
+              <caret line="856" column="22" selection-start-line="856" selection-start-column="22" selection-end-line="856" selection-end-column="22" />
+              <folding>
+                <marker date="1448959103898" expanded="true" signature="37409:37841" placeholder="..." />
+                <marker date="1448959103898" expanded="true" signature="37480:37839" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourceCenterPeopleController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="11468" max-vertical-offset="13775">
+              <caret line="638" column="30" selection-start-line="629" selection-start-column="15" selection-end-line="638" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="panal + nav 表格架構" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/其他/panal + nav 表格架構">
+      <file leaf-file-name="user_seeder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1463">
-              <caret line="67" column="145" selection-start-line="67" selection-start-column="74" selection-end-line="67" selection-end-column="145" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="26883" max-vertical-offset="32794">
+              <caret line="1438" column="51" selection-start-line="1438" selection-start-column="51" selection-end-line="1438" selection-end-column="51" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmtVictimController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.75605536" vertical-offset="1159" max-vertical-offset="4389">
+              <caret line="84" column="46" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
+              <folding>
+                <element signature="e#39#61#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="victim_EMT.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="950" max-vertical-offset="8303">
+              <caret line="64" column="60" selection-start-line="64" selection-start-column="60" selection-end-line="64" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalMissionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="14212">
+              <caret line="24" column="58" selection-start-line="19" selection-start-column="7" selection-end-line="24" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2014_10_12_000000_create_users_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1311">
+              <caret line="37" column="51" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
+              <folding>
+                <element signature="e#7#48#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,46 +144,9 @@
       <file leaf-file-name="laraver指令.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/其他/laraver指令.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
+            <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="589">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="20" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mission_seeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/mission_seeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.214286" vertical-offset="3184" max-vertical-offset="7334">
-              <caret line="195" column="63" selection-start-line="195" selection-start-column="63" selection-end-line="195" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="call_manage.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3260" max-vertical-offset="5244">
-              <caret line="182" column="77" selection-start-line="182" selection-start-column="51" selection-end-line="182" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mission_manage.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7384" max-vertical-offset="16264">
-              <caret line="400" column="54" selection-start-line="398" selection-start-column="48" selection-end-line="400" selection-end-column="54" />
-              <folding>
-                <marker date="1448017017617" expanded="true" signature="15748:15960" placeholder="..." />
-                <marker date="1448017017617" expanded="true" signature="15762:15958" placeholder="..." />
-                <marker date="1448017017617" expanded="true" signature="33323:33564" placeholder="..." />
-                <marker date="1448017017617" expanded="true" signature="33335:33562" placeholder="..." />
-                <marker date="1448017017617" expanded="true" signature="35787:36024" placeholder="..." />
-                <marker date="1448017017617" expanded="true" signature="36248:36483" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -151,7 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.php" />
         <option value="$PROJECT_DIR$/resources/views/user_pages/submit_success.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RelieverReportController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/report_reliever.blade.php" />
@@ -182,19 +192,15 @@
         <option value="$PROJECT_DIR$/resources/views/manage_pages/call_manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/user_pages/missing_poster_input.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsersMissingPosterController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CenterCallController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LocalPeopleSupportController.php" />
         <option value="$PROJECT_DIR$/panal + nav 表格架構" />
-        <option value="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/message_seeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/user_seeder.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/error model" />
         <option value="$PROJECT_DIR$/resources/views/manage_master.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php" />
@@ -202,6 +208,11 @@
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/resources/views/user_pages/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php" />
+        <option value="$PROJECT_DIR$/database/seeds/user_seeder.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php" />
       </list>
     </option>
   </component>
@@ -543,119 +554,6 @@
       <recent name="C:\rfs\其他" />
     </key>
   </component>
-  <component name="RestoreUpdateTree">
-    <UpdateInfo date="Moments ago" ActionInfo="_Update">
-      <UpdatedFiles>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated from server" />
-          <option name="myStatusName" value="Changed on server" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CHANGED_ON_SERVER" />
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Updated" />
-            <option name="myStatusName" value="Changed" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="UPDATED" />
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/database/seeds/user_seeder.php</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Created" />
-            <option name="myStatusName" value="Created" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="CREATED" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Deleted" />
-            <option name="myStatusName" value="Deleted" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="true" />
-            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Restored" />
-            <option name="myStatusName" value="Will be restored" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="RESTORED" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Modified" />
-          <option name="myStatusName" value="Modified" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MODIFIED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Skipped" />
-          <option name="myStatusName" value="Skipped" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SKIPPED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with conflicts" />
-          <option name="myStatusName" value="Will be merged with conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with tree conflicts" />
-          <option name="myStatusName" value="Merged with tree conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with property conflicts" />
-          <option name="myStatusName" value="Will be merged with property conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged" />
-          <option name="myStatusName" value="Will be merged" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Not in repository" />
-          <option name="myStatusName" value="Not in repository" />
-          <option name="mySupportsDeletion" value="true" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UNKNOWN" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally added" />
-          <option name="myStatusName" value="Locally added" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_ADDED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally removed" />
-          <option name="myStatusName" value="Locally removed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_REMOVED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Switched" />
-          <option name="myStatusName" value="Switched" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SWITCHED" />
-        </FILE-GROUP>
-      </UpdatedFiles>
-    </UpdateInfo>
-  </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
@@ -695,12 +593,6 @@
       <created>1428751848408</created>
       <option name="number" value="Default" />
       <updated>1428751848408</updated>
-    </task>
-    <task id="LOCAL-00014" summary="創建執行部門reports table">
-      <created>1433071426724</created>
-      <option name="number" value="00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1433071426724</updated>
     </task>
     <task id="LOCAL-00015" summary="call right 增加印出資料格式">
       <created>1433493749490</created>
@@ -990,14 +882,19 @@
       <option name="project" value="LOCAL" />
       <updated>1448959287010</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="bug 修正&#10;">
+      <created>1448961229252</created>
+      <option name="number" value="00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1448961229252</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1008,12 +905,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14488189" sideWeight="0.49926794" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21889764" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21889764" sideWeight="0.50073206" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1058,7 +956,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="center resources  html update" />
     <MESSAGE value="local resources  html update" />
     <MESSAGE value="local missing and analysis update" />
     <MESSAGE value="user application  save finish" />
@@ -1083,7 +980,8 @@
     <MESSAGE value="地方 人員編輯狀態 全部存檔完成&#10;未完事項&#10;地方&#10;1.任務時間 存檔&#10;&#10;" />
     <MESSAGE value="完成 ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡" />
     <MESSAGE value="首頁修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="首頁修改" />
+    <MESSAGE value="bug 修正&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug 修正&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1109,23 +1007,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/composer.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="66842">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/product_manage_resource_l.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7378641" vertical-offset="627" max-vertical-offset="2926">
-          <caret line="49" column="31" selection-start-line="45" selection-start-column="23" selection-end-line="49" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_l.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7839806" vertical-offset="0" max-vertical-offset="532">
@@ -1233,13 +1114,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/其他/網頁連結整理.txt">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.54480284" vertical-offset="0" max-vertical-offset="558">
           <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/user_master.blade.php">
@@ -1312,20 +1193,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5380531" vertical-offset="38" max-vertical-offset="8284">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5069204" vertical-offset="2728" max-vertical-offset="3933">
-          <caret line="166" column="0" selection-start-line="160" selection-start-column="7" selection-end-line="166" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalPeopleSupportController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33248082" vertical-offset="1884" max-vertical-offset="2432">
@@ -1347,13 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-96.35714" vertical-offset="1197" max-vertical-offset="24985">
-          <caret line="211" column="22" selection-start-line="211" selection-start-column="20" selection-end-line="211" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.90547264" vertical-offset="2980" max-vertical-offset="7600">
@@ -1369,13 +1229,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/其他/From 整理">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="684">
           <caret line="3" column="24" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="24" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalPeopleController.php">
@@ -1385,31 +1245,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4332" max-vertical-offset="14212">
-          <caret line="275" column="0" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8684" max-vertical-offset="13490">
-          <caret line="479" column="13" selection-start-line="479" selection-start-column="13" selection-end-line="479" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CenterMissionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38062283" vertical-offset="2839" max-vertical-offset="15485">
           <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05840708" vertical-offset="16231" max-vertical-offset="18677">
-          <caret line="856" column="22" selection-start-line="856" selection-start-column="22" selection-end-line="856" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1424,7 +1263,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3260" max-vertical-offset="5244">
           <caret line="182" column="77" selection-start-line="182" selection-start-column="51" selection-end-line="182" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1432,22 +1270,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7384" max-vertical-offset="16264">
           <caret line="400" column="54" selection-start-line="398" selection-start-column="48" selection-end-line="400" selection-end-column="54" />
-          <folding>
-            <marker date="1448017017617" expanded="true" signature="15748:15960" placeholder="..." />
-            <marker date="1448017017617" expanded="true" signature="15762:15958" placeholder="..." />
-            <marker date="1448017017617" expanded="true" signature="33323:33564" placeholder="..." />
-            <marker date="1448017017617" expanded="true" signature="33335:33562" placeholder="..." />
-            <marker date="1448017017617" expanded="true" signature="35787:36024" placeholder="..." />
-            <marker date="1448017017617" expanded="true" signature="36248:36483" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/mission_seeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.214286" vertical-offset="3184" max-vertical-offset="7334">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3184" max-vertical-offset="7334">
           <caret line="195" column="63" selection-start-line="195" selection-start-column="63" selection-end-line="195" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1455,15 +1284,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1463">
           <caret line="67" column="145" selection-start-line="67" selection-start-column="74" selection-end-line="67" selection-end-column="145" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.666667" vertical-offset="108379" max-vertical-offset="131537">
+        <state vertical-scroll-proportion="0.0" vertical-offset="108379" max-vertical-offset="131537">
           <caret line="5721" column="0" selection-start-line="5721" selection-start-column="0" selection-end-line="5721" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="8740">
+          <caret line="29" column="9" selection-start-line="25" selection-start-column="0" selection-end-line="29" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/people_manage_resource_c.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="11842" max-vertical-offset="18677">
+          <caret line="856" column="22" selection-start-line="856" selection-start-column="22" selection-end-line="856" selection-end-column="22" />
+          <folding>
+            <marker date="1448959103898" expanded="true" signature="37409:37841" placeholder="..." />
+            <marker date="1448959103898" expanded="true" signature="37480:37839" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_11_08_164151_create_message_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8512111" vertical-offset="2" max-vertical-offset="931">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1475,30 +1328,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user_pages/home.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ResourceCenterPeopleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.5" vertical-offset="285" max-vertical-offset="8740">
-          <caret line="29" column="9" selection-start-line="25" selection-start-column="0" selection-end-line="29" selection-end-column="9" />
-          <folding>
-            <element signature="e#725#750#0#HTML" expanded="true" />
-            <element signature="e#1684#1725#0#HTML" expanded="true" />
-            <element signature="e#4118#4137#0#HTML" expanded="true" />
-            <element signature="e#5089#5107#0#HTML" expanded="true" />
-            <element signature="e#6062#6080#0#HTML" expanded="true" />
-            <element signature="e#6779#6800#0#HTML" expanded="true" />
-            <element signature="e#7290#7312#0#HTML" expanded="true" />
-            <element signature="e#7480#7502#0#HTML" expanded="true" />
-            <element signature="e#8251#8272#0#HTML" expanded="true" />
-            <element signature="e#8908#8930#0#HTML" expanded="true" />
-            <element signature="e#9074#9096#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="11468" max-vertical-offset="13775">
+          <caret line="638" column="30" selection-start-line="629" selection-start-column="15" selection-end-line="638" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/user_seeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="26883" max-vertical-offset="32794">
+          <caret line="1438" column="51" selection-start-line="1438" selection-start-column="51" selection-end-line="1438" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalMissionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="14212">
+          <caret line="24" column="58" selection-start-line="19" selection-start-column="7" selection-end-line="24" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/mission_manage_local.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7769953" vertical-offset="17320" max-vertical-offset="19893">
-          <caret line="929" column="46" selection-start-line="929" selection-start-column="46" selection-end-line="929" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5617" max-vertical-offset="19893">
+          <caret line="305" column="138" selection-start-line="305" selection-start-column="74" selection-end-line="305" selection-end-column="138" />
           <folding>
             <marker date="1448961201787" expanded="true" signature="9741:9964" placeholder="..." />
             <marker date="1448961201787" expanded="true" signature="9755:9962" placeholder="..." />
@@ -1511,6 +1368,34 @@
             <marker date="1448961201787" expanded="true" signature="38850:39151" placeholder="..." />
             <marker date="1448961201787" expanded="true" signature="48899:49331" placeholder="..." />
             <marker date="1448961201787" expanded="true" signature="48970:49329" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1311">
+          <caret line="37" column="51" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
+          <folding>
+            <element signature="e#7#48#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage_pages/victim_EMT.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="950" max-vertical-offset="8303">
+          <caret line="64" column="60" selection-start-line="64" selection-start-column="60" selection-end-line="64" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmtVictimController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75605536" vertical-offset="1159" max-vertical-offset="4389">
+          <caret line="84" column="46" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
+          <folding>
+            <element signature="e#39#61#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1278,7 +1278,7 @@ class user_seeder extends Seeder{
         //$Victim_detail->address = 3;
         $Victim_detail->damage_level = 4;
         $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "高雄醫學院";
         $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1290,6 +1290,7 @@ class user_seeder extends Seeder{
         $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456702";
         $Victim_detail->phone = "0412345678";
+        $Victim_detail->now_location = "高雄醫學院";
        // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 2;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
@@ -1305,6 +1306,7 @@ class user_seeder extends Seeder{
         $Victim_detail->sex = '女';
         $Victim_detail->person_id = "L123456703";
         $Victim_detail->phone = "0412345678";
+        $Victim_detail->now_location = "高雄醫學院";
        // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 2;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
@@ -1320,6 +1322,7 @@ class user_seeder extends Seeder{
         $Victim_detail->sex = '女';
         $Victim_detail->person_id = "L123456704";
         $Victim_detail->phone = "0412345678";
+        $Victim_detail->now_location = "高雄醫學院";
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
@@ -1335,6 +1338,7 @@ class user_seeder extends Seeder{
         $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456705";
         $Victim_detail->phone = "0412345678";
+        $Victim_detail->now_location = "高雄醫學院";
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
@@ -1353,6 +1357,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
         $Victim_detail->damage_detail = "輕微擦傷";
+        $Victim_detail->now_location = "高雄醫學院";
 //        $Victim_detail->now_location = "逢甲大學醫療組診療處";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
@@ -1368,7 +1373,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 2;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-        $Victim_detail->now_location = "馬偕醫院";
+        $Victim_detail->now_location = "國軍左營醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1380,6 +1385,7 @@ class user_seeder extends Seeder{
         $Victim_detail->sex = '女';
         $Victim_detail->person_id = "L123456708";
         $Victim_detail->phone = "0412345678";
+        $Victim_detail->now_location = "國軍左營醫院";
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
@@ -1395,6 +1401,7 @@ class user_seeder extends Seeder{
         $Victim_detail->sex = '男';
         $Victim_detail->person_id = "L123456709";
         $Victim_detail->phone = "0412345678";
+        $Victim_detail->now_location = "國軍左營醫院";
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
@@ -1413,7 +1420,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 2;
         $Victim_detail->damage_detail = "手部輕微骨折";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "國軍左營醫院";
         $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1428,7 +1435,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "國軍左營醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1443,7 +1450,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "長庚醫學院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1458,7 +1465,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 3;
         $Victim_detail->damage_detail = "嚴重骨折";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "長庚醫學院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1473,7 +1480,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "長庚醫學院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1488,7 +1495,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "長庚醫學院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1503,7 +1510,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "長庚醫學院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1518,7 +1525,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 4;
         $Victim_detail->damage_detail = "嚴重吸入性嗆傷";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "長庚醫學院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1533,7 +1540,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "大東醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1548,7 +1555,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "大東醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1563,7 +1570,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
         $Victim_detail->damage_detail = "輕微燙傷";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "大東醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1577,8 +1584,7 @@ class user_seeder extends Seeder{
         $Victim_detail->phone = "0412345678";
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
-//        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "大東醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1593,7 +1599,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "大東醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1608,7 +1614,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1623,7 +1629,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1638,7 +1644,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1653,7 +1659,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 2;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1668,7 +1674,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 1;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1683,7 +1689,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1698,7 +1704,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 
@@ -1713,7 +1719,7 @@ class user_seeder extends Seeder{
         // $Victim_detail->address = 3;
         $Victim_detail->damage_level = 0;
 //        $Victim_detail->damage_detail = "被尖銳物品刺中腹部";
-//        $Victim_detail->now_location = "逢甲大學醫療組診療處";
+        $Victim_detail->now_location = "802國軍高雄總醫院";
 //        $Victim_detail->disposal = "先做初步包紮，等候救護車抵達";
         $Victim_detail->save();
 

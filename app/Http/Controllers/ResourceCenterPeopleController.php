@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Center_support_people_skill;
+use App\Center_support_person;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -393,9 +394,24 @@ class ResourceCenterPeopleController extends Controller {
 	 */
 	public function create(Request $request)//新增新的招募志工單
 	{
-        $inputs=$request->except('_token');
-        dd($inputs);
+//        $inputs=$request->except('_token');
+//        dd($inputs);
+        $mission_support_people_role = $request->get('mission_support_people_role');
+        $mission_support_people_num = $request->get('mission_support_people_num');
+        $center_support_person = DB::table('center_support_people')->where('role_id',$mission_support_people_role)->get();
+        if($center_support_person!=null)
+        {
+            DB::table('center_support_people')->where('role_id',$mission_support_people_role)->update(['center_support_person_num' => $mission_support_people_num]);
+        }
+        else
+        {
+            $center_support_people = new Center_support_person();
+            $center_support_people->role_id = $mission_support_people_role;
+            $center_support_people->center_support_person_num = $mission_support_people_num;
+            $center_support_people->save();
+        }
 
+//
         return redirect()->route('resourcePanel');
 	}
 
@@ -406,7 +422,7 @@ class ResourceCenterPeopleController extends Controller {
 	 */
 	public function store(Request $request)// 更改人員狀態 + 調派人員
 	{
-        $inputs=$request->except('_token');
+//        $inputs=$request->except('_token');
 //        dd($inputs);
         $status = $request->get('status');
         $mission_list_id= $request->get('mission_list_id');
@@ -624,10 +640,10 @@ class ResourceCenterPeopleController extends Controller {
 
                 $user_id = DB::table('users')->where('email',$center_support_person_detail[0]->email)->get();
                 $user_id = $user_id[0]->id;
-                $center_support_person_role = DB::table('center_support_people')->select('id')->where('center_support_person_id',$center_support_person_detail[0]->center_support_person_id)->get();
+                $center_support_person_role = DB::table('center_support_people')->select('role_id')->where('center_support_person_id',$center_support_person_detail[0]->center_support_person_id)->get();
 //                dd($center_support_person_role);
                 $user  = User::where('id', '=', $user_id)->first();
-                $role = Permission::where('id', '=',$center_support_person_role[0]->id)->first();
+                $role = Permission::where('id', '=',$center_support_person_role[0]->role_id)->first();
                 $user->assignRole($role);
                 $user->save();
 
